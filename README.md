@@ -1,3 +1,3 @@
-# Projec to Person Matching System Vision Statement
+# Project to Person Matching System Vision Statement
 
 TODO
