@@ -2,6 +2,8 @@
 
 The Person to Project Matching System (PPMS) will be used to allow skilled members of the public to find relevant projects that are suitable for their interests and skills, and for project owners to select users who skills match their needs.
 
+What makes this application different is that it is designed to remove(or reduce) bias through the hiring process. When a project owner reviews candidates that meet their criteria and have expressed interest in the project, the project owneer is presented with qualifications and skills with no personal identifying information (no name, age, sex, race or even a picture of a candidate that could cause even unconcious bias). Project owers will simply review qualifications. 
+
 Similar to matchmaking apps such as Tinder, the system will attempt to pair people with project owners that share the same interests and skills listed. Every user of the system will be required to fill out a survey indicating these attributes. The survey will be used in the matchmaking process.
 
 The system is designed to be used by skilled members of the public and project owners. For project owners, the system will augment and replace existing methods of finding skilled people, such as job banks and social networking communities such as LinkedIn. General users can view the list of projects and express interest in those that they would be like to join.
