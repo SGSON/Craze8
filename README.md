@@ -8,7 +8,7 @@ With the greatest respect, the late Martin Luther King Jr (in his famous speech 
 
 When a candidate is looking for a suitable project or when a project owner is looking for a suitable candidate, they will each be presented with a "Tinder-style" interface. Relevent details will be shared and the user will swipe right to express interest or swipe left to express disinterest.
 
-Every user of the system will be required to fill out a survey indicating these attributes. The survey will be used in the matchmaking process. 
+Every user of the system will be required to fill out a survey that will be used to create the "Tinder-Style" view that the project owner will see. This view will indicate strength of matches for the project owners given criteria and will be used to decide if the project owner is interested in this candidate.
 
 The system is designed to be used by skilled members of the public and project owners. For project owners, the system will augment and replace existing methods of finding skilled people, such as job banks and social networking communities such as LinkedIn. General users can view the list of projects and express interest in those that they would be like to join.
 
