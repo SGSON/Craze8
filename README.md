@@ -28,3 +28,20 @@ Success Metrics:
 * % of top matching individuals selected by the project owner
 * Survey users and project owners and ask if they prefer using this system over other networking tools
 * % of users selected in the tool (contact information revealed) compared to users that actually made it into the project
+* 
+
+### features for project owners
+* Match complete list
+* Open and close project listning
+* Easy Survey for porject
+* The matching itself
+* 
+
+### features for users
+* view their own history
+* Match complete list - users
+* easy survey for users
+* notification of selection/project close
+* 
+
+
