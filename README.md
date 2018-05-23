@@ -16,22 +16,4 @@ Since the system will be used primarily for matchmaking rather than project mana
 
 The use of a matchmaking system for skilled members of the public and project owners is an improvement over current systems as it provides an intuitive interface and the matchmaking format has proven to be successful for other domains. Because this system will be designed exclusively for matching people to projects, users will be able to more quickly find the people and projects that they want than using other social networking apps.
 
-The system will be considered successful if both Project Owners and General Users prefer using this system over other networking tools, based on a survey given to people after demonstration of the system. 
-
-Survey Project Owners with the following critera:  
-*  How satisfied where Project Owners with the quality of of General Users they selected for their project (1-Very Unastisfied to 5-Very Satisfied)  
-*  How satisfied where Project Owners with the quality of the project based on the contributions from the General Users selected(1 to 5)  
-*  What percentage of General Users that were shown to be strong matches where then selected by the Project Owner to contribute to the project (how many of the matches suggested were accepted)  
-
-Survey General Users with the following criteria:  
-* How satisfied they are as compared to other networking tools
-* Did you feel that the system that led to your match was fair
-
-### *brainstorming*
-Success Metrics:
-* % of people hired based on the recommendation
-* We could survey project owners at set time intervals to determine if they are satisfied with the conitrubtors to the project (or if they feel it allowed them to build a better quality project)
-* We could survey users to determine their satisfaction in the selection process
-* % of top matching individuals selected by the project owner
-* Survey users and project owners and ask if they prefer using this system over other networking tools
-* % of users selected in the tool (contact information revealed) compared to users that actually made it into the project
+The project will be considered successful if both Project Owners and General Users prefer using this system over other networking tools, based on a survey given to people after demonstration of the system and if greater than 65% of matches presented are actually selected by Project Owners.
