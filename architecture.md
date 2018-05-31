@@ -1,24 +1,36 @@
-## Presentation
-    * Login/SignUp View  
-    * User looking for projects view  
-    * Reviewing projects you have expressed interest in view  
-    * User profile creation view  
-    * User profile edit view  
-    * Project owner create project view  
-    * Project owner edit project view  
-    * Project Owner to view matches  
-    * Project Owner to view contact details of selected people view  
-## Logic  
+# __Application Architecture__  
+## Presentation package
+    * LoginActivity.java/xml
+        - The login screen for all users     
+    * SignUpActivity.java/xml  
+        - The Sign up screen for all users
+    * UserSearchForProject.java/xml  
+        - Activity for general users to find projects
+    * UserInterestedProjectsListActivity.java/xml
+        - Activity for users to view the projects they expressed interest in  
+    * UserProfileCreateActivity.java/xml
+        - Activity used for general users to complete their profile
+    * UserProfileEditActivity.java/xml
+        - Activty used for general users to update/edit their profile
+    * OwnerProjectCreateActivity.java/xml 
+        - Activity for project owners to create their project  
+    * OwnerProjectEditActivity.java/xml
+        - Activity for project owners to edit/update their project listing
+    * OwnerViewMatchesActivity.java/xml
+        - Activity for project owners to view their mathes for the project
+    * OwnerViewMatchContactActivity.java/xml
+        - Activity for project owners to view the contact details of confirmed matches  
+## Logic package  
     * Determine user profiles that match project specifications  
     * Determine projects that match user qualifiticaions  
     * AccountManager  
     * ProjectManager  
     * UserManager  
     * MatchManager  
-## Persistence  
+## Persistence package  
     * Store/Retrieve project in DB  
     * Store/Retrieve user profile in DB  
-## Domain  
+## Domain package  
     * Users  
     * Projects  
     * List of matches  
