@@ -1,8 +1,10 @@
 # __Application Architecture__  
-## Presentation package
+
+## Presentation package  
 ###### All users  
     * MainActivity.java/xml
         - Activity for first screen the user will encounter
+        - 
     * LoginActivity.java/xml
         - Login Actvity screen for all users     
     * SignUpActivity.java/xml  
@@ -40,7 +42,19 @@
     * Store/Retrieve project in DB  
     * Store/Retrieve user profile in DB  
 # Domain package  
-    * Users  
-    * Projects  
-    * List of matches  
-    * Project owners  
+    * NewAccountRequest  
+        - passed to logic when creating a new account  
+    * NewProjectRequest  
+        - passed to logic when project owner creates a new project  
+    * Account(parent)  
+        - parent abstract account  
+        + AccountUser(child)  
+            - An account for general users  
+        + AccountOwner(child)  
+            - An account for project owners  
+    * Project  
+        - passed between presentation, logic and persistence layer  
+    * Interest  
+        - Used when there is a potential match (an expression of interest by the user, yet needs to be review by project owner)  
+    * Match  
+        - User when both general user and project owner have expressed interest  
