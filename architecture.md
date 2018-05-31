@@ -64,7 +64,4 @@
         - Used when there is a potential match (an expression of interest by the user, yet needs to be review by project owner)  
     * Match.java  
         - User when both general user and project owner have expressed interest  
-        
-        
-    
-    * GeneralUser.java
+
