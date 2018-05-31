@@ -4,7 +4,6 @@
 ###### All users  
     * MainActivity.java/xml
         - Activity for first screen the user will encounter
-        - 
     * LoginActivity.java/xml
         - Login Actvity screen for all users     
     * SignUpActivity.java/xml  
@@ -32,15 +31,22 @@
     * OwnerViewMatchContactActivity.java/xml
         - Activity for project owners to view the contact details of confirmed matches  
 # Logic package  
-    * Determine user profiles that match project specifications  
-    * Determine projects that match user qualifiticaions  
-    * AccountManager  
-    * ProjectManager  
-    * UserManager  
-    * MatchManager  
+    * MatchingEngine.java  
+        - Determine user profiles that match project specifications  
+        - Determine projects that match user qualifiticaions  
+    * AccountManager.java  
+        - Takes care of the general user and project owner account processes
+            - account creation
+            - logging in
+    * ProjectManager.java  
+        - Takes care of the project processes
+    * UserProfileManager.java  
+        - Takes care of the general user profile related processes
 # Persistence package  
-    * Store/Retrieve project in DB  
-    * Store/Retrieve user profile in DB  
+    * ProjectDatabase.(java?)  
+        - Store/Retrieve project in DB  
+    * UserDatabase.(java?)  
+        - Store/Retrieve user profile in DB  
 # Domain package  
     * NewAccountRequest  
         - passed to logic when creating a new account  
