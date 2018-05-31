@@ -48,19 +48,23 @@
     * UserDatabase.(java?)  
         - Store/Retrieve user profile in DB  
 # Domain package  
-    * NewAccountRequest  
+    * NewAccountRequest.java  
         - passed to logic when creating a new account  
-    * NewProjectRequest  
+    * NewProjectRequest.java  
         - passed to logic when project owner creates a new project  
-    * Account(parent)  
+    * Account(parent).java  
         - parent abstract account  
-        + AccountUser(child)  
+        + AccountUser(child).java  
             - An account for general users  
-        + AccountOwner(child)  
+        + AccountOwner(child).java  
             - An account for project owners  
-    * Project  
+    * Project.java  
         - passed between presentation, logic and persistence layer  
-    * Interest  
+    * Interest.java  
         - Used when there is a potential match (an expression of interest by the user, yet needs to be review by project owner)  
-    * Match  
+    * Match.java  
         - User when both general user and project owner have expressed interest  
+        
+        
+    
+    * GeneralUser.java
