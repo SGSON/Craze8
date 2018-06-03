@@ -43,9 +43,9 @@
     * UserProfileManager.java  
         - Takes care of the general user profile related processes
 # Persistence package  
-    * ProjectDatabase.(java?)  
+    * ProjectDatabase.java?
         - Store/Retrieve project in DB  
-    * UserDatabase.(java?)  
+    * UserDatabase.java  
         - Store/Retrieve user profile in DB  
 # Domain package  
     * NewAccountRequest.java  
