@@ -1,5 +1,8 @@
 # __Application Architecture__  
 
+![Image of Yaktocat](https://code.cs.umanitoba.ca/comp3350-summer2018/Crazy8/blob/cc684f5d0b25bb464424031320edb36330684638/ApplicationArchitecture.png)
+
+
 ## Presentation package  
 ###### All users  
     * MainActivity.java/xml
@@ -63,5 +66,5 @@
     * Interest.java  
         - Used when there is a potential match (an expression of interest by the user, yet needs to be review by project owner)  
     * Match.java  
-        - User when both general user and project owner have expressed interest  
+        - Used when both general user and project owner have expressed interest  
 
