@@ -1,5 +1,6 @@
-package com.example.test.ppms.database;
+package Persistence;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public interface DatabaseInterface {
@@ -7,17 +8,17 @@ public interface DatabaseInterface {
     /*
     This is the method signatures that will interact with out database
     All will have void return values for now, but once we have our classes in the project
-    I will add the correct return values
+    We can add the correct return values and the correct parameters
      */
 
-    void addUser(UUID ID, String user);
+    void addUser(UUID ID, DatabaseObject user);
     void removeUser(UUID ID);
     void getUserInfo(UUID ID);
 
 
-    void addProject(UUID ID, String project);
+    void addProject(UUID ID, DatabaseObject project);
     void removeProject(UUID ID);
-    void getProjectOwner(UUID projectID);
-    void getProjectsByOwnerID(UUID projectOwnerID);
-    void getInterestedUsersForProject(UUID projectID);
+    DatabaseObject getProjectOwner(UUID projectID);
+    ArrayList<DatabaseObject> getProjectsByOwnerID(UUID projectOwnerID);
+    ArrayList<DatabaseObject> getInterestedUsersForProject(UUID projectID);
 }
