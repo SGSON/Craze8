@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PPMS</string>
+
+    <string name="enter_all_fields_prompt">Please Enter All Text Fields</string>
+
+    <string name="enter_project_name_prompt">Please Enter Project Name</string>
+    <string name="project_description_header">Please Enter Project Description</string>
+    <string name="create_project">Create Project</string>
+    <string name="cancel">Cancel</string>
 </resources>
