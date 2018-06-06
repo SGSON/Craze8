@@ -95,7 +95,7 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
     //the object's validation method returned true, otherwise it returns false. If it returns false
     //the user should be presented with an error in the calling function and be required to
     // reenter the project information.
-    public bool createNewProjectRequestFromEditText()
+    public Boolean createNewProjectRequestFromEditText()
     {
         //TODO
         return true;

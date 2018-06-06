@@ -4,5 +4,5 @@ package presentation;
 
 public interface CreateProjectActivityInterface {
     void onCreate(Bundle savedInstanceState);
-    bool createNewProjectRequestFromEditText(); //creates a new NewProjectRequest object
+    Boolean createNewProjectRequestFromEditText(); //creates a new NewProjectRequest object
 }
