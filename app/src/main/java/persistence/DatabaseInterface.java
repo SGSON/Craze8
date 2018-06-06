@@ -1,4 +1,4 @@
-package Persistence;
+package persistence;
 
 import java.util.ArrayList;
 import java.util.UUID;

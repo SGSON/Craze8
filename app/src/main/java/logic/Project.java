@@ -1,8 +1,8 @@
-package Logic;
+package logic;
 
 import java.util.UUID;
 
-import Persistence.DatabaseObject;
+import persistence.DatabaseObject;
 
 public class Project extends DatabaseObject {
 
