@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.test.ppms.R;
 
-public class CreateProjectActivity extends AppCompatActivity{
+public class CreateProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface {
 
     //For the UI
     private EditText mProjectNameEdit;
