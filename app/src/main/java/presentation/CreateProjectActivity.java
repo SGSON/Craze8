@@ -91,11 +91,11 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
 
     }
 
-    String getmProjectName() //this is called by business logic to get project name(?)
+    public String getmProjectName() //this is called by business logic to get project name(?)
     {
         return mProjectName;
     }
-    String getmProjectDescr(); //this is called by business logic to get project name(?)
+    public String getmProjectDescr() //this is called by business logic to get project name(?)
     {
         return mProjectDescr;
     }
