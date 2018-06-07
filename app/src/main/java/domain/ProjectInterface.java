@@ -1,7 +1,7 @@
 package domain;
 
 import java.util.UUID;
-import java.util.List;
+import java.util.ArrayList;
 
 public interface ProjectInterface {
 
@@ -15,5 +15,5 @@ public interface ProjectInterface {
     public String getDescription();
 
     //returns the list of credentials associated with the project
-    public List<String> getCredentials();
+    public ArrayList<String> getCredentials();
 }

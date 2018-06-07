@@ -1,18 +1,20 @@
 package domain;
 
 import java.util.UUID;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Project extends DatabaseObject implements ProjectInterface {
 
     private UUID mProjectID;
     private String mProjectName;
     private String mProjectDescription;
+    private ArrayList<String> mCredentials;
 
-    public Project(String name, String descr) {
+    public Project(String name, String descr, ArrayList<String> cred) {
         mProjectID = UUID.randomUUID();
         mProjectName = name;
         mProjectDescription = descr;
+        mCredentials = cred;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class Project extends DatabaseObject implements ProjectInterface {
     }
 
     //returns the list of credentials associated with the project
-    public List<String> getCredentials() {
-        return null; //TODO - return an ArrayList (an implementation of List interface)
+    public ArrayList<String> getCredentials() {
+        return mCredentials;
     }
 }

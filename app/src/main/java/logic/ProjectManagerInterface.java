@@ -1,6 +1,11 @@
 package logic;
+
 import domain.DatabaseObject;
 
 public interface ProjectManagerInterface {
-    Boolean validateProject(DatabaseObject project); //validates whether the project meets the requirements
+
+    //This function determines if the project fields meet the requirements.
+    //If information entered is valid, the project is added to the databases.
+    //If the information entered is invalid, the function returns false.
+    Boolean processNewProjectRequest(DatabaseObject project);
 }

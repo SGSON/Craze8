@@ -91,11 +91,10 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
 
     }
 
-    //This function creates a NewProjectRequest object from the edit text. It returns true if
-    //the object's validation method returned true, otherwise it returns false. If it returns false
-    //the user should be presented with an error in the calling function and be required to
-    // reenter the project information.
-    public Boolean createNewProjectRequestFromEditText()
+    //Creates a new Project object and calls ProjectManager's processNewProjectRequest method
+    //to determine whether the Project object attributes are valid. Returns true if the project is
+    // valid and false if it is invalid
+    public Boolean createNewProjectFromEditText()
     {
         //TODO
         return true;
