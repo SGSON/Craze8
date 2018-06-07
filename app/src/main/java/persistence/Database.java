@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.UUID;
 
+import domain.DatabaseObject;
+
 
 public class Database implements DatabaseInterface {
 
