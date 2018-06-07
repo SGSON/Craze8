@@ -91,13 +91,12 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
 
     }
 
-    public String getmProjectName() //this is called by business logic to get project name(?)
+    //Creates a new Project object and calls ProjectManager's processNewProjectRequest method
+    //to determine whether the Project object attributes are valid. Returns true if the project is
+    // valid and false if it is invalid
+    public Boolean createNewProjectFromEditText()
     {
-        return mProjectName;
+        //TODO
+        return true;
     }
-    public String getmProjectDescr() //this is called by business logic to get project name(?)
-    {
-        return mProjectDescr;
-    }
-
 }

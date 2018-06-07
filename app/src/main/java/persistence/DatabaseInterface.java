@@ -3,6 +3,8 @@ package persistence;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import domain.DatabaseObject;
+
 public interface DatabaseInterface {
 
     /*
