@@ -9,6 +9,8 @@ public interface ProjectManagerInterface {
     //If the information entered is invalid, the function returns false.
     Boolean processNewProjectRequest(DatabaseObject project);
   
+    Boolean validateUUID(DatabaseObject project);
+  
     Boolean validateName(DatabaseObject project);  
     
     Boolean validateDescription(DatabaseObject project);
