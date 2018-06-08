@@ -12,7 +12,8 @@ import android.widget.Toast;
 
 import com.example.test.ppms.R;
 
-public class CreateProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface {
+public class CreateProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface,
+        View.OnClickListener, TextView.OnEditorActionListener {
 
     //For the UI
     private EditText mProjectNameEdit;
@@ -37,66 +38,42 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         mCancelButton = (Button) findViewById(R.id.cancel_project_button);
 
 
-        /**
-         * This chunk of code tells Android Studio what we want a button or some UI element
-         * to do once it has been clicked or some type of action. There is two ways of doing this
-         * I chose to do it this way because this is what I used in my previous android app.
-         * The other way to do it is to have the code outside of this OnCreate method
-         * I noticed that in the sample Project he gave us they do it in the way where the code
-         * telling Android studio what to do is outside of this OnCreate method. I plan to go and see
-         * him tomorrow if they would prefer we do it that way. - Buhle
-         */
-        mProjectNameEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
-                boolean actionDone = false;
-                if(actionId == EditorInfo.IME_ACTION_DONE) {
-                    mProjectName = textView.getText().toString();
-                    actionDone = true;
-                }
-                return actionDone;
+        mProjectNameEdit.setOnEditorActionListener(this);
+
+        mCreateProjectButton.setOnClickListener(this);
+        mCancelButton.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.create_project_button) {
+            if(!createNewProjectFromEditText()) {
+                Toast.makeText(CreateProjectActivity.this, R.string.invalid_data, Toast.LENGTH_SHORT).show();
             }
-        });
+        } else if(view.getId() == R.id.cancel_project_button) {
+            finish();
+        }
 
-        mCreateProjectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mProjectNameEdit.getText().toString().equals("") ||
-                        mProjectDescriptionEdit.getText().toString().equals("")) {
-                    Toast.makeText(CreateProjectActivity.this, R.string.enter_all_fields_prompt,
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    mProjectName = mProjectNameEdit.getText().toString();
-                    mProjectDescr = mProjectDescriptionEdit.getText().toString();
+    }
 
-                    /**
-                     * TO-DO: Send the Project Information to Other Layers for further processing
-                     */
-
-
-
-                    //Close the Acivity after the Project is created
-                    finish();
-                }
-            }
-        });
-
-        //If Cancel Button is hit, close the activity
-        mCancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();;
-            }
-        });
-
+    @Override
+    public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
+        boolean actionDone = false;
+        if(actionId == EditorInfo.IME_ACTION_DONE) {
+            mProjectName = textView.getText().toString();
+            actionDone = true;
+        }
+        return actionDone;
     }
 
     //Creates a new Project object and calls ProjectManager's processNewProjectRequest method
     //to determine whether the Project object attributes are valid. Returns true if the project is
     // valid and false if it is invalid
-    public Boolean createNewProjectFromEditText()
+    public boolean createNewProjectFromEditText()
     {
-        //TODO
+
         return true;
     }
+
 }

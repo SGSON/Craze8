@@ -7,4 +7,6 @@
     <string name="project_description_header">Please Enter Project Description</string>
     <string name="create_project">Create Project</string>
     <string name="cancel">Cancel</string>
+
+    <string name="invalid_data">Invalid Data</string>
 </resources>
