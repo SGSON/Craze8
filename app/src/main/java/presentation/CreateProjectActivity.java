@@ -33,8 +33,8 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
 
         mProjectNameEdit = (EditText) findViewById(R.id.enter_project_name);
         mProjectDescriptionEdit = (EditText) findViewById(R.id.project_description);
-        mCreateProjectButton = (Button) findViewById(R.id.create_course_button);
-        mCancelButton = (Button) findViewById(R.id.cancel_course_button);
+        mCreateProjectButton = (Button) findViewById(R.id.create_project_button);
+        mCancelButton = (Button) findViewById(R.id.cancel_project_button);
 
 
         /**
