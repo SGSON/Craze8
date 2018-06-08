@@ -79,6 +79,8 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
 
         final Project newProject = new Project(mProjectName, mProjectDescr, null);
 
+        //ProjectManager.ValidateProject(newProject);
+
         return true;
     }
 
