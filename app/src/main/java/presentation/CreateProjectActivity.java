@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.test.ppms.R;
 
+import domain.Project;
+
 public class CreateProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface,
         View.OnClickListener, TextView.OnEditorActionListener {
 
@@ -36,7 +38,6 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         mProjectDescriptionEdit = (EditText) findViewById(R.id.project_description);
         mCreateProjectButton = (Button) findViewById(R.id.create_project_button);
         mCancelButton = (Button) findViewById(R.id.cancel_project_button);
-
 
         mProjectNameEdit.setOnEditorActionListener(this);
 
@@ -72,6 +73,11 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
     // valid and false if it is invalid
     public boolean createNewProjectFromEditText()
     {
+        //TO-DO add the list of skills to the UI and pass it to the new project being made
+        mProjectName = mProjectNameEdit.getText().toString();
+        mProjectDescr = mProjectDescriptionEdit.getText().toString();
+
+        final Project newProject = new Project(mProjectName, mProjectDescr, null);
 
         return true;
     }
