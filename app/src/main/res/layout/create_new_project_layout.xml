@@ -32,7 +32,7 @@
         android:maxLines="3"/>
 
     <Button
-        android:id="@+id/create_course_button"
+        android:id="@+id/create_project_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -41,7 +41,7 @@
         android:text="@string/create_project"/>
 
     <Button
-        android:id="@+id/cancel_course_button"
+        android:id="@+id/cancel_project_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="64dp"
