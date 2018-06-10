@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -11,6 +12,10 @@ import java.util.UUID;
 public abstract class DatabaseObject {
 
     public abstract UUID getId();
+    public abstract String getName();
+    public abstract String getDescription();
+    public abstract ArrayList<String> getCredentials();
+
 }
 
 

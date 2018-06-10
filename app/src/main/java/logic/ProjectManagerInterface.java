@@ -10,11 +10,11 @@ public interface ProjectManagerInterface {
 
     boolean processNewProjectRequest(DatabaseObject project);
   
-    boolean validateUUID(DatabaseObject project);
+    boolean validateUUID(DatabaseObject project) throws Exception;
   
-    boolean validateName(DatabaseObject project);
+    boolean validateName(DatabaseObject project) throws Exception;
     
-    boolean validateDescription(DatabaseObject project);
+    boolean validateDescription(DatabaseObject project) throws Exception;
     
-    boolean validateCredentials(DatabaseObject project);
+    boolean validateCredentials(DatabaseObject project) throws Exception;
 }
