@@ -1,6 +1,7 @@
 package logic;
 
 import domain.DatabaseObject;
+import java.util.ArrayList;
 
 /**
  * Here is the Project Manager class that will handle
@@ -11,6 +12,7 @@ public class ProjectManager{
 
     private static final int nameLength = 16;
     private static final int descLength = 256;
+    private static final int credLength = 5;
 
     //@Override
     public static boolean processNewProjectRequest(DatabaseObject project) throws CustomException {
@@ -50,6 +52,17 @@ public class ProjectManager{
 
     //@Override
     public static boolean validateCredentials(DatabaseObject project) throws CustomException {
-        return false;
+        int i = 0;
+        if (project.getCredentials().isEmpty()){
+            throw new CustomException("Credentials must not be empty.");
+        } else {
+            while (i < project.getCredentials().size()){
+                if (project.getCredentials().get(i).length() < credLength){
+                    throw new CustomException("Credentials must exceed " + credLength + " characters.");
+                }
+                i++;
+            }
+            return true;
+        }
     }
 }
