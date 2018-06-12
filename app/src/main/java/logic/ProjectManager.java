@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import application.Service;
 import domain.DatabaseObject;
 import domain.Project;
 
@@ -29,6 +30,10 @@ public class ProjectManager{
         validateDescription(project);
         validateCredentials(project);
         return false;
+    }
+    public ProjectManager(){
+        database = Service.getdatabaseInterface();
+        projects = new ArrayList<>();
     }
 
     //@Override
