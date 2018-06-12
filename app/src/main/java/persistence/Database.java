@@ -52,4 +52,10 @@ public class Database implements DatabaseInterface {
         //Will return a list of Users interested in the specified Project ID
         return null;
     }
+
+    @Override
+    public ArrayList<DatabaseObject> getProjectSequential() {
+        return new ArrayList<>(DatabaseStorage.values());
+    }
+
 }
