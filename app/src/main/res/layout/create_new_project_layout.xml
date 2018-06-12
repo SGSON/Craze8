@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/enter_project_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/enter_project_name_prompt"
+        android:imeOptions="actionDone"
+        android:maxLength="25"
+        android:inputType="text"
+        />
+
+    <TextView
+        android:id="@+id/project_description_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/project_description_header"
+        android:layout_marginTop="40dp"/>
+
+    <EditText
+        android:id="@+id/project_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text|textMultiLine|textCapSentences"
+        android:imeOptions="actionDone"
+        android:maxLength="21"
+        android:gravity="left"
+        android:maxLines="3"/>
+
+    <Button
+        android:id="@+id/create_project_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:text="@string/create_project"/>
+
+    <Button
+        android:id="@+id/cancel_project_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/cancel"/>
+
+
+
+</LinearLayout>
