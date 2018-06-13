@@ -16,14 +16,17 @@
     * SignUpActivity.java/xml  
         - Sign up Activity screen for all users
 ###### General user views  
+*Currently implemented*  
+
+    * UserProjectSummaryViewActivity.java/xml  
+        - Shorter project summary view meant to get the general user interested in viewing more about the project  
+
 *Not yet implemented*  
 
     * UserSearchForProjectActivity.java/xml  
         - Activity for general users to find projects
     * UserInterestedProjectsListActivity.java/xml
         - Activity for users to view the projects they expressed interest in  
-    * UserProjectSummaryViewActivity.java/xml  
-        - Shorter project summary view meant to get the general user interested in viewing more about the project  
     * UserProjectDetailViewActivity.java/xml  
         - Detailed project view for general users (after they have clicked on the summary, they are brought here)
     * UserProfileCreateActivity.java/xml
