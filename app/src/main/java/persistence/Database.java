@@ -13,6 +13,14 @@ public class Database implements DatabaseInterface {
     private static Database databaseSingleton;
     private Hashtable<UUID, DatabaseObject> databaseStorage;
 
+    /**
+     * getDatabaseInstance
+     *
+     * PURPOSE: Other layers will call this method to get the signle instance
+     * of the Database, if the single instance does not already exists, call the constructor
+     * @return
+     */
+
     public static Database getDatabaseInstance() {
         if(databaseSingleton == null) {
             databaseSingleton = new Database();
@@ -64,6 +72,7 @@ public class Database implements DatabaseInterface {
 
     @Override
     public void addProject(UUID ID, DatabaseObject project) {
+
         databaseStorage.put(ID, project);
     }
 
