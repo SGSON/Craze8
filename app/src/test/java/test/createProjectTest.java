@@ -109,7 +109,7 @@ public class createProjectTest extends TestCase {
     public void testAllEmpty() throws CustomException{
         System.out.println("\nStarting testCreateProject: Normal description");
         ArrayList<String> cred = new ArrayList<String>();
-        cred.add("eight");
+        cred.add("");
         Project newProj = new Project("", "", cred);
         try {
             ProjectManager.processNewProjectRequest(newProj);
@@ -139,4 +139,39 @@ public class createProjectTest extends TestCase {
         }
         System.out.println("\nFinished testCreateProject: Normal description");
     }
+
+    @Test (expected = CustomException.class)
+    public void testShortCredentials() throws CustomException{
+        System.out.println("\nStarting testCreateProject: Short credential");
+        ArrayList<String> cred = new ArrayList<String>();
+        cred.add("eight");
+        cred.add("five");
+        String desc = "abcdefgh";
+        String name = "abcdefg";
+        Project newProj = new Project(name, desc, cred);
+        try {
+            ProjectManager.processNewProjectRequest(newProj);
+            fail("CustomException expected.");
+        } catch (CustomException expected) {
+            assertEquals("Credentials must exceed 5 characters.", expected.getErrorMsg());
+        }
+        System.out.println("\nFinished testCreateProject: Short credentials");
+    }
+
+    @Test (expected = CustomException.class)
+    public void testEmptyCredentials() throws CustomException{
+        System.out.println("\nStarting testCreateProject: Empty credential");
+        ArrayList<String> cred = new ArrayList<String>();
+        String desc = "abcdefgh";
+        String name = "abcdefg";
+        Project newProj = new Project(name, desc, cred);
+        try {
+            ProjectManager.processNewProjectRequest(newProj);
+            fail("CustomException expected.");
+        } catch (CustomException expected) {
+            assertEquals("Credentials must not be empty.", expected.getErrorMsg());
+        }
+        System.out.println("\nFinished testCreateProject: Empty credentials");
+    }
+
 }
