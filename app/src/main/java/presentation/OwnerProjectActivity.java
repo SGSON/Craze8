@@ -18,7 +18,7 @@ import domain.Project;
 import logic.ProjectManager;
 
 
-public class CreateProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface,
+public class OwnerProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface,
         View.OnClickListener, TextView.OnEditorActionListener {
 
     //For the UI
