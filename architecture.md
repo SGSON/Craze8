@@ -1,9 +1,8 @@
 # __Application Architecture__  
 
-![Image of Yaktocat](https://code.cs.umanitoba.ca/comp3350-summer2018/Crazy8/blob/cc684f5d0b25bb464424031320edb36330684638/ApplicationArchitecture.png)
+![Image of Yaktocat](/ApplicationArchitecture.png)
 
-
-## Presentation package  
+##   Presentation package  
 ###### All users  
     * MainActivity.java/xml
         - Activity for first screen the user will encounter
