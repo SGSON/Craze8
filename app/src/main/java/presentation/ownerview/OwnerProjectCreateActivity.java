@@ -18,7 +18,7 @@ import domain.Project;
 import logic.ProjectManager;
 
 
-public class OwnerProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface,
+public class OwnerProjectCreateActivity extends AppCompatActivity implements OwnerProjectCreateActivityInterface,
         View.OnClickListener, TextView.OnEditorActionListener {
 
     //For the UI
@@ -42,7 +42,7 @@ public class OwnerProjectActivity extends AppCompatActivity implements CreatePro
         mCredentials = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_new_project_layout);
+        setContentView(R.layout.owner_project_create_activity);
 
         mProjectNameEdit = (EditText) findViewById(R.id.project_name);
         mProjectDescriptionEdit = (EditText) findViewById(R.id.project_description);
@@ -109,7 +109,7 @@ public class OwnerProjectActivity extends AppCompatActivity implements CreatePro
     }
 
     public void viewCreatedProjects(View view){
-        Intent intent = new Intent(this, ProjectListActivity.class);
+        Intent intent = new Intent(this, UserProjectSummaryViewActivity.class);
         startActivity(intent);
     }
 

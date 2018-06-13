@@ -1,7 +1,6 @@
 package presentation;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,10 +15,9 @@ import com.example.test.ppms.R;
 import domain.Project;
 import logic.ProjectManager;
 
-import java.util.List;
 import java.util.ArrayList;
 
-public class ProjectListActivity extends AppCompatActivity {
+public class UserProjectSummaryViewActivity extends AppCompatActivity {
 
     private ProjectManager mProjectManager;
     private ListView mListView;
@@ -30,7 +28,7 @@ public class ProjectListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_list);
+        setContentView(R.layout.user_project_sumary_view_activity);
         mListView = (ListView)findViewById(R.id.listProjects);
         mProjectManager = new ProjectManager();
 

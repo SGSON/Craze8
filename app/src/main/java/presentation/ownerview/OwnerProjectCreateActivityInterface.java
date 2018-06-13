@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import domain.Project;
 
-public interface CreateProjectActivityInterface {
+public interface OwnerProjectCreateActivityInterface {
     void onCreate(Bundle savedInstanceState);
 
     //Creates a new Project object and calls ProjectManager's processNewProjectRequest method

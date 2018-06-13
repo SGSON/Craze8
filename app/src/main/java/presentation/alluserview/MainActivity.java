@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent;
         if(view.getId() == R.id.create_project_button) {
-            intent = new Intent(MainActivity.this, CreateProjectActivity.class);
+            intent = new Intent(MainActivity.this, OwnerProjectCreateActivity.class);
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
-            intent = new Intent(MainActivity.this, ProjectListActivity.class);
+            intent = new Intent(MainActivity.this, UserProjectSummaryViewActivity.class);
             startActivity(intent);
         }
     }
