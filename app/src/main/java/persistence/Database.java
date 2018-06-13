@@ -8,16 +8,7 @@ import domain.Project;
 
 
 public class Database implements DatabaseInterface {
-
-    private static final String[] PROJECT_NAMES = {"InternetFlix", "Sports Analyzer,",
-            "PickMeUp", "Fun Messenger"};
-
-    private static final String[] PROJECT_DESCRIPTIONS = {"View videos online",
-            "Analyze Cool Sports", "Get a ride anywhere", "Talk to your friends"};
-
-    private static final String[] PROJECT_CREDENTIALS = {"C", "C++", "Java", "Python"};
-
-
+    
     private static Database databaseSingleton;
     private Hashtable<UUID, DatabaseObject> databaseStorage;
 
@@ -39,7 +30,13 @@ public class Database implements DatabaseInterface {
     }
 
     private void storeSampleData() {
+        String[] PROJECT_NAMES = {"InternetFlix", "Sports Analyzer,",
+                "PickMeUp", "Fun Messenger"};
+        String[] PROJECT_DESCRIPTIONS = {"View videos online",
+                "Analyze Cool Sports", "Get a ride anywhere", "Talk to your friends"};
+        String[] PROJECT_CREDENTIALS = {"C", "C++", "Java", "Python"};
         ArrayList<String> credentials = new ArrayList<String>();
+
         for(int i = 0; i < PROJECT_CREDENTIALS.length; i++) {
             credentials.add(PROJECT_CREDENTIALS[i]);
         }
