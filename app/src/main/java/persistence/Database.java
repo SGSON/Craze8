@@ -56,21 +56,6 @@ public class Database implements DatabaseInterface {
     }
 
     @Override
-    public void addUser(UUID ID, DatabaseObject user) {
-        databaseStorage.put(ID, user);
-    }
-
-    @Override
-    public void removeUser(UUID ID) {
-        databaseStorage.remove(ID);
-    }
-
-    @Override
-    public void getUserInfo(UUID ID) {
-        databaseStorage.get(ID);
-    }
-
-    @Override
     public void addProject(UUID ID, DatabaseObject project) {
 
         databaseStorage.put(ID, project);
@@ -81,18 +66,6 @@ public class Database implements DatabaseInterface {
         databaseStorage.remove(ID);
     }
 
-    @Override
-    public DatabaseObject getProjectOwner(UUID projectID) {
-        databaseStorage.get(projectID);
-        return null;
-    }
-
-
-    @Override
-    public ArrayList<DatabaseObject> getInterestedUsersForProject(UUID projectID) {
-        //Will return a list of Users interested in the specified Project ID
-        return null;
-    }
 
     @Override
     public ArrayList<Project> getProjectSequential() {
