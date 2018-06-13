@@ -7,7 +7,6 @@ import application.Service;
 import domain.DatabaseObject;
 import domain.Project;
 
-import persistence.Database;
 import persistence.DatabaseInterface;
 
 /**
@@ -20,7 +19,7 @@ public class ProjectManager{
     private static final int nameLength = 16;
     private static final int descLength = 256;
     private DatabaseInterface database;
-    private ArrayList<DatabaseObject> databaseObjects;
+    private ArrayList<Project> databaseProjects;
     private ArrayList<Project> projects;
 
     //@Override
@@ -31,8 +30,9 @@ public class ProjectManager{
         validateCredentials(project);
         return false;
     }
+
     public ProjectManager(){
-        database = Service.getdatabaseInterface();
+        database = Service.getDatabaseInterface();
         projects = new ArrayList<>();
     }
 
@@ -76,11 +76,6 @@ public class ProjectManager{
 
 
     public ArrayList<Project> getProjects(){
-        databaseObjects = database.getProjectSequential();
-
-        for(DatabaseObject item : databaseObjects){
-            projects.add((Project)item);
-        }
-        return projects;
+        return database.getProjectSequential();
     }
 }

@@ -1,6 +1,7 @@
 package persistence;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Set;
 import java.util.UUID;
 
 import domain.DatabaseObject;
@@ -8,7 +9,7 @@ import domain.Project;
 
 
 public class Database implements DatabaseInterface {
-    
+
     private static Database databaseSingleton;
     private Hashtable<UUID, DatabaseObject> databaseStorage;
 
@@ -77,11 +78,6 @@ public class Database implements DatabaseInterface {
         return null;
     }
 
-    @Override
-    public ArrayList<DatabaseObject> getProjectsByOwnerID(UUID projectOwnerID) {
-        //Will return a list of Projects created by Project Owner
-        return null;
-    }
 
     @Override
     public ArrayList<DatabaseObject> getInterestedUsersForProject(UUID projectID) {
@@ -90,7 +86,17 @@ public class Database implements DatabaseInterface {
     }
 
     @Override
-    public ArrayList<DatabaseObject> getProjectSequential() {
-        return null;
+    public ArrayList<Project> getProjectSequential() {
+        ArrayList<Project> projects = new ArrayList<Project>();
+        Set<UUID> hashKeys = databaseStorage.keySet();
+
+        for(UUID key: hashKeys) {
+            DatabaseObject object = databaseStorage.get(key);
+            if(object instanceof Project) {
+                Project dbProject = (Project) object;
+                projects.add(dbProject);
+            }
+        }
+        return projects;
     }
 }
