@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import android.support.v7.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
 import domain.Project;
 import logic.ProjectManager;
 
@@ -24,30 +22,24 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
     //For the UI
     private EditText mProjectNameEdit;
     private EditText mProjectDescriptionEdit;
-    private EditText mProjectCredentialEdit;
-
     private Button mCreateProjectButton;
     private Button mCancelButton;
 
     //For the new Project
     private String mProjectName;
     private String mProjectDescr;
-    private ArrayList<String> mCredentials;
 
     private ProjectManager projectManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         projectManager = new ProjectManager();
-        mCredentials = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_new_project_layout);
 
         mProjectNameEdit = (EditText) findViewById(R.id.project_name);
         mProjectDescriptionEdit = (EditText) findViewById(R.id.project_description);
-        mProjectCredentialEdit = (EditText) findViewById(R.id.project_credential);
-
         mCreateProjectButton = (Button) findViewById(R.id.create_project_button);
         mCancelButton = (Button) findViewById(R.id.cancel_project_button);
 
@@ -60,7 +52,7 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
 
     @Override
     public void onClick(View view) {
-        Project project = createNewProjectFromEditText();
+        Project project = createProjectFromEditText();
         String result;
 
         result = validateProjectData(project, true);
@@ -99,11 +91,19 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         //TO-DO add the list of skills to the UI and pass it to the new project being made
         mProjectName = mProjectNameEdit.getText().toString();
         mProjectDescr = mProjectDescriptionEdit.getText().toString();
-        mCredentials.add(mProjectCredentialEdit.getText().toString());
 
-        final Project project = new Project(mProjectName, mProjectDescr, mCredentials);
+        final Project project = new Project(mProjectName, mProjectDescr, null);
 
         //ProjectManager.ValidateProject(newProject);
+
+        return project;
+    }
+
+    private Project createProjectFromEditText() {
+        EditText editID = (EditText)findViewById(R.id.project_name);
+        EditText editName = (EditText)findViewById(R.id.project_description);
+
+        Project project = new Project(editID.getText().toString(), editName.getText().toString(), null);
 
         return project;
     }
@@ -121,9 +121,7 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         if (project.getDescription().length() == 0){
             return "project description required";
         }
-        if (project.getCredentials().size() == 0){
-            return "project credential required";
-        }
+
         return null;
     }
 
