@@ -22,6 +22,11 @@ public class ProjectManager{
     private ArrayList<Project> databaseProjects;
     private ArrayList<Project> projects;
 
+    public ProjectManager() {
+        database = Service.getDatabaseInterface();
+        projects = new ArrayList<>();
+    }
+
     //@Override
     public static boolean processNewProjectRequest(DatabaseObject project) throws CustomException {
         validateUUID(project);
@@ -29,11 +34,6 @@ public class ProjectManager{
         validateDescription(project);
         validateCredentials(project);
         return false;
-    }
-
-    public ProjectManager(){
-        database = Service.getDatabaseInterface();
-        projects = new ArrayList<>();
     }
 
     //@Override
