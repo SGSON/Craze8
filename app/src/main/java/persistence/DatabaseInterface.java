@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import domain.DatabaseObject;
+import domain.Project;
 
 public interface DatabaseInterface {
 
@@ -21,6 +22,8 @@ public interface DatabaseInterface {
     void addProject(UUID ID, DatabaseObject project);
     void removeProject(UUID ID);
     DatabaseObject getProjectOwner(UUID projectID);
-    ArrayList<DatabaseObject> getProjectsByOwnerID(UUID projectOwnerID);
     ArrayList<DatabaseObject> getInterestedUsersForProject(UUID projectID);
+
+    public ArrayList<Project> getProjectSequential();
+
 }

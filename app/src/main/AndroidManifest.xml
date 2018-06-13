@@ -24,6 +24,11 @@
             android:theme="@style/AppTheme">
             >
         </activity>
+        <activity
+            android:name="presentation.ProjectListActivity"
+            android:theme="@style/AppTheme">
+            >
+        </activity>
     </application>
 
 </manifest>

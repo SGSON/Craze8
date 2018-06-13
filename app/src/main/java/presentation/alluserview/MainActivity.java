@@ -8,9 +8,10 @@ import android.widget.Button;
 
 import com.example.test.ppms.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button mLogInButton;
+    private Button mCreateProjectButton;
+    private Button mViewProjectsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +44,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLogInButton = (Button) findViewById(R.id.create_project_button);
+        mCreateProjectButton = (Button) findViewById(R.id.create_project_button);
+        mViewProjectsButton = (Button) findViewById(R.id.view_projects_button);
 
-        mLogInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreateProjectActivity.class);
-                startActivity(intent);
-            }
-        });
+        mCreateProjectButton.setOnClickListener(this);
+        mViewProjectsButton.setOnClickListener(this);
 
     }
 
 
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        if(view.getId() == R.id.create_project_button) {
+            intent = new Intent(MainActivity.this, OwnerProjectCreateActivity.class);
+            startActivity(intent);
+        } else if (view.getId() == R.id.view_projects_button) {
+            intent = new Intent(MainActivity.this, UserProjectSummaryViewActivity.class);
+            startActivity(intent);
+        }
+    }
 }

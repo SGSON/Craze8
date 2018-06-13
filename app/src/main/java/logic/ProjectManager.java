@@ -1,6 +1,13 @@
 package logic;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
+import application.Service;
 import domain.DatabaseObject;
+import domain.Project;
+
+import persistence.DatabaseInterface;
 
 /**
  * Here is the Project Manager class that will handle
@@ -11,6 +18,14 @@ public class ProjectManager{
 
     private static final int nameLength = 16;
     private static final int descLength = 256;
+    private DatabaseInterface database;
+    private ArrayList<Project> databaseProjects;
+    private ArrayList<Project> projects;
+
+    public ProjectManager() {
+        database = Service.getDatabaseInterface();
+        projects = new ArrayList<>();
+    }
 
     //@Override
     public static boolean processNewProjectRequest(DatabaseObject project) throws CustomException {
@@ -51,5 +66,16 @@ public class ProjectManager{
     //@Override
     public static boolean validateCredentials(DatabaseObject project) throws CustomException {
         return false;
+    }
+
+
+    public void insertProject(DatabaseObject project){
+        UUID uuid = UUID.randomUUID();
+        database.addProject(uuid,project);
+    }
+
+
+    public ArrayList<Project> getProjects(){
+        return database.getProjectSequential();
     }
 }

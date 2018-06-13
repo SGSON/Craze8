@@ -1,6 +1,9 @@
 package logic;
 
+import java.util.ArrayList;
+
 import domain.DatabaseObject;
+import domain.Project;
 
 public interface ProjectManagerInterface {
 
@@ -17,4 +20,9 @@ public interface ProjectManagerInterface {
     boolean validateDescription(DatabaseObject project) throws Exception;
     
     boolean validateCredentials(DatabaseObject project) throws Exception;
+
+    void insertProject(DatabaseObject currentProject);
+
+    public ArrayList<Project> getProjects();
 }
+
