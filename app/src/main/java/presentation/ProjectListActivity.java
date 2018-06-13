@@ -22,6 +22,8 @@ import java.util.ArrayList;
 public class ProjectListActivity extends AppCompatActivity {
 
     private ProjectManager mProjectManager;
+    private ListView mListView;
+    private ProjectAdapter mProjectAdapter;
     private ArrayList<Project> mProjectList;
 
 
@@ -29,17 +31,22 @@ public class ProjectListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_list);
-
+        mListView = (ListView)findViewById(R.id.listProjects);
         mProjectManager = new ProjectManager();
-        mProjectList = mProjectManager.getProjects();
 
-        
-        ProjectAdapter projectAdapter = new ProjectAdapter(this, mProjectList);
-        ListView listView = (ListView)findViewById(R.id.listProjects);
-        listView.setAdapter(projectAdapter);
+        populateProjectList();
+
 
     }
 
+    private void populateProjectList() {
+        mProjectList = mProjectManager.getProjects();
+        mProjectAdapter = new ProjectAdapter(this, mProjectList);
+        mListView.setAdapter(mProjectAdapter);
+    }
+
+
+    //To-Do: Move this class to a seperate file?
     private class ProjectAdapter extends ArrayAdapter<Project>{
 
         private Project project;
