@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         mCreateProjectButton = (Button) findViewById(R.id.create_project_button);
+        mViewProjectsButton = (Button) findViewById(R.id.view_projects_button);
 
         mCreateProjectButton.setOnClickListener(this);
         mViewProjectsButton.setOnClickListener(this);
