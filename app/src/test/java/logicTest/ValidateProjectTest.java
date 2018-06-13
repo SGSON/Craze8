@@ -1,80 +1,79 @@
-package test;
+package logicTest;
 
 import org.junit.Test;
 import junit.framework.TestCase;
 
-import logic.ProjectManager;
+import logic.ValidateProject;
 import logic.CustomException;
 import domain.Project;
 
-import java.util.List;
 import java.util.ArrayList;
 
-public class createProjectTest extends TestCase {
-    public createProjectTest(String arg0) {super(arg0);}
+public class ValidateProjectTest extends TestCase {
+    public ValidateProjectTest(String arg0) {super(arg0);}
 
     @Test (expected = CustomException.class)
-    public void testMissingName() throws CustomException{
-        System.out.println("\nStarting testCreateProject: null Name");
+    public void testMissingName(){
+        System.out.println("\nStarting testValidateProject: null Name");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("", "hello world", cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateName(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Cannot have empty name", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: null Name");
+        System.out.println("\nFinished testValidateProject: null Name");
     }
 
     @Test (expected = CustomException.class)
-    public void testLongName() throws CustomException{
-        System.out.println("\nStarting testCreateProject: Long name");
+    public void testLongName(){
+        System.out.println("\nStarting testValidateProject: Long name");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("abcdefghijklmnopqrst", "hello world", cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateName(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Name exceed required amount of characters", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: Long name");
+        System.out.println("\nFinished testValidateProject: Long name");
     }
 
     @Test
     public void testAcceptableName(){
-        System.out.println("\nStarting testCreateProject: Normal name");
+        System.out.println("\nStarting testValidateProject: Normal name");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("abcdef", "hello world", cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateName(newProj);
         } catch (CustomException expected) {
             assertEquals(null, expected);
         }
-        System.out.println("\nFinished testCreateProject: Normal name");
+        System.out.println("\nFinished testValidateProject: Normal name");
     }
 
     @Test (expected = CustomException.class)
-    public void testMissingDesc() throws CustomException{
-        System.out.println("\nStarting testCreateProject: null Description");
+    public void testMissingDesc() {
+        System.out.println("\nStarting testValidateProject: null Description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("abcde", "", cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateDescription(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Cannot have empty description", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: null Description");
+        System.out.println("\nFinished testValidateProject: null Description");
     }
 
     @Test (expected = CustomException.class)
-    public void testLongDesc() throws CustomException{
-        System.out.println("\nStarting testCreateProject: Long description");
+    public void testLongDesc() {
+        System.out.println("\nStarting testValidateProject: Long description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         String tooLong = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnop" +
@@ -82,48 +81,48 @@ public class createProjectTest extends TestCase {
                 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
         Project newProj = new Project("abcde", tooLong, cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateDescription(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Description exceed required amount of characters", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: Long description");
+        System.out.println("\nFinished testValidateProject: Long description");
     }
 
     @Test (expected = CustomException.class)
-    public void testNormalDesc() throws CustomException{
-        System.out.println("\nStarting testCreateProject: Normal description");
+    public void testNormalDesc() {
+        System.out.println("\nStarting testValidateProject: Normal description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("abcde", "Hello World", cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateDescription(newProj);
         } catch (CustomException expected) {
             assertEquals(expected, null);
         }
-        System.out.println("\nFinished testCreateProject: Normal description");
+        System.out.println("\nFinished testValidateProject: Normal description");
     }
 
     //Since project name is validated first, then the exception for empty name will be thrown before empty description.
     @Test (expected = CustomException.class)
-    public void testAllEmpty() throws CustomException{
-        System.out.println("\nStarting testCreateProject: Normal description");
+    public void testAllEmpty() {
+        System.out.println("\nStarting testValidateProject: Normal description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("");
         Project newProj = new Project("", "", cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateAll(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Cannot have empty name", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: Normal description");
+        System.out.println("\nFinished testValidateProject: Normal description");
     }
 
     //Since project name is validated first, then the exception for empty name will be thrown before empty description.
     @Test (expected = CustomException.class)
-    public void testAllLimitBreak() throws CustomException{
-        System.out.println("\nStarting testCreateProject: Normal description");
+    public void testAllLimitBreak() {
+        System.out.println("\nStarting testValidateProject: Normal description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         String tooLongDesc = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnop" +
@@ -132,17 +131,17 @@ public class createProjectTest extends TestCase {
         String tooLongName = "abcdefghijklmnopqr";
         Project newProj = new Project(tooLongName, tooLongDesc, cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateAll(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Name exceed required amount of characters", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: Normal description");
+        System.out.println("\nFinished testValidateProject: Normal description");
     }
 
     @Test (expected = CustomException.class)
-    public void testShortCredentials() throws CustomException{
-        System.out.println("\nStarting testCreateProject: Short credential");
+    public void testShortCredentials() {
+        System.out.println("\nStarting testValidateProject: Short credential");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         cred.add("five");
@@ -150,28 +149,43 @@ public class createProjectTest extends TestCase {
         String name = "abcdefg";
         Project newProj = new Project(name, desc, cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateCredentials(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Credentials must exceed 5 characters.", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: Short credentials");
+        System.out.println("\nFinished testValidateProject: Short credentials");
     }
 
     @Test (expected = CustomException.class)
-    public void testEmptyCredentials() throws CustomException{
-        System.out.println("\nStarting testCreateProject: Empty credential");
+    public void testEmptyCredentials() {
+        System.out.println("\nStarting testValidateProject: Empty credential");
         ArrayList<String> cred = new ArrayList<String>();
         String desc = "abcdefgh";
         String name = "abcdefg";
         Project newProj = new Project(name, desc, cred);
         try {
-            ProjectManager.processNewProjectRequest(newProj);
+            ValidateProject.validateCredentials(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Credentials must not be empty.", expected.getErrorMsg());
         }
-        System.out.println("\nFinished testCreateProject: Empty credentials");
+        System.out.println("\nFinished testValidateProject: Empty credentials");
     }
 
+    @Test (expected = CustomException.class)
+    public void testProjectId() {
+        System.out.println("\nStarting testValidateProject: Checking id");
+        ArrayList<String> cred = new ArrayList<String>();
+        String desc = "abcdefgh";
+        String name = "abcdefg";
+        cred.add("hello");
+        Project newProj = new Project(name, desc, cred);
+        try {
+            ValidateProject.validateUUID(newProj);
+        } catch (CustomException expected) {
+            assertEquals(null, expected);
+        }
+        System.out.println("\nFinished testValidateProject: Checking id");
+    }
 }

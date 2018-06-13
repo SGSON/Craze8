@@ -11,16 +11,6 @@ public interface ProjectManagerInterface {
     //If information entered is valid, the project is added to the databases.
     //If the information entered is invalid, the function returns false.
 
-    boolean processNewProjectRequest(DatabaseObject project);
-  
-    boolean validateUUID(DatabaseObject project) throws Exception;
-  
-    boolean validateName(DatabaseObject project) throws Exception;
-    
-    boolean validateDescription(DatabaseObject project) throws Exception;
-    
-    boolean validateCredentials(DatabaseObject project) throws Exception;
-
     void insertProject(DatabaseObject currentProject);
 
     public ArrayList<Project> getProjects();
