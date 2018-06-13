@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import domain.Project;
 import logic.ProjectManager;
+import logic.CustomException;
 
 
 public class CreateProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface,
@@ -68,8 +69,8 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
             if(result == null){
                 try{
                     projectManager.insertProject(project);
-                }catch (Exception e){
-                    Messages.fatalError(this, e.getMessage());
+                }catch (CustomException e){
+                    Messages.fatalError(this, e.getErrorMsg());
                 }
             }else{
                 Messages.warning(this,result);
