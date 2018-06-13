@@ -21,26 +21,28 @@ import java.util.ArrayList;
 
 public class ProjectListActivity extends AppCompatActivity {
 
-    private ProjectManager projectManager;
-    private ArrayList<Project> projectList;
+    private ProjectManager mProjectManager;
+    private ArrayList<Project> mProjectList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_list);
 
-        projectManager = new ProjectManager();
-        projectList = projectManager.getProjects();
+        mProjectManager = new ProjectManager();
+        mProjectList = mProjectManager.getProjects();
 
+        
+        ProjectAdapter projectAdapter = new ProjectAdapter(this, mProjectList);
         ListView listView = (ListView)findViewById(R.id.listProjects);
-
-        ProjectAdapter projectAdapter = new ProjectAdapter(this, projectList);
-
         listView.setAdapter(projectAdapter);
 
     }
 
-    private class ProjectAdapter extends ArrayAdapter{
+    private class ProjectAdapter extends ArrayAdapter<Project>{
+
+        private Project project;
 
         public ProjectAdapter(Context context, ArrayList<Project> projects) {
             super(context, 0, projects);
@@ -48,26 +50,23 @@ public class ProjectListActivity extends AppCompatActivity {
 
 
         @Override
-        public int getCount(){
-            return projectList.size();
-        }
-
-        @Override
-        public Project getItem(int i){
-            return null;
-        }
-
-        @Override
         public View getView(int index, View view, ViewGroup parent){
-            view = getLayoutInflater().inflate(R.layout.activity_project_list, null);
-//            view = LayoutInflater.from(getContext()).inflate(R.layout.item_project, parent, false);
-            TextView textView_project_name = (TextView)view.findViewById(R.id.project_name);
-            TextView textView_project_description = (TextView)view.findViewById(R.id.project_description);
 
-            textView_project_name.setText(projectList.get(index).getName());
-            textView_project_description.setText(projectList.get(index).getDescription());
+            // Check if an existing view is being reused, otherwise inflate the view
+            if(view == null) {
+                view = LayoutInflater.from(getContext()).inflate(R.layout.item_project, parent,
+                        false);
+            }
 
-            return null;
+            // Get data from project and set up the views
+            project = getItem(index);
+            TextView textView_project_name = (TextView) view.findViewById(R.id.project_list_item_name);
+            TextView textView_project_description = (TextView) view.findViewById(R.id.project_list_item_description);
+
+            textView_project_name.setText(project.getName());
+            textView_project_description.setText(project.getDescription());
+
+            return view;
         }
 
     }
