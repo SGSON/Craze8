@@ -36,7 +36,7 @@
 ###### Project owner views  
 *Currently Implemented*  
 
-    * OwnerProjectCreateActivity.java/xml 
+    * CreateProjectActivity.java/xml 
         - Activity for project owners to create their project  
 
 *Not yet implemented*  
@@ -54,6 +54,12 @@
         - Takes care of the project processes
              - Project creation/editing
              - Project retrieval
+             
+    * CustomException.java
+        - Handles custom exceptions thrown from methods with specific messages.
+        
+    * ValidateProject.java
+        - Verifies if the project input by users fits into a certain criteria.
         
 *Yet to be implemented*
 
@@ -78,6 +84,8 @@
 # Domain package  
 *Currently implemented*  
 
+    * DatabaseObject.java
+        - Superclass for Project and Account objects
     * Project.java  
         - passed between presentation, logic and persistence layer  
 *Yet to be implemented*  
