@@ -52,8 +52,6 @@
 
     * MainActivity.java/xml
         - Activity for first screen the user will encounter
-        
-*Currently Implemented*
 
     * Messages.java
         - Shows an error message dialog if an exception or warning occurs.
