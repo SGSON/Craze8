@@ -1,8 +1,7 @@
-/**
+package presentation.ownerview; /**
  * Create Project Activity
  * PURPOSE: Activity that contains the UI for creating a project
  */
-package presentation;
 
 import com.example.test.ppms.R;
 import android.content.Intent;
@@ -21,9 +20,11 @@ import java.util.ArrayList;
 import domain.Project;
 import logic.ProjectManager;
 import logic.CustomException;
+import presentation.Messages;
+import presentation.ProjectListActivity;
 
 
-public class CreateProjectActivity extends AppCompatActivity implements CreateProjectActivityInterface,
+public class CreateProjectActivity extends AppCompatActivity implements ProjectCreateActivityInterface,
         View.OnClickListener, TextView.OnEditorActionListener {
 
     //For the UI
@@ -96,19 +97,14 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         return actionDone;
     }
 
-    //Creates a new Project object and calls ProjectManager's processNewProjectRequest method
-    //to determine whether the Project object attributes are valid. Returns true if the project is
-    // valid and false if it is invalid
+    //Creates a new Project object and returns it.
     public Project createNewProjectFromEditText()
     {
-        //TO-DO add the list of skills to the UI and pass it to the new project being made
         mProjectName = mProjectNameEdit.getText().toString();
         mProjectDescr = mProjectDescriptionEdit.getText().toString();
         mCredentials.add(mProjectCredentialEdit.getText().toString());
 
         final Project project = new Project(mProjectName, mProjectDescr, mCredentials);
-
-        //ProjectManager.ValidateProject(newProject);
 
         return project;
     }

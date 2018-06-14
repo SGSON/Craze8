@@ -1,39 +1,78 @@
 # __Application Architecture__  
 
-![Image of Yaktocat](https://code.cs.umanitoba.ca/comp3350-summer2018/Crazy8/blob/cc684f5d0b25bb464424031320edb36330684638/ApplicationArchitecture.png)
+![Image of achritecture diagram](/ApplicationArchitecture.png)
 
+##   Presentation package  
 
-## Presentation package  
-###### All users  
+###### All users views  
+*Currently Implemented*  
+
     * MainActivity.java/xml
         - Activity for first screen the user will encounter
+        
+*Not yet implemented*  
+
     * LoginActivity.java/xml
         - Login Actvity screen for all users     
     * SignUpActivity.java/xml  
         - Sign up Activity screen for all users
-###### General user view  
+###### General user views  
+*Currently implemented*  
+
+    * ProjectListActivity.java/xml
+        - Activity used for project owners to view a list of projects that have been created.
+
+*Not yet implemented*  
+
+    * UserProjectSummaryViewActivity.java/xml  
+        - Shorter project summary view meant to get the general user interested in viewing more about the project  
     * UserSearchForProjectActivity.java/xml  
         - Activity for general users to find projects
     * UserInterestedProjectsListActivity.java/xml
         - Activity for users to view the projects they expressed interest in  
-    * UserProjectSummaryViewActivity.java/xml  
-        - Shorter project summary view meant to get the general user interested in viewing more about the project  
     * UserProjectDetailViewActivity.java/xml  
         - Detailed project view for general users (after they have clicked on the summary, they are brought here)
     * UserProfileCreateActivity.java/xml
         - Activity used for general users to complete their profile
     * UserProfileEditActivity.java/xml
         - Activty used for general users to update/edit their profile
-###### Project owner view  
-    * OwnerProjectCreateActivity.java/xml 
+###### Project owner views  
+*Currently Implemented*  
+
+    * CreateProjectActivity.java/xml 
         - Activity for project owners to create their project  
+
+*Not yet implemented*  
+
     * OwnerProjectEditActivity.java/xml
         - Activity for project owners to edit/update their project listing
     * OwnerViewMatchesActivity.java/xml
         - Activity for project owners to view their mathes for the project
     * OwnerViewMatchContactActivity.java/xml
         - Activity for project owners to view the contact details of confirmed matches  
+    
+###### Additional classes
+*Currently Implemented*
+
+    * Messages.java/xml
+        - Shows an error message dialog if an exception or warning occurs.
+
 # Logic package  
+*Currently implemented*  
+
+    * ProjectManager.java  
+        - Takes care of the project processes
+             - Project creation/editing
+             - Project retrieval
+             
+    * CustomException.java
+        - Allows methods to throw custom exceptions with specific messages.
+        
+    * ValidateProject.java
+        - Verifies if the project input by users fits into a certain criteria.
+        
+*Yet to be implemented*
+
     * MatchingEngine.java  
         - Determine user profiles that match project specifications  
         - Determine projects that match user qualifiticaions  
@@ -41,30 +80,34 @@
         - Takes care of the general user and project owner account processes
             - account creation
             - logging in
-    * ProjectManager.java  
-        - Takes care of the project processes
     * UserProfileManager.java  
         - Takes care of the general user profile related processes
-# Persistence package  
-    * ProjectDatabase.java
+# Persistence package 
+*Currently implemented*  
+
+    * Database.java
         - Store/Retrieve project in DB  
+*Yet to be implemented*
+
     * UserDatabase.java  
         - Store/Retrieve user profile in DB  
 # Domain package  
-    * NewAccountRequest.java  
-        - passed to logic when creating a new account  
-    * NewProjectRequest.java  
-        - passed to logic when project owner creates a new project  
+*Currently implemented*  
+
+    * DatabaseObject.java
+        - Superclass for Project and Account objects
+    * Project.java  
+        - passed between presentation, logic and persistence layer  
+*Yet to be implemented*  
+
     * Account(parent).java  
         - parent abstract account  
         + AccountUser(child).java  
             - An account for general users  
         + AccountOwner(child).java  
             - An account for project owners  
-    * Project.java  
-        - passed between presentation, logic and persistence layer  
     * Interest.java  
-        - Used when there is a potential match (an expression of interest by the user, yet needs to be review by project owner)  
+        - Used when there is a potential match (an expression of interest by the user, yet needs to be reviewed by project owner)  
     * Match.java  
         - Used when both general user and project owner have expressed interest  
 

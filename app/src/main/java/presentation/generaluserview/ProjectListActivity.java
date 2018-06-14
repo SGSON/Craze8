@@ -1,7 +1,6 @@
 package presentation;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import com.example.test.ppms.R;
 import domain.Project;
 import logic.ProjectManager;
 
-import java.util.List;
 import java.util.ArrayList;
 
 public class ProjectListActivity extends AppCompatActivity {

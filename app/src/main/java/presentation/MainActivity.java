@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import com.example.test.ppms.R;
 
+import presentation.ownerview.CreateProjectActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button mCreateProjectButton;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent = new Intent(MainActivity.this, CreateProjectActivity.class);
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
-            intent = new Intent(MainActivity.this, ProjectListActivity.class);
+            intent = new Intent(MainActivity.this, presentation.ProjectListActivity.class);
             startActivity(intent);
         }
     }
