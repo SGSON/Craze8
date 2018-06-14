@@ -52,6 +52,8 @@
 
     * ProjectManager.java  
         - Takes care of the project processes
+             - Project creation/editing
+             - Project retrieval
         
 *Yet to be implemented*
 
