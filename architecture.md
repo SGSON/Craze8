@@ -18,11 +18,13 @@
 ###### General user views  
 *Currently implemented*  
 
-    * UserProjectSummaryViewActivity.java/xml  
-        - Shorter project summary view meant to get the general user interested in viewing more about the project  
+    * ProjectListActivity.java/xml
+        - Activity used for project owners to view a list of projects that have been created.
 
 *Not yet implemented*  
 
+    * UserProjectSummaryViewActivity.java/xml  
+        - Shorter project summary view meant to get the general user interested in viewing more about the project  
     * UserSearchForProjectActivity.java/xml  
         - Activity for general users to find projects
     * UserInterestedProjectsListActivity.java/xml
