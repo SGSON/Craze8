@@ -18,11 +18,13 @@
 ###### General user views  
 *Currently implemented*  
 
-    * UserProjectSummaryViewActivity.java/xml  
-        - Shorter project summary view meant to get the general user interested in viewing more about the project  
+    * ProjectListActivity.java/xml
+        - Activity used for project owners to view a list of projects that have been created.
 
 *Not yet implemented*  
 
+    * UserProjectSummaryViewActivity.java/xml  
+        - Shorter project summary view meant to get the general user interested in viewing more about the project  
     * UserSearchForProjectActivity.java/xml  
         - Activity for general users to find projects
     * UserInterestedProjectsListActivity.java/xml
@@ -36,7 +38,7 @@
 ###### Project owner views  
 *Currently Implemented*  
 
-    * OwnerProjectCreateActivity.java/xml 
+    * CreateProjectActivity.java/xml 
         - Activity for project owners to create their project  
 
 *Not yet implemented*  
@@ -54,6 +56,12 @@
         - Takes care of the project processes
              - Project creation/editing
              - Project retrieval
+             
+    * CustomException.java
+        - Handles custom exceptions thrown from methods with specific messages.
+        
+    * ValidateProject.java
+        - Verifies if the project input by users fits into a certain criteria.
         
 *Yet to be implemented*
 
@@ -78,6 +86,8 @@
 # Domain package  
 *Currently implemented*  
 
+    * DatabaseObject.java
+        - Superclass for Project and Account objects
     * Project.java  
         - passed between presentation, logic and persistence layer  
 *Yet to be implemented*  
