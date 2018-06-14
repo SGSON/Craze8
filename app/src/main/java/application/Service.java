@@ -1,19 +1,19 @@
 package application;
 
-import persistence.DatabaseInterface;
+import persistence.ProjectDatabaseInterface;
 
-import static persistence.Database.getDatabaseInstance;
+import static persistence.ProjectProjectDatabase.getDatabaseInstance;
 
 public class Service {
-    private static DatabaseInterface databaseInterface = null;
+    private static ProjectDatabaseInterface projectDatabaseInterface = null;
 
-    public static synchronized DatabaseInterface getDatabaseInterface()
+    public static synchronized ProjectDatabaseInterface getProjectDatabaseInterface()
     {
-        if (databaseInterface == null)
+        if (projectDatabaseInterface == null)
         {
-            databaseInterface = getDatabaseInstance();
+            projectDatabaseInterface = getDatabaseInstance();
         }
 
-        return databaseInterface;
+        return projectDatabaseInterface;
     }
 }

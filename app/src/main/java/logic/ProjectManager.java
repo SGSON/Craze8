@@ -6,19 +6,19 @@ import application.Service;
 import domain.DatabaseObject;
 import domain.Project;
 
-import persistence.DatabaseInterface;
+import persistence.ProjectDatabaseInterface;
 
 /**
  * Here is the Project Manager class that will handle
- * project input to the Database as well as project retrieval from
- * the Database.
+ * project input to the ProjectProjectDatabase as well as project retrieval from
+ * the ProjectProjectDatabase.
  */
 public class ProjectManager implements ProjectManagerInterface{
 
-    private DatabaseInterface mDatabase;
+    private ProjectDatabaseInterface mDatabase;
 
     public ProjectManager() {
-        mDatabase = Service.getDatabaseInterface();
+        mDatabase = Service.getProjectDatabaseInterface();
     }
 
     public void insertProject(DatabaseObject project) throws CustomException{

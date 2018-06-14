@@ -6,7 +6,7 @@ import java.util.UUID;
 import domain.DatabaseObject;
 import domain.Project;
 
-public interface DatabaseInterface {
+public interface ProjectDatabaseInterface {
 
     /*
     This is the method signatures that will interact with out database
