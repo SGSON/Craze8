@@ -10,8 +10,8 @@ import domain.Project;
 
 public class Database implements DatabaseInterface {
 
-    private static Database databaseSingleton;
-    private Hashtable<UUID, DatabaseObject> databaseStorage;
+    private static Database mDatabaseSingleton;
+    private Hashtable<UUID, DatabaseObject> mDatabaseStorage;
 
     /**
      * getDatabaseInstance
@@ -22,11 +22,11 @@ public class Database implements DatabaseInterface {
      */
 
     public static Database getDatabaseInstance() {
-        if(databaseSingleton == null) {
-            databaseSingleton = new Database();
+        if(mDatabaseSingleton == null) {
+            mDatabaseSingleton = new Database();
         }
 
-        return databaseSingleton;
+        return mDatabaseSingleton;
     }
 
     /**
@@ -34,16 +34,16 @@ public class Database implements DatabaseInterface {
      * "initialized" Creates and stores sample Projects
      */
     private Database() {
-        databaseStorage = new Hashtable<>();
+        mDatabaseStorage = new Hashtable<>();
         storeSampleData();
     }
 
     private void storeSampleData() {
-        String[] PROJECT_NAMES = {"InternetFlix", "Sports Analyzer,",
+        final String[] PROJECT_NAMES = {"InternetFlix", "Sports Analyzer,",
                 "PickMeUp", "Fun Messenger"};
-        String[] PROJECT_DESCRIPTIONS = {"View videos online",
+        final String[] PROJECT_DESCRIPTIONS = {"View videos online",
                 "Analyze Cool Sports", "Get a ride anywhere", "Talk to your friends"};
-        String[] PROJECT_CREDENTIALS = {"C", "C++", "Java", "Python"};
+        final String[] PROJECT_CREDENTIALS = {"C", "C++", "Java", "Python"};
         ArrayList<String> credentials = new ArrayList<String>();
 
         for(int i = 0; i < PROJECT_CREDENTIALS.length; i++) {
@@ -51,29 +51,29 @@ public class Database implements DatabaseInterface {
         }
         for(int i = 0; i < PROJECT_NAMES.length; i++) {
             Project project = new Project(PROJECT_NAMES[i], PROJECT_DESCRIPTIONS[i], credentials);
-            databaseStorage.put(project.getId(), project);
+            mDatabaseStorage.put(project.getId(), project);
         }
     }
 
     @Override
     public void addProject(UUID ID, DatabaseObject project) {
 
-        databaseStorage.put(ID, project);
+        mDatabaseStorage.put(ID, project);
     }
 
     @Override
     public void removeProject(UUID ID) {
-        databaseStorage.remove(ID);
+        mDatabaseStorage.remove(ID);
     }
 
 
     @Override
     public ArrayList<Project> getProjectSequential() {
         ArrayList<Project> projects = new ArrayList<Project>();
-        Set<UUID> hashKeys = databaseStorage.keySet();
+        Set<UUID> hashKeys = mDatabaseStorage.keySet();
 
         for(UUID key: hashKeys) {
-            DatabaseObject object = databaseStorage.get(key);
+            DatabaseObject object = mDatabaseStorage.get(key);
             if(object instanceof Project) {
                 Project dbProject = (Project) object;
                 projects.add(dbProject);

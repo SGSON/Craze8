@@ -1,3 +1,7 @@
+/**
+ * Create Project Activity
+ * PURPOSE: Activity that contains the UI for creating a project
+ */
 package presentation;
 
 import com.example.test.ppms.R;
@@ -35,15 +39,15 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
     private String mProjectDescr;
     private ArrayList<String> mCredentials;
 
-    private ProjectManager projectManager;
+    private ProjectManager mProjectManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        projectManager = new ProjectManager();
+        mProjectManager = new ProjectManager();
         mCredentials = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_new_project_layout);
+        setContentView(R.layout.activity_create_project);
 
         mProjectNameEdit = (EditText) findViewById(R.id.project_name);
         mProjectDescriptionEdit = (EditText) findViewById(R.id.project_description);
@@ -68,7 +72,7 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         if(view.getId() == R.id.create_project_button){
             if(result == null){
                 try{
-                    projectManager.insertProject(project);
+                    mProjectManager.insertProject(project);
                 }catch (CustomException e){
                     Messages.fatalError(this, e.getErrorMsg());
                 }
