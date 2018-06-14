@@ -1,3 +1,7 @@
+/**
+ * Create Project Activity
+ * PURPOSE: Activity that contains the UI for creating a project
+ */
 package presentation;
 
 import com.example.test.ppms.R;
@@ -43,7 +47,7 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         mCredentials = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_new_project_layout);
+        setContentView(R.layout.activity_create_project);
 
         mProjectNameEdit = (EditText) findViewById(R.id.project_name);
         mProjectDescriptionEdit = (EditText) findViewById(R.id.project_description);
