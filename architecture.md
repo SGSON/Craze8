@@ -5,10 +5,6 @@
 ##   Presentation package  
 
 ###### All users views  
-*Currently Implemented*  
-
-    * MainActivity.java/xml
-        - Activity for first screen the user will encounter
         
 *Not yet implemented*  
 
@@ -52,9 +48,14 @@
         - Activity for project owners to view the contact details of confirmed matches  
     
 ###### Additional classes
+*Currently Implemented*  
+
+    * MainActivity.java/xml
+        - Activity for first screen the user will encounter
+        
 *Currently Implemented*
 
-    * Messages.java/xml
+    * Messages.java
         - Shows an error message dialog if an exception or warning occurs.
 
 # Logic package  
