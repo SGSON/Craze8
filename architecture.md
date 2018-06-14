@@ -89,7 +89,7 @@
         + AccountOwner(child).java  
             - An account for project owners  
     * Interest.java  
-        - Used when there is a potential match (an expression of interest by the user, yet needs to be review by project owner)  
+        - Used when there is a potential match (an expression of interest by the user, yet needs to be reviewed by project owner)  
     * Match.java  
         - Used when both general user and project owner have expressed interest  
 
