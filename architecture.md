@@ -16,7 +16,7 @@
 *Currently implemented*  
 
     * ProjectListActivity.java/xml
-        - Activity used for project owners to view a list of projects that have been created.
+        - Activity used to view a list of projects that have been created.
 
 *Not yet implemented*  
 
@@ -81,12 +81,14 @@
 # Persistence package 
 *Currently implemented*  
 
-    * Database.java
+    * ProjectDatabase.java
         - Store/Retrieve project in DB  
 *Yet to be implemented*
 
-    * UserDatabase.java  
+    * AccountDatabase.java  
         - Store/Retrieve user profile in DB  
+    * MatchDatabase.java
+        - Store/Retrieve match related details
 # Domain package  
 *Currently implemented*  
 
