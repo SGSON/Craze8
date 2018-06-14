@@ -39,11 +39,11 @@ public class Database implements DatabaseInterface {
     }
 
     private void storeSampleData() {
-        String[] PROJECT_NAMES = {"InternetFlix", "Sports Analyzer,",
+        final String[] PROJECT_NAMES = {"InternetFlix", "Sports Analyzer,",
                 "PickMeUp", "Fun Messenger"};
-        String[] PROJECT_DESCRIPTIONS = {"View videos online",
+        final String[] PROJECT_DESCRIPTIONS = {"View videos online",
                 "Analyze Cool Sports", "Get a ride anywhere", "Talk to your friends"};
-        String[] PROJECT_CREDENTIALS = {"C", "C++", "Java", "Python"};
+        final String[] PROJECT_CREDENTIALS = {"C", "C++", "Java", "Python"};
         ArrayList<String> credentials = new ArrayList<String>();
 
         for(int i = 0; i < PROJECT_CREDENTIALS.length; i++) {
