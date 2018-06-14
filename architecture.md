@@ -63,10 +63,8 @@
         - Takes care of the project processes
              - Project creation/editing
              - Project retrieval
-             
     * CustomException.java
         - Allows methods to throw custom exceptions with specific messages.
-        
     * ValidateProject.java
         - Verifies if the project input by users fits into a certain criteria.
         
@@ -79,8 +77,7 @@
         - Takes care of the general user and project owner account processes
             - account creation
             - logging in
-    * UserProfileManager.java  
-        - Takes care of the general user profile related processes
+            - any profile related processes
 # Persistence package 
 *Currently implemented*  
 
