@@ -93,9 +93,11 @@
 *Currently implemented*  
 
     * DatabaseObject.java
-        - Superclass for Project and Account objects
+        - superclass for Project and Account objects
     * Project.java  
         - passed between presentation, logic and persistence layer  
+    * CustomException.java
+        - used in conjuction with Messages.java to provide appropraite error messaging
 *Yet to be implemented*  
 
     * Account(parent).java  
