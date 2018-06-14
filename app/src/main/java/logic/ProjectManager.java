@@ -1,39 +1,32 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import application.Service;
 import domain.DatabaseObject;
 import domain.Project;
 
-import persistence.Database;
 import persistence.DatabaseInterface;
 
 /**
  * Here is the Project Manager class that will handle
- * project input to the database as well as project retrieval from
- * the database.
+ * project input to the Database as well as project retrieval from
+ * the Database.
  */
 public class ProjectManager implements ProjectManagerInterface{
 
-    private static final int nameLength = 16;
-    private static final int descLength = 256;
-    private DatabaseInterface database;
-    private ArrayList<Project> databaseProjects;
-    private ArrayList<Project> projects;
+    private DatabaseInterface mDatabase;
 
     public ProjectManager() {
-        database = Service.getDatabaseInterface();
-        projects = new ArrayList<>();
+        mDatabase = Service.getDatabaseInterface();
     }
 
     public void insertProject(DatabaseObject project) throws CustomException{
         ValidateProject.validateAll(project);
-        database.addProject(project.getId(),project);
+        mDatabase.addProject(project.getId(),project);
     }
 
     public ArrayList<Project> getProjects(){
-        return database.getProjectSequential();
+        return mDatabase.getProjectSequential();
     }
 }

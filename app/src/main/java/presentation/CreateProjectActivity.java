@@ -35,11 +35,11 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
     private String mProjectDescr;
     private ArrayList<String> mCredentials;
 
-    private ProjectManager projectManager;
+    private ProjectManager mProjectManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        projectManager = new ProjectManager();
+        mProjectManager = new ProjectManager();
         mCredentials = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ public class CreateProjectActivity extends AppCompatActivity implements CreatePr
         if(view.getId() == R.id.create_project_button){
             if(result == null){
                 try{
-                    projectManager.insertProject(project);
+                    mProjectManager.insertProject(project);
                 }catch (CustomException e){
                     Messages.fatalError(this, e.getErrorMsg());
                 }

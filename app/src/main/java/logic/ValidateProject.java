@@ -6,9 +6,10 @@ import domain.DatabaseObject;
  * to verify if the project input by users fit in a certain criteria.
  */
 public class ValidateProject {
-    private static final int nameLength = 16;
-    private static final int descLength = 256;
-    private static final int credLength = 5;
+
+    private static final int NAME_LENGTH = 16;
+    private static final int DESCRIPTION_LENGTH = 256;
+    private static final int CREDENTIALS_LENGTH = 5;
 
     public static boolean validateAll(DatabaseObject project) throws CustomException{
         validateUUID(project);
@@ -29,7 +30,7 @@ public class ValidateProject {
 
     //@Override
     public static boolean validateName(DatabaseObject project) throws CustomException {
-        if (project.getName().length() > nameLength){
+        if (project.getName().length() > NAME_LENGTH){
             throw new CustomException("Name exceed required amount of characters");
         } else if (project.getName() == null || project.getName() == ""){
             throw new CustomException("Cannot have empty name");
@@ -40,7 +41,7 @@ public class ValidateProject {
 
     //@Override
     public static boolean validateDescription(DatabaseObject project) throws CustomException {
-        if (project.getDescription().length() > descLength){
+        if (project.getDescription().length() > DESCRIPTION_LENGTH){
             throw new CustomException("Description exceed required amount of characters");
         } else if (project.getDescription() == null || project.getDescription().isEmpty()){
             throw new CustomException("Cannot have empty description");
@@ -56,8 +57,8 @@ public class ValidateProject {
             throw new CustomException("Credentials must not be empty.");
         } else {
             while (i < project.getCredentials().size()){
-                if (project.getCredentials().get(i).length() < credLength){
-                    throw new CustomException("Credentials must exceed " + credLength + " characters.");
+                if (project.getCredentials().get(i).length() < CREDENTIALS_LENGTH){
+                    throw new CustomException("Credentials must exceed " + CREDENTIALS_LENGTH + " characters.");
                 }
                 i++;
             }
