@@ -1,7 +1,10 @@
 package logic;
 
 import domain.DatabaseObject;
-
+/**
+ * The validate project class implements all the methods required
+ * to verify if the project input by users fit in a certain criteria.
+ */
 public class ValidateProject {
     private static final int nameLength = 16;
     private static final int descLength = 256;

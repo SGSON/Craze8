@@ -11,8 +11,8 @@ public interface ProjectManagerInterface {
     //If information entered is valid, the project is added to the databases.
     //If the information entered is invalid, the function returns false.
 
-    void insertProject(DatabaseObject currentProject);
+    void insertProject(DatabaseObject currentProject) throws CustomException;
 
-    public ArrayList<Project> getProjects();
+    ArrayList<Project> getProjects();
 }
 

@@ -9,6 +9,12 @@ import domain.Project;
 
 import java.util.ArrayList;
 
+/**
+ * The ValidateProjectTest class will test
+ * some of the ways that customers will input data
+ * when creating a project.
+ */
+
 public class ValidateProjectTest extends TestCase {
     public ValidateProjectTest(String arg0) {super(arg0);}
 

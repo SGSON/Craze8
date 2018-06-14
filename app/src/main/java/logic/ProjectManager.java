@@ -12,10 +12,10 @@ import persistence.DatabaseInterface;
 
 /**
  * Here is the Project Manager class that will handle
- * and validate data of a Project object. 
+ * project input to the database as well as project retrieval from
+ * the database.
  */
-//public class ProjectManager implements ProjectManagerInterface{
-public class ProjectManager{
+public class ProjectManager implements ProjectManagerInterface{
 
     private static final int nameLength = 16;
     private static final int descLength = 256;

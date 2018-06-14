@@ -9,6 +9,13 @@ import java.util.UUID;
 
 import java.util.ArrayList;
 
+/**
+ * The ProjectManagerTest class will test
+ * different cases that might occur when
+ * the user is trying to access projects in the database
+ * or retrieving data from the database
+ */
+
 public class ProjectManagerTest extends TestCase{
 
     public ProjectManagerTest(String arg0) {super(arg0);}
