@@ -80,10 +80,6 @@
         - passed between presentation, logic and persistence layer  
 *Yet to be implemented*  
 
-    * NewAccountRequest.java  
-        - passed to logic when creating a new account  
-    * NewProjectRequest.java  
-        - passed to logic when project owner creates a new project  
     * Account(parent).java  
         - parent abstract account  
         + AccountUser(child).java  
