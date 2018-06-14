@@ -3,6 +3,7 @@
 ![Image of achritecture diagram](/ApplicationArchitecture.png)
 
 ##   Presentation package  
+
 ###### All users views  
 *Currently Implemented*  
 
@@ -49,6 +50,13 @@
         - Activity for project owners to view their mathes for the project
     * OwnerViewMatchContactActivity.java/xml
         - Activity for project owners to view the contact details of confirmed matches  
+    
+###### Additional classes
+*Currently Implemented*
+
+    * Messages.java/xml
+        - Shows an error message dialog if an exception or warning occurs.
+
 # Logic package  
 *Currently implemented*  
 
@@ -58,7 +66,7 @@
              - Project retrieval
              
     * CustomException.java
-        - Handles custom exceptions thrown from methods with specific messages.
+        - Allows methods to throw custom exceptions with specific messages.
         
     * ValidateProject.java
         - Verifies if the project input by users fits into a certain criteria.
