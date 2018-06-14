@@ -8,32 +8,32 @@ import domain.DatabaseObject;
 import domain.Project;
 
 
-public class Database implements DatabaseInterface {
+public class ProjectProjectDatabase implements ProjectDatabaseInterface {
 
-    private static Database mDatabaseSingleton;
+    private static ProjectProjectDatabase mProjectDatabaseSingleton;
     private Hashtable<UUID, DatabaseObject> mDatabaseStorage;
 
     /**
      * getDatabaseInstance
      *
      * PURPOSE: Other layers will call this method to get the signle instance
-     * of the Database, if the single instance does not already exists, call the constructor
+     * of the ProjectProjectDatabase, if the single instance does not already exists, call the constructor
      * @return
      */
 
-    public static Database getDatabaseInstance() {
-        if(mDatabaseSingleton == null) {
-            mDatabaseSingleton = new Database();
+    public static ProjectProjectDatabase getDatabaseInstance() {
+        if(mProjectDatabaseSingleton == null) {
+            mProjectDatabaseSingleton = new ProjectProjectDatabase();
         }
 
-        return mDatabaseSingleton;
+        return mProjectDatabaseSingleton;
     }
 
     /**
      * Private Constructor Only called if the database has not been
      * "initialized" Creates and stores sample Projects
      */
-    private Database() {
+    private ProjectProjectDatabase() {
         mDatabaseStorage = new Hashtable<>();
         storeSampleData();
     }
