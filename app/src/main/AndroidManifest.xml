@@ -20,7 +20,7 @@
         </activity>
 
         <activity
-            android:name="presentation.CreateProjectActivity"
+            android:name="presentation.ownerview.CreateProjectActivity"
             android:theme="@style/AppTheme">
             >
         </activity>

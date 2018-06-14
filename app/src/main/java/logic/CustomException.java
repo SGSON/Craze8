@@ -1,13 +1,18 @@
 package logic;
 
+/**
+ * The CustomException class is an exception class that allows methods
+ * to throw exceptions with specific messages.
+ */
 public class CustomException extends Exception {
-    private String errorMsg;
+    private String mErrorMsg;
 
     public CustomException(String errorMsg){
-        this.errorMsg = errorMsg;
+        this.mErrorMsg = errorMsg;
     }
 
     public String getErrorMsg() {
-        return errorMsg;
+        return mErrorMsg;
     }
 }
+

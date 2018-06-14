@@ -1,4 +1,7 @@
-package presentation;
+package presentation.ownerview; /**
+ * Create Project Activity
+ * PURPOSE: Activity that contains the UI for creating a project
+ */
 
 import com.example.test.ppms.R;
 import android.content.Intent;
@@ -16,9 +19,13 @@ import java.util.ArrayList;
 
 import domain.Project;
 import logic.ProjectManager;
+import logic.CustomException;
+import presentation.Messages;
+import presentation.ProjectCreateActivityInterface;
+import presentation.ProjectListActivity;
 
 
-public class OwnerProjectCreateActivity extends AppCompatActivity implements OwnerProjectCreateActivityInterface,
+public class CreateProjectActivity extends AppCompatActivity implements ProjectCreateActivityInterface,
         View.OnClickListener, TextView.OnEditorActionListener {
 
     //For the UI
@@ -34,15 +41,15 @@ public class OwnerProjectCreateActivity extends AppCompatActivity implements Own
     private String mProjectDescr;
     private ArrayList<String> mCredentials;
 
-    private ProjectManager projectManager;
+    private ProjectManager mProjectManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        projectManager = new ProjectManager();
+        mProjectManager = new ProjectManager();
         mCredentials = new ArrayList<>();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.owner_project_create_activity);
+        setContentView(R.layout.activity_create_project);
 
         mProjectNameEdit = (EditText) findViewById(R.id.project_name);
         mProjectDescriptionEdit = (EditText) findViewById(R.id.project_description);
@@ -67,9 +74,9 @@ public class OwnerProjectCreateActivity extends AppCompatActivity implements Own
         if(view.getId() == R.id.create_project_button){
             if(result == null){
                 try{
-                    projectManager.insertProject(project);
-                }catch (Exception e){
-                    Messages.fatalError(this, e.getMessage());
+                    mProjectManager.insertProject(project);
+                }catch (CustomException e){
+                    Messages.fatalError(this, e.getErrorMsg());
                 }
             }else{
                 Messages.warning(this,result);
@@ -109,7 +116,7 @@ public class OwnerProjectCreateActivity extends AppCompatActivity implements Own
     }
 
     public void viewCreatedProjects(View view){
-        Intent intent = new Intent(this, UserProjectSummaryViewActivity.class);
+        Intent intent = new Intent(this, ProjectListActivity.class);
         startActivity(intent);
     }
 

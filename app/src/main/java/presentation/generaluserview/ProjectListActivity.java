@@ -17,7 +17,7 @@ import logic.ProjectManager;
 
 import java.util.ArrayList;
 
-public class UserProjectSummaryViewActivity extends AppCompatActivity {
+public class ProjectListActivity extends AppCompatActivity {
 
     private ProjectManager mProjectManager;
     private ListView mListView;
@@ -28,7 +28,7 @@ public class UserProjectSummaryViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_project_sumary_view_activity);
+        setContentView(R.layout.activity_project_list);
         mListView = (ListView)findViewById(R.id.listProjects);
         mProjectManager = new ProjectManager();
 
