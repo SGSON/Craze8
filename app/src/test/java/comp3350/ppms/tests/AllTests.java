@@ -1,13 +1,10 @@
-package allTest;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
+package comp3350.ppms.tests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import logicTest.ProjectManagerTest;
-import logicTest.ValidateProjectTest;
+import comp3350.ppms.tests.logic.ProjectManagerTest;
+import comp3350.ppms.tests.logic.ValidateProjectTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
