@@ -12,4 +12,5 @@
     <string name="view_created_project">View Created Projects</string>
     <string name="fatalError">Fatal error</string>
     <string name="warning">Warning</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>
