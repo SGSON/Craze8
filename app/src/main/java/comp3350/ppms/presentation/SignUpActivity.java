@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if(view.getId() == R.id.create_user_button){
             if(result == null){
                 userManager.insertUser(user);
-                Intent intent = new Intent(this,  ProjectListActivity.class);
+                Intent intent = new Intent(this,  CreateProjectActivity.class);
                 startActivity(intent);
 //TODO: Throw CustomException after fix insertUser
 //                try{
