@@ -90,10 +90,12 @@
     * MatchDatabase.java
         - Store/Retrieve match related details
 # Domain package  
-*Currently implemented*
+*Currently implemented*  
 
+    * DatabaseObject.java
+        - superclass for Project and Account objects
     * Project.java  
-        - passed between comp3350.ppms.presentation, comp3350.ppms.logic and comp3350.ppms.persistence layer
+        - passed between presentation, logic and persistence layer  
     * CustomException.java
         - used in conjuction with Messages.java to provide appropraite error messaging
 *Yet to be implemented*  

@@ -1,11 +1,11 @@
-package comp3350.ppms.tests.logic;
+package logicTest;
 
 import org.junit.Test;
 import junit.framework.TestCase;
 
-import comp3350.ppms.logic.ValidateProject;
-import comp3350.ppms.logic.CustomException;
-import comp3350.ppms.domain.Project;
+import logic.ValidateProject;
+import logic.CustomException;
+import domain.Project;
 
 import java.util.ArrayList;
 
