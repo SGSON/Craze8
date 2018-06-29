@@ -5,20 +5,20 @@ import java.util.ArrayList;
 
 public class Project implements ProjectInterface {
 
-    private UUID projectID;
+    private String projectID;
     private String projectName;
     private String projectDescription;
     private ArrayList<String> projectCredentials;
 
     public Project(String name, String descr, ArrayList<String> cred) {
-        projectID = UUID.randomUUID();
+        projectID = UUID.randomUUID().toString();
         projectName = name;
         projectDescription = descr;
         projectCredentials = cred;
     }
 
     @Override
-    public UUID getProjectID() {
+    public String getProjectID() {
         return projectID;
     }
 

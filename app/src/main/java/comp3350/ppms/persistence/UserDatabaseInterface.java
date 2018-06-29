@@ -8,7 +8,13 @@ import comp3350.ppms.domain.User;
 
 public interface UserDatabaseInterface {
 
-    void insertUser(User currentUser);
+    ArrayList<User> getUserSequential();
 
-    void deleteUser(UUID currentUserId);
+    ArrayList<User> getUserInfo(User currentUser);
+
+    User insertUser(User currentUser);
+
+    User updateUser(User currentUser);
+
+    void deleteUser(User currentUser);
 }
