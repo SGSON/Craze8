@@ -1,4 +1,7 @@
 package comp3350.ppms.persistence;
 
-public class LoginInterface {
+public interface LoginInterface {
+
+
+
 }
