@@ -5,25 +5,25 @@ import java.util.ArrayList;
 
 public interface UserInterface {
 
-    String getUserID();
+    UUID getUserID();
 
     String getUserNickName();
 
     String getUserPassword();
 
-    ArrayList<String> getCreatedProjectIDList();
+    ArrayList<UUID> getCreatedProjectIDList();
 
-    ArrayList<String> getLikedProjectIDList();
+    ArrayList<UUID> getLikedProjectIDList();
 
-    ArrayList<String> getMatchedProjectIDList();
+    ArrayList<UUID> getMatchedProjectIDList();
 
     ArrayList<String> getUserCredentials();
 
-    void addToCreatedProjectIDList(String projectID);
+    void addToCreatedProjectIDList(UUID projectID);
 
-    void addToLikedProjectIDList(String projectID);
+    void addToLikedProjectIDList(UUID projectID);
 
-    void addToMatchedProjectIDList(String projectID);
+    void addToMatchedProjectIDList(UUID projectID);
 
     void addCredentialList(ArrayList<String> credentials);
 }
