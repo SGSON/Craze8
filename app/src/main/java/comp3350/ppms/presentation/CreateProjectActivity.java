@@ -73,6 +73,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 
         decreaseCredNumButton = (Button) findViewById(R.id.decrease_credential_button);
         decreaseCredNumButton.setOnClickListener(this);
+        decreaseCredNumButton.setEnabled(false);
 
     }
 
@@ -128,13 +129,20 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 
     public void decreaseNumCredential()
     {
-        //TODO
+        int index = projectCredentialsEditList.size() - 1;
+        if (index > 0)
+        {
+            EditText credToDelete = (EditText)projectCredentialsEditList.remove(index);
+            credential_layout.removeView(credToDelete);
+        }
+        if (projectCredentialsEditList.size() == 1)
+            decreaseCredNumButton.setEnabled(false);
     }
 
     public void increaseNumCredential()
     {
         EditText credential = new EditText(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(24, 0, 24, 8);
         credential.setLayoutParams(params);
         credential.setHint("Please Enter Project Credential");
@@ -143,6 +151,8 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         credential.setOnEditorActionListener(this);
         credential_layout.addView(credential);
         projectCredentialsEditList.add(credential);
+        if (projectCredentialsEditList.size() == 2 && !decreaseCredNumButton.isEnabled())
+            decreaseCredNumButton.setEnabled(true);
     }
 
     public void viewCreatedProjects(View view){
