@@ -103,7 +103,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         credentials.add(projectCredentialEdit.getText().toString());
 
         final Project project = new Project(projectName, projectDescr, credentials);
-
+        credentials = new ArrayList<>();
         return project;
     }
 
