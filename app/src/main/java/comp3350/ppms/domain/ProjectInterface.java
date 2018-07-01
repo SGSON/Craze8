@@ -12,4 +12,8 @@ public interface ProjectInterface {
     String getProjectDescription();
 
     ArrayList<String> getProjectCredentials();
+
+    ArrayList<String> getInterestedUsers();
+
+    ArrayList<String> getSelectedUsers();
 }

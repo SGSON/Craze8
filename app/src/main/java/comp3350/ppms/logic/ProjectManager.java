@@ -23,7 +23,11 @@ public class ProjectManager implements ProjectManagerInterface{
 
     public void insertProject(Project project) throws CustomException{
         ValidateProject.validateAll(project);
-        projectsStub.addProject(project.getProjectID(),project);
+        final String credentials = generateListString(project.getProjectCredentials());
+        final String interestedUsers = generateListString(project.getInterestedUsers());
+        final String selectedUsers =  generateListString(project.getSelectedUsers());
+
+        projectsStub.addProject(project.getProjectID().toString(), project, credentials, interestedUsers, selectedUsers);
     }
 
     public ArrayList<Project> getProjects(){
@@ -31,4 +35,19 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     public Project getProject(UUID id) { return projectsStub.getProject(id); }
+
+    private String generateListString(ArrayList<String> credentials) {
+        String currCredential;
+        String listString = "";
+
+        for(int i = 0; i < credentials.size(); i++) {
+            currCredential = credentials.get(i);
+            listString += currCredential;
+            if(i != credentials.size() - 1) {
+                listString += ",";
+            }
+        }
+
+        return listString;
+    }
 }
