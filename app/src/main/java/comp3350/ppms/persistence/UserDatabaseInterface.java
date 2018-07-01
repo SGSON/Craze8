@@ -12,5 +12,5 @@ public interface UserDatabaseInterface {
 
     void deleteUser(UUID currentUserId);
 
-    User getUserByString(String userNickname);
+    User getUserByString(String userNickname);git
 }
