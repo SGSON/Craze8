@@ -16,4 +16,8 @@ public class UserManager implements UserManagerInterface{
         userStub.insertUser((user));
     }
 
+    public User getUserByString(String userNickname){
+        return userStub.getUserByString(userNickname);
+    }
+
 }

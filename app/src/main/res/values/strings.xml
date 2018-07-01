@@ -16,4 +16,5 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="login_submit_button">Login</string>
     <string name="login_field_default_text">Enter your username</string>
+    <string name="does_not_have_account_prompt">If you do not have an account</string>
 </resources>

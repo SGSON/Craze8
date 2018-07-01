@@ -34,19 +34,19 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="172dp"
         android:ems="10"
         android:hint="@string/login_field_default_text"
         android:inputType="textPersonName"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintHorizontal_bias="0.289"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/create_user_button"
+        android:id="@+id/login_button"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -62,21 +62,21 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toEndOf="@+id/user_nickname"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.322" />
 
     <Button
         android:id="@+id/signup_button"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="324dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="432dp"
         android:background="@android:color/background_light"
         android:text="SignUp"
         android:textColor="#f1ff7700"
@@ -84,8 +84,28 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_nickname" />
+        app:layout_constraintTop_toBottomOf="@+id/user_nickname"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <TextView
+        android:id="@+id/user_signup_text_prpmpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/does_not_have_account_prompt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signup_button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_nickname"
+        app:layout_constraintVertical_bias="0.925" />
 
 </android.support.constraint.ConstraintLayout>
