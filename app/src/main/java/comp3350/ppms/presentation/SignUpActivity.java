@@ -15,25 +15,32 @@ import android.widget.TextView;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.UserManager;
 
-public class SignUpActivity extends LoginSignUpParent implements View.OnClickListener,
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener{
 
+    private EditText userNicknameEdit;
     private EditText userPasswordEdit;
 
+    private Button createUserButton;
+
+    private String userNickname;
     private String userPassword;
 
+    private UserManager userManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        userManager = new UserManager();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        userPasswordEdit = findViewById(R.id.user_password);
-        setUserNicknameEdit((EditText)findViewById(R.id.user_nickname));
+        userNicknameEdit = (EditText) findViewById(R.id.user_nickname);
+        userPasswordEdit = (EditText) findViewById(R.id.user_password);
+        createUserButton = (Button) findViewById(R.id.create_user_button);
 
-        getUserNicknameEdit().setOnEditorActionListener(this);
-//        getSubmitButton().setOnClickListener(this);
-
+        userNicknameEdit.setOnEditorActionListener(this);
+        createUserButton.setOnClickListener(this);
 
     }
 
@@ -45,7 +52,7 @@ public class SignUpActivity extends LoginSignUpParent implements View.OnClickLis
         result = validateUserData(user);
         if(view.getId() == R.id.create_user_button){
             if(result == null){
-                userManagerInsert(user);
+                userManager.insertUser(user);
                 Intent intent = new Intent(this,  CreateProjectActivity.class);
                 startActivity(intent);
 //TODO: Throw CustomException after fix insertUser
@@ -65,7 +72,7 @@ public class SignUpActivity extends LoginSignUpParent implements View.OnClickLis
     public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
         boolean actionDone = false;
         if(actionId == EditorInfo.IME_ACTION_DONE) {
-            setUserNickname(textView.getText().toString());
+            userNickname = textView.getText().toString();
             actionDone = true;
         }
         return actionDone;
@@ -73,10 +80,10 @@ public class SignUpActivity extends LoginSignUpParent implements View.OnClickLis
 
     public User createNewUserFromEditText()
     {
-        setUserNickname(getUserNicknameEdit().getText().toString());
+        userNickname = userNicknameEdit.getText().toString();
         userPassword = userPasswordEdit.getText().toString();
 
-        return new User(getUserNickname(), userPassword);
+        return new User(userNickname, userPassword);
     }
 
     private String validateUserData(User user) {
