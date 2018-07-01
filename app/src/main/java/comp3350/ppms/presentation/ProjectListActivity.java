@@ -1,41 +1,50 @@
 package comp3350.ppms.presentation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Button;
 import android.widget.AdapterView;
-
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.test.ppms.R;
 
-import comp3350.ppms.domain.Project;
-import comp3350.ppms.logic.ProjectManager;
-import comp3350.ppms.presentation.ProjectAdapter;
-
 import java.util.ArrayList;
 
-public class ProjectListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+import java.util.UUID;
+
+import comp3350.ppms.domain.Project;
+import comp3350.ppms.logic.ProjectManager;
+
+public class ProjectListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ProjectAdapter mProjectAdapter;
     private ArrayList<Project> mProjectList;
     private Button mViewDetailsButton;
-    private int selectedProjectPosition = -1;
+    private Button mReturnToPreviousButton;
+    private UUID currProjectID;
+    private int selectedProjectPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_list);
-        mListView = (ListView)findViewById(R.id.listProjects);
-        mViewDetailsButton = findViewById(R.id.project_details_button);
+        mListView = (ListView) findViewById(R.id.listProjects);
+        mViewDetailsButton = (Button) findViewById(R.id.project_details_button);
+        mReturnToPreviousButton = (Button) findViewById(R.id.return_button);
+        mViewDetailsButton.setOnClickListener(this);
+        mReturnToPreviousButton.setOnClickListener(this);
         mProjectManager = new ProjectManager();
         populateProjectList();
-
-
+        selectedProjectPosition = -1;
     }
 
     private void populateProjectList() {
@@ -58,6 +67,55 @@ public class ProjectListActivity extends AppCompatActivity implements AdapterVie
             mListView.setItemChecked(position, true);
             mViewDetailsButton.setEnabled(true);
             selectedProjectPosition = position;
+            Project currProject = mProjectList.get(position);
+            currProjectID = currProject.getProjectID();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.project_details_button){
+            Intent scIntent = new Intent(ProjectListActivity.this, UserProjectDetailedViewActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("projectID", currProjectID);
+            scIntent.putExtras(bundle);
+            ProjectListActivity.this.startActivity(scIntent);
+        }
+        else if (v.getId() == R.id.return_button) {
+            Intent scIntent = new Intent(ProjectListActivity.this, CreateProjectActivity.class);
+            ProjectListActivity.this.startActivity(scIntent);
+        }
+    }
+
+    private class ProjectAdapter extends ArrayAdapter<Project> {
+
+        private Project project;
+
+        private ProjectAdapter(Context context, ArrayList<Project> projects) {
+            super(context, 0, projects);
+        }
+
+
+        @Override
+        public View getView(int index, View view, ViewGroup parent){
+
+            // Check if an existing view is being reused, otherwise inflate the view
+            if(view == null) {
+                view = LayoutInflater.from(getContext()).inflate(R.layout.item_project, parent,
+                        false);
+            }
+
+            // Get data from project and set up the views
+            project = getItem(index);
+            TextView textView_project_name = (TextView) view.findViewById(R.id.project_list_item_name);
+            TextView textView_project_description = (TextView) view.findViewById(R.id.project_list_item_description);
+
+            textView_project_name.setText(project.getProjectName());
+            textView_project_description.setText(project.getProjectDescription());
+
+            return view;
+        }
+
+
     }
 }

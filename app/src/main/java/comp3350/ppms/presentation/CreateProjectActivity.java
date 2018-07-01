@@ -48,12 +48,12 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_project);
 
-        projectNameEdit = findViewById(R.id.project_name);
-        projectDescriptionEdit = findViewById(R.id.project_description);
-        projectCredentialEdit = findViewById(R.id.project_credential);
+        projectNameEdit = (EditText) findViewById(R.id.project_name);
+        projectDescriptionEdit = (EditText) findViewById(R.id.project_description);
+        projectCredentialEdit = (EditText) findViewById(R.id.project_credential);
 
-        createProjectButton = findViewById(R.id.create_project_button);
-        cancelButton = findViewById(R.id.cancel_project_button);
+        createProjectButton = (Button) findViewById(R.id.create_project_button);
+        cancelButton = (Button) findViewById(R.id.cancel_project_button);
 
         projectNameEdit.setOnEditorActionListener(this);
 

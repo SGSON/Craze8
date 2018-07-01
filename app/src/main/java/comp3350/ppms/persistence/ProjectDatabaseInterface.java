@@ -16,5 +16,6 @@ public interface ProjectDatabaseInterface {
     void addProject(UUID ID, Project project);
     void removeProject(UUID ID);
     public ArrayList<Project> getProjectSequential();
+    public Project getProject(UUID id);
 
 }
