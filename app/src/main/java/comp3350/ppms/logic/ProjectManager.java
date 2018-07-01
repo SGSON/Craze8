@@ -1,6 +1,7 @@
 package comp3350.ppms.logic;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.Project;
@@ -28,4 +29,6 @@ public class ProjectManager implements ProjectManagerInterface{
     public ArrayList<Project> getProjects(){
         return projectsStub.getProjectSequential();
     }
+
+    public Project getProject(UUID id) { return projectsStub.getProject(id); }
 }

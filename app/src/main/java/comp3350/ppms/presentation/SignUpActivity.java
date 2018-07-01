@@ -35,9 +35,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        userNicknameEdit = findViewById(R.id.user_nickname);
-        userPasswordEdit = findViewById(R.id.user_password);
-        createUserButton = findViewById(R.id.create_user_button);
+        userNicknameEdit = (EditText) findViewById(R.id.user_nickname);
+        userPasswordEdit = (EditText) findViewById(R.id.user_password);
+        createUserButton = (Button) findViewById(R.id.create_user_button);
 
         userNicknameEdit.setOnEditorActionListener(this);
         createUserButton.setOnClickListener(this);

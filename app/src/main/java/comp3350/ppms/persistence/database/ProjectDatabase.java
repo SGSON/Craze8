@@ -50,6 +50,11 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
         projectsStub.remove(ID);
     }
 
+    @Override
+    public Project getProject(UUID id)
+    {
+        return projectsStub.get(id);
+    }
 
     @Override
     public ArrayList<Project> getProjectSequential() {
