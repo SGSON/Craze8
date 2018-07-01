@@ -27,7 +27,17 @@ public class SignUpActivity extends LoginSignUpParent implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+<<<<<<< HEAD
         userPasswordEdit = findViewById(R.id.user_password);
+=======
+
+        userNicknameEdit = (EditText) findViewById(R.id.user_nickname);
+        userPasswordEdit = (EditText) findViewById(R.id.user_password);
+        createUserButton = (Button) findViewById(R.id.create_user_button);
+
+        userNicknameEdit.setOnEditorActionListener(this);
+        createUserButton.setOnClickListener(this);
+>>>>>>> 6cf1016f9bbe40a538f05350076b758c512b1314
 
     }
 
