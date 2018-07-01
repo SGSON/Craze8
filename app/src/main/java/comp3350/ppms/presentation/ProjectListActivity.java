@@ -58,18 +58,28 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == selectedProjectPosition) {
-            mListView.setItemChecked(position, true);
-            mViewDetailsButton.setEnabled(false);
-            selectedProjectPosition = -1;
-            mListView.clearChoices();
-            mProjectAdapter.notifyDataSetChanged();
+            deselectListItem(position);
         } else {
-            mListView.setItemChecked(position, true);
-            mViewDetailsButton.setEnabled(true);
-            selectedProjectPosition = position;
-            Project currProject = mProjectList.get(position);
-            currProjectID = currProject.getProjectID();
+            selectListItem(position);
         }
+    }
+    
+    private void deselectListItem(int position)
+    {
+        mListView.setItemChecked(position, true);
+        mViewDetailsButton.setEnabled(false);
+        selectedProjectPosition = -1;
+        mListView.clearChoices();
+        mProjectAdapter.notifyDataSetChanged();       
+    }
+    
+    private void selectListItem(int position)
+    {
+        mListView.setItemChecked(position, true);
+        mViewDetailsButton.setEnabled(true);
+        selectedProjectPosition = position;
+        Project currProject = mProjectList.get(position);
+        currProjectID = currProject.getProjectID();        
     }
 
     @Override
