@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f1ff7700"
-    tools:context=".LoginActivity">
+    tools:context="comp3350.ppms.presentation.LoginActivity">
 
 
     <TextView
@@ -63,5 +63,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_nickname"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.235" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/background_light"
+        android:text="@string/login_submit_button"
+        android:textColor="#f1ff7700"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_nickname"
+        app:layout_constraintVertical_bias="0.235" />
 </android.support.constraint.ConstraintLayout>
