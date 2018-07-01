@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
@@ -48,14 +49,14 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
     public void addProject(String ID, Project project, String projCreds, String intUsers, String selUsers) {
         try {
             final PreparedStatement statement =
-                    connection.prepareStatement("INSERT INTO VALUES (?, ?, ?, ?, ?, ?)");
+                    connection.prepareStatement("INSERT INTO projects VALUES (?, ?, ?, ?, ?, ?)");
 
             statement.setString(1, ID);
             statement.setString(2, project.getProjectName());
             statement.setString(3, project.getProjectDescription());
-            statement.setString(4, projCreds);
-            statement.setString(5, intUsers);
-            statement.setString(6, selUsers);
+            statement.setString(4, "[" + projCreds + "]");
+            statement.setString(5, "[" + intUsers + "]");
+            statement.setString(6, "[" + selUsers + "]");
 
             statement.executeUpdate();
         } catch (final SQLException e) {
@@ -103,16 +104,34 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
         final String projectID = resultSet.getString("projectID");
         final String projectName = resultSet.getString("PROJECT_NAME");
         final String projectDes = resultSet.getString("PROJECT_DESCRIPTION");
-        final Array projCreds = resultSet.getArray("PROJECT_CREDENTIALS");
-        final Array inUsers = resultSet.getArray("INTERESTED_USERS");
-        final Array selUsers = resultSet.getArray("SELECTED_USERS");
 
-        //TODO: Further processing on the Array objects?
-        ArrayList<String> credentials = (ArrayList<String>) projCreds.getArray();
-        ArrayList<String> interestedUsers = (ArrayList<String>) inUsers.getArray();
-        ArrayList<String> selectedUsers = (ArrayList<String>) selUsers.getArray();
+        final ArrayList<String> projCreds = stringArrayConversion
+                (resultSet.getArray("PROJECT_CREDENTIALS"));
+        final ArrayList<String> inUsers = stringArrayConversion(
+                resultSet.getArray("INTERESTED_USERS"));
+        final ArrayList<String> selUsers = stringArrayConversion(
+                resultSet.getArray("SELECTED_USERS"));
 
-        return new Project(UUID.fromString(projectID), projectName, projectDes, credentials, interestedUsers, selectedUsers);
-
+        return new Project(UUID.fromString(projectID), projectName, projectDes, projCreds, inUsers, selUsers);
     }
+
+    private ArrayList stringArrayConversion(Array input) {
+        Object[] values;
+        ArrayList<String> result = new ArrayList<>();
+
+        if (input == null){
+            return null;
+        } else {
+            try {
+                values = (Object[]) input.getArray();
+                for(int i = 0; i < values.length; i++) {
+                    result.add(values[i].toString());
+                }
+                return result;
+            } catch (SQLException e){
+                throw new DatabaseException(e);
+            }
+        }
+    }
+
 }

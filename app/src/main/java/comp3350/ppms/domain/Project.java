@@ -17,6 +17,8 @@ public class Project implements ProjectInterface {
         projectName = name;
         projectDescription = descr;
         projectCredentials = cred;
+        interestedUsers = new ArrayList<String>();
+        selectedUsers = new ArrayList<String>();
     }
 
     public Project(UUID ID, String name, String descr, ArrayList<String> cred,
