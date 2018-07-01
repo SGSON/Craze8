@@ -29,6 +29,10 @@ public class SignUpActivity extends LoginSignUpParent implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
 
         userPasswordEdit = findViewById(R.id.user_password);
+        setUserNicknameEdit((EditText)findViewById(R.id.user_nickname));
+
+        getUserNicknameEdit().setOnEditorActionListener(this);
+//        getSubmitButton().setOnClickListener(this);
 
 
     }

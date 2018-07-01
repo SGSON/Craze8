@@ -35,8 +35,10 @@ public abstract class LoginSignUpParent extends AppCompatActivity implements Vie
 
 
         userNicknameEdit = (EditText)findViewById(R.id.user_nickname);
+    //    userNicknameEdit.setOnEditorActionListener(this);
         //userPasswordEdit = findViewById(R.id.user_password);
         submitButton = (Button) findViewById(R.id.create_user_button);
+  //      submitButton.setOnClickListener(this);
 
 //        userNicknameEdit.setOnEditorActionListener(this);
 //        submitButton.setOnClickListener(this);
@@ -81,11 +83,19 @@ public abstract class LoginSignUpParent extends AppCompatActivity implements Vie
         userNickname = nickname;
     }
 
+    public void setUserNicknameEdit(EditText edit){
+        userNicknameEdit = edit;
+    }
+
     public String getUserNickname(){
         return userNickname;
     }
 
     public EditText getUserNicknameEdit(){
         return userNicknameEdit;
+    }
+
+    public Button getSubmitButton(){
+        return submitButton;
     }
 }
