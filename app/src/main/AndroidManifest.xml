@@ -11,11 +11,7 @@
         <activity
             android:name="comp3350.ppms.presentation.SignUpActivity"
             android:theme="@style/AppTheme.Launcher">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -38,7 +34,11 @@
             android:name="comp3350.ppms.presentation.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.Launcher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             >
 
         </activity>

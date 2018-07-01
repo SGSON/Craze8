@@ -34,9 +34,9 @@ public abstract class LoginSignUpParent extends AppCompatActivity implements Vie
         super.onCreate(savedInstanceState);
 
 
-        userNicknameEdit = findViewById(R.id.user_nickname);
+        userNicknameEdit = (EditText)findViewById(R.id.user_nickname);
         //userPasswordEdit = findViewById(R.id.user_password);
-        submitButton = findViewById(R.id.create_user_button);
+        submitButton = (Button) findViewById(R.id.create_user_button);
 
 //        userNicknameEdit.setOnEditorActionListener(this);
 //        submitButton.setOnClickListener(this);
