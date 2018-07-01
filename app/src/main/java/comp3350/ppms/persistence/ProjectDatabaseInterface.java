@@ -13,8 +13,7 @@ public interface ProjectDatabaseInterface {
     We can add the correct return values and the correct parameters
      */
 
-    void addProject(String ID, Project project, String projectCreds,
-                    String intUsers, String selUsers);
+    void addProject(String ID, Project project);
     void removeProject(UUID ID);
     ArrayList<Project> getProjectSequential();
     Project getProject(UUID id);

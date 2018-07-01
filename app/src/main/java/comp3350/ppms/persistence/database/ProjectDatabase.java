@@ -40,7 +40,7 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     }
 
     @Override
-    public void addProject(String ID, Project project, String projCred, String inUsers, String selUsers) {
+    public void addProject(String ID, Project project) {
 
         projectsStub.put(UUID.fromString(ID), project);
     }

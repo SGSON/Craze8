@@ -28,12 +28,16 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
 
     @Override
     public Project getProject(UUID ID) {
+        Project project= null;
         try
         {
-            final Statement st = connection.createStatement();
-            final ResultSet rs = st.executeQuery("SELECT FROM projects FROM projects WHERE projectID = ?");
+            final PreparedStatement st = connection.prepareStatement("SELECT  * FROM projects WHERE projectID = ?");
+            st.setString(1, ID.toString());
 
-            final Project project = fromResultSet(rs);
+            final ResultSet rs = st.executeQuery();
+            while(rs.next()) {
+                project = fromResultSet(rs);
+            }
             rs.close();
             st.close();
 
@@ -46,7 +50,7 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
     }
 
     @Override
-    public void addProject(String ID, Project project, String projCreds, String intUsers, String selUsers) {
+    public void addProject(String ID, Project project) {
         try {
             final PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO projects VALUES (?, ?, ?, ?, ?, ?)");
@@ -54,9 +58,12 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
             statement.setString(1, ID);
             statement.setString(2, project.getProjectName());
             statement.setString(3, project.getProjectDescription());
-            statement.setString(4, "[" + projCreds + "]");
-            statement.setString(5, "[" + intUsers + "]");
-            statement.setString(6, "[" + selUsers + "]");
+            statement.setArray(4, connection.createArrayOf(
+                    "varchar", project.getProjectCredentials().toArray()));
+            statement.setArray(5, connection.createArrayOf(
+                    "varchar", project.getInterestedUsers().toArray()));
+            statement.setArray(6, connection.createArrayOf(
+                    "varchar", project.getSelectedUsers().toArray()));
 
             statement.executeUpdate();
         } catch (final SQLException e) {
