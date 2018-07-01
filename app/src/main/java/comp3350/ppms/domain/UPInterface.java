@@ -5,19 +5,19 @@ import java.util.UUID;
 
 public interface UPInterface {
 
-      UUID getUserID();
+      String getUserID();
 
       String getUserNickName();
 
-      ArrayList<UUID> getCreatedProjectIDList();
+      ArrayList<String> getCreatedProjectIDList();
 
-      ArrayList<UUID> getLikedProjectIDList();
+      ArrayList<String> getLikedProjectIDList();
 
-      ArrayList<UUID> getMatchedProjectIDList();
+      ArrayList<String> getMatchedProjectIDList();
 
       ArrayList<String> getUserCredentials();
 
-      UUID gerProjectID();
+      String gerProjectID();
 
       String getProjectName();
 

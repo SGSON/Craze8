@@ -11,7 +11,7 @@ import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
 public class ProjectDatabase implements ProjectDatabaseInterface {
 
-    private Hashtable<UUID, Project> projectsStub;
+    private Hashtable<String, Project> projectsStub;
 
     /**
      * Private Constructor Only called if the database has not been
@@ -40,13 +40,13 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     }
 
     @Override
-    public void addProject(UUID ID, Project project) {
+    public void addProject(String ID, Project project) {
 
         projectsStub.put(ID, project);
     }
 
     @Override
-    public void removeProject(UUID ID) {
+    public void removeProject(String ID) {
         projectsStub.remove(ID);
     }
 
@@ -54,9 +54,9 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     @Override
     public ArrayList<Project> getProjectSequential() {
         ArrayList<Project> projects = new ArrayList<Project>();
-        Set<UUID> hashKeys = projectsStub.keySet();
+        Set<String> hashKeys = projectsStub.keySet();
 
-        for(UUID key: hashKeys) {
+        for(String key: hashKeys) {
             Project project = projectsStub.get(key);
             projects.add(project);
             

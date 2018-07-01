@@ -24,6 +24,23 @@ public class UserDatabaseHSQLDB {
         }
     }
 
+    //used for testing database implementations
+    /*public UserDatabaseHSQLDB() {
+        try {
+            //Registering the HSQLDB JDBC driver
+            c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/testdb", "SA", "");
+            if (c!= null){
+                System.out.println("Connection created successfully");
+
+            }else{
+                System.out.println("Problem with creating connection");
+            }
+
+        }  catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+    }*/
+
     private ArrayList StringArrayConversion(Array input) {
         if (input == null){
             return null;
@@ -46,7 +63,7 @@ public class UserDatabaseHSQLDB {
         final String UserPassword = rs.getString("password");
         final ArrayList<String> CreatedProjectIDList = StringArrayConversion(rs.getArray("CreatedProjectIDList"));
         final ArrayList<String> LikedProjectIDList = StringArrayConversion(rs.getArray("LikedProjectIDList"));
-        final ArrayList<String> MatchedProjectIDList = StringArrayConversion(rs.getArray("MatchedProjectIDList"));
+        final ArrayList<String> MatchedProjectIDList = StringArrayConversion(rs.getArray("MatchedProjectList"));
         final ArrayList<String> UserCredentials = StringArrayConversion(rs.getArray("UserCredentials"));
 
         return new User(UserID, UserName, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
@@ -115,7 +132,7 @@ public class UserDatabaseHSQLDB {
     //@Override
     public User updateUser(User currentUser) {
         try {
-            final PreparedStatement st = c.prepareStatement("UPDATE users SET name = ?,  password = ?,  CreatedProjectIDList = ?, LikedProjectIDList = ?, MatchedProjectIDList = ?, UserCredentials = ? WHERE studentID = ?");
+            final PreparedStatement st = c.prepareStatement("UPDATE users SET name = ?,  password = ?,  CreatedProjectIDList = ?, LikedProjectIDList = ?, MatchedProjectList = ?, UserCredentials = ? WHERE userID = ?");
             st.setString(1, currentUser.getUserNickName());
             st.setString(2, currentUser.getUserPassword());
             st.setArray(3, c.createArrayOf("varchar", currentUser.getCreatedProjectIDList().toArray()));

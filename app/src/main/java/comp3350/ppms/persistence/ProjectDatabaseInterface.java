@@ -13,8 +13,8 @@ public interface ProjectDatabaseInterface {
     We can add the correct return values and the correct parameters
      */
     
-    void addProject(UUID ID, Project project);
-    void removeProject(UUID ID);
+    void addProject(String ID, Project project);
+    void removeProject(String ID);
     public ArrayList<Project> getProjectSequential();
 
 }
