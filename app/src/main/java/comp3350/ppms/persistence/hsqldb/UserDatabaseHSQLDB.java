@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import comp3350.ppms.domain.User;
+import comp3350.ppms.persistence.UserDatabaseInterface;
 
-public class UserDatabaseHSQLDB {
+public class UserDatabaseHSQLDB implements UserDatabaseInterface{
 
     private final Connection c;
 
@@ -41,14 +42,18 @@ public class UserDatabaseHSQLDB {
         }
     }*/
 
-    private ArrayList StringArrayConversion(Array input) {
+    private ArrayList<String> StringArrayConversion(Array input) {
+        Object[] values;
+        ArrayList<String> result = new ArrayList<>();
+
         if (input == null){
             return null;
         } else {
             try {
-                String[] javaArray = (String[]) input.getArray();
-                ArrayList<String> result = new ArrayList<>();
-                Collections.addAll(result, javaArray);
+                values = (Object[]) input.getArray();
+                for(int i = 0; i < values.length; i++) {
+                    result.add(values[i].toString());
+                }
                 return result;
             } catch (SQLException e){
                 throw new DatabaseException(e);
@@ -94,7 +99,7 @@ public class UserDatabaseHSQLDB {
         final ArrayList<User> users = new ArrayList<>();
         try {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM users WHERE userID = ?");
-            st.setString(1, currentUser.getUserID().toString());
+            st.setString(1, currentUser.getUserID());
 
             final ResultSet rs = st.executeQuery();
             while(rs.next()) {
@@ -111,11 +116,11 @@ public class UserDatabaseHSQLDB {
         }
     }
 
-    //@Override
-    public User insertUser(User currentUser) {
+    @Override
+    public void insertUser(User currentUser) {
         try {
             final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)");
-            st.setString(1, currentUser.getUserID().toString());
+            st.setString(1, currentUser.getUserID());
             st.setString(2, currentUser.getUserNickName());
             st.setString(3, currentUser.getUserPassword());
             st.setArray(4, c.createArrayOf("varchar", currentUser.getCreatedProjectIDList().toArray()));
@@ -123,14 +128,13 @@ public class UserDatabaseHSQLDB {
             st.setArray(6, c.createArrayOf("varchar", currentUser.getMatchedProjectIDList().toArray()));
             st.setArray(7, c.createArrayOf("varchar", currentUser.getUserCredentials().toArray()));
             st.executeUpdate();
-            return currentUser;
         } catch (final SQLException e) {
             throw new DatabaseException(e);
         }
     }
 
     //@Override
-    public User updateUser(User currentUser) {
+    public void updateUser(User currentUser) {
         try {
             final PreparedStatement st = c.prepareStatement("UPDATE users SET name = ?,  password = ?,  CreatedProjectIDList = ?, LikedProjectIDList = ?, MatchedProjectList = ?, UserCredentials = ? WHERE userID = ?");
             st.setString(1, currentUser.getUserNickName());
@@ -139,9 +143,8 @@ public class UserDatabaseHSQLDB {
             st.setArray(4, c.createArrayOf("varchar", currentUser.getLikedProjectIDList().toArray()));
             st.setArray(5, c.createArrayOf("varchar", currentUser.getMatchedProjectIDList().toArray()));
             st.setArray(6, c.createArrayOf("varchar", currentUser.getUserCredentials().toArray()));
-            st.setString(7, currentUser.getUserID().toString());
+            st.setString(7, currentUser.getUserID());
             st.executeUpdate();
-            return currentUser;
         } catch (final SQLException e) {
             throw new DatabaseException(e);
         }
@@ -150,7 +153,7 @@ public class UserDatabaseHSQLDB {
     public void deleteUser(User currentUser) {
         try {
             final PreparedStatement st = c.prepareStatement("DELETE FROM users WHERE userID = ?");
-            st.setString(1, currentUser.getUserID().toString());
+            st.setString(1, currentUser.getUserID());
             st.executeUpdate();
         } catch (final SQLException e) {
             throw new DatabaseException(e);

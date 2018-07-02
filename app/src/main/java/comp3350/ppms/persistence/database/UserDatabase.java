@@ -7,7 +7,7 @@ import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
 
 public class UserDatabase implements UserDatabaseInterface{
-    private Hashtable<UUID, User> userStub;
+    private Hashtable<String, User> userStub;
 
     public UserDatabase(){
         userStub = new Hashtable<>();
@@ -17,7 +17,7 @@ public class UserDatabase implements UserDatabaseInterface{
         userStub.put(currentUser.getUserID(), currentUser);
     }
 
-    public void deleteUser(UUID currentUserId){
-        userStub.remove(currentUserId);
+    public void deleteUser(User currentUser){
+        userStub.remove(currentUser.getUserID());
     }
 }
