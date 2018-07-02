@@ -3,6 +3,7 @@ package comp3350.ppms.logic;
 import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
+import java.util.UUID;
 
 public class UserManager implements UserManagerInterface{
     private UserDatabaseInterface userStub;
@@ -15,5 +16,7 @@ public class UserManager implements UserManagerInterface{
     public void insertUser(User user) {
         userStub.insertUser((user));
     }
+
+    public User getUser(UUID id) { return userStub.getUser(id); }
 
 }

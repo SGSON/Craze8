@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.AdapterView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.test.ppms.R;
 
@@ -21,6 +22,8 @@ import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.ProjectManager;
+import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.domain.User;
 
 public class ProjectListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -32,6 +35,10 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     private Button mReturnToPreviousButton;
     private UUID currProjectID;
     private int selectedProjectPosition;
+
+    private UserManager userManager;
+    private User user;
+    private UUID userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,14 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         mProjectManager = new ProjectManager();
         populateProjectList();
         selectedProjectPosition = -1;
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle.getSerializable("userID") != null){
+            userId = (UUID)bundle.getSerializable("userID");
+            userManager = new UserManager();
+            user = userManager.getUser(userId);
+        }
     }
 
     private void populateProjectList() {
@@ -88,6 +103,9 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
             Intent scIntent = new Intent(ProjectListActivity.this, UserProjectDetailedViewActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("projectID", currProjectID);
+
+            bundle.putSerializable("userID", userId);
+
             scIntent.putExtras(bundle);
             ProjectListActivity.this.startActivity(scIntent);
         }

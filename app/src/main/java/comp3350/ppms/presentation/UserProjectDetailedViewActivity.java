@@ -11,27 +11,38 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.test.ppms.R;
 import java.util.ArrayList;
 import java.util.UUID;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.domain.User;
 
 
 public class UserProjectDetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mAllProjectsButton;
+    private Button interestButton;
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
     private ProjectCredentialAdapter mProjectCredentialAdapter;
-    private UUID mUUID;
+    private UUID projectID;
+
+    private UserManager userManager;
+    private UUID userID;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detailed_view);
+
+        interestButton = (Button) findViewById(R.id.like_button);
+        interestButton.setOnClickListener(this);
 
         mAllProjectsButton = (Button) findViewById(R.id.all_projects_button);
         mAllProjectsButton.setOnClickListener(this);
@@ -40,9 +51,14 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle.getSerializable("projectID") != null) {
-            mUUID = (UUID)bundle.getSerializable("projectID");
+            projectID = (UUID)bundle.getSerializable("projectID");
+            userID = (UUID)bundle.getSerializable("userID");
+
             mProjectManager = new ProjectManager();
-            Project project = mProjectManager.getProject(mUUID);
+            userManager = new UserManager();
+
+            Project project = mProjectManager.getProject(projectID);
+            user = userManager.getUser(userID);
 
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
@@ -55,7 +71,17 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.like_button) {
+            user.addToLikedProjectIDList(projectID);
+            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+        }
+
         Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("userID", userID);
+        scIntent.putExtras(bundle);
+
         UserProjectDetailedViewActivity.this.startActivity(scIntent);
     }
 
@@ -64,7 +90,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         if (mProjectCredentialList != null)
             mProjectCredentialList.clear();
         else
-            mProjectCredentialList = mProjectManager.getProject(mUUID).getProjectCredentials();
+            mProjectCredentialList = mProjectManager.getProject(projectID).getProjectCredentials();
         mProjectCredentialAdapter = new ProjectCredentialAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
         ((ProjectCredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();

@@ -20,4 +20,6 @@ public class UserDatabase implements UserDatabaseInterface{
     public void deleteUser(UUID currentUserId){
         userStub.remove(currentUserId);
     }
+
+    public User getUser(UUID id) { return userStub.get(id); }
 }

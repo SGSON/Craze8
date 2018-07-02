@@ -14,12 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.logic.UserManager;
 
 
 public class CreateProjectActivity extends AppCompatActivity implements View.OnClickListener,
@@ -39,6 +43,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     private ArrayList<String> credentials;
 
     private ProjectManager projectManager;
+
+    private UserManager userManager;
+    private User user;
+    private UUID userId;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -60,6 +69,13 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         createProjectButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle.getSerializable("userID") != null){
+            userId = (UUID)bundle.getSerializable("userID");
+            userManager = new UserManager();
+            user = userManager.getUser(userId);
+        }
     }
 
     @Override
@@ -109,6 +125,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 
     public void viewCreatedProjects(View view){
         Intent intent = new Intent(this, ProjectListActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("userID", userId);
+        intent.putExtras(bundle);
+
         startActivity(intent);
     }
 
