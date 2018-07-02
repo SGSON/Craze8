@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.UserManager;
-import comp3350.ppms.domain.User;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
@@ -51,8 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             getUserIDFromDB(userNickname);
             //if it's valid, start the next activity
 
-            //Validate that we have
-            User validUser = userManager.getUserByString(userNickname);
+            //Validate account name
+            User validUser = userManager.validateUserName(userNickname);
 
             if (validUser != null){
                 startActivity(intent);

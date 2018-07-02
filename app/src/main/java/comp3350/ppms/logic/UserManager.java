@@ -16,8 +16,14 @@ public class UserManager implements UserManagerInterface{
         userStub.insertUser((user));
     }
 
-    public User getUserByString(String userNickname){
+    public User validateUserName(String userNickname){
         return userStub.getUserByString(userNickname);
     }
+
+
+//    //Returns a valid user or returns null if not valid
+//    public User validateUserName(String userNickname){
+//        return userStub.validateUserName(userNickname);
+//    }
 
 }
