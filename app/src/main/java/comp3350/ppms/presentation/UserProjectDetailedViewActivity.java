@@ -31,7 +31,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private ArrayList<String> mProjectCredentialList;
     private ProjectCredentialAdapter mProjectCredentialAdapter;
     private UUID projectID;
-
+    private Project project;
     private UserManager userManager;
     private UUID userID;
     private User user;
@@ -57,7 +57,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             mProjectManager = new ProjectManager();
             userManager = new UserManager();
 
-            Project project = mProjectManager.getProject(projectID);
+            project = mProjectManager.getProject(projectID);
             user = userManager.getUser(userID);
 
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
@@ -73,6 +73,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
             user.addToLikedProjectIDList(projectID);
+            project.addLikedUserID(userID);
             Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
         }
 
