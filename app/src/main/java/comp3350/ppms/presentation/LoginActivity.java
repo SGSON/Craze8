@@ -42,7 +42,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     public void onClick(View view){
+        //TODO remove this, this is strictly for testing
         userManager.insertUser(new User("test","fart"));
+
         Intent intent;
         if(view.getId() == R.id.login_button){
             intent = new Intent(LoginActivity.this, MainActivity.class);
