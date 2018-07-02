@@ -1,12 +1,21 @@
 package comp3350.ppms.presentation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.test.ppms.R;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import comp3350.ppms.application.Main;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -65,4 +74,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
+
 }

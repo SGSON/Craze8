@@ -5,11 +5,15 @@ import java.util.ArrayList;
 
 public interface ProjectInterface {
 
-    String getProjectID();
+    UUID getProjectID();
 
     String getProjectName();
 
     String getProjectDescription();
 
     ArrayList<String> getProjectCredentials();
+
+    ArrayList<String> getInterestedUsers();
+
+    ArrayList<String> getSelectedUsers();
 }

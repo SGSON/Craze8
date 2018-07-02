@@ -68,6 +68,28 @@ public class ProjectManagerTest extends TestCase{
     }
 
     @Test (expected = CustomException.class)
+    public void testSingleProject(){
+        UUID id;
+        System.out.println("\nStarting testRetrieveProject: Single project");
+        ArrayList<String> cred = new ArrayList<String>();
+        ArrayList<Project> projectList;
+        cred.add("eight");
+        Project newProj = new Project("hello", "hello world", cred);
+        ProjectManager newManager = new ProjectManager();
+        try {
+            newManager.insertProject(newProj);
+        } catch (CustomException expected) {
+            assertEquals(null, expected);
+        }
+        Project retrProject = newManager.getProject(newProj.getProjectID());
+        assertEquals(newProj.getProjectName(), retrProject.getProjectName());
+        assertEquals(newProj.getProjectDescription(), retrProject.getProjectDescription());
+        assertEquals(newProj.getProjectCredentials(), retrProject.getProjectCredentials());
+
+        System.out.println("\nFinished testRetrieveProject: Single project");
+    }
+
+    @Test (expected = CustomException.class)
     public void testMultipleProjectList(){
         UUID id;
         System.out.println("\nStarting testRetrieveProject: Multiple projects");

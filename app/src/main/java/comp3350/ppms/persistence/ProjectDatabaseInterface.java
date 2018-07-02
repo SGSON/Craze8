@@ -12,9 +12,11 @@ public interface ProjectDatabaseInterface {
     All will have void return values for now, but once we have our classes in the project
     We can add the correct return values and the correct parameters
      */
-    
+
     void addProject(String ID, Project project);
     void removeProject(String ID);
-    public ArrayList<Project> getProjectSequential();
+    ArrayList<Project> getProjectSequential();
+    Project getProject(UUID id);
+
 
 }

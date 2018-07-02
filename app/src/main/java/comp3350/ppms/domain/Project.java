@@ -5,20 +5,35 @@ import java.util.ArrayList;
 
 public class Project implements ProjectInterface {
 
-    private String projectID;
+    private UUID projectID;
     private String projectName;
     private String projectDescription;
     private ArrayList<String> projectCredentials;
+    private ArrayList<String> interestedUsers;
+    private ArrayList<String> selectedUsers;
 
     public Project(String name, String descr, ArrayList<String> cred) {
-        projectID = UUID.randomUUID().toString();
+        projectID = UUID.randomUUID();
         projectName = name;
         projectDescription = descr;
         projectCredentials = cred;
+        interestedUsers = new ArrayList<String>();
+        selectedUsers = new ArrayList<String>();
     }
 
+    public Project(UUID ID, String name, String descr, ArrayList<String> cred,
+                   ArrayList<String> inUsers, ArrayList<String> selUsers) {
+        projectID = ID;
+        projectName = name;
+        projectDescription = descr;
+        projectCredentials = cred;
+        interestedUsers = inUsers;
+        selectedUsers = selUsers;
+    }
+
+
     @Override
-    public String getProjectID() {
+    public UUID getProjectID() {
         return projectID;
     }
 
@@ -32,5 +47,15 @@ public class Project implements ProjectInterface {
 
     public ArrayList<String> getProjectCredentials() {
         return projectCredentials;
+    }
+
+    @Override
+    public ArrayList<String> getInterestedUsers() {
+        return interestedUsers;
+    }
+
+    @Override
+    public ArrayList<String> getSelectedUsers() {
+        return selectedUsers;
     }
 }

@@ -35,7 +35,7 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
         }
         for(int i = 0; i < PROJECT_NAMES.length; i++) {
             Project project = new Project(PROJECT_NAMES[i], PROJECT_DESCRIPTIONS[i], credentials);
-            projectsStub.put(project.getProjectID(), project);
+            projectsStub.put(project.getProjectID().toString(), project);
         }
     }
 
@@ -50,6 +50,11 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
         projectsStub.remove(ID);
     }
 
+    @Override
+    public Project getProject(UUID id)
+    {
+        return projectsStub.get(id);
+    }
 
     @Override
     public ArrayList<Project> getProjectSequential() {

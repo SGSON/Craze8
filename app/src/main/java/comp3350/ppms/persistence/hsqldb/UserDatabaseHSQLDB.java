@@ -94,7 +94,7 @@ public class UserDatabaseHSQLDB {
         final ArrayList<User> users = new ArrayList<>();
         try {
             final PreparedStatement st = c.prepareStatement("SELECT * FROM users WHERE userID = ?");
-            st.setString(1, currentUser.getUserID());
+            st.setString(1, currentUser.getUserID().toString());
 
             final ResultSet rs = st.executeQuery();
             while(rs.next()) {
@@ -115,7 +115,7 @@ public class UserDatabaseHSQLDB {
     public User insertUser(User currentUser) {
         try {
             final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)");
-            st.setString(1, currentUser.getUserID());
+            st.setString(1, currentUser.getUserID().toString());
             st.setString(2, currentUser.getUserNickName());
             st.setString(3, currentUser.getUserPassword());
             st.setArray(4, c.createArrayOf("varchar", currentUser.getCreatedProjectIDList().toArray()));
@@ -139,7 +139,7 @@ public class UserDatabaseHSQLDB {
             st.setArray(4, c.createArrayOf("varchar", currentUser.getLikedProjectIDList().toArray()));
             st.setArray(5, c.createArrayOf("varchar", currentUser.getMatchedProjectIDList().toArray()));
             st.setArray(6, c.createArrayOf("varchar", currentUser.getUserCredentials().toArray()));
-            st.setString(7, currentUser.getUserID());
+            st.setString(7, currentUser.getUserID().toString());
             st.executeUpdate();
             return currentUser;
         } catch (final SQLException e) {
@@ -150,7 +150,7 @@ public class UserDatabaseHSQLDB {
     public void deleteUser(User currentUser) {
         try {
             final PreparedStatement st = c.prepareStatement("DELETE FROM users WHERE userID = ?");
-            st.setString(1, currentUser.getUserID());
+            st.setString(1, currentUser.getUserID().toString());
             st.executeUpdate();
         } catch (final SQLException e) {
             throw new DatabaseException(e);

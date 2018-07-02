@@ -6,6 +6,7 @@ import comp3350.ppms.persistence.database.ProjectDatabase;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 import comp3350.ppms.persistence.database.UPDatabase;
 import comp3350.ppms.persistence.database.UserDatabase;
+import comp3350.ppms.persistence.hsqldb.ProjectPersistenceHSQLDB;
 
 public class Service {
 
@@ -17,7 +18,7 @@ public class Service {
     {
         if (projectDatabaseInterface == null)
         {
-            projectDatabaseInterface = new ProjectDatabase();
+            projectDatabaseInterface = new ProjectPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return projectDatabaseInterface;

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class User implements UserInterface{
-    private String userID;
+    private UUID userID;
     private String userNickName;
     private String userPassword;
     private ArrayList<String> userCredentials;
-    private ArrayList<String> createdProjectIDList;
-    private ArrayList<String> likedProjectIDList;
-    private ArrayList<String> matchedProjectIDList;
+    private ArrayList<UUID> createdProjectIDList;
+    private ArrayList<UUID> likedProjectIDList;
+    private ArrayList<UUID> matchedProjectIDList;
 
     public User(String newUserNickName, String newUserPassword)
     {
-        this.userID = UUID.randomUUID().toString();
+        this.userID = UUID.randomUUID();
         this.userNickName = newUserNickName;
         this.userPassword = newUserPassword;
         this.createdProjectIDList = new ArrayList<>();
@@ -32,7 +32,8 @@ public class User implements UserInterface{
         this.userCredentials = userCredentials;
     }
 
-    public String getUserID()
+
+    public UUID getUserID()
     {
         return (userID);
     }
@@ -45,15 +46,15 @@ public class User implements UserInterface{
     public String getUserPassword() {
         return (userPassword);}
 
-    public ArrayList<String> getCreatedProjectIDList() {
+    public ArrayList<UUID> getCreatedProjectIDList() {
         return createdProjectIDList;
     }
 
-    public ArrayList<String> getLikedProjectIDList() {
+    public ArrayList<UUID> getLikedProjectIDList() {
         return likedProjectIDList;
     }
 
-    public ArrayList<String> getMatchedProjectIDList() {
+    public ArrayList<UUID> getMatchedProjectIDList() {
         return matchedProjectIDList;
     }
 
@@ -61,15 +62,15 @@ public class User implements UserInterface{
         return userCredentials;
     }
 
-    public void addToCreatedProjectIDList(String projectID){
+    public void addToCreatedProjectIDList(UUID projectID){
         createdProjectIDList.add(projectID);
     }
 
-    public void addToLikedProjectIDList(String projectID){
+    public void addToLikedProjectIDList(UUID projectID){
         likedProjectIDList.add(projectID);
     }
 
-    public void addToMatchedProjectIDList(String projectID){
+    public void addToMatchedProjectIDList(UUID projectID){
         matchedProjectIDList.add(projectID);
     }
 
