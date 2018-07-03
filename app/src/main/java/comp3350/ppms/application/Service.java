@@ -13,11 +13,7 @@ public class Service {
     private static ProjectDatabaseInterface projectDatabaseInterface = null;
     private static UserDatabaseInterface userDatabaseInterface = null;
     private static UPDatabaseInterface upDatabaseInterface = null;
-    private User account;
 
-    public Service(){
-        account = null;
-    }
 
     public static synchronized ProjectDatabaseInterface getProjectDatabaseInterface()
     {

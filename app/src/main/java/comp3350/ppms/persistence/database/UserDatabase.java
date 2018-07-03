@@ -25,14 +25,15 @@ public class UserDatabase implements UserDatabaseInterface{
         userStub.remove(currentUserId);
     }
 
-    //Hopefully this will return if this is contained in the database
-    public Boolean getUserID(String userName){
-        boolean result = false;
-        userStub.contains(userName);
-
-        return result;
-
-    }
+    //TODO I can probably remove this
+//    //Hopefully this will return if this is contained in the database
+//    public Boolean getUserID(String userName){
+//        boolean result = false;
+//        userStub.contains(userName);
+//
+//        return result;
+//
+//    }
 
     //Given a user account name, will return the User
     public User getUserByString(String userNickname){
