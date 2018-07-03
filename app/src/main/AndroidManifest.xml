@@ -18,7 +18,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:windowSoftInputMode="adjustNothing"
             android:name="comp3350.ppms.presentation.CreateProjectActivity"
             android:theme="@style/AppTheme">
             >
