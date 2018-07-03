@@ -1,5 +1,8 @@
 package comp3350.ppms.domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -67,6 +70,8 @@ public class User implements UserInterface{
     public void addCredentialList(ArrayList<String> credentials) {
         userCredentials.addAll(credentials);
     }
+
+
 
 
 }

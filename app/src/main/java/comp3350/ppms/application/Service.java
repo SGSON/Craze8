@@ -1,5 +1,6 @@
 package comp3350.ppms.application;
 
+import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UPDatabaseInterface;
 import comp3350.ppms.persistence.UserDatabaseInterface;
 import comp3350.ppms.persistence.database.ProjectDatabase;
@@ -12,6 +13,11 @@ public class Service {
     private static ProjectDatabaseInterface projectDatabaseInterface = null;
     private static UserDatabaseInterface userDatabaseInterface = null;
     private static UPDatabaseInterface upDatabaseInterface = null;
+    private User account;
+
+    public Service(){
+        account = null;
+    }
 
     public static synchronized ProjectDatabaseInterface getProjectDatabaseInterface()
     {
@@ -41,5 +47,13 @@ public class Service {
         }
 
         return upDatabaseInterface;
+    }
+
+    public void setAccount(User account){
+        this.account = account;
+    }
+
+    public User getAccount(){
+        return account;
     }
 }

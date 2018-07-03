@@ -1,5 +1,6 @@
 package comp3350.ppms.presentation;
 
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,31 +43,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     public void onClick(View view){
-        //TODO remove this, this is strictly for testing
-        userManager.insertUser(new User("test","fart"));
 
+        //Will be used for the next Activity we go to
         Intent intent;
-        if(view.getId() == R.id.login_button){
-            intent = new Intent(LoginActivity.this, MainActivity.class);
-            userNickname = userNicknameEdit.getText().toString();
-            getUserIDFromDB(userNickname);
-            //if it's valid, start the next activity
 
-            //Validate account name
+        //If it's the login button being pressed, get the username entered, validate
+        if(view.getId() == R.id.login_button){
+
+            userNickname = userNicknameEdit.getText().toString();
+
+
+            //Validate account name (will be a valid User or null)
             User validUser = userManager.validateUserName(userNickname);
 
             if (validUser != null){
+                intent = new Intent(LoginActivity.this, MainActivity.class);
+
                 startActivity(intent);
-                System.out.println("VALID USERNAME");
             }else{
                 userNicknameEdit.setError("Invalid Account Name");
             }
-            System.out.println("THIS IS A TEST " + validUser);
+
 
         }else if(view.getId() == R.id.signup_button){
             intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
         }
+
+
 
     }
 
@@ -79,9 +83,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return actionDone;
     }
 
-    public void getUserIDFromDB(String userNickname){
-        //talk to the database and get the valid userID if there is one
 
-    }
 
 }
