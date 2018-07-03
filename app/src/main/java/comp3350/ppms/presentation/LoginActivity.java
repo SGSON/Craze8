@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void onClick(View view){
 
-        //Will be used for the next Activity we go to
+            //Will be used for the next Activity we go to
         Intent intent;
 
         //If it's the login button being pressed, get the username entered, validate
@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             if (validUser != null){
                 intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("userName", userNickname);
 
                 startActivity(intent);
             }else{
