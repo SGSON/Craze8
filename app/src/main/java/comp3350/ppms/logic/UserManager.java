@@ -17,6 +17,15 @@ public class UserManager implements UserManagerInterface{
         userStub.insertUser((user));
     }
 
+
     public User getUser(UUID id) { return userStub.getUser(id); }
+
+    //accepts a String username and returns the User if the account has been created or returns null
+    //if invalid
+    public User validateUserName(String userName){
+        return userStub.getUserByString(userName);
+    }
+
+
 
 }
