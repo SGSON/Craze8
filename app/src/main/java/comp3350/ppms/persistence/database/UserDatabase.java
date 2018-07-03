@@ -34,7 +34,7 @@ public class UserDatabase implements UserDatabaseInterface{
 
     }
 
-//    Given a user account name, this should return the User
+    //Given a user account name, will return the User
     public User getUserByString(String userNickname){
         User result = null;
 
