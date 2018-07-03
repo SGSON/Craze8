@@ -49,11 +49,4 @@ public class Service {
         return upDatabaseInterface;
     }
 
-    public void setAccount(User account){
-        this.account = account;
-    }
-
-    public User getAccount(){
-        return account;
-    }
 }
