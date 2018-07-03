@@ -40,7 +40,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle.getSerializable("projectID") != null) {
-            mUUID = (String) bundle.getString("projectID");
+            mUUID = bundle.getString("projectID");
             mProjectManager = new ProjectManager();
             Project project = mProjectManager.getProject(mUUID);
 
