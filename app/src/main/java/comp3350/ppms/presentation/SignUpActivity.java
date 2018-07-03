@@ -38,11 +38,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        userManager = new UserManager();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         copyDatabaseToDevice();
+        userManager = new UserManager();
 
         userNicknameEdit = (EditText) findViewById(R.id.user_nickname);
         userPasswordEdit = (EditText) findViewById(R.id.user_password);
