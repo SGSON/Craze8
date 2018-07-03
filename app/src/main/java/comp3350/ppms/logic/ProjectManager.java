@@ -31,6 +31,6 @@ public class ProjectManager implements ProjectManagerInterface{
         return projectsStub.getProjectSequential();
     }
 
-    public Project getProject(UUID id) { return projectsStub.getProject(id); }
+    public Project getProject(String id) { return projectsStub.getProject(id); }
 
 }

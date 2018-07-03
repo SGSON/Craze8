@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Project implements ProjectInterface {
 
-    private UUID projectID;
+    private String projectID;
     private String projectName;
     private String projectDescription;
     private ArrayList<String> projectCredentials;
@@ -13,7 +13,7 @@ public class Project implements ProjectInterface {
     private ArrayList<String> selectedUsers;
 
     public Project(String name, String descr, ArrayList<String> cred) {
-        projectID = UUID.randomUUID();
+        projectID = UUID.randomUUID().toString();
         projectName = name;
         projectDescription = descr;
         projectCredentials = cred;
@@ -21,7 +21,7 @@ public class Project implements ProjectInterface {
         selectedUsers = new ArrayList<String>();
     }
 
-    public Project(UUID ID, String name, String descr, ArrayList<String> cred,
+    public Project(String ID, String name, String descr, ArrayList<String> cred,
                    ArrayList<String> inUsers, ArrayList<String> selUsers) {
         projectID = ID;
         projectName = name;
@@ -33,7 +33,7 @@ public class Project implements ProjectInterface {
 
 
     @Override
-    public UUID getProjectID() {
+    public String getProjectID() {
         return projectID;
     }
 

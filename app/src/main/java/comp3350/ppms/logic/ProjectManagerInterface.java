@@ -15,6 +15,6 @@ public interface ProjectManagerInterface {
 
     ArrayList<Project> getProjects();
 
-    Project getProject(UUID id);
+    Project getProject(String id);
 }
 

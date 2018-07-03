@@ -26,7 +26,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
     private ProjectCredentialAdapter mProjectCredentialAdapter;
-    private UUID mUUID;
+    private String mUUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle.getSerializable("projectID") != null) {
-            mUUID = (UUID)bundle.getSerializable("projectID");
+            mUUID = (String) bundle.getString("projectID");
             mProjectManager = new ProjectManager();
             Project project = mProjectManager.getProject(mUUID);
 

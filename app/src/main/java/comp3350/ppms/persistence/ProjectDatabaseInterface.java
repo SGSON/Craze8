@@ -16,7 +16,7 @@ public interface ProjectDatabaseInterface {
     void addProject(String ID, Project project);
     void removeProject(String ID);
     ArrayList<Project> getProjectSequential();
-    Project getProject(UUID id);
+    Project getProject(String id);
 
 
 }

@@ -51,7 +51,7 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     }
 
     @Override
-    public Project getProject(UUID id)
+    public Project getProject(String id)
     {
         return projectsStub.get(id);
     }

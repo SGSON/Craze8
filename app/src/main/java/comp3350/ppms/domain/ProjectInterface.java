@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public interface ProjectInterface {
 
-    UUID getProjectID();
+    String getProjectID();
 
     String getProjectName();
 

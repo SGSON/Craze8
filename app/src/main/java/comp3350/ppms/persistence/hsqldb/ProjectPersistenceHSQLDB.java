@@ -27,12 +27,12 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
     }
 
     @Override
-    public Project getProject(UUID ID) {
+    public Project getProject(String ID) {
         Project project= null;
         try
         {
             final PreparedStatement st = connection.prepareStatement("SELECT  * FROM projects WHERE projectID = ?");
-            st.setString(1, ID.toString());
+            st.setString(1, ID);
 
             final ResultSet rs = st.executeQuery();
             while(rs.next()) {
@@ -72,7 +72,7 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
     }
 
     @Override
-    public void removeProject(UUID ID) {
+    public void removeProject(String ID) {
         try {
             final PreparedStatement statement =
                     connection.prepareStatement("DELETE FROM projects WHERE projectID = ?");
@@ -119,7 +119,7 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
         final ArrayList<String> selUsers = stringArrayConversion(
                 resultSet.getArray("SELECTED_USERS"));
 
-        return new Project(UUID.fromString(projectID), projectName, projectDes, projCreds, inUsers, selUsers);
+        return new Project(projectID, projectName, projectDes, projCreds, inUsers, selUsers);
     }
 
     private ArrayList stringArrayConversion(Array input) {

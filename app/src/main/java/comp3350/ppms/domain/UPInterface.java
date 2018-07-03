@@ -17,7 +17,7 @@ public interface UPInterface {
 
       ArrayList<String> getUserCredentials();
 
-      String gerProjectID();
+      String getProjectID();
 
       String getProjectName();
 
