@@ -88,6 +88,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
             if(result == null){
                 try{
                     projectManager.insertProject(project);
+                    user.addToCreatedProjectIDList(project.getProjectID());
                 }catch (CustomException e){
                     Messages.fatalError(this, e.getErrorMsg());
                 }

@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.AdapterView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.app.Dialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.example.test.ppms.R;
 
@@ -39,6 +41,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     private UserManager userManager;
     private User user;
     private UUID userId;
+    private Project currProject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +73,28 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    public Dialog onCreateDialog() {
+        final CharSequence[] dialogList = (currProject.getProjectCredentials())
+                                            .toArray(new CharSequence[(currProject.getProjectCredentials()).size()]);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Credentials: ")
+                .setItems(dialogList, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // The 'which' argument contains the index position
+                        // of the selected item
+                        dialog.dismiss();
+                    }
+                });
+        return builder.create();
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == selectedProjectPosition) {
             deselectListItem(position);
         } else {
             selectListItem(position);
+            onCreateDialog().show();
         }
     }
     
@@ -93,7 +112,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         mListView.setItemChecked(position, true);
         mViewDetailsButton.setEnabled(true);
         selectedProjectPosition = position;
-        Project currProject = mProjectList.get(position);
+        currProject = mProjectList.get(position);
         currProjectID = currProject.getProjectID();        
     }
 
@@ -143,7 +162,6 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
 
             return view;
         }
-
-
     }
+
 }
