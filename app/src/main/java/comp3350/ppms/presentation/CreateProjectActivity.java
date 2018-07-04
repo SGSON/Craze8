@@ -88,7 +88,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         userManager = new UserManager();
         userNickname = getIntent().getStringExtra("userName");
         if (userNickname != null){
-            currAccount = userManager.validateUserName(userNickname);
+            currAccount = userManager.getUser(userNickname);
         }
     }
 

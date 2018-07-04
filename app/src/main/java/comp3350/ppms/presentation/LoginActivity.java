@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
             //Validate account name (will be a valid User or null)
-            User validUser = userManager.validateUserName(userNickname);
+            User validUser = userManager.getUser(userNickname);
 
             //Pass userName to next Activity and start the intent
             if (validUser != null){
