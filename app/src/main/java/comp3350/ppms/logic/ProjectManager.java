@@ -23,12 +23,14 @@ public class ProjectManager implements ProjectManagerInterface{
 
     public void insertProject(Project project) throws CustomException{
         ValidateProject.validateAll(project);
-        projectsStub.addProject(project.getProjectID(),project);
+
+        projectsStub.addProject(project.getProjectID().toString(), project);
     }
 
     public ArrayList<Project> getProjects(){
         return projectsStub.getProjectSequential();
     }
 
-    public Project getProject(UUID id) { return projectsStub.getProject(id); }
+    public Project getProject(String id) { return projectsStub.getProject(id); }
+
 }

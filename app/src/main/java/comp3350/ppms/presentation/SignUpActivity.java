@@ -1,5 +1,7 @@
 package comp3350.ppms.presentation;
 
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,10 +35,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        userManager = new UserManager();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        userManager = new UserManager();
 
         userNicknameEdit = (EditText) findViewById(R.id.user_nickname);
         userPasswordEdit = (EditText) findViewById(R.id.user_password);
@@ -97,6 +99,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         return new User(userNickname, userPassword);
     }
+
 
     private String validateUserData(User user) {
 

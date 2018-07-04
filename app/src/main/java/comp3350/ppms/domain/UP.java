@@ -14,7 +14,7 @@ public class UP implements UPInterface{
         this.project = project;
     }
 
-    public UUID getUserID()
+    public String getUserID()
     {
         return (user.getUserID());
     }
@@ -23,15 +23,15 @@ public class UP implements UPInterface{
         return (user.getUserNickName());
     }
 
-    public ArrayList<UUID> getCreatedProjectIDList(){
+    public ArrayList<String> getCreatedProjectIDList(){
         return (user.getCreatedProjectIDList());
     }
 
-    public ArrayList<UUID> getLikedProjectIDList(){
+    public ArrayList<String> getLikedProjectIDList(){
         return (user.getLikedProjectIDList());
     }
 
-    public ArrayList<UUID> getMatchedProjectIDList(){
+    public ArrayList<String> getMatchedProjectIDList(){
         return (user.getMatchedProjectIDList());
     }
 
@@ -39,7 +39,7 @@ public class UP implements UPInterface{
         return (user.getUserCredentials());
     }
 
-    public UUID gerProjectID()
+    public String getProjectID()
     {
         return (project.getProjectID());
     }

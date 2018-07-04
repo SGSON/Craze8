@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.test.ppms.R;
 import java.util.ArrayList;
-import java.util.UUID;
+
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
@@ -30,11 +30,12 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
     private ProjectCredentialAdapter mProjectCredentialAdapter;
-    private UUID projectID;
+    private String projectID;
     private Project project;
     private UserManager userManager;
     private String userNickname;
     private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,9 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle.getSerializable("projectID") != null) {
-            projectID = (UUID)bundle.getSerializable("projectID");
+
+
+            projectID = bundle.getString("projectID");
             userNickname = getIntent().getStringExtra("userName");
 
             mProjectManager = new ProjectManager();
@@ -73,7 +76,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
             user.addToLikedProjectIDList(projectID);
-            project.addLikedUserID(user.getUserID());
+            project.addInterestedUser(user.getUserID());
             Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
         }
 

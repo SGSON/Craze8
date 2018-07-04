@@ -35,7 +35,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     private ArrayList<Project> mProjectList;
     private Button mViewDetailsButton;
     private Button mReturnToPreviousButton;
-    private UUID currProjectID;
+    private String currProjectID;
     private int selectedProjectPosition;
 
     private UserManager userManager;
@@ -120,7 +120,8 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         if(v.getId() == R.id.project_details_button){
             Intent scIntent = new Intent(ProjectListActivity.this, UserProjectDetailedViewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("projectID", currProjectID);
+
+            bundle.putString("projectID", currProjectID);
 
             scIntent.putExtra("userName", userNickname);
 

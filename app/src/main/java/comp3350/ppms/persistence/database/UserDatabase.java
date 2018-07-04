@@ -11,7 +11,7 @@ import comp3350.ppms.persistence.UserDatabaseInterface;
 import comp3350.ppms.domain.User;
 
 public class UserDatabase implements UserDatabaseInterface{
-    private Hashtable<UUID, User> userStub;
+    private Hashtable<String, User> userStub;
 
     public UserDatabase(){
         userStub = new Hashtable<>();
@@ -21,8 +21,8 @@ public class UserDatabase implements UserDatabaseInterface{
         userStub.put(currentUser.getUserID(), currentUser);
     }
 
-    public void deleteUser(UUID currentUserId){
-        userStub.remove(currentUserId);
+    public void deleteUser(User currentUser){
+        userStub.remove(currentUser.getUserID());
     }
     //TODO I can probably remove this
 //    //Hopefully this will return if this is contained in the database
@@ -38,9 +38,9 @@ public class UserDatabase implements UserDatabaseInterface{
     public User getUserByString(String userNickname){
         User result = null;
 
-        Set<UUID> hashKeys = userStub.keySet();
+        Set<String> hashKeys = userStub.keySet();
 
-        for(UUID key: hashKeys) {
+        for(String key: hashKeys) {
             User user = userStub.get(key);
             if(user.getUserNickName().equals(userNickname)){
                 result = user;

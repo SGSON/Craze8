@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class User implements UserInterface{
-    private UUID userID;
+    private String userID;
     private String userNickName;
     private String userPassword;
     private ArrayList<String> userCredentials;
-    private ArrayList<UUID> createdProjectIDList;
-    private ArrayList<UUID> likedProjectIDList;
-    private ArrayList<UUID> matchedProjectIDList;
+    private ArrayList<String> createdProjectIDList;
+    private ArrayList<String> likedProjectIDList;
+    private ArrayList<String> matchedProjectIDList;
 
     public User(String newUserNickName, String newUserPassword)
     {
-        this.userID = UUID.randomUUID();
+        this.userID = UUID.randomUUID().toString();
         this.userNickName = newUserNickName;
         this.userPassword = newUserPassword;
         this.createdProjectIDList = new ArrayList<>();
@@ -26,7 +26,17 @@ public class User implements UserInterface{
         this.userCredentials = new ArrayList<>();
     }
 
-    public UUID getUserID()
+    public User(String ID, String userName, ArrayList<String> createdProjectIDList, ArrayList<String> likedProjectIDList, ArrayList<String> matchedProjectIDList, ArrayList<String> userCredentials){
+        this.userID = ID;
+        this.userNickName = userName;
+        this.createdProjectIDList = createdProjectIDList;
+        this.likedProjectIDList = likedProjectIDList;
+        this.matchedProjectIDList = matchedProjectIDList;
+        this.userCredentials = userCredentials;
+    }
+
+
+    public String getUserID()
     {
         return (userID);
     }
@@ -39,15 +49,15 @@ public class User implements UserInterface{
     public String getUserPassword() {
         return (userPassword);}
 
-    public ArrayList<UUID> getCreatedProjectIDList() {
+    public ArrayList<String> getCreatedProjectIDList() {
         return createdProjectIDList;
     }
 
-    public ArrayList<UUID> getLikedProjectIDList() {
+    public ArrayList<String> getLikedProjectIDList() {
         return likedProjectIDList;
     }
 
-    public ArrayList<UUID> getMatchedProjectIDList() {
+    public ArrayList<String> getMatchedProjectIDList() {
         return matchedProjectIDList;
     }
 
@@ -55,15 +65,15 @@ public class User implements UserInterface{
         return userCredentials;
     }
 
-    public void addToCreatedProjectIDList(UUID projectID){
+    public void addToCreatedProjectIDList(String projectID){
         createdProjectIDList.add(projectID);
     }
 
-    public void addToLikedProjectIDList(UUID projectID){
+    public void addToLikedProjectIDList(String projectID){
         likedProjectIDList.add(projectID);
     }
 
-    public void addToMatchedProjectIDList(UUID projectID){
+    public void addToMatchedProjectIDList(String projectID){
         matchedProjectIDList.add(projectID);
     }
 

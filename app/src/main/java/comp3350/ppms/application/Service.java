@@ -7,6 +7,8 @@ import comp3350.ppms.persistence.database.ProjectDatabase;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 import comp3350.ppms.persistence.database.UPDatabase;
 import comp3350.ppms.persistence.database.UserDatabase;
+import comp3350.ppms.persistence.hsqldb.ProjectPersistenceHSQLDB;
+import comp3350.ppms.persistence.hsqldb.UserDatabaseHSQLDB;
 
 public class Service {
 
@@ -19,7 +21,7 @@ public class Service {
     {
         if (projectDatabaseInterface == null)
         {
-            projectDatabaseInterface = new ProjectDatabase();
+            projectDatabaseInterface = new ProjectPersistenceHSQLDB(Main.getDBPathName());
         }
 
         return projectDatabaseInterface;
@@ -29,7 +31,8 @@ public class Service {
     {
         if(userDatabaseInterface == null)
         {
-            userDatabaseInterface = new UserDatabase();
+            //Here is where I changed Service to get an Instance of the the HSQL DB you implemented
+            userDatabaseInterface = new UserDatabaseHSQLDB(Main.getDBPathName());
         }
 
         return userDatabaseInterface;
@@ -39,7 +42,7 @@ public class Service {
     {
         if(upDatabaseInterface == null)
         {
-            upDatabaseInterface = new UPDatabase();
+            upDatabaseInterface = new UPDatabase(); //What is the purpose of this DB?
         }
 
         return upDatabaseInterface;

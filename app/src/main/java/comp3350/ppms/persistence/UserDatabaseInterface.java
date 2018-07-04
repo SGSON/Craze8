@@ -10,7 +10,8 @@ public interface UserDatabaseInterface {
 
     void insertUser(User currentUser);
 
-    void deleteUser(UUID currentUserId);
+    void deleteUser(User currentUser);
+
 
     User getUserByString(String userNickname);
 
