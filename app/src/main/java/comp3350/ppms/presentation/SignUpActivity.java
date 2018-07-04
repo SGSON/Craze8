@@ -28,6 +28,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private UserManager userManager;
 
+    private final String USER_ERROR= "Must enter user name";
+    private final String PASSWORD_ERROR = "Must enter valid password";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         userManager = new UserManager();
@@ -62,7 +65,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 //                    Messages.fatalError(this, e.getErrorMsg());
 //                }
             }else{
-                Messages.warning(this,result);
+                //Messages.warning(this,result);
+                if(result.equals(USER_ERROR)){
+                    userNicknameEdit.setError(result);
+                }else{
+                    userPasswordEdit.setError(result);
+                }
+
+
             }
         }
 
@@ -89,10 +99,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private String validateUserData(User user) {
 
         if (user.getUserNickName().length() == 0) {
-            return "user nickname required";
+            return USER_ERROR;
         }
         if (user.getUserPassword().length() == 0){
-            return "user password required";
+            return PASSWORD_ERROR;
         }
         return null;
     }
