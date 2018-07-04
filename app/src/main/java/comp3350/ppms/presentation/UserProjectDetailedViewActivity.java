@@ -63,8 +63,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         //clear the list if this activity has been called before
         if (mProjectCredentialList != null)
             mProjectCredentialList.clear();
-        else
-            mProjectCredentialList = mProjectManager.getProject(mUUID).getProjectCredentials();
+        mProjectCredentialList = mProjectManager.getProject(mUUID).getProjectCredentials();
         mProjectCredentialAdapter = new ProjectCredentialAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
         ((ProjectCredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();

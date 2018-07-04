@@ -11,4 +11,8 @@ public interface UserDatabaseInterface {
     void insertUser(User currentUser);
 
     void deleteUser(User currentUser);
+
+
+    User getUserByString(String userNickname);
+
 }

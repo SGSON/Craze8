@@ -160,5 +160,27 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
         }
     }
 
+    @Override
+    public User getUserByString(String userNickname) {
+        User user= null;
+        try (final Connection connection =  connection()){
+            final PreparedStatement st = connection.prepareStatement("SELECT  * FROM users WHERE name = ?");
+            st.setString(1, userNickname);
+
+            final ResultSet rs = st.executeQuery();
+            while(rs.next()) {
+                user = fromResultSet(rs);
+            }
+            rs.close();
+            st.close();
+
+            return user;
+        }
+        catch (final SQLException e)
+        {
+            throw new DatabaseException(e);
+        }
+    }
+
 
 }
