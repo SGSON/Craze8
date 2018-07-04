@@ -52,14 +52,14 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="284dp"
         android:background="@android:color/background_light"
         android:text="@string/login_submit_button"
         android:textColor="#f1ff7700"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.732"
+        app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
