@@ -13,7 +13,7 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-
+import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.UserManager;
 
@@ -58,25 +58,20 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         result = validateUserData(user);
         if(view.getId() == R.id.create_user_button){
             if(result == null){
-                userManager.insertUser(user);
+                try{
+                    userManager.insertUser(user);
+                } catch (CustomException e){
+                    Messages.fatalError(this, e.getErrorMsg());
+                }
                 Intent intent = new Intent(this,  MainActivity.class);
                 intent.putExtra("userName", userNickname);
 
                 startActivity(intent);
-                if(userManager.validateUserName(user.getUserNickName()) != null){
-                    userNicknameEdit.setError("ERROR TEST");
-                }
-//TODO: Throw CustomException after fix insertUser
-//                try{
-//                    userManager.insertUser(user);
-//                }catch (CustomException e){
-//                    Messages.fatalError(this, e.getErrorMsg());
-//                }
             }else{
                 //Messages.warning(this,result);
                 if(result.equals(USER_ERROR) || result.equals(USER_EXISTS_ERROR)){
                     userNicknameEdit.setError(result);
-                }else{
+                }else if(result.equals(PASSWORD_ERROR)){
                     userPasswordEdit.setError(result);
                 }
 
@@ -104,15 +99,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return new User(userNickname, userPassword);
     }
 
-
+//TODO move this into a different class
     private String validateUserData(User user) {
 
-        String result = "";
+        String result = null;
 
         if (user.getUserNickName().length() == 0) {
             result = USER_ERROR;
         }
-        else if(userManager.validateUserName(user.getUserNickName()) != null){
+        else if(userManager.getUser(user.getUserNickName()) != null){
             result =  USER_EXISTS_ERROR;
         }
         else if (user.getUserPassword().length() == 0){

@@ -9,7 +9,7 @@ public class ValidateProject {
 
     private static final int NAME_LENGTH = 16;
     private static final int DESCRIPTION_LENGTH = 256;
-    private static final int CREDENTIALS_LENGTH = 5;
+    private static final int CREDENTIAL_LENGTH = 2;
 
     public static boolean validateAll(Project project) throws CustomException{
         validateUUID(project);
@@ -54,11 +54,11 @@ public class ValidateProject {
     public static boolean validateCredentials(Project project) throws CustomException {
         int i = 0;
         if (project.getProjectCredentials().isEmpty()){
-            throw new CustomException("Credentials must not be empty.");
+            throw new CustomException("projects must list credentials required");
         } else {
             while (i < project.getProjectCredentials().size()){
-                if (project.getProjectCredentials().get(i).length() < CREDENTIALS_LENGTH){
-                    throw new CustomException("Credentials must exceed " + CREDENTIALS_LENGTH + " characters.");
+                if (project.getProjectCredentials().get(i).length() < CREDENTIAL_LENGTH){
+                    throw new CustomException("Credentials must exceed " + CREDENTIAL_LENGTH + " characters.");
                 }
                 i++;
             }

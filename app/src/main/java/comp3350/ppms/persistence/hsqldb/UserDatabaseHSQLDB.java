@@ -25,22 +25,6 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-    //used for testing database implementations
-    /*public UserDatabaseHSQLDB() {
-        try {
-            //Registering the HSQLDB JDBC driver
-            c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/testdb", "SA", "");
-            if (c!= null){
-                System.out.println("Connection created successfully");
-
-            }else{
-                System.out.println("Problem with creating connection");
-            }
-
-        }  catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-    }*/
 
     private ArrayList<String> StringArrayConversion(Array input) {
         Object[] values;

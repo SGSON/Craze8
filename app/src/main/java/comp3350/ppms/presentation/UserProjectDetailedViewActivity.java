@@ -61,7 +61,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             userManager = new UserManager();
 
             project = mProjectManager.getProject(projectID);
-            user = userManager.validateUserName(userNickname);
+            user = userManager.getUser(userNickname);
 
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
@@ -76,6 +76,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
             user.addToLikedProjectIDList(projectID);
+            //TODO move this implementation to the logic layer
             project.addInterestedUser(user.getUserID());
             Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
         }

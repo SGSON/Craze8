@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //set the account
         if(userNickname != null){
-            currAccount = userManager.validateUserName(userNickname);
+            currAccount = userManager.getUser(userNickname);
         }
 
 
