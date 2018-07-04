@@ -97,18 +97,18 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         Project project = createNewProjectFromEditText();
         String result;
 
-        result = validateProjectData(project, true);
+//        result = validateProjectData(project, true);
         if(view.getId() == R.id.create_project_button) {
-            if (result == null) {
+//            if (result == null) {
                 try {
                     projectManager.insertProject(project);
                     currAccount.addToCreatedProjectIDList(project.getProjectID());
                 }catch (CustomException e){
                     Messages.fatalError(this, e.getErrorMsg());
                 }
-            } else {
-                Messages.warning(this, result);
-            }
+//            } else {
+//                Messages.warning(this, result);
+//            }
         }else if(view.getId() == R.id.increase_credential_button) {
             increaseNumCredential();
         }else if(view.getId() == R.id.decrease_credential_button) {
@@ -179,18 +179,18 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-    private String validateProjectData(Project project, boolean isNewProject) {
-
-        if (project.getProjectName().length() == 0) {
-            return "project name required";
-        }
-        if (project.getProjectDescription().length() == 0){
-            return "project description required";
-        }
-        if (project.getProjectCredentials().size() == 0){
-            return "project credential required";
-        }
-        return null;
-    }
+//    private String validateProjectData(Project project, boolean isNewProject) {
+//
+//        if (project.getProjectName().length() == 0) {
+//            return "project name required";
+//        }
+//        if (project.getProjectDescription().length() == 0){
+//            return "project description required";
+//        }
+//        if (project.getProjectCredentials().size() == 0){
+//            return "project credential required";
+//        }
+//        return null;
+//    }
 
 }
