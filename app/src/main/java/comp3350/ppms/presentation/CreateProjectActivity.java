@@ -27,7 +27,7 @@ import comp3350.ppms.logic.CustomException;
 public class CreateProjectActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
 
-    //For the UI
+    //For the UI.
     private EditText projectNameEdit;
     private EditText projectDescriptionEdit;
     private ArrayList<EditText> projectCredentialsEditList;
@@ -37,7 +37,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     private Button increaseCredNumButton;
     private Button decreaseCredNumButton;
 
-    //For the new Project
+    //For the new Project.
     private String projectName;
     private String projectDescr;
     private ArrayList<String> credentials;
