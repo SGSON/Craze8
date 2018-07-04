@@ -4,9 +4,9 @@ import comp3350.ppms.domain.User;
 
 public interface UserManagerInterface {
 
-    void insertUser(User user);
+    void insertUser(User user) throws CustomException;
 
-    User validateUserName(String userName);
+    User getUser (String userName);
 
 }
 
