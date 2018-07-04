@@ -15,14 +15,14 @@ import comp3350.ppms.persistence.UserDatabaseInterface;
 
 public class UserDatabaseHSQLDB implements UserDatabaseInterface{
 
-    private final Connection c;
+    private final String dbPath;
 
     public UserDatabaseHSQLDB(final String dbPath) {
-        try {
-            this.c = DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath, "SA", "");
-        } catch (final SQLException e) {
-            throw new DatabaseException(e);
-        }
+        this.dbPath = dbPath;
+    }
+
+    private Connection connection() throws SQLException {
+        return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
     //used for testing database implementations
@@ -78,7 +78,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
     //@Override
     public ArrayList<User> getUserSequential() {
         final ArrayList<User> users = new ArrayList<>();
-        try {
+        try (final Connection c = connection()){
             final Statement st = c.createStatement();
             final ResultSet rs = st.executeQuery("SELECT * FROM users");
             while (rs.next()) {
@@ -97,7 +97,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
     //@Override
     public ArrayList<User> getUserInfo(User currentUser) {
         final ArrayList<User> users = new ArrayList<>();
-        try {
+        try (final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("SELECT * FROM users WHERE userID = ?");
             st.setString(1, currentUser.getUserID());
 
@@ -118,7 +118,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
 
     @Override
     public void insertUser(User currentUser) {
-        try {
+        try (final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)");
             st.setString(1, currentUser.getUserID());
             st.setString(2, currentUser.getUserNickName());
@@ -135,7 +135,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
 
     //@Override
     public void updateUser(User currentUser) {
-        try {
+        try (final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("UPDATE users SET name = ?,  password = ?,  CreatedProjectIDList = ?, LikedProjectIDList = ?, MatchedProjectList = ?, UserCredentials = ? WHERE userID = ?");
             st.setString(1, currentUser.getUserNickName());
             st.setString(2, currentUser.getUserPassword());
@@ -151,7 +151,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
     }
 
     public void deleteUser(User currentUser) {
-        try {
+        try (final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("DELETE FROM users WHERE userID = ?");
             st.setString(1, currentUser.getUserID());
             st.executeUpdate();
