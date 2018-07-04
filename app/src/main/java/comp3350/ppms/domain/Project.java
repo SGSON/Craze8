@@ -9,12 +9,14 @@ public class Project implements ProjectInterface {
     private String projectName;
     private String projectDescription;
     private ArrayList<String> projectCredentials;
+    private ArrayList<UUID> likedUserIDList;
 
     public Project(String name, String descr, ArrayList<String> cred) {
         projectID = UUID.randomUUID();
         projectName = name;
         projectDescription = descr;
         projectCredentials = cred;
+        likedUserIDList = new ArrayList<>();
     }
 
     @Override
@@ -33,4 +35,6 @@ public class Project implements ProjectInterface {
     public ArrayList<String> getProjectCredentials() {
         return projectCredentials;
     }
+
+    public void addLikedUserID(UUID id) { likedUserIDList.add(id); }
 }

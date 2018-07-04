@@ -18,16 +18,19 @@ import android.widget.LinearLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.logic.UserManager;
 
 
 public class CreateProjectActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
 
-    //For the UI.
+    //For the UI
     private EditText projectNameEdit;
     private EditText projectDescriptionEdit;
     private ArrayList<EditText> projectCredentialsEditList;
@@ -37,7 +40,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     private Button increaseCredNumButton;
     private Button decreaseCredNumButton;
 
-    //For the new Project.
+    //For the new Project
     private String projectName;
     private String projectDescr;
     private ArrayList<String> credentials;
@@ -45,6 +48,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     private LinearLayout credential_layout;
 
     private ProjectManager projectManager;
+
+    private UserManager userManager;
+    private User currAccount;
+    private String userNickname;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -65,6 +73,8 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         createProjectButton = (Button) findViewById(R.id.create_project_button);
         cancelButton = (Button) findViewById(R.id.cancel_project_button);
 
+        projectNameEdit.setOnEditorActionListener(this);
+
         createProjectButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
 
@@ -75,6 +85,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         decreaseCredNumButton.setOnClickListener(this);
         decreaseCredNumButton.setEnabled(false);
 
+        userManager = new UserManager();
+        userNickname = getIntent().getStringExtra("userName");
+        if (userNickname != null){
+            currAccount = userManager.validateUserName(userNickname);
+        }
     }
 
     @Override
@@ -87,7 +102,8 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
             if (result == null) {
                 try {
                     projectManager.insertProject(project);
-                } catch (CustomException e) {
+                    currAccount.addToCreatedProjectIDList(project.getProjectID());
+                }catch (CustomException e){
                     Messages.fatalError(this, e.getErrorMsg());
                 }
             } else {
@@ -157,6 +173,9 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 
     public void viewCreatedProjects(View view){
         Intent intent = new Intent(this, ProjectListActivity.class);
+
+        intent.putExtra("userName", userNickname);
+
         startActivity(intent);
     }
 

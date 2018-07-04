@@ -24,7 +24,6 @@ public class UserDatabase implements UserDatabaseInterface{
     public void deleteUser(UUID currentUserId){
         userStub.remove(currentUserId);
     }
-
     //TODO I can probably remove this
 //    //Hopefully this will return if this is contained in the database
 //    public Boolean getUserID(String userName){
@@ -51,4 +50,5 @@ public class UserDatabase implements UserDatabaseInterface{
         return result;
 
     }
+
 }

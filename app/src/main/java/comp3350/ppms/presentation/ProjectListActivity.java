@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.AdapterView;
 import android.view.View;
 import android.widget.TextView;
+import android.app.Dialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.example.test.ppms.R;
 
@@ -21,6 +24,8 @@ import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.ProjectManager;
+import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.domain.User;
 
 public class ProjectListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -32,6 +37,11 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     private Button mReturnToPreviousButton;
     private UUID currProjectID;
     private int selectedProjectPosition;
+
+    private UserManager userManager;
+    private User currAccount;
+    private String userNickname;
+    private Project currProject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +55,13 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         mProjectManager = new ProjectManager();
         populateProjectList();
         selectedProjectPosition = -1;
+
+        userManager = new UserManager();
+        userNickname = getIntent().getStringExtra("userName");
+        if(userNickname != null){
+            currAccount = userManager.validateUserName(userNickname);
+        }
+
     }
 
     private void populateProjectList() {
@@ -55,12 +72,28 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    public Dialog onCreateDialog() {
+        final CharSequence[] dialogList = (currProject.getProjectCredentials())
+                                            .toArray(new CharSequence[(currProject.getProjectCredentials()).size()]);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Credentials: ")
+                .setItems(dialogList, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // The 'which' argument contains the index position
+                        // of the selected item
+                        dialog.dismiss();
+                    }
+                });
+        return builder.create();
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == selectedProjectPosition) {
             deselectListItem(position);
         } else {
             selectListItem(position);
+            onCreateDialog().show();
         }
     }
     
@@ -78,7 +111,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         mListView.setItemChecked(position, true);
         mViewDetailsButton.setEnabled(true);
         selectedProjectPosition = position;
-        Project currProject = mProjectList.get(position);
+        currProject = mProjectList.get(position);
         currProjectID = currProject.getProjectID();        
     }
 
@@ -88,11 +121,15 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
             Intent scIntent = new Intent(ProjectListActivity.this, UserProjectDetailedViewActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("projectID", currProjectID);
+
+            scIntent.putExtra("userName", userNickname);
+
             scIntent.putExtras(bundle);
             ProjectListActivity.this.startActivity(scIntent);
         }
         else if (v.getId() == R.id.return_button) {
             Intent scIntent = new Intent(ProjectListActivity.this, CreateProjectActivity.class);
+            scIntent.putExtra("userName", userNickname);
             ProjectListActivity.this.startActivity(scIntent);
         }
     }
@@ -125,7 +162,6 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
 
             return view;
         }
-
-
     }
+
 }
