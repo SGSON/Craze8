@@ -39,8 +39,8 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     private int selectedProjectPosition;
 
     private UserManager userManager;
-    private User user;
-    private UUID userId;
+    private User currAccount;
+    private String userNickname;
     private Project currProject;
 
     @Override
@@ -56,13 +56,12 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         populateProjectList();
         selectedProjectPosition = -1;
 
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        if (bundle.getSerializable("userID") != null){
-            userId = (UUID)bundle.getSerializable("userID");
-            userManager = new UserManager();
-            user = userManager.getUser(userId);
+        userManager = new UserManager();
+        userNickname = getIntent().getStringExtra("userName");
+        if(userNickname != null){
+            currAccount = userManager.validateUserName(userNickname);
         }
+
     }
 
     private void populateProjectList() {
@@ -123,13 +122,14 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
             Bundle bundle = new Bundle();
             bundle.putSerializable("projectID", currProjectID);
 
-            bundle.putSerializable("userID", userId);
+            scIntent.putExtra("userName", userNickname);
 
             scIntent.putExtras(bundle);
             ProjectListActivity.this.startActivity(scIntent);
         }
         else if (v.getId() == R.id.return_button) {
             Intent scIntent = new Intent(ProjectListActivity.this, CreateProjectActivity.class);
+            scIntent.putExtra("userName", userNickname);
             ProjectListActivity.this.startActivity(scIntent);
         }
     }

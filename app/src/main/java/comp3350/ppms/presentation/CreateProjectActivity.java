@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -45,8 +44,8 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     private ProjectManager projectManager;
 
     private UserManager userManager;
-    private User user;
-    private UUID userId;
+    private User currAccount;
+    private String userNickname;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,12 +68,10 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         createProjectButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
 
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        if (bundle.getSerializable("userID") != null){
-            userId = (UUID)bundle.getSerializable("userID");
-            userManager = new UserManager();
-            user = userManager.getUser(userId);
+        userManager = new UserManager();
+        userNickname = getIntent().getStringExtra("userName");
+        if (userNickname != null){
+            currAccount = userManager.validateUserName(userNickname);
         }
     }
 
@@ -88,7 +85,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
             if(result == null){
                 try{
                     projectManager.insertProject(project);
-                    user.addToCreatedProjectIDList(project.getProjectID());
+                    currAccount.addToCreatedProjectIDList(project.getProjectID());
                 }catch (CustomException e){
                     Messages.fatalError(this, e.getErrorMsg());
                 }
@@ -127,9 +124,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     public void viewCreatedProjects(View view){
         Intent intent = new Intent(this, ProjectListActivity.class);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("userID", userId);
-        intent.putExtras(bundle);
+        intent.putExtra("userName", userNickname);
 
         startActivity(intent);
     }

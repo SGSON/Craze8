@@ -55,9 +55,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 userManager.insertUser(user);
                 Intent intent = new Intent(this,  CreateProjectActivity.class);
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("userID", user.getUserID());
-                intent.putExtras(bundle);
+                intent.putExtra("userName", userNickname);
 
                 startActivity(intent);
 //TODO: Throw CustomException after fix insertUser

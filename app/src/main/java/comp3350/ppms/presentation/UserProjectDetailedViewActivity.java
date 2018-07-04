@@ -33,7 +33,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private UUID projectID;
     private Project project;
     private UserManager userManager;
-    private UUID userID;
+    private String userNickname;
     private User user;
 
     @Override
@@ -52,13 +52,13 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         Bundle bundle = intent.getExtras();
         if (bundle.getSerializable("projectID") != null) {
             projectID = (UUID)bundle.getSerializable("projectID");
-            userID = (UUID)bundle.getSerializable("userID");
+            userNickname = getIntent().getStringExtra("userName");
 
             mProjectManager = new ProjectManager();
             userManager = new UserManager();
 
             project = mProjectManager.getProject(projectID);
-            user = userManager.getUser(userID);
+            user = userManager.validateUserName(userNickname);
 
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
@@ -73,15 +73,13 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
             user.addToLikedProjectIDList(projectID);
-            project.addLikedUserID(userID);
+            project.addLikedUserID(user.getUserID());
             Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
         }
 
         Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("userID", userID);
-        scIntent.putExtras(bundle);
+        scIntent.putExtra("userName", userNickname);
 
         UserProjectDetailedViewActivity.this.startActivity(scIntent);
     }
