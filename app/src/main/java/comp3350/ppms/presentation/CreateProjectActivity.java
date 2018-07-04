@@ -91,7 +91,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         decreaseCredNumButton.setEnabled(false);
 
         userManager = new UserManager();
-        userNickname = getIntent().getStringExtra("userName");
+        userNickname = getIntent().getStringExtra(this.getString(R.string.user_key));
         if (userNickname != null){
             currAccount = userManager.getUser(userNickname);
         }
