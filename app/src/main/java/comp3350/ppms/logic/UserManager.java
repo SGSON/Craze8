@@ -3,6 +3,7 @@ package comp3350.ppms.logic;
 import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
+import java.util.UUID;
 
 public class UserManager implements UserManagerInterface{
     private UserDatabaseInterface userStub;
@@ -21,6 +22,7 @@ public class UserManager implements UserManagerInterface{
     public User validateUserName(String userName){
         return userStub.getUserByString(userName);
     }
+
 
 
 }

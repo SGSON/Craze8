@@ -12,4 +12,6 @@ public interface ProjectInterface {
     String getProjectDescription();
 
     ArrayList<String> getProjectCredentials();
+
+    void addLikedUserID(UUID id);
 }

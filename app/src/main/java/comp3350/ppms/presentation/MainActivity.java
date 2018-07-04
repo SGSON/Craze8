@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mCreateProjectButton;
     private Button mViewProjectsButton;
     private User currAccount;
+    private String userNickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         UserManager userManager = new UserManager();
 
         //get the username from the last intent (login)
-        String userNickname = getIntent().getStringExtra("userName");
+        userNickname = getIntent().getStringExtra("userName");
 
         //set the account
         if(userNickname != null){
@@ -74,9 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         if(view.getId() == R.id.create_project_button) {
             intent = new Intent(MainActivity.this, CreateProjectActivity.class);
+            intent.putExtra("userName", userNickname);
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
             intent = new Intent(MainActivity.this, comp3350.ppms.presentation.ProjectListActivity.class);
+            intent.putExtra("userName", userNickname);
             startActivity(intent);
         }
     }
