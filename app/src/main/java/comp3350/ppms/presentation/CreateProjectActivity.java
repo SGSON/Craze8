@@ -179,7 +179,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     public void viewCreatedProjects(View view){
         Intent intent = new Intent(this, ProjectListActivity.class);
 
-        intent.putExtra("userName", userNickname);
+        intent.putExtra(this.getString(R.string.user_key), userNickname);
 
         startActivity(intent);
     }
