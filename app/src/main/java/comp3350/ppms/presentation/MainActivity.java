@@ -5,14 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import comp3350.ppms.logic.UserManager;
 
 import com.example.test.ppms.R;
+
+import comp3350.ppms.domain.User;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button mCreateProjectButton;
     private Button mViewProjectsButton;
+    private User currAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mCreateProjectButton.setOnClickListener(this);
         mViewProjectsButton.setOnClickListener(this);
+
+        UserManager userManager = new UserManager();
+
+        //get the username from the last intent (login)
+        String userNickname = getIntent().getStringExtra("userName");
+
+        //set the account
+        if(userNickname != null){
+            currAccount = userManager.validateUserName(userNickname);
+        }
+
 
     }
 
