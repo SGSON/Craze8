@@ -32,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private final String USER_ERROR= "Must enter user name";
     private final String PASSWORD_ERROR = "Must enter valid password";
+    private final String USER_EXISTS_ERROR = "User name already exists!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("userName", userNickname);
 
                 startActivity(intent);
+                if(userManager.validateUserName(user.getUserNickName()) != null){
+                    userNicknameEdit.setError("ERROR TEST");
+                }
 //TODO: Throw CustomException after fix insertUser
 //                try{
 //                    userManager.insertUser(user);
@@ -70,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 //                }
             }else{
                 //Messages.warning(this,result);
-                if(result.equals(USER_ERROR)){
+                if(result.equals(USER_ERROR) || result.equals(USER_EXISTS_ERROR)){
                     userNicknameEdit.setError(result);
                 }else{
                     userPasswordEdit.setError(result);
@@ -103,13 +107,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private String validateUserData(User user) {
 
+        String result = "";
+
         if (user.getUserNickName().length() == 0) {
-            return USER_ERROR;
+            result = USER_ERROR;
         }
-        if (user.getUserPassword().length() == 0){
-            return PASSWORD_ERROR;
+        else if(userManager.validateUserName(user.getUserNickName()) != null){
+            result =  USER_EXISTS_ERROR;
         }
-        return null;
+        else if (user.getUserPassword().length() == 0){
+            result = PASSWORD_ERROR;
+        }
+
+        return result;
     }
 
 }
