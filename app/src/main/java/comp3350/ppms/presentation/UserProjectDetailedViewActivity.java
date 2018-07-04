@@ -76,6 +76,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
             user.addToLikedProjectIDList(projectID);
+            //TODO move this implementation to the logic layer
             project.addInterestedUser(user.getUserID());
             Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
         }
