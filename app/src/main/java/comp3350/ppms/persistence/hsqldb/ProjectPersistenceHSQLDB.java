@@ -2,6 +2,7 @@ package comp3350.ppms.persistence.hsqldb;
 
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,21 +15,20 @@ import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
 public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
 
-    private final Connection connection;
+    private final String dbPath;
 
-    public ProjectPersistenceHSQLDB(final String dbPath) {
-        try{
-            connection = DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath,"SA", "" );
-        } catch(final SQLException e) {
-            throw new DatabaseException(e);
-        }
+    public ProjectPersistenceHSQLDB(final String path) {
+        dbPath = path;
+    }
+
+    private Connection connection() throws SQLException {
+        return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
     @Override
     public Project getProject(String ID) {
         Project project= null;
-        try
-        {
+        try (final Connection connection =  connection()){
             final PreparedStatement st = connection.prepareStatement("SELECT  * FROM projects WHERE projectID = ?");
             st.setString(1, ID);
 
@@ -49,7 +49,7 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
 
     @Override
     public void addProject(String ID, Project project) {
-        try {
+        try (final Connection connection = connection()){
             final PreparedStatement statement =
                     connection.prepareStatement("INSERT INTO projects VALUES (?, ?, ?, ?, ?, ?)");
 
@@ -71,7 +71,7 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
 
     @Override
     public void removeProject(String ID) {
-        try {
+        try (final Connection connection = connection()){
             final PreparedStatement statement =
                     connection.prepareStatement("DELETE FROM projects WHERE projectID = ?");
             statement.setString(1, ID.toString()); //TODO: Project manager should handel conversion
@@ -85,8 +85,7 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
     public ArrayList<Project> getProjectSequential() {
         final ArrayList<Project> projects = new ArrayList<Project>();
 
-        try
-        {
+        try (final Connection connection = connection()){
             final Statement st = connection.createStatement();
             final ResultSet rs = st.executeQuery("SELECT * FROM projects");
             while (rs.next())
