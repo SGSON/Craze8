@@ -61,7 +61,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             userManager = new UserManager();
 
             project = mProjectManager.getProject(projectID);
-            user = userManager.validateUserName(userNickname);
+            user = userManager.getUser(userNickname);
 
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
