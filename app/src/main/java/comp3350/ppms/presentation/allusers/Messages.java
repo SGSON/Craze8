@@ -1,4 +1,4 @@
-package comp3350.ppms.presentation;
+package comp3350.ppms.presentation.allusers;
 
 import android.app.Activity;
 import android.app.AlertDialog;

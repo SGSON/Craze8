@@ -1,7 +1,5 @@
-package comp3350.ppms.presentation;
+package comp3350.ppms.presentation.allusers;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
