@@ -16,11 +16,14 @@
         - Shows an error message dialog if an exception or warning occurs
     * SignUpActivity.java/xml  
         - Sign up Activity screen for all users
+    
 ###### General user views  
 *Currently implemented*  
 
     * ProjectListActivity.java/xml
-        - Activity used to view a list of projects that have been created.
+        - Activity used to view a list of projects that have been created
+    * UserProjectDetailedViewActivity.java/xml  
+        - Detailed project view for general users (after they have clicked on the summary, they are brought here)
 
 *Not yet implemented*  
 
@@ -30,8 +33,7 @@
         - Activity for general users to find projects
     * UserInterestedProjectsListActivity.java/xml
         - Activity for users to view the projects they expressed interest in  
-    * UserProjectDetailViewActivity.java/xml  
-        - Detailed project view for general users (after they have clicked on the summary, they are brought here)
+    
     * UserProfileCreateActivity.java/xml
         - Activity used for general users to complete their profile
     * UserProfileEditActivity.java/xml
@@ -51,11 +53,6 @@
     * OwnerViewMatchContactActivity.java/xml
         - Activity for project owners to view the contact details of confirmed matches  
     
-###### Additional classes
-*Currently Implemented*  
-
-    
-
 # Logic package  
 *Currently implemented*  
 
