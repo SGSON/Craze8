@@ -199,8 +199,5 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 5cd68537839b9e5b266e9c6f9c6083e1db364ef4
 }
