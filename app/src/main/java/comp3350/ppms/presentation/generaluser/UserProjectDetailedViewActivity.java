@@ -1,4 +1,4 @@
-package comp3350.ppms.presentation;
+package comp3350.ppms.presentation.generaluser;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.allusers.Messages;
 
 
 public class UserProjectDetailedViewActivity extends AppCompatActivity implements View.OnClickListener {

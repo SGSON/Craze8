@@ -1,4 +1,4 @@
-package comp3350.ppms.presentation;
+package comp3350.ppms.presentation.generaluser;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,13 +20,13 @@ import com.example.test.ppms.R;
 
 import java.util.ArrayList;
 
-import java.util.UUID;
-
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.allusers.Messages;
+import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
 public class ProjectListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 

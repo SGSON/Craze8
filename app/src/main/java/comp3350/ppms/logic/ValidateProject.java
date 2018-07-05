@@ -9,7 +9,7 @@ public class ValidateProject {
 
     private static final int NAME_LENGTH = 16;
     private static final int DESCRIPTION_LENGTH = 256;
-    private static final int CREDENTIAL_LENGTH = 2;
+    private static final int CREDENTIAL_LENGTH = 1;
 
     public static boolean validateAll(Project project) throws CustomException{
         validateUUID(project);
@@ -32,7 +32,7 @@ public class ValidateProject {
     public static boolean validateName(Project project) throws CustomException {
         if (project.getProjectName().length() > NAME_LENGTH){
             throw new CustomException(CustomException.EXCEED_CHARACTER_MAX_ERROR);
-        } else if (project.getProjectName() == null || project.getProjectName() == ""){
+        } else if (project.getProjectName() == null || project.getProjectName().equals("")){
             throw new CustomException(CustomException.EMPTY_NAME_ERROR);
         } else {
             return true;

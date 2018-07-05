@@ -1,8 +1,6 @@
-package comp3350.ppms.presentation;
+package comp3350.ppms.presentation.allusers;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +10,8 @@ import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.UserManager;
 import com.example.test.ppms.R;
 import comp3350.ppms.domain.User;
-
+import comp3350.ppms.presentation.generaluser.ProjectListActivity;
+import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -76,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
-            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.ProjectListActivity.class);
+
+            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.ProjectListActivity.class);
             intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         }
