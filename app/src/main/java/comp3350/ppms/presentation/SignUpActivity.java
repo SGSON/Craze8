@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.PasswordError;
 import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.logic.UsernameError;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener{
@@ -65,7 +67,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
                 startActivity(intent);
             } catch (CustomException e){
-                Messages.warning(this, e.getErrorMsg());
+                //Messages.warning(this, e.getErrorMsg());
+                if(e instanceof UsernameError) {
+                    userNicknameEdit.setError(e.getErrorMsg());
+                }else if(e instanceof PasswordError){
+                    userPasswordEdit.setError(e.getErrorMsg());
+                }
+
             }
                 
             /*}else{

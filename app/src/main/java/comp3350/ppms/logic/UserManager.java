@@ -22,7 +22,7 @@ public class UserManager implements UserManagerInterface{
     //if name doesn't exist.
 
     public User getUser (String userName) throws CustomException {
-        ValidateUser.valideUser(userDB.getUserByString(userName));
+        //ValidateUser.valideUser(userDB.getUserByString(userName));
         return userDB.getUserByString(userName);
     }
 
@@ -31,6 +31,17 @@ public class UserManager implements UserManagerInterface{
         user.addToLikedProjectIDList(projectID);
         userDB.updateUser(user);
 
+    }
+
+    public User signUp(User username) throws CustomException{
+        ValidateUser.validateUserSignUp(username);
+        return userDB.getUserByString(username.getUserNickName());
+    }
+
+    public User loginRequest(String userName) throws CustomException{
+        User user = userDB.getUserByString(userName);
+        ValidateUser.validUserLogin(user);
+        return user;
     }
 
 }

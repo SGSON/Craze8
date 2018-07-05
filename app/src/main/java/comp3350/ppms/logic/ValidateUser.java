@@ -20,13 +20,13 @@ public class ValidateUser {
     public static boolean validateName(User user) throws CustomException {
         UserManager usersAccess = new UserManager();
         if (user.getUserNickName().length()< MIN_NAME_LENGTH){
-            throw new CustomException("Name requires at least " + MIN_NAME_LENGTH + " characters.");
+            throw new UsernameError("Name requires at least " + MIN_NAME_LENGTH + " characters.");
         } else if (user.getUserNickName() == null || user.getUserNickName() == ""){
-            throw new CustomException("Cannot have empty user name");
+            throw new UsernameError("Cannot have empty user name");
         } else if (user.getUserNickName().length() > MAX_NAME_LENGTH) {
-            throw new CustomException("Name cannot exceed " + MAX_NAME_LENGTH + " characters.");
+            throw new UsernameError("Name cannot exceed " + MAX_NAME_LENGTH + " characters.");
         } else if (usersAccess.getUser(user.getUserNickName()) != null) {
-            throw new CustomException("Username already exists, please choose another user name.");
+            throw new UsernameError("Username already exists, please choose another user name.");
         } else {
             return true;
         }
@@ -34,9 +34,9 @@ public class ValidateUser {
 
     public static boolean validatePassword(User user) throws CustomException {
         if (user.getUserPassword().length() < MIN_PASS_LENGTH) {
-            throw new CustomException("Password requires at least " + MIN_PASS_LENGTH + " characters.");
+            throw new PasswordError("Password requires at least " + MIN_PASS_LENGTH + " characters.");
         } else if (user.getUserPassword().length() > MAX_PASS_LENGTH) {
-            throw new CustomException("Password cannot exceed " + MAX_PASS_LENGTH + " characters.");
+            throw new PasswordError("Password cannot exceed " + MAX_PASS_LENGTH + " characters.");
         } else {
             return true;
         }
@@ -44,7 +44,23 @@ public class ValidateUser {
 
     public static boolean valideUser(User user) throws CustomException{
         if (user == null){
-            throw new CustomException("Invalid Account Name");
+            throw new UsernameError("Invalid Account Name");
+        } else{
+            return true;
+        }
+    }
+
+    public static boolean validUserLogin(User user) throws CustomException{
+        if (user == null){
+            throw new UsernameError("Invalid Account Name");
+        } else{
+            return true;
+        }
+    }
+
+    public static boolean validateUserSignUp(User user) throws CustomException{
+        if (user != null){
+            throw new UsernameError("Invalid Account Name");
         } else{
             return true;
         }
