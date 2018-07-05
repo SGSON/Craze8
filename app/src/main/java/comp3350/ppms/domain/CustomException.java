@@ -1,4 +1,4 @@
-package comp3350.ppms.logic;
+package comp3350.ppms.domain;
 
 /**
  * The CustomException class is an exception class that allows methods

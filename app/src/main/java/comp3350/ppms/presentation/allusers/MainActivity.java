@@ -6,11 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.UserManager;
 import com.example.test.ppms.R;
 import comp3350.ppms.domain.User;
-import comp3350.ppms.presentation.generaluser.ProjectListActivity;
 import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
 

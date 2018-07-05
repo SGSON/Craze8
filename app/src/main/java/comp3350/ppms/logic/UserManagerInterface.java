@@ -1,6 +1,6 @@
 package comp3350.ppms.logic;
 
-import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.User;
 
 public interface UserManagerInterface {

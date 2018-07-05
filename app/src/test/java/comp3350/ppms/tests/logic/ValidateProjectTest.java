@@ -3,8 +3,8 @@ package comp3350.ppms.tests.logic;
 import org.junit.Test;
 import junit.framework.TestCase;
 
-import comp3350.ppms.logic.ValidateProject;
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.ValidateProject;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 
 import java.util.ArrayList;

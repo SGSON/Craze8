@@ -97,8 +97,18 @@
 
     * Project.java  
         - passed between comp3350.ppms.presentation, comp3350.ppms.logic and comp3350.ppms.persistence layer
-    * User.java
-        - used to store all User related data and parameters
+    * CustomException.java
+        - used in conjuction with Messages.java to provide appropraite error messaging
+        + UsernameError.java
+            - Used for Username related errors
+        + PasswordError.java
+            - Used for Password related errors
+        + ProjectNameError.java
+            - Used for Project name related rerrors
+        + ProjectDescriptionError.java
+            - Used for Project Description related errors
+        + CredentialsError.java
+            - Used for Credential related errors
 *Yet to be implemented*  
 
     * User(parent).java  

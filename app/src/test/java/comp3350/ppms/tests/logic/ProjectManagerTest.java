@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.ProjectManager;
 
 import static org.mockito.Mockito.doReturn;

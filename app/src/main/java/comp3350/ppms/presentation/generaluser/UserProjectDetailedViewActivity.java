@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.test.ppms.R;
 import java.util.ArrayList;
 
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
