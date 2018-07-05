@@ -101,11 +101,11 @@
         - used to store all User related data and parameters
 *Yet to be implemented*  
 
-    * Account(parent).java  
+    * User(parent).java  
         - parent abstract account  
-        + AccountUser(child).java  
+        + UserGeneral(child).java  
             - An account for general users  
-        + AccountOwner(child).java  
+        + UserOwner(child).java  
             - An account for project owners  
     * Interest.java  
         - Used when there is a potential match (an expression of interest by the user, yet needs to be reviewed by project owner)  
