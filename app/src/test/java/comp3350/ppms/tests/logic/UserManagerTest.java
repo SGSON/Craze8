@@ -1,7 +1,5 @@
 package comp3350.ppms.tests.logic;
 
-import android.test.suitebuilder.annotation.Smoke;
-
 import org.junit.Before;
 import org.junit.Test;
 import junit.framework.TestCase;
@@ -30,7 +28,7 @@ public class UserManagerTest extends TestCase {
 
     @Test
     public void testValidateUsernameTest(){
-        System.out.println("\nStarting test validate username");
+        System.out.println("\nStarting test insert valid username");
 
         String userName = "BillyFrom4C";
         String password = "PrettyBiird";
@@ -47,21 +45,21 @@ public class UserManagerTest extends TestCase {
         System.out.println("Test Passed!");
     }
 
-    @Before void inavlidUsernameTestSetUp(){
-        testUserManager = mock(UserManager.class);
-    }
-    @Test(expected = CustomException.class)
-    public void testInvalidUsernameSubmit(){
-        System.out.println("\nStarting test of an invalid username");
+//    @Before void inavlidUsernameTestSetUp(){
 //        testUserManager = mock(UserManager.class);
-        User testUser = new User("","sasdasd");
-        try {
-            doThrow(CustomException.class).when(testUserManager).insertUser(testUser);
-            testUserManager.insertUser(testUser);
-        } catch (CustomException e) {
-            System.out.println("Test Passed!");
-        }
-    }
+//    }
+//    @Test(expected = CustomException.class)
+//    public void testInvalidUsernameSubmit(){
+//        System.out.println("\nStarting test of an invalid username");
+////        testUserManager = mock(UserManager.class);
+//        User testUser = new User("","sasdasd");
+//        try {
+//            doThrow(CustomException.class).when(testUserManager).insertUser(testUser);
+//            testUserManager.insertUser(testUser);
+//        } catch (CustomException e) {
+//            System.out.println("Test Passed!");
+//        }
+//    }
 
     @Before
     public void setUpBefore(){
@@ -69,7 +67,7 @@ public class UserManagerTest extends TestCase {
     }
     @Test
     public void testInvalidUsername(){
-        System.out.println("\nStarting testing invalid username");
+        System.out.println("\nStarting testing getting a username not in the database");
         String userName = "tester";
         User testUser = new User("test", "test");
 
@@ -81,6 +79,30 @@ public class UserManagerTest extends TestCase {
         }
         assertNull(testUser);
         System.out.println("Test Passed!");
+    }
+
+
+    @Before
+    public void setUpDuplicateName(){
+        User testUser = new User("1235", "tajsdasda");
+        testUserManager = mock(UserManager.class);
+        try {
+
+            testUserManager.insertUser(testUser);
+        }catch (CustomException e){
+
+        }
+    }
+    @Test (expected = CustomException.class)
+    public void testDuplicateName(){
+        System.out.println("\nTesting an insert of duplicate name into database");
+        User testUser = new User("1235", "tajsdasda");
+        try{
+            doThrow(CustomException.class).when(testUserManager).insertUser(testUser);
+            testUserManager.insertUser(testUser);
+        }catch (CustomException e){
+            System.out.println("Test Passed!");
+        }
     }
 
 }
