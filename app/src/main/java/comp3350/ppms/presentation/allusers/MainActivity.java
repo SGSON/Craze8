@@ -86,12 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         UserManager userManager = new UserManager();
         userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
-            try {
-                currAccount = userManager.getUser(userNickname);
-            }
-            catch (CustomException e){
-                Messages.warning(this, e.getErrorMsg());
-            }
+            currAccount = userManager.getUser(userNickname);
         }
     }
 

@@ -125,15 +125,10 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     }
 
     public void getUserInfo(){
-        userManager = new UserManager();
+        UserManager userManager = new UserManager();
         userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
-            try {
-                currAccount = userManager.getUser(userNickname);
-            }
-            catch (CustomException e){
-                Messages.warning(this, e.getErrorMsg());
-            }
+            currAccount = userManager.getUser(userNickname);
         }
     }
 

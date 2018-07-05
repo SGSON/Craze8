@@ -66,14 +66,10 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void getUserInfo(){
+        UserManager userManager = new UserManager();
         userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
-            try {
-                currAccount = userManager.getUser(userNickname);
-            }
-            catch (CustomException e){
-                Messages.warning(this, e.getErrorMsg());
-            }
+            currAccount = userManager.getUser(userNickname);
         }
     }
 
