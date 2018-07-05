@@ -4,6 +4,8 @@ import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
+import comp3350.ppms.persistence.database.UserDatabase;
+import comp3350.ppms.persistence.hsqldb.DatabaseException;
 
 public class UserManager implements UserManagerInterface{
     private UserDatabaseInterface userDB;
@@ -11,6 +13,13 @@ public class UserManager implements UserManagerInterface{
     public UserManager(){
         userDB = Service.getUserDatabaseInterface();
     }
+
+
+    public UserManager(String test) {
+        userDB = Service.getTestUserDatabase();
+    }
+
+
 
 // TODO: write validate data and throws CustomException
     public void insertUser(User user) throws CustomException {
@@ -23,7 +32,8 @@ public class UserManager implements UserManagerInterface{
 
     public User getUser (String userName) throws CustomException {
         //ValidateUser.valideUser(userDB.getUserByString(userName));
-        return userDB.getUserByString(userName);
+            return userDB.getUserByString(userName);
+
     }
 
     @Override
