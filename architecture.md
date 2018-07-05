@@ -96,6 +96,10 @@
         - passed between comp3350.ppms.presentation, comp3350.ppms.logic and comp3350.ppms.persistence layer
     * CustomException.java
         - used in conjuction with Messages.java to provide appropraite error messaging
+        + UsernameError.java
+            - Used for Username related errors
+        + PasswordError.java
+            - Useds for Password related errors
 *Yet to be implemented*  
 
     * Account(parent).java  
