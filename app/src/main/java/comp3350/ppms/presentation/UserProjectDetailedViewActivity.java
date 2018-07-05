@@ -75,9 +75,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
-            user.addToLikedProjectIDList(projectID);
-            //TODO move this implementation to the logic layer
-            project.addInterestedUser(user.getUserID());
+            likeProject(project, user, projectID, userNickname);
             Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
         }
 
@@ -86,6 +84,12 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         scIntent.putExtra("userName", userNickname);
 
         UserProjectDetailedViewActivity.this.startActivity(scIntent);
+    }
+
+    private void likeProject(Project proj, User user, String projectID, String userNickname) {
+        userManager.addProjectToUserInterestedList(user, projectID);
+        mProjectManager.addInterestedUser(proj, userNickname);
+
     }
 
     private void populateProjectCredentialList() {

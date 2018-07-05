@@ -10,6 +10,8 @@ public interface UserDatabaseInterface {
 
     void insertUser(User currentUser);
 
+    void updateUser(User user);
+
     void deleteUser(User currentUser);
 
 

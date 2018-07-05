@@ -46,6 +46,11 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     }
 
     @Override
+    public void updateProject(Project project) {
+
+    }
+
+    @Override
     public void removeProject(String ID) {
         projectsStub.remove(ID);
     }

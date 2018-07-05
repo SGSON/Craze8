@@ -16,5 +16,7 @@ public interface ProjectManagerInterface {
     ArrayList<Project> getProjects();
 
     Project getProject(String id);
+
+    void addInterestedUser(Project project, String userName);
 }
 

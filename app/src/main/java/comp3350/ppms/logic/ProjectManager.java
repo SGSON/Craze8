@@ -1,7 +1,6 @@
 package comp3350.ppms.logic;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.Project;
@@ -15,22 +14,28 @@ import comp3350.ppms.persistence.ProjectDatabaseInterface;
  */
 public class ProjectManager implements ProjectManagerInterface{
 
-    private ProjectDatabaseInterface projectsStub;
+    private ProjectDatabaseInterface projectDB;
 
     public ProjectManager() {
-        projectsStub = Service.getProjectDatabaseInterface();
+        projectDB = Service.getProjectDatabaseInterface();
     }
 
     public void insertProject(Project project) throws CustomException{
         ValidateProject.validateAll(project);
 
-        projectsStub.addProject(project.getProjectID().toString(), project);
+        projectDB.addProject(project.getProjectID(), project);
     }
 
     public ArrayList<Project> getProjects(){
-        return projectsStub.getProjectSequential();
+        return projectDB.getProjectSequential();
     }
 
-    public Project getProject(String id) { return projectsStub.getProject(id); }
+    public Project getProject(String id) { return projectDB.getProject(id); }
+
+    @Override
+    public void addInterestedUser(Project project, String userName) {
+        project.addInterestedUser(userName);
+        projectDB.updateProject(project);
+    }
 
 }
