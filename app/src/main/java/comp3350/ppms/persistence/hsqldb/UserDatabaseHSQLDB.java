@@ -35,7 +35,7 @@ public class UserDatabaseHSQLDB extends HSQLDatabase implements UserDatabaseInte
         final ArrayList<String> MatchedProjectIDList = stringArrayConversion(rs.getArray("MatchedProjectList"));
         final ArrayList<String> UserCredentials = stringArrayConversion(rs.getArray("UserCredentials"));
 
-        return new User(UserID, UserName, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
+        return new User(UserID, UserName, UserPassword, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
 
     }
 
