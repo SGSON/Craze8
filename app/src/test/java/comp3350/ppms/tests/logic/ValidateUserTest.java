@@ -39,7 +39,7 @@ public class ValidateUserTest extends TestCase {
     }
 
 
-/*    @Test
+    @Test
     public void testNormalName(){
         System.out.println("\nStarting testValidateUser: normal Name");
         User newUser = new User("01234567890", "qweqwe");
@@ -49,7 +49,7 @@ public class ValidateUserTest extends TestCase {
             assertEquals(null, expected);
         }
         System.out.println("\nFinished testValidateProject: normal Name");
-    }*/
+    }
 
 
     @Test (expected = CustomException.class)
