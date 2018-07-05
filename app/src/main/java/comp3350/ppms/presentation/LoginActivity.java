@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 startActivity(intent);
             }else{
-                userNicknameEdit.setError("Invalid Account Name");
+                userNicknameEdit.setError(getApplicationContext().getResources().getString(R.string.invalid_account_name));
             }
 
 

@@ -22,11 +22,11 @@ public class ValidateUser {
         if (user.getUserNickName().length()< MIN_NAME_LENGTH){
             throw new CustomException("Name requires at least " + MIN_NAME_LENGTH + " characters.");
         } else if (user.getUserNickName() == null || user.getUserNickName() == ""){
-            throw new CustomException("Cannot have empty user name");
+            throw new CustomException(CustomException.EMPTY_NAME_ERROR);
         } else if (user.getUserNickName().length() > MAX_NAME_LENGTH) {
             throw new CustomException("Name cannot exceed " + MAX_NAME_LENGTH + " characters.");
         } else if (usersAccess.getUser(user.getUserNickName()) != null) {
-            throw new CustomException("Username already exists, please choose another user name.");
+            throw new CustomException(CustomException.EXISTING_USERNAME_ERROR);
         } else {
             return true;
         }
@@ -45,7 +45,7 @@ public class ValidateUser {
     public static boolean validateCredentials(User user) throws CustomException {
         int i = 0;
         if (user.getUserCredentials().isEmpty()){
-            throw new CustomException("you must list your credentials");
+            throw new CustomException(CustomException.LIST_CREDENTIALS_ERROR);
         } else {
             while (i < user.getUserCredentials().size()){
                 if (user.getUserCredentials().get(i).length() < CREDENTIAL_LENGTH){

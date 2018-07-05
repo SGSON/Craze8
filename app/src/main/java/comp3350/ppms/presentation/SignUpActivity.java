@@ -20,6 +20,7 @@ import comp3350.ppms.logic.UserManager;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener{
 
+    private static final String USER_NAME = "userName";
     private EditText userNicknameEdit;
     private EditText userPasswordEdit;
 
@@ -61,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 try{
                     userManager.insertUser(user);
                     Intent intent = new Intent(this,  MainActivity.class);
-                    intent.putExtra("userName", userNickname);
+                    intent.putExtra(USER_NAME, userNickname);
 
                     startActivity(intent);
                 } catch (CustomException e){

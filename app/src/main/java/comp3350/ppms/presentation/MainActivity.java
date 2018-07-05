@@ -15,6 +15,7 @@ import comp3350.ppms.domain.User;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String USER_NAME = "userName";
     private Button mCreateProjectButton;
     private Button mViewProjectsButton;
     private User currAccount;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         UserManager userManager = new UserManager();
 
         //get the username from the last intent (login)
-        userNickname = getIntent().getStringExtra("userName");
+        userNickname = getIntent().getStringExtra(USER_NAME);
 
         //set the account
         if(userNickname != null){
@@ -76,11 +77,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         if(view.getId() == R.id.create_project_button) {
             intent = new Intent(MainActivity.this, CreateProjectActivity.class);
-            intent.putExtra("userName", userNickname);
+            intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
             intent = new Intent(MainActivity.this, comp3350.ppms.presentation.ProjectListActivity.class);
-            intent.putExtra("userName", userNickname);
+            intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         }
     }

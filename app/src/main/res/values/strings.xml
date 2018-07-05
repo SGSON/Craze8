@@ -7,7 +7,9 @@
     <string name="project_description_header">Please Enter Project Description</string>
     <string name="create_project">Create Project</string>
     <string name="cancel">Cancel</string>
-
+    <string name="invalid_account_name">Invalid Account Name</string>
+    <string name="credentials_label">Credentials</string>
+    <string name="success_message">Success</string>
     <string name="invalid_data">Invalid Data</string>
     <string name="view_created_project">View Created Projects</string>
     <string name="fatalError">Fatal error</string>

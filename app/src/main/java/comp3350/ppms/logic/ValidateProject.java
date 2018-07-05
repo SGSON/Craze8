@@ -22,7 +22,7 @@ public class ValidateProject {
     //@Override
     public static boolean validateUUID(Project project) throws CustomException{
         if (project.getProjectID() == null){
-            throw new CustomException("No Id for project");
+            throw new CustomException(CustomException.NO_PROJECT_ID_ERROR);
         } else {
             return true;
         }
@@ -31,9 +31,9 @@ public class ValidateProject {
     //@Override
     public static boolean validateName(Project project) throws CustomException {
         if (project.getProjectName().length() > NAME_LENGTH){
-            throw new CustomException("Name exceed required amount of characters");
+            throw new CustomException(CustomException.EXCEED_CHARACTER_MAX_ERROR);
         } else if (project.getProjectName() == null || project.getProjectName() == ""){
-            throw new CustomException("Cannot have empty name");
+            throw new CustomException(CustomException.EMPTY_NAME_ERROR);
         } else {
             return true;
         }
@@ -42,9 +42,9 @@ public class ValidateProject {
     //@Override
     public static boolean validateDescription(Project project) throws CustomException {
         if (project.getProjectDescription().length() > DESCRIPTION_LENGTH){
-            throw new CustomException("Description exceed required amount of characters");
+            throw new CustomException(CustomException.EXCEEDED_DESCRIPTION_ERROR);
         } else if (project.getProjectDescription() == null || project.getProjectDescription().isEmpty()){
-            throw new CustomException("Cannot have empty description");
+            throw new CustomException(CustomException.EMPTY_DESCRIPTION_ERROR);
         } else {
             return true;
         }
@@ -54,7 +54,7 @@ public class ValidateProject {
     public static boolean validateCredentials(Project project) throws CustomException {
         int i = 0;
         if (project.getProjectCredentials().isEmpty()){
-            throw new CustomException("projects must list credentials required");
+            throw new CustomException(CustomException.PROJECT_CREDENTIALS_ERROR);
         } else {
             while (i < project.getProjectCredentials().size()){
                 if (project.getProjectCredentials().get(i).length() < CREDENTIAL_LENGTH){

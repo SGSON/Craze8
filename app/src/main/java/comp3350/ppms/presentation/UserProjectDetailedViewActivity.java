@@ -24,6 +24,8 @@ import comp3350.ppms.domain.User;
 
 public class UserProjectDetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String USER_NAME = "userName";
+    private static final String PROJECT_ID = "projectID";
     private Button mAllProjectsButton;
     private Button interestButton;
     private ProjectManager mProjectManager;
@@ -51,11 +53,11 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        if (bundle.getSerializable("projectID") != null) {
+        if (bundle.getSerializable(PROJECT_ID) != null) {
 
 
-            projectID = bundle.getString("projectID");
-            userNickname = getIntent().getStringExtra("userName");
+            projectID = bundle.getString(PROJECT_ID);
+            userNickname = getIntent().getStringExtra(USER_NAME);
 
             mProjectManager = new ProjectManager();
             userManager = new UserManager();
@@ -78,12 +80,12 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             user.addToLikedProjectIDList(projectID);
             //TODO move this implementation to the logic layer
             project.addInterestedUser(user.getUserID());
-            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
         }
 
         Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
 
-        scIntent.putExtra("userName", userNickname);
+        scIntent.putExtra(USER_NAME, userNickname);
 
         UserProjectDetailedViewActivity.this.startActivity(scIntent);
     }
