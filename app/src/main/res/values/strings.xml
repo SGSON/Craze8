@@ -7,7 +7,9 @@
     <string name="project_description_header">Please Enter Project Description</string>
     <string name="create_project">Create Project</string>
     <string name="cancel">Cancel</string>
-
+    <string name="invalid_account_name">Invalid Account Name</string>
+    <string name="credentials_label">Credentials</string>
+    <string name="success_message">Success</string>
     <string name="invalid_data">Invalid Data</string>
     <string name="view_created_project">View Created Projects</string>
     <string name="fatalError">Fatal error</string>
@@ -19,4 +21,6 @@
     <string name="sign_up_default_username_text">Enter a username</string>
     <string name="sign_up_default_password_text">Enter a password</string>
     <string name="does_not_have_account_prompt">If you do not have an account</string>
+    <string name="project_credential_input">Please Enter Project Credential</string>
+    <string name="user_key">userName</string>
 </resources>

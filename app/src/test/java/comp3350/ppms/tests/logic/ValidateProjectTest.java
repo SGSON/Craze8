@@ -145,23 +145,6 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nFinished testValidateProject: Normal description");
     }
 
-    @Test (expected = CustomException.class)
-    public void testShortCredentials() {
-        System.out.println("\nStarting testValidateProject: Short credential");
-        ArrayList<String> cred = new ArrayList<String>();
-        cred.add("eight");
-        cred.add("five");
-        String desc = "abcdefgh";
-        String name = "abcdefg";
-        Project newProj = new Project(name, desc, cred);
-        try {
-            ValidateProject.validateCredentials(newProj);
-            fail("CustomException expected.");
-        } catch (CustomException expected) {
-            assertEquals("Credentials must exceed 5 characters.", expected.getErrorMsg());
-        }
-        System.out.println("\nFinished testValidateProject: Short credentials");
-    }
 
     @Test (expected = CustomException.class)
     public void testEmptyCredentials() {
@@ -174,7 +157,7 @@ public class ValidateProjectTest extends TestCase {
             ValidateProject.validateCredentials(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
-            assertEquals("Credentials must not be empty.", expected.getErrorMsg());
+            assertEquals("Projects must list credentials required", expected.getErrorMsg());
         }
         System.out.println("\nFinished testValidateProject: Empty credentials");
     }

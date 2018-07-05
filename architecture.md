@@ -6,17 +6,24 @@
 
 ###### All users views  
         
-*Not yet implemented*  
+*Currently implemented*  
 
     * LoginActivity.java/xml
-        - Login Actvity screen for all users     
+        - Login Activity screen for all users   
+    * MainActivity.java/xml
+        - Landing page activity after a User signs up or logs in
+    * Messages.java
+        - Shows an error message dialog if an exception or warning occurs
     * SignUpActivity.java/xml  
         - Sign up Activity screen for all users
+    
 ###### General user views  
 *Currently implemented*  
 
     * ProjectListActivity.java/xml
-        - Activity used to view a list of projects that have been created.
+        - Activity used to view a list of projects that have been created
+    * UserProjectDetailedViewActivity.java/xml  
+        - Detailed project view for general users (after they have clicked on the summary, they are brought here)
 
 *Not yet implemented*  
 
@@ -26,12 +33,11 @@
         - Activity for general users to find projects
     * UserInterestedProjectsListActivity.java/xml
         - Activity for users to view the projects they expressed interest in  
-    * UserProjectDetailViewActivity.java/xml  
-        - Detailed project view for general users (after they have clicked on the summary, they are brought here)
+    
     * UserProfileCreateActivity.java/xml
         - Activity used for general users to complete their profile
     * UserProfileEditActivity.java/xml
-        - Activty used for general users to update/edit their profile
+        - Activity used for general users to update/edit their profile
 ###### Project owner views  
 *Currently Implemented*  
 
@@ -47,32 +53,27 @@
     * OwnerViewMatchContactActivity.java/xml
         - Activity for project owners to view the contact details of confirmed matches  
     
-###### Additional classes
-*Currently Implemented*  
-
-    * MainActivity.java/xml
-        - Activity for first screen the user will encounter
-
-    * Messages.java
-        - Shows an error message dialog if an exception or warning occurs.
-
 # Logic package  
 *Currently implemented*  
 
+    * CustomException.java
+        - used in conjunction with Messages.java to provide appropriate error messaging
     * ProjectManager.java  
         - Takes care of the project processes
              - Project creation/editing
              - Project retrieval
-    * CustomException.java
-        - Allows methods to throw custom exceptions with specific messages.
+    * UserManager.java
+        - Takes care of user processes
+            - User account creation/editing
     * ValidateProject.java
-        - Verifies if the project input by users fits into a certain criteria.
-        
+        - Verifies if the project input by users fits into a certain criteria
+    * ValidateUser.java
+        - Verifies valid User account data is entered
 *Yet to be implemented*
 
     * MatchingEngine.java  
         - Determine user profiles that match project specifications  
-        - Determine projects that match user qualifiticaions  
+        - Determine projects that match user qualifications  
     * AccountManager.java  
         - Takes care of the general user and project owner account processes
             - account creation
@@ -82,11 +83,13 @@
 *Currently implemented*  
 
     * ProjectDatabase.java
-        - Store/Retrieve project in DB  
+        - Store/Retrieve project in DB 
+        - Works with **ProjectPersistenceHSQLDB.java** to persist Project data
+    * UserDatabase.java  
+        - Store/Retrieve user account details in DB  
+        - Works with **UserDatabaseHSQLDB.java** to persist User data
 *Yet to be implemented*
 
-    * AccountDatabase.java  
-        - Store/Retrieve user profile in DB  
     * MatchDatabase.java
         - Store/Retrieve match related details
 # Domain package  
@@ -102,11 +105,11 @@
             - Useds for Password related errors
 *Yet to be implemented*  
 
-    * Account(parent).java  
+    * User(parent).java  
         - parent abstract account  
-        + AccountUser(child).java  
+        + UserGeneral(child).java  
             - An account for general users  
-        + AccountOwner(child).java  
+        + UserOwner(child).java  
             - An account for project owners  
     * Interest.java  
         - Used when there is a potential match (an expression of interest by the user, yet needs to be reviewed by project owner)  

@@ -1,4 +1,4 @@
-package comp3350.ppms.presentation; /**
+package comp3350.ppms.presentation.projectowner; /**
  * Create Project Activity
  * PURPOSE: Activity that contains the UI for creating a project
  */
@@ -16,20 +16,23 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.presentation.generaluser.ProjectListActivity;
+import comp3350.ppms.presentation.allusers.Messages;
 
 
 public class CreateProjectActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
 
+    private static final String USER_NAME = "userName";
     //For the UI
     private EditText projectNameEdit;
     private EditText projectDescriptionEdit;
@@ -52,6 +55,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     private UserManager userManager;
     private User currAccount;
     private String userNickname;
+
+    private final int credentialLeftMargin = 24;
+    private final int credentialRightMargin = 24;
+    private final int credentialTopMargin = 0;
+    private final int credentialBottomMargin = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,38 +93,50 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         decreaseCredNumButton.setOnClickListener(this);
         decreaseCredNumButton.setEnabled(false);
 
-        userManager = new UserManager();
-        userNickname = getIntent().getStringExtra("userName");
-        if (userNickname != null){
-            currAccount = userManager.validateUserName(userNickname);
-        }
+        getUserInfo();
+
     }
 
     @Override
     public void onClick(View view) {
         Project project = createNewProjectFromEditText();
-        String result;
 
-        result = validateProjectData(project, true);
         if(view.getId() == R.id.create_project_button) {
-            if (result == null) {
-                try {
-                    projectManager.insertProject(project);
-                    currAccount.addToCreatedProjectIDList(project.getProjectID());
-                }catch (CustomException e){
-                    Messages.fatalError(this, e.getErrorMsg());
-                }
-            } else {
-                Messages.warning(this, result);
+            try {
+                projectManager.insertProject(project);
+                currAccount.addToCreatedProjectIDList(project.getProjectID());
+                Toast.makeText(this, "Created", Toast.LENGTH_SHORT).show();
+            } catch (CustomException e){
+                Messages.fatalError(this, e.getErrorMsg());
             }
+
         }else if(view.getId() == R.id.increase_credential_button) {
             increaseNumCredential();
+            Toast.makeText(this, "Add Credential", Toast.LENGTH_SHORT).show();
         }else if(view.getId() == R.id.decrease_credential_button) {
             decreaseNumCredential();
+            Toast.makeText(this, "Delete Credential", Toast.LENGTH_SHORT).show();
         }else if(view.getId() == R.id.cancel_project_button){
             finish();
+        }else{
+
         }
 
+
+
+    }
+
+    public void getUserInfo(){
+        userManager = new UserManager();
+        userNickname = getIntent().getStringExtra(USER_NAME);
+        if (userNickname != null) {
+            try {
+                currAccount = userManager.getUser(userNickname);
+            }
+            catch (CustomException e) {
+                Messages.warning(this, e.getErrorMsg());
+            }
+        }
     }
 
 
@@ -159,9 +179,9 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     {
         EditText credential = new EditText(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(24, 0, 24, 8);
+        params.setMargins(credentialLeftMargin, credentialTopMargin, credentialRightMargin, credentialBottomMargin);
         credential.setLayoutParams(params);
-        credential.setHint("Please Enter Project Credential");
+        credential.setHint(R.string.project_credential_input);
         credential.setEms(10);
         credential.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
         credential.setOnEditorActionListener(this);
@@ -174,23 +194,10 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     public void viewCreatedProjects(View view){
         Intent intent = new Intent(this, ProjectListActivity.class);
 
-        intent.putExtra("userName", userNickname);
+        intent.putExtra(this.getString(R.string.user_key), userNickname);
 
         startActivity(intent);
     }
 
-    private String validateProjectData(Project project, boolean isNewProject) {
-
-        if (project.getProjectName().length() == 0) {
-            return "project name required";
-        }
-        if (project.getProjectDescription().length() == 0){
-            return "project description required";
-        }
-        if (project.getProjectCredentials().size() == 0){
-            return "project credential required";
-        }
-        return null;
-    }
 
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public interface ProjectInterface {
 
-    UUID getProjectID();
+    String getProjectID();
 
     String getProjectName();
 
@@ -13,5 +13,13 @@ public interface ProjectInterface {
 
     ArrayList<String> getProjectCredentials();
 
-    void addLikedUserID(UUID id);
+
+    void addInterestedUser(String id);
+
+    ArrayList<String> getInterestedUsers();
+
+    ArrayList<String> getSelectedUsers();
+
+    int getNumInterestedUsers();
+
 }

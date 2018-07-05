@@ -1,13 +1,21 @@
 package comp3350.ppms.tests.logic;
 
-import org.junit.Test;
 import junit.framework.TestCase;
-import comp3350.ppms.logic.ProjectManager;
-import comp3350.ppms.logic.CustomException;
-import comp3350.ppms.domain.Project;
-import java.util.UUID;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
+
+import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.logic.ProjectManager;
+
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * The ProjectManagerTest class will test
@@ -19,16 +27,24 @@ import java.util.ArrayList;
 public class ProjectManagerTest extends TestCase{
 
     public ProjectManagerTest(String arg0) {super(arg0);}
+    private ProjectManager projectManager;
+
+//    @Before
+//    public void buildUp(){
+//        projectManager = mock(ProjectManager.class);
+//    }
 
     @Test (expected = CustomException.class)
     public void testInvalidProjectName(){
         System.out.println("\nStarting testInsertProject: Invalid project name");
+        projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("", "hello world", cred);
-        ProjectManager newManager = new ProjectManager();
+
         try {
-            newManager.insertProject(newProj);
+            doThrow(new CustomException(CustomException.EMPTY_NAME_ERROR)).when(projectManager).insertProject(newProj);
+            projectManager.insertProject(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Cannot have empty name", expected.getErrorMsg());
@@ -39,12 +55,13 @@ public class ProjectManagerTest extends TestCase{
     @Test (expected = CustomException.class)
     public void testInvalidProjectDesc(){
         System.out.println("\nStarting testInsertProject: Invalid project desc");
+        projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("hello", "", cred);
-        ProjectManager newManager = new ProjectManager();
         try {
-            newManager.insertProject(newProj);
+            doThrow(new CustomException(CustomException.EMPTY_DESCRIPTION_ERROR)).when(projectManager).insertProject(newProj);
+            projectManager.insertProject(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
             assertEquals("Cannot have empty description", expected.getErrorMsg());
@@ -55,12 +72,12 @@ public class ProjectManagerTest extends TestCase{
     @Test (expected = CustomException.class)
     public void testValidProject(){
         System.out.println("\nStarting testInsertProject: Valid project");
+        projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
         Project newProj = new Project("hello", "hello world", cred);
-        ProjectManager newManager = new ProjectManager();
         try {
-            newManager.insertProject(newProj);
+            projectManager.insertProject(newProj);
         } catch (CustomException expected) {
             assertEquals(null, expected);
         }
@@ -69,46 +86,67 @@ public class ProjectManagerTest extends TestCase{
 
     @Test (expected = CustomException.class)
     public void testSingleProject(){
-        UUID id;
         System.out.println("\nStarting testRetrieveProject: Single project");
+        projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         ArrayList<Project> projectList;
         cred.add("eight");
         Project newProj = new Project("hello", "hello world", cred);
-        ProjectManager newManager = new ProjectManager();
         try {
-            newManager.insertProject(newProj);
+            projectManager.insertProject(newProj);
         } catch (CustomException expected) {
             assertEquals(null, expected);
         }
-        Project retrProject = newManager.getProject(newProj.getProjectID());
-        assertEquals(newProj.getProjectName(), retrProject.getProjectName());
-        assertEquals(newProj.getProjectDescription(), retrProject.getProjectDescription());
-        assertEquals(newProj.getProjectCredentials(), retrProject.getProjectCredentials());
+        projectManager.getProject(newProj.getProjectID());
+        verify(projectManager, times(1)).getProject(newProj.getProjectID());
 
         System.out.println("\nFinished testRetrieveProject: Single project");
     }
 
     @Test (expected = CustomException.class)
     public void testMultipleProjectList(){
-        UUID id;
         System.out.println("\nStarting testRetrieveProject: Multiple projects");
+        projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         ArrayList<Project> projectList;
         cred.add("eight");
         Project newProj = new Project("hello", "hello world", cred);
         Project newProj1 = new Project("hello", "hello world", cred);
-        ProjectManager newManager = new ProjectManager();
         try {
-            newManager.insertProject(newProj);
-            newManager.insertProject(newProj1);
+            projectManager.insertProject(newProj);
+            projectManager.insertProject(newProj1);
+
         } catch (CustomException expected) {
             assertEquals(null, expected);
         }
-        projectList = newManager.getProjects();
-        assertEquals(6, projectList.size());
+
+        projectManager.getProjects();
+
+        verify(projectManager, times(1)).getProjects();
 
         System.out.println("\nFinished testRetrieveProject: Multiple projects");
     }
+
+    @Test (expected = CustomException.class)
+    public void testInterestedUsers() {
+        System.out.println("\n Starting testRetrieveProject: Interested Users");
+        projectManager = mock(ProjectManager.class);
+
+        ArrayList<String> cred = new ArrayList<String>();
+        cred.add("eight");
+        Project newProj = new Project("hello", "hello world", cred);
+        User user = new User("Lebron James", "Cavs");
+
+        try {
+            projectManager.insertProject(newProj);
+            projectManager.addInterestedUser(newProj, user.getUserNickName());
+
+        } catch (CustomException expected) {
+            assertEquals(null, expected);
+        }
+
+    }
+
+
 
 }
