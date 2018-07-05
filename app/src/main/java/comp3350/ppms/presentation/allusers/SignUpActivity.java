@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             try{
 
-                userManager.signUp(user);
+                userManager.insertUser(user);
                 Intent intent = new Intent(this,  MainActivity.class);
                 intent.putExtra(USER_NAME, userNickname);
 
