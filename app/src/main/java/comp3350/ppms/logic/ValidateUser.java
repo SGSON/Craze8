@@ -8,12 +8,12 @@ public class ValidateUser {
     private static final int MAX_NAME_LENGTH = 20;
     private static final int MIN_PASS_LENGTH = 5;
     private static final int MAX_PASS_LENGTH = 20;
-    private static final int CREDENTIAL_LENGTH = 2;
+
 
     public static boolean validateAll(User user) throws CustomException{
         validateName(user);
         validatePassword(user);
-        validateCredentials(user);
+
         return true;
     }
 
@@ -42,18 +42,5 @@ public class ValidateUser {
         }
     }
 
-    public static boolean validateCredentials(User user) throws CustomException {
-        int i = 0;
-        if (user.getUserCredentials().isEmpty()){
-            throw new CustomException("you must list your credentials");
-        } else {
-            while (i < user.getUserCredentials().size()){
-                if (user.getUserCredentials().get(i).length() < CREDENTIAL_LENGTH){
-                    throw new CustomException("Credentials must exceed " + CREDENTIAL_LENGTH + " characters.");
-                }
-                i++;
-            }
-            return true;
-        }
-    }
+
 }
