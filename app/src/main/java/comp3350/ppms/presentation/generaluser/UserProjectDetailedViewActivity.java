@@ -92,10 +92,14 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
 
     public void getUserInfo(){
-        UserManager userManager = new UserManager();
         userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
-            currAccount = userManager.getUser(userNickname);
+            try {
+                currAccount = userManager.getUser(userNickname);
+            }
+            catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
+            }
         }
     }
 

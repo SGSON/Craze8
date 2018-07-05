@@ -25,7 +25,7 @@ public class UserManager implements UserManagerInterface{
     //accepts a String username and returns the User if the account has been created or returns null
     //if name doesn't exist.
 
-    public User getUser (String userName) {
+    public User getUser (String userName) throws CustomException{
         return userDB.getUserByString(userName);
     }
 
