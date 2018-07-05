@@ -55,9 +55,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         User user = createNewUserFromEditText();
         String result;
 
-        result = validateUserData(user);
+        //result = validateUserData(user);
         if(view.getId() == R.id.create_user_button){
-            if(result == null){
+            //if(result == null){
                 try{
                     userManager.insertUser(user);
                     Intent intent = new Intent(this,  MainActivity.class);
@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Messages.fatalError(this, e.getErrorMsg());
                 }
                 
-            }else{
+            /*}else{
                 //Messages.warning(this,result);
                 if(result.equals(USER_ERROR) || result.equals(USER_EXISTS_ERROR)){
                     userNicknameEdit.setError(result);
@@ -77,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
 
-            }
+            }*/
         }
 
     }
@@ -101,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 //TODO move this into a different class
-    private String validateUserData(User user) {
+  /*  private String validateUserData(User user) {
 
         String result = null;
 
@@ -118,4 +118,4 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return result;
     }
 
-}
+}*/
