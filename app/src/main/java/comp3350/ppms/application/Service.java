@@ -11,7 +11,6 @@ public class Service {
 
     private static ProjectDatabaseInterface projectDatabaseInterface = null;
     private static UserDatabaseInterface userDatabaseInterface = null;
-    private static UserDatabaseInterface testUserDatabaseInterface = null;
 
 
     public static synchronized ProjectDatabaseInterface getProjectDatabaseInterface()
@@ -28,7 +27,6 @@ public class Service {
     {
         if(userDatabaseInterface == null)
         {
-            //Here is where I changed Service to get an Instance of the the HSQL DB you implemented
             userDatabaseInterface = new UserDatabaseHSQLDB(Main.getDBPathName());
         }
 
