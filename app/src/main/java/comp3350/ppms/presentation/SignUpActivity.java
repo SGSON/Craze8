@@ -60,13 +60,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             if(result == null){
                 try{
                     userManager.insertUser(user);
+                    Intent intent = new Intent(this,  MainActivity.class);
+                    intent.putExtra("userName", userNickname);
+
+                    startActivity(intent);
                 } catch (CustomException e){
                     Messages.fatalError(this, e.getErrorMsg());
                 }
-                Intent intent = new Intent(this,  MainActivity.class);
-                intent.putExtra("userName", userNickname);
-
-                startActivity(intent);
+                
             }else{
                 //Messages.warning(this,result);
                 if(result.equals(USER_ERROR) || result.equals(USER_EXISTS_ERROR)){

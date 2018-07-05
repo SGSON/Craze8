@@ -25,7 +25,7 @@ public class ValidateUser {
             throw new CustomException("Cannot have empty user name");
         } else if (user.getUserNickName().length() > MAX_NAME_LENGTH) {
             throw new CustomException("Name cannot exceed " + MAX_NAME_LENGTH + " characters.");
-        } else if (usersAccess.getUser(user.getUserNickName()) == null) {
+        } else if (usersAccess.getUser(user.getUserNickName()) != null) {
             throw new CustomException("Username already exists, please choose another user name.");
         } else {
             return true;
@@ -35,7 +35,7 @@ public class ValidateUser {
     public static boolean validatePassword(User user) throws CustomException {
         if (user.getUserPassword().length() < MIN_PASS_LENGTH) {
             throw new CustomException("Password requires at least " + MIN_PASS_LENGTH + " characters.");
-        } else if (user.getUserPassword().length() < MAX_PASS_LENGTH) {
+        } else if (user.getUserPassword().length() > MAX_PASS_LENGTH) {
             throw new CustomException("Password cannot exceed " + MAX_PASS_LENGTH + " characters.");
         } else {
             return true;
