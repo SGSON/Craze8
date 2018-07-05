@@ -34,11 +34,11 @@ public class Service {
         return userDatabaseInterface;
     }
 
-//    public static synchronized UPDatabaseInterface getUPDatabaseInterface()
+//    public static synchronized UserDatabaseInterface getUPDatabaseInterface()
 //    {
 //        if(upDatabaseInterface == null)
 //        {
-//            upDatabaseInterface = new UPDatabase(); //What is the purpose of this DB?
+//            upDatabaseInterface = new UserDatabase(); //What is the purpose of this DB?
 //        }
 //
 //        return upDatabaseInterface;
