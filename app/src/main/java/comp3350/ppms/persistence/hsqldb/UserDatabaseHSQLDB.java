@@ -17,6 +17,15 @@ public class UserDatabaseHSQLDB extends HSQLDatabase implements UserDatabaseInte
 
     private final String dbPath;
 
+    //Project Database Column Labels
+    private static final String USER_ID_COLUMN = "userID";
+    private static final String USER_NAME_COLUMN = "name";
+    private static final String USER_PASSWORD_COLUMN = "password";
+    private static final String USER_CREATED_PROJECTS_COLUMN = "CreatedProjectIDList";
+    private static final String USER_LIKED_PROJECTS_COLUMN = "LikedProjectIDList";
+    private static final String USER_MATCHED_PROJECTS_COLUMN = "MatchedProjectList";
+    private static final String USER_CREDENTIALS_COLUMN = "UserCredentials";
+
     public UserDatabaseHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
     }
@@ -27,13 +36,13 @@ public class UserDatabaseHSQLDB extends HSQLDatabase implements UserDatabaseInte
 
     private User fromResultSet(final ResultSet rs) throws SQLException {
 
-        final String UserID = rs.getString("userID");
-        final String UserName = rs.getString("name");
-        final String UserPassword = rs.getString("password");
-        final ArrayList<String> CreatedProjectIDList = stringArrayConversion(rs.getArray("CreatedProjectIDList"));
-        final ArrayList<String> LikedProjectIDList = stringArrayConversion(rs.getArray("LikedProjectIDList"));
-        final ArrayList<String> MatchedProjectIDList = stringArrayConversion(rs.getArray("MatchedProjectList"));
-        final ArrayList<String> UserCredentials = stringArrayConversion(rs.getArray("UserCredentials"));
+        final String UserID = rs.getString(USER_ID_COLUMN);
+        final String UserName = rs.getString(USER_NAME_COLUMN);
+        final String UserPassword = rs.getString(USER_PASSWORD_COLUMN);
+        final ArrayList<String> CreatedProjectIDList = stringArrayConversion(rs.getArray(USER_CREATED_PROJECTS_COLUMN));
+        final ArrayList<String> LikedProjectIDList = stringArrayConversion(rs.getArray(USER_LIKED_PROJECTS_COLUMN));
+        final ArrayList<String> MatchedProjectIDList = stringArrayConversion(rs.getArray(USER_MATCHED_PROJECTS_COLUMN));
+        final ArrayList<String> UserCredentials = stringArrayConversion(rs.getArray(USER_CREDENTIALS_COLUMN));
 
         return new User(UserID, UserName, UserPassword, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
 

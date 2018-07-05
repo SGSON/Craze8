@@ -22,6 +22,7 @@ import comp3350.ppms.logic.UsernameError;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener{
 
+    private static final String USER_NAME = "userName";
     private EditText userNicknameEdit;
     private EditText userPasswordEdit;
 
@@ -54,20 +55,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        User user = createNewUserFromEditText();
-        String result;
+        User user = createNewUserFromEditText();;
 
-        //result = validateUserData(user);
         if(view.getId() == R.id.create_user_button){
-            //if(result == null){
+
             try{
                 userManager.insertUser(user);
                 Intent intent = new Intent(this,  MainActivity.class);
-                intent.putExtra("userName", userNickname);
+                intent.putExtra(USER_NAME, userNickname);
 
                 startActivity(intent);
             } catch (CustomException e){
-                //Messages.warning(this, e.getErrorMsg());
                 if(e instanceof UsernameError) {
                     userNicknameEdit.setError(e.getErrorMsg());
                 }else if(e instanceof PasswordError){
@@ -75,17 +73,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
             }
-                
-            /*}else{
-                //Messages.warning(this,result);
-                if(result.equals(USER_ERROR) || result.equals(USER_EXISTS_ERROR)){
-                    userNicknameEdit.setError(result);
-                }else if(result.equals(PASSWORD_ERROR)){
-                    userPasswordEdit.setError(result);
-                }
 
-
-            }*/
         }
 
     }
@@ -108,22 +96,5 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return new User(userNickname, userPassword);
     }
 
-//TODO move this into a different class
-  /*  private String validateUserData(User user) {
-
-        String result = null;
-
-        if (user.getUserNickName().length() == 0) {
-            result = USER_ERROR;
-        }
-        else if(userManager.getUser(user.getUserNickName()) != null){
-            result =  USER_EXISTS_ERROR;
-        }
-        else if (user.getUserPassword().length() == 0){
-            result = PASSWORD_ERROR;
-        }
-
-        return result;
-    }*/
 
 }

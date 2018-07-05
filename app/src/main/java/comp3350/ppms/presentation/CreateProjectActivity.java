@@ -30,6 +30,7 @@ import comp3350.ppms.logic.UserManager;
 public class CreateProjectActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
 
+    private static final String USER_NAME = "userName";
     //For the UI
     private EditText projectNameEdit;
     private EditText projectDescriptionEdit;
@@ -52,6 +53,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     private UserManager userManager;
     private User currAccount;
     private String userNickname;
+
+    private final int credentialLeftMargin = 24;
+    private final int credentialRightMargin = 24;
+    private final int credentialTopMargin = 0;
+    private final int credentialBottomMargin = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -86,6 +92,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         decreaseCredNumButton.setEnabled(false);
 
         getUserInfo();
+
     }
 
     @Override
@@ -117,7 +124,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 
     public void getUserInfo(){
         userManager = new UserManager();
-        userNickname = getIntent().getStringExtra("userName");
+        userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
             try {
                 currAccount = userManager.getUser(userNickname);
@@ -168,9 +175,9 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     {
         EditText credential = new EditText(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(24, 0, 24, 8);
+        params.setMargins(credentialLeftMargin, credentialTopMargin, credentialRightMargin, credentialBottomMargin);
         credential.setLayoutParams(params);
-        credential.setHint("Please Enter Project Credential");
+        credential.setHint(R.string.project_credential_input);
         credential.setEms(10);
         credential.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
         credential.setOnEditorActionListener(this);
@@ -183,7 +190,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     public void viewCreatedProjects(View view){
         Intent intent = new Intent(this, ProjectListActivity.class);
 
-        intent.putExtra("userName", userNickname);
+        intent.putExtra(this.getString(R.string.user_key), userNickname);
 
         startActivity(intent);
     }

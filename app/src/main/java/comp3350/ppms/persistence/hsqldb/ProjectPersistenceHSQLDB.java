@@ -17,6 +17,14 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
 
     private final String dbPath;
 
+    //Project Database Column Labels
+    private static final String PROJECT_ID_COLUMN = "projectID";
+    private static final String PROJECT_NAME_COLUMN = "PROJECT_NAME";
+    private static final String PROJECT_DESCRIPTION_COLUMN = "PROJECT_DESCRIPTION";
+    private static final String PROJECT_CREDENTIALS_COLUMN = "PROJECT_CREDENTIALS";
+    private static final String PROJECT_INTERESTED_USERS_COLUMN = "INTERESTED_USERS";
+    private static final String PROJECT_SELECTED_COLUMN = "SELECTED_USERS";
+
     public ProjectPersistenceHSQLDB(final String path) {
         dbPath = path;
     }
@@ -123,16 +131,16 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
     }
 
     private Project fromResultSet(final ResultSet resultSet) throws SQLException {
-        final String projectID = resultSet.getString("projectID");
-        final String projectName = resultSet.getString("PROJECT_NAME");
-        final String projectDes = resultSet.getString("PROJECT_DESCRIPTION");
+        final String projectID = resultSet.getString(PROJECT_ID_COLUMN);
+        final String projectName = resultSet.getString(PROJECT_NAME_COLUMN);
+        final String projectDes = resultSet.getString(PROJECT_DESCRIPTION_COLUMN);
 
         final ArrayList<String> projCreds = stringArrayConversion
-                (resultSet.getArray("PROJECT_CREDENTIALS"));
+                (resultSet.getArray(PROJECT_CREDENTIALS_COLUMN));
         final ArrayList<String> inUsers = stringArrayConversion(
-                resultSet.getArray("INTERESTED_USERS"));
+                resultSet.getArray(PROJECT_INTERESTED_USERS_COLUMN));
         final ArrayList<String> selUsers = stringArrayConversion(
-                resultSet.getArray("SELECTED_USERS"));
+                resultSet.getArray(PROJECT_SELECTED_COLUMN));
 
         return new Project(projectID, projectName, projectDes, projCreds, inUsers, selUsers);
     }

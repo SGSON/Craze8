@@ -22,12 +22,19 @@ public class ValidateUser {
         if (user.getUserNickName().length()< MIN_NAME_LENGTH){
             throw new UsernameError("Name requires at least " + MIN_NAME_LENGTH + " characters.");
         } else if (user.getUserNickName() == null || user.getUserNickName() == ""){
-            throw new UsernameError("Cannot have empty user name");
+
+            throw new CustomException(CustomException.EMPTY_NAME_ERROR);
+
         } else if (user.getUserNickName().length() > MAX_NAME_LENGTH) {
+
             throw new UsernameError("Name cannot exceed " + MAX_NAME_LENGTH + " characters.");
+
         } else if (usersAccess.getUser(user.getUserNickName()) != null) {
-            throw new UsernameError("Username already exists, please choose another user name.");
+
+            throw new CustomException(CustomException.EXISTING_USERNAME_ERROR);
+
         } else {
+
             return true;
         }
     }
@@ -65,6 +72,7 @@ public class ValidateUser {
             return true;
         }
     }
+
 
 
 }

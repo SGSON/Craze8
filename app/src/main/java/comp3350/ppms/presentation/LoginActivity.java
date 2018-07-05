@@ -28,6 +28,7 @@ import comp3350.ppms.logic.ValidateUser;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
 
+    private static final String USER_NAME = "userName";
     private Button mLoginButton;
     private Button mSignUpButton;
     private String userNickname;
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //Pass userName to next Activity and start the intent
 
                 intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("userName", userNickname);
+                intent.putExtra(USER_NAME, userNickname);
 
                 startActivity(intent);
 

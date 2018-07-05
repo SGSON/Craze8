@@ -17,6 +17,7 @@ import comp3350.ppms.domain.User;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String USER_NAME = "userName";
     private Button mCreateProjectButton;
     private Button mViewProjectsButton;
     private User currAccount;
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mViewProjectsButton.setOnClickListener(this);
 
 
-
         //get the username from the last intent (login)
         getUserInfo();
 
@@ -73,18 +73,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         if(view.getId() == R.id.create_project_button) {
             intent = new Intent(MainActivity.this, CreateProjectActivity.class);
-            intent.putExtra("userName", userNickname);
+            intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
             intent = new Intent(MainActivity.this, comp3350.ppms.presentation.ProjectListActivity.class);
-            intent.putExtra("userName", userNickname);
+            intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         }
     }
 
     public void getUserInfo(){
         UserManager userManager = new UserManager();
-        userNickname = getIntent().getStringExtra("userName");
+        userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
             try {
                 currAccount = userManager.getUser(userNickname);
