@@ -11,9 +11,11 @@ public class ValidateUser {
 
 
     public static boolean validateAll(User user) throws CustomException{
+
         validateName(user);
-        validatePassword(user);
         validateDuplicate(user);
+        validatePassword(user);
+
         return true;
     }
 
