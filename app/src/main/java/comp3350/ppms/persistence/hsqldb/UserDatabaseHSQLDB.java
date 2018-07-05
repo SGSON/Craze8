@@ -13,7 +13,7 @@ import java.util.Collections;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
 
-public class UserDatabaseHSQLDB implements UserDatabaseInterface{
+public class UserDatabaseHSQLDB extends HSQLDatabase implements UserDatabaseInterface{
 
     private final String dbPath;
 
@@ -25,35 +25,15 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-
-    private ArrayList<String> StringArrayConversion(Array input) {
-        Object[] values;
-        ArrayList<String> result = new ArrayList<>();
-
-        if (input == null){
-            return null;
-        } else {
-            try {
-                values = (Object[]) input.getArray();
-                for(int i = 0; i < values.length; i++) {
-                    result.add(values[i].toString());
-                }
-                return result;
-            } catch (SQLException e){
-                throw new DatabaseException(e);
-            }
-        }
-    }
-
     private User fromResultSet(final ResultSet rs) throws SQLException {
 
         final String UserID = rs.getString("userID");
         final String UserName = rs.getString("name");
         final String UserPassword = rs.getString("password");
-        final ArrayList<String> CreatedProjectIDList = StringArrayConversion(rs.getArray("CreatedProjectIDList"));
-        final ArrayList<String> LikedProjectIDList = StringArrayConversion(rs.getArray("LikedProjectIDList"));
-        final ArrayList<String> MatchedProjectIDList = StringArrayConversion(rs.getArray("MatchedProjectList"));
-        final ArrayList<String> UserCredentials = StringArrayConversion(rs.getArray("UserCredentials"));
+        final ArrayList<String> CreatedProjectIDList = stringArrayConversion(rs.getArray("CreatedProjectIDList"));
+        final ArrayList<String> LikedProjectIDList = stringArrayConversion(rs.getArray("LikedProjectIDList"));
+        final ArrayList<String> MatchedProjectIDList = stringArrayConversion(rs.getArray("MatchedProjectList"));
+        final ArrayList<String> UserCredentials = stringArrayConversion(rs.getArray("UserCredentials"));
 
         return new User(UserID, UserName, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
 

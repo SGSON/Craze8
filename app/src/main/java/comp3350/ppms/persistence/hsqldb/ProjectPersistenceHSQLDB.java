@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
-public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
+public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDatabaseInterface {
 
     private final String dbPath;
 
@@ -119,23 +119,5 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
         return new Project(projectID, projectName, projectDes, projCreds, inUsers, selUsers);
     }
 
-    private ArrayList stringArrayConversion(Array input) {
-        Object[] values;
-        ArrayList<String> result = new ArrayList<>();
-
-        if (input == null){
-            return null;
-        } else {
-            try {
-                values = (Object[]) input.getArray();
-                for(int i = 0; i < values.length; i++) {
-                    result.add(values[i].toString());
-                }
-                return result;
-            } catch (SQLException e){
-                throw new DatabaseException(e);
-            }
-        }
-    }
 
 }
