@@ -21,13 +21,17 @@ import com.example.test.ppms.R;
 import java.util.ArrayList;
 
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.allusers.Messages;
 import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
 public class ProjectListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
+    private static final String USER_NAME = "userName";
+    private static final String PROJECT_ID = "projectID";
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ProjectAdapter mProjectAdapter;
@@ -56,11 +60,21 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         selectedProjectPosition = -1;
 
         userManager = new UserManager();
-        userNickname = getIntent().getStringExtra("userName");
-        if(userNickname != null){
-            currAccount = userManager.getUser(userNickname);
-        }
 
+        getUserInfo();
+
+    }
+
+    public void getUserInfo(){
+        userNickname = getIntent().getStringExtra(USER_NAME);
+        if (userNickname != null) {
+            try {
+                currAccount = userManager.getUser(userNickname);
+            }
+            catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
+            }
+        }
     }
 
     private void populateProjectList() {
@@ -75,7 +89,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         final CharSequence[] dialogList = (currProject.getProjectCredentials())
                                             .toArray(new CharSequence[(currProject.getProjectCredentials()).size()]);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Credentials: ")
+        builder.setTitle(R.string.credentials_label)
                 .setItems(dialogList, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // The 'which' argument contains the index position
@@ -120,16 +134,16 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
             Intent scIntent = new Intent(ProjectListActivity.this, UserProjectDetailedViewActivity.class);
             Bundle bundle = new Bundle();
 
-            bundle.putString("projectID", currProjectID);
+            bundle.putString(PROJECT_ID, currProjectID);
 
-            scIntent.putExtra("userName", userNickname);
+            scIntent.putExtra(USER_NAME, userNickname);
 
             scIntent.putExtras(bundle);
             ProjectListActivity.this.startActivity(scIntent);
         }
         else if (v.getId() == R.id.return_button) {
             Intent scIntent = new Intent(ProjectListActivity.this, CreateProjectActivity.class);
-            scIntent.putExtra("userName", userNickname);
+            scIntent.putExtra(USER_NAME, userNickname);
             ProjectListActivity.this.startActivity(scIntent);
         }
     }

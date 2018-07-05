@@ -16,14 +16,18 @@ import android.widget.Toast;
 import com.example.test.ppms.R;
 import java.util.ArrayList;
 
+import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.allusers.Messages;
 
 
 public class UserProjectDetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String USER_NAME = "userName";
+    private static final String PROJECT_ID = "projectID";
     private Button mAllProjectsButton;
     private Button interestButton;
     private ProjectManager mProjectManager;
@@ -34,7 +38,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private Project project;
     private UserManager userManager;
     private String userNickname;
-    private User user;
+    private User currAccount;
 
 
     @Override
@@ -51,17 +55,17 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        if (bundle.getSerializable("projectID") != null) {
+        if (bundle.getSerializable(PROJECT_ID) != null) {
 
 
-            projectID = bundle.getString("projectID");
-            userNickname = getIntent().getStringExtra("userName");
+            projectID = bundle.getString(PROJECT_ID);
+            userNickname = getIntent().getStringExtra(USER_NAME);
 
             mProjectManager = new ProjectManager();
             userManager = new UserManager();
 
             project = mProjectManager.getProject(projectID);
-            user = userManager.getUser(userNickname);
+            getUserInfo();
 
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
@@ -75,15 +79,27 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
-            likeProject(project, user, projectID, userNickname);
-            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+            likeProject(project, currAccount, projectID, userNickname);
+            Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
         }
 
         Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
 
-        scIntent.putExtra("userName", userNickname);
+        scIntent.putExtra(USER_NAME, userNickname);
 
         UserProjectDetailedViewActivity.this.startActivity(scIntent);
+    }
+
+
+    public void getUserInfo() {
+        userNickname = getIntent().getStringExtra("userName");
+        if (userNickname != null) {
+            try {
+                currAccount = userManager.getUser(userNickname);
+            } catch (CustomException e) {
+                Messages.warning(this, e.getErrorMsg());
+            }
+        }
     }
 
     private void likeProject(Project proj, User user, String projectID, String userNickname) {

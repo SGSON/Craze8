@@ -13,9 +13,18 @@ import java.util.Collections;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
 
-public class UserDatabaseHSQLDB implements UserDatabaseInterface{
+public class UserDatabaseHSQLDB extends HSQLDatabase implements UserDatabaseInterface{
 
     private final String dbPath;
+
+    //Project Database Column Labels
+    private static final String USER_ID_COLUMN = "userID";
+    private static final String USER_NAME_COLUMN = "name";
+    private static final String USER_PASSWORD_COLUMN = "password";
+    private static final String USER_CREATED_PROJECTS_COLUMN = "CreatedProjectIDList";
+    private static final String USER_LIKED_PROJECTS_COLUMN = "LikedProjectIDList";
+    private static final String USER_MATCHED_PROJECTS_COLUMN = "MatchedProjectList";
+    private static final String USER_CREDENTIALS_COLUMN = "UserCredentials";
 
     public UserDatabaseHSQLDB(final String dbPath) {
         this.dbPath = dbPath;
@@ -25,35 +34,15 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
-
-    private ArrayList<String> StringArrayConversion(Array input) {
-        Object[] values;
-        ArrayList<String> result = new ArrayList<>();
-
-        if (input == null){
-            return null;
-        } else {
-            try {
-                values = (Object[]) input.getArray();
-                for(int i = 0; i < values.length; i++) {
-                    result.add(values[i].toString());
-                }
-                return result;
-            } catch (SQLException e){
-                throw new DatabaseException(e);
-            }
-        }
-    }
-
     private User fromResultSet(final ResultSet rs) throws SQLException {
 
-        final String UserID = rs.getString("userID");
-        final String UserName = rs.getString("name");
-        final String UserPassword = rs.getString("password");
-        final ArrayList<String> CreatedProjectIDList = StringArrayConversion(rs.getArray("CreatedProjectIDList"));
-        final ArrayList<String> LikedProjectIDList = StringArrayConversion(rs.getArray("LikedProjectIDList"));
-        final ArrayList<String> MatchedProjectIDList = StringArrayConversion(rs.getArray("MatchedProjectList"));
-        final ArrayList<String> UserCredentials = StringArrayConversion(rs.getArray("UserCredentials"));
+        final String UserID = rs.getString(USER_ID_COLUMN);
+        final String UserName = rs.getString(USER_NAME_COLUMN);
+        final String UserPassword = rs.getString(USER_PASSWORD_COLUMN);
+        final ArrayList<String> CreatedProjectIDList = stringArrayConversion(rs.getArray(USER_CREATED_PROJECTS_COLUMN));
+        final ArrayList<String> LikedProjectIDList = stringArrayConversion(rs.getArray(USER_LIKED_PROJECTS_COLUMN));
+        final ArrayList<String> MatchedProjectIDList = stringArrayConversion(rs.getArray(USER_MATCHED_PROJECTS_COLUMN));
+        final ArrayList<String> UserCredentials = stringArrayConversion(rs.getArray(USER_CREDENTIALS_COLUMN));
 
         return new User(UserID, UserName, UserPassword, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
 

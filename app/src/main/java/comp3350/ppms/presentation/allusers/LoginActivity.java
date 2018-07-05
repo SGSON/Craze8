@@ -20,11 +20,14 @@ import java.io.InputStreamReader;
 
 import comp3350.ppms.application.Main;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.logic.ValidateUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
 
+    private static final String USER_NAME = "userName";
     private Button mLoginButton;
     private Button mSignUpButton;
     private String userNickname;
@@ -62,16 +65,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
             //Validate account name (will be a valid User or null)
-            User validUser = userManager.getUser(userNickname);
+            try{
 
-            //Pass userName to next Activity and start the intent
-            if (validUser != null){
+                User validUser = userManager.loginRequest(userNickname);
+                //Pass userName to next Activity and start the intent
+
                 intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("userName", userNickname);
+                intent.putExtra(USER_NAME, userNickname);
 
                 startActivity(intent);
-            }else{
-                userNicknameEdit.setError("Invalid Account Name");
+
+            } catch (CustomException e){
+
+                userNicknameEdit.setError(e.getErrorMsg());
             }
 
 

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.UserManager;
 import com.example.test.ppms.R;
 import comp3350.ppms.domain.User;
@@ -14,6 +16,7 @@ import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String USER_NAME = "userName";
     private Button mCreateProjectButton;
     private Button mViewProjectsButton;
     private User currAccount;
@@ -56,15 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCreateProjectButton.setOnClickListener(this);
         mViewProjectsButton.setOnClickListener(this);
 
-        UserManager userManager = new UserManager();
 
         //get the username from the last intent (login)
-        userNickname = getIntent().getStringExtra("userName");
-
-        //set the account
-        if(userNickname != null){
-            currAccount = userManager.getUser(userNickname);
-        }
+        getUserInfo();
 
 
     }
@@ -75,12 +72,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         if(view.getId() == R.id.create_project_button) {
             intent = new Intent(MainActivity.this, CreateProjectActivity.class);
-            intent.putExtra("userName", userNickname);
+            intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
-            intent = new Intent(MainActivity.this, ProjectListActivity.class);
-            intent.putExtra("userName", userNickname);
+
+            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.ProjectListActivity.class);
+            intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
+        }
+    }
+
+    public void getUserInfo(){
+        UserManager userManager = new UserManager();
+        userNickname = getIntent().getStringExtra(USER_NAME);
+        if (userNickname != null) {
+            try {
+                currAccount = userManager.getUser(userNickname);
+            }
+            catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
+            }
         }
     }
 
