@@ -20,7 +20,9 @@ public class UserManager implements UserManagerInterface{
 
     //accepts a String username and returns the User if the account has been created or returns null
     //if name doesn't exist.
-    public User getUser (String userName){
+
+    public User getUser (String userName) throws CustomException {
+        //ValidateUser.valideUser(userDB.getUserByString(userName));
         return userDB.getUserByString(userName);
     }
 
@@ -28,6 +30,18 @@ public class UserManager implements UserManagerInterface{
     public void addProjectToUserInterestedList(User user, String projectID) {
         user.addToLikedProjectIDList(projectID);
         userDB.updateUser(user);
+
+    }
+
+    public User signUp(User username) throws CustomException{
+        ValidateUser.validateUserSignUp(username);
+        return userDB.getUserByString(username.getUserNickName());
+    }
+
+    public User loginRequest(String userName) throws CustomException{
+        User user = userDB.getUserByString(userName);
+        ValidateUser.validUserLogin(user);
+        return user;
     }
 
 }

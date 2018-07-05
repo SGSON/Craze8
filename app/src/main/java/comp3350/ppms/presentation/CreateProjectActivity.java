@@ -85,11 +85,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         decreaseCredNumButton.setOnClickListener(this);
         decreaseCredNumButton.setEnabled(false);
 
-        userManager = new UserManager();
-        userNickname = getIntent().getStringExtra("userName");
-        if (userNickname != null){
-            currAccount = userManager.getUser(userNickname);
-        }
+        getUserInfo();
     }
 
     @Override
@@ -100,12 +96,12 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 //        result = validateProjectData(project, true);
         if(view.getId() == R.id.create_project_button) {
 //            if (result == null) {
-                try {
-                    projectManager.insertProject(project);
-                    currAccount.addToCreatedProjectIDList(project.getProjectID());
-                }catch (CustomException e){
-                    Messages.fatalError(this, e.getErrorMsg());
-                }
+            try {
+                projectManager.insertProject(project);
+                currAccount.addToCreatedProjectIDList(project.getProjectID());
+            }catch (CustomException e){
+                Messages.fatalError(this, e.getErrorMsg());
+            }
 //            } else {
 //                Messages.warning(this, result);
 //            }
@@ -117,6 +113,19 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
             finish();
         }
 
+    }
+
+    public void getUserInfo(){
+        userManager = new UserManager();
+        userNickname = getIntent().getStringExtra("userName");
+        if (userNickname != null) {
+            try {
+                currAccount = userManager.getUser(userNickname);
+            }
+            catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
+            }
+        }
     }
 
 

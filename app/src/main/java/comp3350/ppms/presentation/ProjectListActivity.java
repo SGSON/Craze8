@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
@@ -57,11 +58,20 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
         selectedProjectPosition = -1;
 
         userManager = new UserManager();
-        userNickname = getIntent().getStringExtra("userName");
-        if(userNickname != null){
-            currAccount = userManager.getUser(userNickname);
-        }
+        getUserInfo();
 
+    }
+
+    public void getUserInfo(){
+        userNickname = getIntent().getStringExtra("userName");
+        if (userNickname != null) {
+            try {
+                currAccount = userManager.getUser(userNickname);
+            }
+            catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
+            }
+        }
     }
 
     private void populateProjectList() {

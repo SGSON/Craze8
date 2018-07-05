@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.PasswordError;
 import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.logic.UsernameError;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener{
@@ -30,9 +32,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private UserManager userManager;
 
-    private final String USER_ERROR= "Must enter user name";
+  /*  private final String USER_ERROR= "Must enter user name";
     private final String PASSWORD_ERROR = "Must enter valid password";
-    private final String USER_EXISTS_ERROR = "User name already exists!";
+    private final String USER_EXISTS_ERROR = "User name already exists!";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +57,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         User user = createNewUserFromEditText();
         String result;
 
-        result = validateUserData(user);
+        //result = validateUserData(user);
         if(view.getId() == R.id.create_user_button){
-            if(result == null){
-                try{
-                    userManager.insertUser(user);
-                    Intent intent = new Intent(this,  MainActivity.class);
-                    intent.putExtra("userName", userNickname);
+            //if(result == null){
+            try{
+                userManager.insertUser(user);
+                Intent intent = new Intent(this,  MainActivity.class);
+                intent.putExtra("userName", userNickname);
 
-                    startActivity(intent);
-                } catch (CustomException e){
-                    Messages.fatalError(this, e.getErrorMsg());
+                startActivity(intent);
+            } catch (CustomException e){
+                //Messages.warning(this, e.getErrorMsg());
+                if(e instanceof UsernameError) {
+                    userNicknameEdit.setError(e.getErrorMsg());
+                }else if(e instanceof PasswordError){
+                    userPasswordEdit.setError(e.getErrorMsg());
                 }
+
+            }
                 
-            }else{
+            /*}else{
                 //Messages.warning(this,result);
                 if(result.equals(USER_ERROR) || result.equals(USER_EXISTS_ERROR)){
                     userNicknameEdit.setError(result);
@@ -77,7 +85,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
 
-            }
+            }*/
         }
 
     }
@@ -101,7 +109,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 //TODO move this into a different class
-    private String validateUserData(User user) {
+  /*  private String validateUserData(User user) {
 
         String result = null;
 
@@ -116,6 +124,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         return result;
-    }
+    }*/
 
 }
