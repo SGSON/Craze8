@@ -22,6 +22,7 @@ public class UserManagerTest extends TestCase {
     private UserManager testUserManager;
 
 
+
     @Before
     public void setUp(){
         testUserManager = mock(UserManager.class);

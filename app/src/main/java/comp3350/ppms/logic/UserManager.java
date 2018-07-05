@@ -15,12 +15,6 @@ public class UserManager implements UserManagerInterface{
     }
 
 
-    public UserManager(String test) {
-        userDB = Service.getTestUserDatabase();
-    }
-
-
-
 // TODO: write validate data and throws CustomException
     public void insertUser(User user) throws CustomException {
         ValidateUser.validateAll(user);
@@ -30,10 +24,9 @@ public class UserManager implements UserManagerInterface{
     //accepts a String username and returns the User if the account has been created or returns null
     //if name doesn't exist.
 
-    public User getUser (String userName) throws CustomException {
-        //ValidateUser.valideUser(userDB.getUserByString(userName));
-            return userDB.getUserByString(userName);
 
+    public User getUser (String userName) throws CustomException{
+        return userDB.getUserByString(userName);
     }
 
     @Override

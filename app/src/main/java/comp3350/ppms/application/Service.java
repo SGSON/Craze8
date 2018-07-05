@@ -35,14 +35,5 @@ public class Service {
         return userDatabaseInterface;
     }
 
-    public static synchronized UserDatabaseInterface getTestUserDatabase()
-    {
-        if(testUserDatabaseInterface == null)
-        {
-            testUserDatabaseInterface = new UserDatabase(); //What is the purpose of this DB?
-        }
-
-        return testUserDatabaseInterface;
-    }
 
 }
