@@ -66,8 +66,8 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
 
-            textView_project_name.setText(project.getProjectName());
-            textView_project_description.setText(project.getProjectDescription());
+            textView_project_name.setText(mProjectManager.getProjectName(project));
+            textView_project_description.setText(mProjectManager.getProjectDescription(project));
         }
         populateProjectCredentialList();
     }
@@ -96,7 +96,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         //clear the list if this activity has been called before
         if (mProjectCredentialList != null)
             mProjectCredentialList.clear();
-        mProjectCredentialList = mProjectManager.getProject(projectID).getProjectCredentials();
+        mProjectCredentialList = mProjectManager.getProjectCredentials(project);
         mProjectCredentialAdapter = new ProjectCredentialAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
         ((ProjectCredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();

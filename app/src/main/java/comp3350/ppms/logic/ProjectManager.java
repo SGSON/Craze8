@@ -14,10 +14,32 @@ import comp3350.ppms.persistence.ProjectDatabaseInterface;
  */
 public class ProjectManager implements ProjectManagerInterface{
 
-    private ProjectDatabaseInterface projectDB;
-
     public ProjectManager() {
         projectDB = Service.getProjectDatabaseInterface();
+    }
+
+    public ArrayList<Project> getProjects(){
+        return projectDB.getProjectSequential();
+    }
+
+    public Project getProject(String id) { return projectDB.getProject(id); }
+
+    private ProjectDatabaseInterface projectDB;
+
+
+    @Override
+    public String getProjectName(Project project) {
+        return project.getProjectName();
+    }
+
+    @Override
+    public String getProjectDescription(Project project) {
+        return project.getProjectDescription();
+    }
+
+    @Override
+    public ArrayList<String> getProjectCredentials(Project project) {
+        return project.getProjectCredentials();
     }
 
     public void insertProject(Project project) throws CustomException{
@@ -26,11 +48,7 @@ public class ProjectManager implements ProjectManagerInterface{
         projectDB.addProject(project.getProjectID(), project);
     }
 
-    public ArrayList<Project> getProjects(){
-        return projectDB.getProjectSequential();
-    }
 
-    public Project getProject(String id) { return projectDB.getProject(id); }
 
     @Override
     public void addInterestedUser(Project project, String userName) {
