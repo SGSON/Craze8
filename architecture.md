@@ -6,7 +6,7 @@
 
 ###### All users views  
         
-*Not yet implemented*  
+*Currently implemented*  
 
     * LoginActivity.java/xml
         - Login Actvity screen for all users     
@@ -51,7 +51,7 @@
 *Currently Implemented*  
 
     * MainActivity.java/xml
-        - Activity for first screen the user will encounter
+        - Landing page activity after a User signs up or logs in
 
     * Messages.java
         - Shows an error message dialog if an exception or warning occurs.
@@ -63,10 +63,16 @@
         - Takes care of the project processes
              - Project creation/editing
              - Project retrieval
-    * CustomException.java
-        - Allows methods to throw custom exceptions with specific messages.
     * ValidateProject.java
         - Verifies if the project input by users fits into a certain criteria.
+    * UserManager.java
+        - Takes care of user processes
+            - User account creation/editing
+    * ValidateUser.java
+        - Verifies valid User account data is entered
+    * CustomException.java
+        - Allows methods to throw custom exceptions with specific messages.
+    
         
 *Yet to be implemented*
 
@@ -82,11 +88,13 @@
 *Currently implemented*  
 
     * ProjectDatabase.java
-        - Store/Retrieve project in DB  
+        - Store/Retrieve project in DB 
+        - Works with ProjectPersistenceHSQLDB.java to Project data
+    * UserDatabase.java  
+        - Store/Retrieve user account details in DB  
+        - Works with UserDatabaseHSQLDB.java to persis User data
 *Yet to be implemented*
 
-    * AccountDatabase.java  
-        - Store/Retrieve user profile in DB  
     * MatchDatabase.java
         - Store/Retrieve match related details
 # Domain package  
@@ -96,6 +104,8 @@
         - passed between comp3350.ppms.presentation, comp3350.ppms.logic and comp3350.ppms.persistence layer
     * CustomException.java
         - used in conjuction with Messages.java to provide appropraite error messaging
+    * User.java
+        - used to store all User related data and parameters
 *Yet to be implemented*  
 
     * Account(parent).java  
