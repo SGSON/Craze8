@@ -26,9 +26,12 @@ public class User implements UserInterface{
         this.userCredentials = new ArrayList<>();
     }
 
-    public User(String ID, String userName, ArrayList<String> createdProjectIDList, ArrayList<String> likedProjectIDList, ArrayList<String> matchedProjectIDList, ArrayList<String> userCredentials){
+    public User(String ID, String userName, String password, ArrayList<String> createdProjectIDList,
+                ArrayList<String> likedProjectIDList, ArrayList<String> matchedProjectIDList,
+                ArrayList<String> userCredentials) {
         this.userID = ID;
         this.userNickName = userName;
+        this.userPassword = password;
         this.createdProjectIDList = createdProjectIDList;
         this.likedProjectIDList = likedProjectIDList;
         this.matchedProjectIDList = matchedProjectIDList;

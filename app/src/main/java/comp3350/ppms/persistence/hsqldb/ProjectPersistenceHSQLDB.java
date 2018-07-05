@@ -73,13 +73,14 @@ public class ProjectPersistenceHSQLDB implements ProjectDatabaseInterface {
     public void updateProject(Project project) {
         try (final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("UPDATE projects SET PROJECT_NAME = ?," +
-                    "PROJECT_DESCRIPTION = ?,  PROJECT_CREDENTIALS = ?, INTERESTED_USERS = ?, SELECTED_USERS = ?," +
+                    "PROJECT_DESCRIPTION = ?,  PROJECT_CREDENTIALS = ?, INTERESTED_USERS = ?, SELECTED_USERS = ? " +
                     "WHERE projectID = ?");
             st.setString(1, project.getProjectName());
             st.setString(2, project.getProjectDescription());
-            st.setArray(3, c.createArrayOf("varchar", project.getInterestedUsers().toArray()));
-            st.setArray(4, c.createArrayOf("varchar", project.getSelectedUsers().toArray()));
-            st.setString(5, project.getProjectID());
+            st.setArray(3, c.createArrayOf("varchar", project.getProjectCredentials().toArray()));
+            st.setArray(4, c.createArrayOf("varchar", project.getInterestedUsers().toArray()));
+            st.setArray(5, c.createArrayOf("varchar", project.getSelectedUsers().toArray()));
+            st.setString(6, project.getProjectID());
             st.executeUpdate();
         } catch (final SQLException e) {
             throw new DatabaseException(e);
