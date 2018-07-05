@@ -47,7 +47,7 @@ public class ValidateUser {
     public static boolean validateDuplicate(User user) throws CustomException {
         UserManager usersAccess = new UserManager();
         if (usersAccess.getUser(user.getUserNickName()) != null) {
-            throw new CustomException(CustomException.EXISTING_USERNAME_ERROR);
+            throw new UsernameError(CustomException.EXISTING_USERNAME_ERROR);
         }
         else{
             return true;

@@ -12,9 +12,6 @@ public class UserManager implements UserManagerInterface{
         userDB = Service.getUserDatabaseInterface();
     }
 
-   /* public UserManager(String test) {
-        userDB = Service.getTestUserDb;
-    }*/
 
 // TODO: write validate data and throws CustomException
     public void insertUser(User user) throws CustomException {
@@ -37,8 +34,12 @@ public class UserManager implements UserManagerInterface{
     }
 
     public User signUp(User username) throws CustomException{
-        ValidateUser.validateUserSignUp(username);
-        return userDB.getUserByString(username.getUserNickName());
+        User potentialUser = userDB.getUserByString(username.getUserNickName());
+        if(potentialUser != null){
+            throw new CustomException("test");
+        }else{
+            return potentialUser;
+        }
     }
 
     public User loginRequest(String userName) throws CustomException{
