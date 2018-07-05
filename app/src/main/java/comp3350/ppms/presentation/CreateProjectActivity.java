@@ -30,6 +30,7 @@ import comp3350.ppms.logic.UserManager;
 public class CreateProjectActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener {
 
+    private static final String USER_NAME = "userName";
     //For the UI
     private EditText projectNameEdit;
     private EditText projectDescriptionEdit;
@@ -90,11 +91,8 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         decreaseCredNumButton.setOnClickListener(this);
         decreaseCredNumButton.setEnabled(false);
 
-        userManager = new UserManager();
-        userNickname = getIntent().getStringExtra(this.getString(R.string.user_key));
-        if (userNickname != null){
-            currAccount = userManager.getUser(userNickname);
-        }
+        getUserInfo();
+
     }
 
     @Override
@@ -105,12 +103,12 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 //        result = validateProjectData(project, true);
         if(view.getId() == R.id.create_project_button) {
 //            if (result == null) {
-                try {
-                    projectManager.insertProject(project);
-                    currAccount.addToCreatedProjectIDList(project.getProjectID());
-                }catch (CustomException e){
-                    Messages.fatalError(this, e.getErrorMsg());
-                }
+            try {
+                projectManager.insertProject(project);
+                currAccount.addToCreatedProjectIDList(project.getProjectID());
+            }catch (CustomException e){
+                Messages.fatalError(this, e.getErrorMsg());
+            }
 //            } else {
 //                Messages.warning(this, result);
 //            }
@@ -122,6 +120,19 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
             finish();
         }
 
+    }
+
+    public void getUserInfo(){
+        userManager = new UserManager();
+        userNickname = getIntent().getStringExtra(USER_NAME);
+        if (userNickname != null) {
+            try {
+                currAccount = userManager.getUser(userNickname);
+            }
+            catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
+            }
+        }
     }
 
 
