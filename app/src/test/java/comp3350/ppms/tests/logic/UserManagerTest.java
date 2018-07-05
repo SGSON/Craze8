@@ -19,33 +19,4 @@ public class UserManagerTest extends TestCase {
     public UserManagerTest(String arg0){super(arg0);}
     private UserManager testUserManager;
 
-
-//    @Before
-//    public void buildUp(){
-//        testUserManager = new UserManager();
-//    }
-
-    @Test
-    public void testValidateUsernameTest(){
-        System.out.println("\nStarting test validate username");
-
-        testUserManager = new UserManager();
-        String userName = "BillyFrom4C";
-        String password = "PrettyBiird";
-
-        User testUser = new User(userName, password);
-        testUserManager.insertUser(testUser);
-
-        assertNotNull(testUserManager.validateUserName(userName));
-        System.out.println("Test Passed!");
-    }
-
-    public void testInvalidUsername(){
-        System.out.println("\nStarting testing invalid username");
-        String userName = "tester";
-        testUserManager = new UserManager();
-        assertNull(testUserManager.validateUserName(userName));
-        System.out.println("Test Passed!");
-    }
-
 }
