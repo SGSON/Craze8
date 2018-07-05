@@ -20,11 +20,4 @@ public class UserManagerTest extends TestCase {
     private UserManager testUserManager;
 
 
-//    @Before
-//    public void buildUp(){
-//        testUserManager = new UserManager();
-//    }
-
-
-
 }
