@@ -62,4 +62,9 @@ public class Project implements ProjectInterface {
         return selectedUsers;
     }
 
+    @Override
+    public int getNumInterestedUsers() {
+        return interestedUsers.size();
+    }
+
 }

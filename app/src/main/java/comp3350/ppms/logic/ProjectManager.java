@@ -56,4 +56,9 @@ public class ProjectManager implements ProjectManagerInterface{
         projectDB.updateProject(project);
     }
 
+    @Override
+    public int getNumInterestedUsers(Project project) {
+        return project.getNumInterestedUsers();
+    }
+
 }

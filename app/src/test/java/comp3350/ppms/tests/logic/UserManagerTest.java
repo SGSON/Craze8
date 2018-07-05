@@ -51,6 +51,7 @@ public class UserManagerTest extends TestCase {
     public void testInvalidUsername(){
         System.out.println("\nStarting testing getting a username not in the database");
         String userName = "tester";
+
         User testUser = new User("test", "test");
 
         try{
