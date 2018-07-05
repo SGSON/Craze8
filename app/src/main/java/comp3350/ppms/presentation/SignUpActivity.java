@@ -116,6 +116,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         return result;
-    }
+    }*/
 
-}*/
+}
