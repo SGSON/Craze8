@@ -20,4 +20,6 @@ public interface ProjectInterface {
 
     ArrayList<String> getSelectedUsers();
 
+    int getNumInterestedUsers();
+
 }
