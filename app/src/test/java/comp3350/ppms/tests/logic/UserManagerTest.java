@@ -20,7 +20,6 @@ public class UserManagerTest extends TestCase {
     private UserManager testUserManager;
 
 
-
     @Before
     public void setUp(){
         testUserManager = mock(UserManager.class);
@@ -37,29 +36,12 @@ public class UserManagerTest extends TestCase {
         try {
             testUserManager.insertUser(testUser);
             verify(testUserManager).insertUser(testUser);
-
         }catch (CustomException e){
             System.out.println(e);
         }
-
         System.out.println("Test Passed!");
     }
 
-//    @Before void inavlidUsernameTestSetUp(){
-//        testUserManager = mock(UserManager.class);
-//    }
-//    @Test(expected = CustomException.class)
-//    public void testInvalidUsernameSubmit(){
-//        System.out.println("\nStarting test of an invalid username");
-////        testUserManager = mock(UserManager.class);
-//        User testUser = new User("","sasdasd");
-//        try {
-//            doThrow(CustomException.class).when(testUserManager).insertUser(testUser);
-//            testUserManager.insertUser(testUser);
-//        } catch (CustomException e) {
-//            System.out.println("Test Passed!");
-//        }
-//    }
 
     @Before
     public void setUpBefore(){
