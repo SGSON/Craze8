@@ -100,13 +100,11 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         Project project = createNewProjectFromEditText();
 
-
         if(view.getId() == R.id.create_project_button) {
             try {
                 projectManager.insertProject(project);
                 currAccount.addToCreatedProjectIDList(project.getProjectID());
-            }catch (CustomException e){
-
+            } catch (CustomException e){
                 Messages.fatalError(this, e.getErrorMsg());
             }
 
@@ -125,12 +123,13 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     }
 
     public void getUserInfo(){
+        userManager = new UserManager();
         userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
             try {
                 currAccount = userManager.getUser(userNickname);
             }
-            catch (CustomException e){
+            catch (CustomException e) {
                 Messages.warning(this, e.getErrorMsg());
             }
         }
