@@ -1,11 +1,9 @@
 package comp3350.ppms.logic;
 
 import comp3350.ppms.application.Service;
-import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
-import comp3350.ppms.persistence.database.UserDatabase;
-import comp3350.ppms.persistence.hsqldb.DatabaseException;
 
 public class UserManager implements UserManagerInterface{
     private UserDatabaseInterface userDB;

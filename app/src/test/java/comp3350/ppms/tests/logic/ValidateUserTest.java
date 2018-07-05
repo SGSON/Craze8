@@ -4,10 +4,8 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 import comp3350.ppms.logic.ValidateUser;
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.User;
-
-import java.util.ArrayList;
 
 public class ValidateUserTest extends TestCase {
     public ValidateUserTest(String arg0) {super(arg0);}

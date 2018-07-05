@@ -1,8 +1,8 @@
 package comp3350.ppms.logic;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 
 public interface ProjectManagerInterface {
