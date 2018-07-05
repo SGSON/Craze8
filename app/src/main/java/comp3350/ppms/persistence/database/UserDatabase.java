@@ -21,6 +21,11 @@ public class UserDatabase implements UserDatabaseInterface{
         userStub.put(currentUser.getUserID(), currentUser);
     }
 
+    @Override
+    public void updateUser(User user) {
+
+    }
+
     public void deleteUser(User currentUser){
         userStub.remove(currentUser.getUserID());
     }

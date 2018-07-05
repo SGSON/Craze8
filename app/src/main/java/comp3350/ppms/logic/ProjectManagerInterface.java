@@ -11,10 +11,15 @@ public interface ProjectManagerInterface {
     //If information entered is valid, the project is added to the databases.
     //If the information entered is invalid, the function throws an exception.
 
+    String getProjectName(Project project);
+    String getProjectDescription(Project project);
+    ArrayList<String> getProjectCredentials(Project project);
     void insertProject(Project currentProject) throws CustomException;
 
     ArrayList<Project> getProjects();
 
     Project getProject(String id);
+
+    void addInterestedUser(Project project, String userName);
 }
 
