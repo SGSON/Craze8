@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -104,14 +105,17 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
             try {
                 projectManager.insertProject(project);
                 currAccount.addToCreatedProjectIDList(project.getProjectID());
+                Toast.makeText(this, "Created", Toast.LENGTH_SHORT).show();
             } catch (CustomException e){
                 Messages.fatalError(this, e.getErrorMsg());
             }
 
         }else if(view.getId() == R.id.increase_credential_button) {
             increaseNumCredential();
+            Toast.makeText(this, "Add Credential", Toast.LENGTH_SHORT).show();
         }else if(view.getId() == R.id.decrease_credential_button) {
             decreaseNumCredential();
+            Toast.makeText(this, "Delete Credential", Toast.LENGTH_SHORT).show();
         }else if(view.getId() == R.id.cancel_project_button){
             finish();
         }else{
@@ -194,19 +198,5 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
 
         startActivity(intent);
     }
-
-//    private String validateProjectData(Project project, boolean isNewProject) {
-//
-//        if (project.getProjectName().length() == 0) {
-//            return "project name required";
-//        }
-//        if (project.getProjectDescription().length() == 0){
-//            return "project description required";
-//        }
-//        if (project.getProjectCredentials().size() == 0){
-//            return "project credential required";
-//        }
-//        return null;
-//    }
 
 }
