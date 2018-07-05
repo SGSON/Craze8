@@ -68,8 +68,8 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
 
-            textView_project_name.setText(project.getProjectName());
-            textView_project_description.setText(project.getProjectDescription());
+            textView_project_name.setText(mProjectManager.getProjectName(project));
+            textView_project_description.setText(mProjectManager.getProjectDescription(project));
         }
         populateProjectCredentialList();
     }
@@ -77,10 +77,9 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.like_button) {
-            user.addToLikedProjectIDList(projectID);
-            //TODO move this implementation to the logic layer
-            project.addInterestedUser(user.getUserID());
+            likeProject(project, user, projectID, userNickname);
             Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
+
         }
 
         Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
@@ -90,11 +89,17 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         UserProjectDetailedViewActivity.this.startActivity(scIntent);
     }
 
+    private void likeProject(Project proj, User user, String projectID, String userNickname) {
+        userManager.addProjectToUserInterestedList(user, projectID);
+        mProjectManager.addInterestedUser(proj, userNickname);
+
+    }
+
     private void populateProjectCredentialList() {
         //clear the list if this activity has been called before
         if (mProjectCredentialList != null)
             mProjectCredentialList.clear();
-        mProjectCredentialList = mProjectManager.getProject(projectID).getProjectCredentials();
+        mProjectCredentialList = mProjectManager.getProjectCredentials(project);
         mProjectCredentialAdapter = new ProjectCredentialAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
         ((ProjectCredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();

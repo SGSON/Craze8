@@ -64,7 +64,7 @@ public class UserDatabaseHSQLDB implements UserDatabaseInterface{
         final ArrayList<String> MatchedProjectIDList = StringArrayConversion(rs.getArray(USER_MATCHED_PROJECTS_COLUMN));
         final ArrayList<String> UserCredentials = StringArrayConversion(rs.getArray(USER_CREDENTIALS_COLUMN));
 
-        return new User(UserID, UserName, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
+        return new User(UserID, UserName, UserPassword, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
 
     }
 
