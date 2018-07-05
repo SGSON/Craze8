@@ -31,9 +31,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private UserManager userManager;
 
-  /*  private final String USER_ERROR= "Must enter user name";
-    private final String PASSWORD_ERROR = "Must enter valid password";
-    private final String USER_EXISTS_ERROR = "User name already exists!";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
