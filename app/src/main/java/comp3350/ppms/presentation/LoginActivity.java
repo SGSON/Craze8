@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 
 import comp3350.ppms.application.Main;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.UserManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
@@ -63,16 +64,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
             //Validate account name (will be a valid User or null)
-            User validUser = userManager.getUser(userNickname);
+            try{
 
-            //Pass userName to next Activity and start the intent
-            if (validUser != null){
+                User validUser = userManager.getUser(userNickname);
+                //Pass userName to next Activity and start the intent
+                //if (validUser != null){
                 intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userName", userNickname);
 
                 startActivity(intent);
-            }else{
-                userNicknameEdit.setError("Invalid Account Name");
+                /*}else{
+                    userNicknameEdit.setError("Invalid Account Name");
+                }*/
+            } catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
             }
 
 

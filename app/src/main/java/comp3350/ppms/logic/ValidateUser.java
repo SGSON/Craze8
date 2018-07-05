@@ -42,5 +42,13 @@ public class ValidateUser {
         }
     }
 
+    public static boolean valideUser(User user) throws CustomException{
+        if (user == null){
+            throw new CustomException("Invalid Account Name");
+        } else{
+            return true;
+        }
+    }
+
 
 }

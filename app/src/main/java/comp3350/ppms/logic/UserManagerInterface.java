@@ -6,7 +6,7 @@ public interface UserManagerInterface {
 
     void insertUser(User user) throws CustomException;
 
-    User getUser (String userName);
+    User getUser (String userName) throws CustomException;
 
 }
 

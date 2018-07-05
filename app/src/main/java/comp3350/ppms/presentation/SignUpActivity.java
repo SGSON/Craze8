@@ -30,9 +30,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private UserManager userManager;
 
-    private final String USER_ERROR= "Must enter user name";
+  /*  private final String USER_ERROR= "Must enter user name";
     private final String PASSWORD_ERROR = "Must enter valid password";
-    private final String USER_EXISTS_ERROR = "User name already exists!";
+    private final String USER_EXISTS_ERROR = "User name already exists!";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +58,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         //result = validateUserData(user);
         if(view.getId() == R.id.create_user_button){
             //if(result == null){
-                try{
-                    userManager.insertUser(user);
-                    Intent intent = new Intent(this,  MainActivity.class);
-                    intent.putExtra("userName", userNickname);
+            try{
+                userManager.insertUser(user);
+                Intent intent = new Intent(this,  MainActivity.class);
+                intent.putExtra("userName", userNickname);
 
-                    startActivity(intent);
-                } catch (CustomException e){
-                    Messages.fatalError(this, e.getErrorMsg());
-                }
+                startActivity(intent);
+            } catch (CustomException e){
+                Messages.warning(this, e.getErrorMsg());
+            }
                 
             /*}else{
                 //Messages.warning(this,result);
