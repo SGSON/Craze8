@@ -58,7 +58,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if(view.getId() == R.id.create_user_button){
 
             try{
-                userManager.insertUser(user);
+
+                userManager.signUp(user);
                 Intent intent = new Intent(this,  MainActivity.class);
                 intent.putExtra(USER_NAME, userNickname);
 
