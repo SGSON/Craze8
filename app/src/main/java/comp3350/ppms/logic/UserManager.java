@@ -4,6 +4,8 @@ import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
+import comp3350.ppms.persistence.database.UserDatabase;
+import comp3350.ppms.persistence.hsqldb.DatabaseException;
 
 public class UserManager implements UserManagerInterface{
     private UserDatabaseInterface userDB;
@@ -11,6 +13,7 @@ public class UserManager implements UserManagerInterface{
     public UserManager(){
         userDB = Service.getUserDatabaseInterface();
     }
+
 
 // TODO: write validate data and throws CustomException
     public void insertUser(User user) throws CustomException {
@@ -21,8 +24,8 @@ public class UserManager implements UserManagerInterface{
     //accepts a String username and returns the User if the account has been created or returns null
     //if name doesn't exist.
 
-    public User getUser (String userName) throws CustomException {
-        //ValidateUser.valideUser(userDB.getUserByString(userName));
+
+    public User getUser (String userName) throws CustomException{
         return userDB.getUserByString(userName);
     }
 
@@ -34,8 +37,12 @@ public class UserManager implements UserManagerInterface{
     }
 
     public User signUp(User username) throws CustomException{
-        ValidateUser.validateUserSignUp(username);
-        return userDB.getUserByString(username.getUserNickName());
+        User potentialUser = userDB.getUserByString(username.getUserNickName());
+        if(potentialUser != null){
+            throw new CustomException("test");
+        }else{
+            return potentialUser;
+        }
     }
 
     public User loginRequest(String userName) throws CustomException{

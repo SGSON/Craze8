@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mViewProjectsButton;
     private User currAccount;
     private String userNickname;
+    private UserManager userManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getUserInfo(){
-        UserManager userManager = new UserManager();
+        userManager = new UserManager();
         userNickname = getIntent().getStringExtra(USER_NAME);
         if (userNickname != null) {
             try {

@@ -42,7 +42,7 @@ public class ProjectManager implements ProjectManagerInterface{
         return project.getProjectCredentials();
     }
 
-    public void insertProject(Project project) throws CustomException{
+    public void insertProject(Project project) throws CustomException {
         ValidateProject.validateAll(project);
 
         projectDB.addProject(project.getProjectID(), project);

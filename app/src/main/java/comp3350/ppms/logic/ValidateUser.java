@@ -11,14 +11,15 @@ public class ValidateUser {
 
 
     public static boolean validateAll(User user) throws CustomException{
+
         validateName(user);
+        validateDuplicate(user);
         validatePassword(user);
 
         return true;
     }
 
     public static boolean validateName(User user) throws CustomException {
-        UserManager usersAccess = new UserManager();
         if (user.getUserNickName().length()< MIN_NAME_LENGTH){
             throw new UsernameError("Name requires at least " + MIN_NAME_LENGTH + " characters.");
         } else if (user.getUserNickName() == null || user.getUserNickName() == ""){
@@ -28,10 +29,6 @@ public class ValidateUser {
         } else if (user.getUserNickName().length() > MAX_NAME_LENGTH) {
 
             throw new UsernameError("Name cannot exceed " + MAX_NAME_LENGTH + " characters.");
-
-        } else if (usersAccess.getUser(user.getUserNickName()) != null) {
-
-            throw new CustomException(CustomException.EXISTING_USERNAME_ERROR);
 
         } else {
 
@@ -45,6 +42,16 @@ public class ValidateUser {
         } else if (user.getUserPassword().length() > MAX_PASS_LENGTH) {
             throw new PasswordError("Password cannot exceed " + MAX_PASS_LENGTH + " characters.");
         } else {
+            return true;
+        }
+    }
+
+    public static boolean validateDuplicate(User user) throws CustomException {
+        UserManager usersAccess = new UserManager();
+        if (usersAccess.getUser(user.getUserNickName()) != null) {
+            throw new UsernameError(CustomException.EXISTING_USERNAME_ERROR);
+        }
+        else{
             return true;
         }
     }
