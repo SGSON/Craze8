@@ -9,7 +9,7 @@
 *Currently implemented*  
 
     * LoginActivity.java/xml
-        - Login Actvity screen for all users   
+        - Login Activity screen for all users   
     * MainActivity.java/xml
         - Landing page activity after a User signs up or logs in
     * Messages.java
@@ -37,7 +37,7 @@
     * UserProfileCreateActivity.java/xml
         - Activity used for general users to complete their profile
     * UserProfileEditActivity.java/xml
-        - Activty used for general users to update/edit their profile
+        - Activity used for general users to update/edit their profile
 ###### Project owner views  
 *Currently Implemented*  
 
@@ -57,7 +57,7 @@
 *Currently implemented*  
 
     * CustomException.java
-        - used in conjuction with Messages.java to provide appropraite error messaging
+        - used in conjunction with Messages.java to provide appropriate error messaging
     * ProjectManager.java  
         - Takes care of the project processes
              - Project creation/editing
@@ -73,7 +73,7 @@
 
     * MatchingEngine.java  
         - Determine user profiles that match project specifications  
-        - Determine projects that match user qualifiticaions  
+        - Determine projects that match user qualifications  
     * AccountManager.java  
         - Takes care of the general user and project owner account processes
             - account creation
