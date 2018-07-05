@@ -195,18 +195,5 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-//    private String validateProjectData(Project project, boolean isNewProject) {
-//
-//        if (project.getProjectName().length() == 0) {
-//            return "project name required";
-//        }
-//        if (project.getProjectDescription().length() == 0){
-//            return "project description required";
-//        }
-//        if (project.getProjectCredentials().size() == 0){
-//            return "project credential required";
-//        }
-//        return null;
-//    }
 
 }
