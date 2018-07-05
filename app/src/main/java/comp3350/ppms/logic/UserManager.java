@@ -1,28 +1,36 @@
 package comp3350.ppms.logic;
 
 import comp3350.ppms.application.Service;
+import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
-import java.util.UUID;
 
 public class UserManager implements UserManagerInterface{
-    private UserDatabaseInterface userStub;
+    private UserDatabaseInterface userDB;
 
     public UserManager(){
-        userStub = Service.getUserDatabaseInterface();
+        userDB = Service.getUserDatabaseInterface();
     }
 
 // TODO: write validate data and throws CustomException
     public void insertUser(User user) throws CustomException {
         ValidateUser.validateAll(user);
-        userStub.insertUser((user));
+        userDB.insertUser((user));
     }
 
     //accepts a String username and returns the User if the account has been created or returns null
     //if name doesn't exist.
+
     public User getUser (String userName) throws CustomException {
-        ValidateUser.valideUser(userStub.getUserByString(userName));
-        return userStub.getUserByString(userName);
+        ValidateUser.valideUser(userDB.getUserByString(userName));
+        return userDB.getUserByString(userName);
+    }
+
+    @Override
+    public void addProjectToUserInterestedList(User user, String projectID) {
+        user.addToLikedProjectIDList(projectID);
+        userDB.updateUser(user);
+
     }
 
 }
