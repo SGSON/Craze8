@@ -74,7 +74,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/view_created_project"/>
+            android:text="@string/view_all_project"/>
 
         <Button
             android:id="@+id/view_liked_projects_button"
