@@ -112,6 +112,7 @@ public class UserInterestedProjectsListActivity extends AppCompatActivity implem
     public void onClick(View v) {
         if(v.getId() == R.id.project_details_button){
             Intent scIntent = new Intent(UserInterestedProjectsListActivity.this, UserProjectDetailedViewActivity.class);
+            scIntent.putExtra("caller", "UserInterestedProjectsListActivity");
             Bundle bundle = new Bundle();
 
             bundle.putString(this.getString(R.string.project_id), currProjectID);

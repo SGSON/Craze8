@@ -82,12 +82,18 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             likeProject(project, currAccount, projectID, userNickname);
             Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
         }
+        String caller = this.getIntent().getStringExtra("caller");
+        try {
+            Class callingActivity = Class.forName(caller);
+            Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, callingActivity);
 
-        Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
+            scIntent.putExtra(USER_NAME, userNickname);
 
-        scIntent.putExtra(USER_NAME, userNickname);
-
-        UserProjectDetailedViewActivity.this.startActivity(scIntent);
+            UserProjectDetailedViewActivity.this.startActivity(scIntent);
+        } catch (ClassNotFoundException e)
+        {
+            Messages.warning(this, e.getMessage());
+        }
     }
 
 

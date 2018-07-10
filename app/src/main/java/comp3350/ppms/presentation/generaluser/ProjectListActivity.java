@@ -125,6 +125,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         if(v.getId() == R.id.project_details_button){
             Intent scIntent = new Intent(ProjectListActivity.this, UserProjectDetailedViewActivity.class);
+            scIntent.putExtra("caller", "ProjectListActivity");
             Bundle bundle = new Bundle();
 
             bundle.putString(this.getString(R.string.project_id), currProjectID);
