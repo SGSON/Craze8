@@ -1,4 +1,9 @@
 # Purpose of Project #
+* Match people with projects that are looking for candidates with specific qualifications and skills
+* Match people and projects with as little conscious or unconscious bias as possible
+* Make it easy and fun for candidates to find a project to contriute to
+* Make it easy and fun for project owners to find qualified candidates
+
 The purpose of this project is to create a system to help match qualified people with projects that are looking for them by eliminating any other "noise" that would get in way of people making an unbiased decision
 
 # How To Run The Project #
