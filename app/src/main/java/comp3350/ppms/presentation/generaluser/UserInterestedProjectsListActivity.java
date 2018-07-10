@@ -19,6 +19,7 @@ import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.presentation.allusers.Messages;
 import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
+import comp3350.ppms.presentation.allusers.MainActivity;
 
 public class UserInterestedProjectsListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener  {
 
