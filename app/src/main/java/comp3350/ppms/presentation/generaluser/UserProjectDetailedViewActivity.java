@@ -109,6 +109,8 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private void likeProject(Project proj, User user, String projectID, String userNickname) {
         userManager.addProjectToUserInterestedList(user, projectID);
         mProjectManager.addInterestedUser(proj, userNickname);
+        interestButton.setText("Liked");
+        interestButton.setEnabled(false);
 
     }
 
