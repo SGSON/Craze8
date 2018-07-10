@@ -76,7 +76,16 @@
             android:layout_marginTop="8dp"
             android:text="@string/view_created_project"/>
 
-
+        <Button
+            android:id="@+id/view_liked_projects_button"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/view_liked_project"/>
 
     </LinearLayout>
 
