@@ -28,7 +28,6 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
     private static final String USER_NAME = "userName";
     private static final String PROJECT_ID = "projectID";
-    private Button mAllProjectsButton;
     private Button interestButton;
     private ProjectManager mProjectManager;
     private ListView mListView;
@@ -49,8 +48,6 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         interestButton = (Button) findViewById(R.id.like_button);
         interestButton.setOnClickListener(this);
 
-        mAllProjectsButton = (Button) findViewById(R.id.all_projects_button);
-        mAllProjectsButton.setOnClickListener(this);
         mListView = (ListView) findViewById(R.id.project_credentials);
 
         Intent intent = this.getIntent();
