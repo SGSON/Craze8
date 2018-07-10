@@ -122,7 +122,7 @@ public class UserInterestedProjectsListActivity extends AppCompatActivity implem
             UserInterestedProjectsListActivity.this.startActivity(scIntent);
         }
         else if (v.getId() == R.id.return_button) {
-            Intent scIntent = new Intent(UserInterestedProjectsListActivity.this, CreateProjectActivity.class);
+            Intent scIntent = new Intent(UserInterestedProjectsListActivity.this, MainActivity.class);
             scIntent.putExtra(this.getString(R.string.user_key), userNickname);
             UserInterestedProjectsListActivity.this.startActivity(scIntent);
         }
