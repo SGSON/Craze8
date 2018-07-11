@@ -134,5 +134,11 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
             scIntent.putExtras(bundle);
             ProjectListActivity.this.startActivity(scIntent);
         }
+        else if (v.getId() == R.id.return_button) {
+            Intent scIntent = new Intent(ProjectListActivity.this, CreateProjectActivity.class);
+            scIntent.putExtra(this.getString(R.string.user_key), userNickname);
+            ProjectListActivity.this.startActivity(scIntent);
+        }
+
     }
 }
