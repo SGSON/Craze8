@@ -11,7 +11,9 @@
     <string name="credentials_label">Credentials</string>
     <string name="success_message">Success</string>
     <string name="invalid_data">Invalid Data</string>
-    <string name="view_created_project">View Created Projects</string>
+    <string name="view_all_project">View All Projects</string>
+    <string name="view_liked_project">View Liked Projects</string>
+    <string name="view_project_details">View Project Details</string>
     <string name="fatalError">Fatal error</string>
     <string name="warning">Warning</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
@@ -23,4 +25,6 @@
     <string name="does_not_have_account_prompt">If you do not have an account</string>
     <string name="project_credential_input">Please Enter Project Credential</string>
     <string name="user_key">userName</string>
+    <string name="project_id">projectID</string>
+    <string name="return_to_main">Go To Main Page</string>
 </resources>

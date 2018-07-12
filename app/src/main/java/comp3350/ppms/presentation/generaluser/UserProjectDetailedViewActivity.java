@@ -28,7 +28,6 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
     private static final String USER_NAME = "userName";
     private static final String PROJECT_ID = "projectID";
-    private Button mAllProjectsButton;
     private Button interestButton;
     private ProjectManager mProjectManager;
     private ListView mListView;
@@ -49,8 +48,6 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         interestButton = (Button) findViewById(R.id.like_button);
         interestButton.setOnClickListener(this);
 
-        mAllProjectsButton = (Button) findViewById(R.id.all_projects_button);
-        mAllProjectsButton.setOnClickListener(this);
         mListView = (ListView) findViewById(R.id.project_credentials);
 
         Intent intent = this.getIntent();
@@ -72,6 +69,12 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
             textView_project_name.setText(mProjectManager.getProjectName(project));
             textView_project_description.setText(mProjectManager.getProjectDescription(project));
+
+            if (currAccount.getLikedProjectIDList().contains(projectID))
+            {
+                interestButton.setText("Liked");
+                interestButton.setEnabled(false);
+            }
         }
         populateProjectCredentialList();
     }
@@ -106,6 +109,8 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private void likeProject(Project proj, User user, String projectID, String userNickname) {
         userManager.addProjectToUserInterestedList(user, projectID);
         mProjectManager.addInterestedUser(proj, userNickname);
+        interestButton.setText("Liked");
+        interestButton.setEnabled(false);
 
     }
 

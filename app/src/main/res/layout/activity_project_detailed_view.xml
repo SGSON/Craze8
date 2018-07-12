@@ -87,16 +87,5 @@
             android:layout_centerHorizontal="true"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Like" />
-
-        <Button
-            android:id="@+id/all_projects_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="Return to All Projects" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
