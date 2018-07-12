@@ -5,7 +5,7 @@
 The purpose of this project is to:
 * Match people with projects that are looking for candidates with specific qualifications and skills
 * Match people and projects with as little conscious or unconscious bias as possible
-* Make it easy and fun for candidates to find a project to contriute to
+* Make it easy and fun for candidates to find a project to contribute to
 * Make it easy and fun for project owners to find qualified candidates
 
 
