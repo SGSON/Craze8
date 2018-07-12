@@ -1,5 +1,5 @@
 # PPMS
-*People to Project Matching System*  
+*Person to Project Matching System*  
 
 ## Purpose of Project
 The purpose of this project is to:
