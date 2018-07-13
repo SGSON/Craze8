@@ -7,6 +7,8 @@ public interface ProjectInterface {
 
     String getProjectID();
 
+    String getProjectOwner();
+
     String getProjectName();
 
     String getProjectDescription();

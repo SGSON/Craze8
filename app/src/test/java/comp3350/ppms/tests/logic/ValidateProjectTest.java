@@ -180,4 +180,22 @@ public class ValidateProjectTest extends TestCase {
         }
         System.out.println("\nFinished testValidateProject: Checking id");
     }
+
+    @Test (expected = CustomException.class)
+    public void testProjectOwnerID() {
+        System.out.println("\nStarting testValidateProject: Checking id");
+        ArrayList<String> cred = new ArrayList<String>();
+        String desc = "abcdefgh";
+        String name = "abcdefg";
+        String creatorID = "wefsdfds";
+        cred.add("hello");
+        Project newProj = new Project(name, creatorID, desc, cred);
+        try {
+            ValidateProject.validateOwner(newProj);
+        } catch (CustomException expected) {
+            assertEquals(null, expected);
+        }
+        System.out.println("\nFinished testValidateProject: Checking id");
+    }
+
 }

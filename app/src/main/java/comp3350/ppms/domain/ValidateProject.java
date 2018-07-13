@@ -12,6 +12,7 @@ public class ValidateProject {
 
     public static boolean validateAll(Project project) throws CustomException{
         validateUUID(project);
+        validateOwner(project);
         validateName(project);
         validateDescription(project);
         validateCredentials(project);
@@ -22,6 +23,14 @@ public class ValidateProject {
     public static boolean validateUUID(Project project) throws CustomException{
         if (project.getProjectID() == null){
             throw new CustomException(CustomException.NO_PROJECT_ID_ERROR);
+        } else {
+            return true;
+        }
+    }
+
+    public static boolean validateOwner(Project project) throws CustomException {
+        if(project.getProjectOwner() == null) {
+            throw new CustomException("No Project Owner error");
         } else {
             return true;
         }
