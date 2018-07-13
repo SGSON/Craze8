@@ -28,6 +28,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private static final String PROJECT_ID = "projectID";
     private Button interestButton;
     private Button viewIntUsersButton;
+    private Button viewMatchedUsersButton;
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
@@ -51,6 +52,9 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         viewIntUsersButton = (Button) findViewById(R.id.view_interested_users_button);
         viewIntUsersButton.setOnClickListener(this);
 
+        viewMatchedUsersButton = (Button) findViewById(R.id.view_matched_users_button);
+        viewMatchedUsersButton.setOnClickListener(this);
+
         mListView = (ListView) findViewById(R.id.project_credentials);
 
         Intent intent = this.getIntent();
@@ -73,11 +77,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             textView_project_name.setText(mProjectManager.getProjectName(project));
             textView_project_description.setText(mProjectManager.getProjectDescription(project));
 
-            if (currAccount.getLikedProjectIDList().contains(projectID)) //TODO: This is a code smell
-            {
-                interestButton.setText("Liked");
-                interestButton.setEnabled(false);
-            }
+            adjustUIForUser();
         }
         populateProjectCredentialList();
     }
@@ -130,6 +130,29 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         mProjectCredentialAdapter = new CredentialsAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
         ((CredentialsAdapter) mListView.getAdapter()).notifyDataSetChanged();
+    }
+
+    private void adjustUIForUser() {
+        if(userManager.userIsProjectOwner(currAccount, project)) {
+            adjustUIForProjectOwner();
+        } else {
+            adjustUIForGeneralUser();
+        }
+    }
+
+    private void adjustUIForProjectOwner() {
+        interestButton.setVisibility(View.GONE);
+    }
+
+    private void adjustUIForGeneralUser() {
+        if (currAccount.getLikedProjectIDList().contains(projectID)) //TODO: This is a code smell
+        {
+            interestButton.setText("Liked");
+            interestButton.setEnabled(false);
+        }
+
+        viewIntUsersButton.setVisibility(View.GONE);
+        viewMatchedUsersButton.setVisibility(View.GONE);
     }
 
 }

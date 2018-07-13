@@ -4,6 +4,7 @@ import java.util.List;
 
 import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
 
@@ -41,6 +42,17 @@ public class UserManager implements UserManagerInterface{
     @Override
     public List<String> getUserCredentials(User user) {
         return user.getUserCredentials();
+    }
+
+    @Override
+    public boolean userIsProjectOwner(User user, Project project) {
+        String userID;
+        String projOwnerID;
+
+        userID = user.getUserID();
+        projOwnerID = project.getProjectOwner();
+
+        return userID.equals(projOwnerID);
     }
 
     public User signUp(User username) throws CustomException{

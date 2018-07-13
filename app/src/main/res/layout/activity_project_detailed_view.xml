@@ -97,5 +97,13 @@
             android:layout_centerHorizontal="true"
             android:text="@string/view_interested_users_text"/>
 
+        <Button
+            android:id="@+id/view_matched_users_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_interested_users_button"
+            android:layout_centerHorizontal="true"
+            android:text="@string/view_matched_users_text"/>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
