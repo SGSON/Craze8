@@ -22,6 +22,7 @@ import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.presentation.allusers.Messages;
+import comp3350.ppms.presentation.projectowner.InterestedUsersListActivity;
 
 
 public class UserProjectDetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +30,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private static final String USER_NAME = "userName";
     private static final String PROJECT_ID = "projectID";
     private Button interestButton;
+    private Button viewIntUsersButton;
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
@@ -47,6 +49,9 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
         interestButton = (Button) findViewById(R.id.like_button);
         interestButton.setOnClickListener(this);
+
+        viewIntUsersButton = (Button) findViewById(R.id.view_interested_users);
+        viewIntUsersButton.setOnClickListener(this);
 
         mListView = (ListView) findViewById(R.id.project_credentials);
 
@@ -86,11 +91,14 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
         }
 
-        Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
-
-        scIntent.putExtra(USER_NAME, userNickname);
-
-        UserProjectDetailedViewActivity.this.startActivity(scIntent);
+        if(v.getId() == R.id.view_projects_button) {
+            navigateToInterestedUsersList();
+        }
+//        Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
+//
+//        scIntent.putExtra(USER_NAME, userNickname);
+//
+//        UserProjectDetailedViewActivity.this.startActivity(scIntent);
     }
 
 
@@ -112,6 +120,12 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         interestButton.setText("Liked");
         interestButton.setEnabled(false);
 
+    }
+
+    private void navigateToInterestedUsersList() {
+        Intent intent = new Intent(UserProjectDetailedViewActivity.this, InterestedUsersListActivity.class);
+        intent.putExtra(PROJECT_ID, projectID);
+        startActivity(intent);
     }
 
     private void populateProjectCredentialList() {
