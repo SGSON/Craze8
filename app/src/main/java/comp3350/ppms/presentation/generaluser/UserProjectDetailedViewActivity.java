@@ -20,6 +20,7 @@ import comp3350.ppms.domain.User;
 import comp3350.ppms.presentation.allusers.CredentialsAdapter;
 import comp3350.ppms.presentation.allusers.Messages;
 import comp3350.ppms.presentation.projectowner.InterestedUsersListActivity;
+import comp3350.ppms.presentation.projectowner.MatchedUsersListActivity;
 
 
 public class UserProjectDetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -87,10 +88,10 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         if (v.getId() == R.id.like_button) {
             likeProject(project, currAccount, projectID, userNickname);
             Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
-        }
-
-        if(v.getId() == R.id.view_interested_users_button) {
+        } else if(v.getId() == R.id.view_interested_users_button) {
             navigateToInterestedUsersList();
+        } else if(v.getId() == R.id.view_matched_users_button) {
+            navigateToMatchedUsersList();
         }
 
     }
@@ -120,6 +121,12 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         Intent intent = new Intent(UserProjectDetailedViewActivity.this, InterestedUsersListActivity.class);
         intent.putExtra(PROJECT_ID, projectID);
         UserProjectDetailedViewActivity.this.startActivity(intent);
+    }
+
+    private void navigateToMatchedUsersList() {
+        Intent intent = new Intent(this, MatchedUsersListActivity.class);
+        intent.putExtra(PROJECT_ID, projectID);
+        startActivity(intent);
     }
 
     private void populateProjectCredentialList() {
