@@ -21,6 +21,7 @@ import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.allusers.CredentialAdapter;
 import comp3350.ppms.presentation.allusers.Messages;
 import comp3350.ppms.presentation.projectowner.InterestedUsersListActivity;
 
@@ -34,7 +35,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
-    private ProjectCredentialAdapter mProjectCredentialAdapter;
+    private CredentialAdapter mProjectCredentialAdapter;
     private String projectID;
     private Project project;
     private UserManager userManager;
@@ -130,38 +131,9 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         if (mProjectCredentialList != null)
             mProjectCredentialList.clear();
         mProjectCredentialList = mProjectManager.getProjectCredentials(project);
-        mProjectCredentialAdapter = new ProjectCredentialAdapter(this, mProjectCredentialList);
+        mProjectCredentialAdapter = new CredentialAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
-        ((ProjectCredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();
+        ((CredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();
     }
 
-    private class ProjectCredentialAdapter extends ArrayAdapter<String> {
-
-        private String mProjectCredential;
-
-        public ProjectCredentialAdapter(Context context, ArrayList<String> projectCredentials) {
-            super(context, 0, projectCredentials);
-        }
-
-
-        @Override
-        public View getView(int index, View view, ViewGroup parent){
-
-            // Check if an existing view is being reused, otherwise inflate the view
-            if(view == null) {
-                view = LayoutInflater.from(getContext()).inflate(R.layout.item_project_credential, parent,
-                        false);
-            }
-
-            // Get data from project and set up the views
-            mProjectCredential = getItem(index);
-            TextView textView_project_credential = (TextView)view.findViewById(R.id.project_credential);
-
-            textView_project_credential.setText(mProjectCredential);
-
-            return view;
-        }
-
-
-    }
 }

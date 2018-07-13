@@ -1,5 +1,7 @@
 package comp3350.ppms.logic;
 
+import java.util.List;
+
 import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.User;
@@ -25,7 +27,7 @@ public class UserManager implements UserManagerInterface{
     }
 
     @Override
-    public User getUserByID(String ID) throws CustomException {
+    public User getUserByID(String ID) {
         return userDB.getUserByID(ID);
     }
 
@@ -34,6 +36,11 @@ public class UserManager implements UserManagerInterface{
         user.addToLikedProjectIDList(projectID);
         userDB.updateUser(user);
 
+    }
+
+    @Override
+    public List<String> getUserCredentials(User user) {
+        return user.getUserCredentials();
     }
 
     public User signUp(User username) throws CustomException{

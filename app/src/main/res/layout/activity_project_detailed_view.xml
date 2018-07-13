@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <GridLayout
-        android:id="@+id/gridLayout"
+        android:id="@+id/userInfoGridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="1"
@@ -62,7 +62,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginLeft="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        app:layout_constraintTop_toBottomOf="@+id/userInfoGridLayout"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         android:choiceMode="none" />
 

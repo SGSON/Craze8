@@ -1,13 +1,71 @@
 package comp3350.ppms.presentation.generaluser;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public class UserInfoActivity extends AppCompatActivity {
+import com.example.test.ppms.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.ProjectManager;
+import comp3350.ppms.logic.UserManager;
+
+public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String USER_ID = "userID";
+    private static final String PROJECT_ID = "projectID";
+
+    TextView mUserNameTextView;
+    ListView mUserCredListView;
+    Button mSelectUserButton;
+
+    ProjectManager mProjectManager;
+    Project mProject;
+
+    UserManager mUserManager;
+    User mUser;
+    List<String> mUserCredentials;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+
+        mUserNameTextView = (TextView) findViewById(R.id.select_button);
+        mUserCredListView = (ListView) findViewById((R.id.user_credentials));
+
+        mSelectUserButton = (Button) findViewById((R.id.select_button));
+        mSelectUserButton.setOnClickListener(this);
+
+        mProjectManager = new ProjectManager();
+        mUserManager = new UserManager();
+        initiateIntentValues();
+    }
+
+    private void initiateIntentValues() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        mProject = mProjectManager.getProject(bundle.getString(PROJECT_ID));
+        mUser = mUserManager.getUserByID(bundle.getString(USER_ID));
+    }
+
+    private void populateUserCredentialsList(){
+        mUserCredentials = mUserManager.getUserCredentials(mUser);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.select_button) {
+            //
+        }
     }
 }
