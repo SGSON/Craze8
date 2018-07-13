@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Project implements ProjectInterface {
 
     private String projectID;
+    private String createdBy;
     private String projectName;
     private String projectDescription;
     private ArrayList<String> projectCredentials;
@@ -13,8 +14,9 @@ public class Project implements ProjectInterface {
     private ArrayList<String> selectedUsers;
 
 
-    public Project(String name, String descr, ArrayList<String> cred) {
+    public Project(String name, String creator, String descr, ArrayList<String> cred) {
         projectID = UUID.randomUUID().toString();
+        createdBy = creator;
         projectName = name;
         projectDescription = descr;
         projectCredentials = cred;
