@@ -45,6 +45,11 @@ public class UserManager implements UserManagerInterface{
     }
 
     @Override
+    public List<String> getUsersInterestedProjects(User user) {
+        return user.getLikedProjectIDList();
+    }
+
+    @Override
     public boolean userIsProjectOwner(User user, Project project) {
         String userID;
         String projOwnerID;

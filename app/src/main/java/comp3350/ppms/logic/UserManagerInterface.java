@@ -17,6 +17,7 @@ public interface UserManagerInterface {
     void addProjectToUserInterestedList(User user, String projectID);
 
     List<String> getUserCredentials(User user);
+    List<String> getUsersInterestedProjects(User user);
 
     boolean userIsProjectOwner(User user, Project project);
 

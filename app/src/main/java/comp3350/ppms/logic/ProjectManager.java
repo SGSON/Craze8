@@ -69,8 +69,8 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     @Override
-    public int getNumInterestedUsers(Project project) {
-        return project.getNumInterestedUsers();
+    public List<String> getSelectedUsersForProject(Project project) {
+        return project.getSelectedUsers();
     }
 
     @Override

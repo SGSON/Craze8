@@ -9,7 +9,6 @@ import android.widget.ListView;
 
 import com.example.test.ppms.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.ppms.domain.Project;
@@ -60,7 +59,7 @@ public class InterestedUsersListActivity extends AppCompatActivity
 
     }
 
-    private void viewUserInfo(int position) {
+    private void navigateToUserInfo(int position) {
         User user = interestedUsers.get(position);
         final String UserID = user.getUserID();
         final String ProjectID = mProject.getProjectID();
@@ -73,6 +72,6 @@ public class InterestedUsersListActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        viewUserInfo(position);
+        navigateToUserInfo(position);
     }
 }
