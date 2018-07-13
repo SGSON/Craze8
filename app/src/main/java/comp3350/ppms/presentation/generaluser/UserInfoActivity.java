@@ -56,6 +56,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         mUserNameTextView.setText(mUser.getUserNickName());
 
         populateUserCredentialsList();
+        setUI();
     }
 
     private void initiateIntentValues() {
@@ -75,6 +76,17 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private void selectUser() {
         mProjectManager.addSelectedUser(mProject, mUserID);
         Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
+        setUI();
+    }
+
+    private void setUI() {
+        List<String> selectedUsers;
+
+        selectedUsers = mProjectManager.getSelectedUsersForProject(mProject);
+        if(selectedUsers.contains(mUserID)) {
+            mSelectUserButton.setText(R.string.user_selected);
+            mSelectUserButton.setEnabled(false);
+        }
     }
 
     @Override
