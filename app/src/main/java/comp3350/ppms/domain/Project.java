@@ -24,10 +24,11 @@ public class Project implements ProjectInterface {
         selectedUsers = new ArrayList<String>();
     }
 
-    public Project(String ID, String name, String descr, ArrayList<String> cred,
+    public Project(String ID, String name, String owner, String descr, ArrayList<String> cred,
                    ArrayList<String> inUsers, ArrayList<String> selUsers) {
         projectID = ID;
         projectName = name;
+        projectOwner = owner;
         projectDescription = descr;
         projectCredentials = cred;
         interestedUsers = inUsers;
