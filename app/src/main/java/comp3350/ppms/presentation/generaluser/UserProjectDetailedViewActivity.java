@@ -39,6 +39,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private Project project;
     private UserManager userManager;
     private String userNickname;
+    private String userID;
     private User currAccount;
 
 
@@ -112,7 +113,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
     private void likeProject(Project proj, User user, String projectID, String userNickname) {
         userManager.addProjectToUserInterestedList(user, projectID);
-        mProjectManager.addInterestedUser(proj, userNickname);
+        mProjectManager.addInterestedUser(proj, currAccount.getUserID());
         interestButton.setText("Liked");
         interestButton.setEnabled(false);
 
