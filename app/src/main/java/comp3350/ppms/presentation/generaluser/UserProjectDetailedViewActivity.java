@@ -1,13 +1,9 @@
 package comp3350.ppms.presentation.generaluser;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,7 +17,7 @@ import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
-import comp3350.ppms.presentation.allusers.CredentialAdapter;
+import comp3350.ppms.presentation.allusers.CredentialsAdapter;
 import comp3350.ppms.presentation.allusers.Messages;
 import comp3350.ppms.presentation.projectowner.InterestedUsersListActivity;
 
@@ -35,7 +31,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
-    private CredentialAdapter mProjectCredentialAdapter;
+    private CredentialsAdapter mProjectCredentialAdapter;
     private String projectID;
     private Project project;
     private UserManager userManager;
@@ -131,9 +127,9 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         if (mProjectCredentialList != null)
             mProjectCredentialList.clear();
         mProjectCredentialList = mProjectManager.getProjectCredentials(project);
-        mProjectCredentialAdapter = new CredentialAdapter(this, mProjectCredentialList);
+        mProjectCredentialAdapter = new CredentialsAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
-        ((CredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();
+        ((CredentialsAdapter) mListView.getAdapter()).notifyDataSetChanged();
     }
 
 }

@@ -12,10 +12,10 @@ import com.example.test.ppms.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CredentialAdapter extends ArrayAdapter<String> {
+public class CredentialsAdapter extends ArrayAdapter<String> {
     private String mCredential;
 
-    public CredentialAdapter(Context context, List<String> credentials) {
+    public CredentialsAdapter(Context context, List<String> credentials) {
         super(context, 0, credentials);
     }
 

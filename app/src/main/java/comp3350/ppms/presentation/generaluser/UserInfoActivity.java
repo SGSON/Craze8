@@ -10,13 +10,13 @@ import android.widget.TextView;
 
 import com.example.test.ppms.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.presentation.allusers.CredentialsAdapter;
 
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,8 +24,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private static final String PROJECT_ID = "projectID";
 
     TextView mUserNameTextView;
-    ListView mUserCredListView;
     Button mSelectUserButton;
+
+    ListView mUserCredListView;
+    CredentialsAdapter mCredAdapter;
 
     ProjectManager mProjectManager;
     Project mProject;
@@ -39,7 +41,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        mUserNameTextView = (TextView) findViewById(R.id.select_button);
+        mUserNameTextView = (TextView) findViewById(R.id.user_name_value);
         mUserCredListView = (ListView) findViewById((R.id.user_credentials));
 
         mSelectUserButton = (Button) findViewById((R.id.select_button));
@@ -47,7 +49,11 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
 
         mProjectManager = new ProjectManager();
         mUserManager = new UserManager();
+
         initiateIntentValues();
+        mUserNameTextView.setText(mUser.getUserNickName());
+
+        populateUserCredentialsList();
     }
 
     private void initiateIntentValues() {
@@ -59,7 +65,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
 
     private void populateUserCredentialsList(){
         mUserCredentials = mUserManager.getUserCredentials(mUser);
-
+        mCredAdapter = new CredentialsAdapter(this, mUserCredentials);
+        mUserCredListView.setAdapter(mCredAdapter);
     }
 
     @Override

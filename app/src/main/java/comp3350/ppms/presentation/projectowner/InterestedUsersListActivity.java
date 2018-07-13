@@ -16,10 +16,12 @@ import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.presentation.generaluser.UserAdapter;
+import comp3350.ppms.presentation.generaluser.UserInfoActivity;
 
 public class InterestedUsersListActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
 
+    private static final String USER_ID = "userID";
     private static final String PROJECT_ID = "projectID";
 
     private ListView mListView;
@@ -58,8 +60,19 @@ public class InterestedUsersListActivity extends AppCompatActivity
 
     }
 
+    private void viewUserInfo(int position) {
+        User user = interestedUsers.get(position);
+        final String UserID = user.getUserID();
+        final String ProjectID = mProject.getProjectID();
+
+        Intent intent = new Intent(InterestedUsersListActivity.this, UserInfoActivity.class);
+        intent.putExtra(USER_ID, UserID);
+        intent.putExtra(PROJECT_ID, ProjectID);
+        startActivity(intent);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        viewUserInfo(position);
     }
 }
