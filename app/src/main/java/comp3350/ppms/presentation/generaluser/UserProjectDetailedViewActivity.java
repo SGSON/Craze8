@@ -70,7 +70,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             textView_project_name.setText(mProjectManager.getProjectName(project));
             textView_project_description.setText(mProjectManager.getProjectDescription(project));
 
-            if (currAccount.getLikedProjectIDList().contains(projectID))
+            if (currAccount.getLikedProjectIDList().contains(projectID)) //TODO: This is a code smell
             {
                 interestButton.setText("Liked");
                 interestButton.setEnabled(false);

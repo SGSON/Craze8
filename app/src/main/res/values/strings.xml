@@ -27,4 +27,5 @@
     <string name="user_key">userName</string>
     <string name="project_id">projectID</string>
     <string name="return_to_main">Go To Main Page</string>
+    <string name="view_interested_users_text">View Interested Users</string>
 </resources>
