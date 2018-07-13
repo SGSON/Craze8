@@ -24,6 +24,8 @@ public interface ProjectManagerInterface {
 
     void addInterestedUser(Project project, String userName);
 
+    boolean addSelectedUser(Project project, String userID);
+
     int getNumInterestedUsers(Project project);
 
     List<User> getInterestedUsers(Project project);

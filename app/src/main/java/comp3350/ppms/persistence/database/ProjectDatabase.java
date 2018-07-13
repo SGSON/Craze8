@@ -63,7 +63,6 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
         return projectsStub.get(id);
     }
 
-
     @Override
     public ArrayList<Project> getProjectSequential() {
         ArrayList<Project> projects = new ArrayList<Project>();

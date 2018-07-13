@@ -61,6 +61,14 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     @Override
+    public boolean addSelectedUser(Project project, String userID) {
+        boolean added = true;
+        project.addSelectedUser(userID);
+        projectDB.updateProject(project);
+        return added;
+    }
+
+    @Override
     public int getNumInterestedUsers(Project project) {
         return project.getNumInterestedUsers();
     }

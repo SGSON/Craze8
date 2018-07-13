@@ -16,6 +16,8 @@ public interface ProjectInterface {
 
     void addInterestedUser(String id);
 
+    void addSelectedUser(String userID);
+
     ArrayList<String> getInterestedUsers();
 
     ArrayList<String> getSelectedUsers();

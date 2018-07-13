@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.test.ppms.R;
 
@@ -34,6 +35,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
 
     UserManager mUserManager;
     User mUser;
+    String mUserID;
     List<String> mUserCredentials;
 
     @Override
@@ -60,7 +62,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         mProject = mProjectManager.getProject(bundle.getString(PROJECT_ID));
-        mUser = mUserManager.getUserByID(bundle.getString(USER_ID));
+        mUserID = bundle.getString(USER_ID);
+        mUser = mUserManager.getUserByID(mUserID);
     }
 
     private void populateUserCredentialsList(){
@@ -69,10 +72,15 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         mUserCredListView.setAdapter(mCredAdapter);
     }
 
+    private void selectUser() {
+        mProjectManager.addSelectedUser(mProject, mUserID);
+        Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.select_button) {
-            //
+            selectUser();
         }
     }
 }

@@ -53,6 +53,11 @@ public class Project implements ProjectInterface {
     public void addInterestedUser(String id) { interestedUsers.add(id); }
 
     @Override
+    public void addSelectedUser(String userID) {
+     selectedUsers.add(userID);
+    }
+
+    @Override
     public ArrayList<String> getInterestedUsers() {
         return interestedUsers;
     }
