@@ -9,6 +9,8 @@ public interface UserManagerInterface {
 
     User getUser (String userName) throws CustomException;
 
+    User getUserByID(String ID) throws CustomException;
+
     void addProjectToUserInterestedList(User user, String projectID);
 
 }

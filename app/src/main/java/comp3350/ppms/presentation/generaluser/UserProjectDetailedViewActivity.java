@@ -50,7 +50,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         interestButton = (Button) findViewById(R.id.like_button);
         interestButton.setOnClickListener(this);
 
-        viewIntUsersButton = (Button) findViewById(R.id.view_interested_users);
+        viewIntUsersButton = (Button) findViewById(R.id.view_interested_users_button);
         viewIntUsersButton.setOnClickListener(this);
 
         mListView = (ListView) findViewById(R.id.project_credentials);
@@ -91,14 +91,10 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
         }
 
-        if(v.getId() == R.id.view_projects_button) {
+        if(v.getId() == R.id.view_interested_users_button) {
             navigateToInterestedUsersList();
         }
-//        Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
-//
-//        scIntent.putExtra(USER_NAME, userNickname);
-//
-//        UserProjectDetailedViewActivity.this.startActivity(scIntent);
+
     }
 
 
@@ -125,7 +121,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private void navigateToInterestedUsersList() {
         Intent intent = new Intent(UserProjectDetailedViewActivity.this, InterestedUsersListActivity.class);
         intent.putExtra(PROJECT_ID, projectID);
-        startActivity(intent);
+        UserProjectDetailedViewActivity.this.startActivity(intent);
     }
 
     private void populateProjectCredentialList() {

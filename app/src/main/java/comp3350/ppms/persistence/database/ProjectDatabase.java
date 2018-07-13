@@ -2,10 +2,12 @@ package comp3350.ppms.persistence.database;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
 
@@ -60,6 +62,7 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     {
         return projectsStub.get(id);
     }
+
 
     @Override
     public ArrayList<Project> getProjectSequential() {

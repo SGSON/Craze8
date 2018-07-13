@@ -15,6 +15,10 @@ public interface UserDatabaseInterface {
     void deleteUser(User currentUser);
 
 
-    User getUserByString(String userNickname);
+    User getUserByUserName(String userNickname);
+
+    User getUserByID(String ID);
+
+
 
 }

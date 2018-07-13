@@ -66,8 +66,25 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     @Override
-    public List<User> getInterestedUsers(Project project) {
-        return null;
+    public List<User> getInterestedUsers(Project project)  {
+        List<User> intUsers = new ArrayList<User>();
+        UserManager userManager  = new UserManager();
+        ArrayList<String> userIDs = project.getInterestedUsers();
+
+        try{
+            for(int i = 0; i < userIDs.size(); i++) {
+                User currUser = userManager.getUserByID(userIDs.get(i));
+                intUsers.add(currUser);
+            }
+
+            return intUsers;
+
+        } catch (CustomException e) {
+            //I don't know how to handle this - Buhle
+        }
+
+        return intUsers;
+
     }
 
 }

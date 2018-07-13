@@ -3,22 +3,28 @@ package comp3350.ppms.presentation.projectowner;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.test.ppms.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
+import comp3350.ppms.presentation.generaluser.UserAdapter;
 
-public class InterestedUsersListActivity extends AppCompatActivity {
+public class InterestedUsersListActivity extends AppCompatActivity
+        implements AdapterView.OnItemClickListener {
 
     private static final String PROJECT_ID = "projectID";
 
     private ListView mListView;
-    private ArrayList<User> interestedUsers;
+    private UserAdapter mUserAdapter;
+    private List<User> interestedUsers;
 
     private ProjectManager mProjectManager;
     private Project mProject;
@@ -32,6 +38,7 @@ public class InterestedUsersListActivity extends AppCompatActivity {
         mProjectManager = new ProjectManager();
 
         getIntentValues();
+        populateInterestedUsersList();
 
     }
 
@@ -44,6 +51,15 @@ public class InterestedUsersListActivity extends AppCompatActivity {
     }
 
     private void populateInterestedUsersList() {
-        interestedUsers =(ArrayList<User>) mProjectManager.getInterestedUsers(mProject);
+        interestedUsers = mProjectManager.getInterestedUsers(mProject);
+        mUserAdapter = new UserAdapter(this, interestedUsers);
+        mListView.setAdapter(mUserAdapter);
+        mListView.setOnItemClickListener(this);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 }

@@ -9,8 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
 public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDatabaseInterface {
@@ -129,6 +133,8 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
             throw new DatabaseException(e);
         }
     }
+
+
 
     private Project fromResultSet(final ResultSet resultSet) throws SQLException {
         final String projectID = resultSet.getString(PROJECT_ID_COLUMN);

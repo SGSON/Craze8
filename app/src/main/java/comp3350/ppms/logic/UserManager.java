@@ -21,7 +21,12 @@ public class UserManager implements UserManagerInterface{
     //accepts a String username and returns the User if the account has been created or returns null
     //if name doesn't exist.
     public User getUser (String userName) throws CustomException{
-        return userDB.getUserByString(userName);
+        return userDB.getUserByUserName(userName);
+    }
+
+    @Override
+    public User getUserByID(String ID) throws CustomException {
+        return userDB.getUserByID(ID);
     }
 
     @Override
@@ -32,7 +37,7 @@ public class UserManager implements UserManagerInterface{
     }
 
     public User signUp(User username) throws CustomException{
-        User potentialUser = userDB.getUserByString(username.getUserNickName());
+        User potentialUser = userDB.getUserByUserName(username.getUserNickName());
         if(potentialUser != null){
             throw new CustomException("test");
         }else{
@@ -41,7 +46,7 @@ public class UserManager implements UserManagerInterface{
     }
 
     public User loginRequest(String userName) throws CustomException{
-        User user = userDB.getUserByString(userName);
+        User user = userDB.getUserByUserName(userName);
         ValidateUser.validUserLogin(user);
         return user;
     }
