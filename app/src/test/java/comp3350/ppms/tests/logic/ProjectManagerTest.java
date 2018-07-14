@@ -40,7 +40,7 @@ public class ProjectManagerTest extends TestCase{
         projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("", "hello world", cred);
+        Project newProj = new Project("", "4564", "hello world", cred);
 
         try {
             doThrow(new CustomException(CustomException.EMPTY_NAME_ERROR)).when(projectManager).insertProject(newProj);
@@ -58,7 +58,7 @@ public class ProjectManagerTest extends TestCase{
         projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("hello", "", cred);
+        Project newProj = new Project("hello", "48746","", cred);
         try {
             doThrow(new CustomException(CustomException.EMPTY_DESCRIPTION_ERROR)).when(projectManager).insertProject(newProj);
             projectManager.insertProject(newProj);
@@ -75,7 +75,7 @@ public class ProjectManagerTest extends TestCase{
         projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("hello", "hello world", cred);
+        Project newProj = new Project("hello", "45645", "hello world", cred);
         try {
             projectManager.insertProject(newProj);
         } catch (CustomException expected) {
@@ -91,7 +91,7 @@ public class ProjectManagerTest extends TestCase{
         ArrayList<String> cred = new ArrayList<String>();
         ArrayList<Project> projectList;
         cred.add("eight");
-        Project newProj = new Project("hello", "hello world", cred);
+        Project newProj = new Project("hello", "456465", "hello world", cred);
         try {
             projectManager.insertProject(newProj);
         } catch (CustomException expected) {
@@ -110,8 +110,8 @@ public class ProjectManagerTest extends TestCase{
         ArrayList<String> cred = new ArrayList<String>();
         ArrayList<Project> projectList;
         cred.add("eight");
-        Project newProj = new Project("hello", "hello world", cred);
-        Project newProj1 = new Project("hello", "hello world", cred);
+        Project newProj = new Project("hello", "46545", "hello world", cred);
+        Project newProj1 = new Project("hello", "4654", "hello world", cred);
         try {
             projectManager.insertProject(newProj);
             projectManager.insertProject(newProj1);
@@ -134,7 +134,7 @@ public class ProjectManagerTest extends TestCase{
 
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("hello", "hello world", cred);
+        Project newProj = new Project("hello", "4658", "hello world", cred);
         User user = new User("Lebron James", "Cavs");
 
         try {
