@@ -16,13 +16,17 @@ public class MatchManager implements MatchManagerInterface {
         projectManager = new ProjectManager();
         userManager = new UserManager();
     }
+
     @Override
-    public boolean isMatch(String projectID, User user) {
+    public boolean isUserProjectMatch(User user, Project proj) {
+        List<String> projectSelectedUsers;
         List<String> userInterestedProjects;
 
+        projectSelectedUsers = projectManager.getSelectedUsersForProject(proj);
         userInterestedProjects = userManager.getUsersInterestedProjects(user);
 
-        return userInterestedProjects.contains(projectID);
+        return projectSelectedUsers.contains(user.getUserID()) &&
+                userInterestedProjects.contains(proj.getProjectID());
     }
 
     @Override
@@ -32,10 +36,14 @@ public class MatchManager implements MatchManagerInterface {
 
         projectSelectedUsers = projectManager.getSelectedUsersForProject(project);
 
+        /**
+         * For each user that the Project Owner has selected:
+         * If that User has shown interest to the project they were selected for - its a match!
+         */
         for(int i = 0; i < projectSelectedUsers.size(); i++) {
             String userID = projectSelectedUsers.get(i);
             User currUser = userManager.getUserByID(userID);
-            if(isMatch(project.getProjectID(), currUser)) {
+            if(isUserProjectMatch(currUser, project)) {
                 matchedUsers.add(currUser);
             }
         }

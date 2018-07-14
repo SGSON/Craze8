@@ -105,5 +105,13 @@
             android:layout_centerHorizontal="true"
             android:text="@string/view_matched_users_text"/>
 
+        <TextView
+            android:id="@+id/match_message_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/like_button"
+            android:text="@string/match_message"
+            android:visibility="gone"/>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

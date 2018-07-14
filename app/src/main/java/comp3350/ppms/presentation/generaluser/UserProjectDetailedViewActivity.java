@@ -13,6 +13,8 @@ import com.example.test.ppms.R;
 import java.util.ArrayList;
 
 import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.logic.MatchManager;
+import comp3350.ppms.logic.MatchManagerInterface;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
@@ -30,6 +32,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private Button interestButton;
     private Button viewIntUsersButton;
     private Button viewMatchedUsersButton;
+    private TextView matchMessageTextView;
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ArrayList<String> mProjectCredentialList;
@@ -40,6 +43,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private String userNickname;
     private String userID;
     private User currAccount;
+    private MatchManagerInterface matchManager;
 
 
     @Override
@@ -56,6 +60,8 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         viewMatchedUsersButton = (Button) findViewById(R.id.view_matched_users_button);
         viewMatchedUsersButton.setOnClickListener(this);
 
+        matchMessageTextView = (TextView) findViewById((R.id.match_message_text_view));
+
         mListView = (ListView) findViewById(R.id.project_credentials);
 
         Intent intent = this.getIntent();
@@ -71,6 +77,8 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
             project = mProjectManager.getProject(projectID);
             getUserInfo();
+
+            matchManager = new MatchManager();
 
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
@@ -140,15 +148,27 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     }
 
     private void adjustUIForUser() {
+
         if(userManager.userIsProjectOwner(currAccount, project)) {
             adjustUIForProjectOwner();
+        } else if(matchManager.isUserProjectMatch(currAccount, project)) {
+            adjustUIForMatchedUser();
         } else {
             adjustUIForGeneralUser();
         }
     }
 
+
     private void adjustUIForProjectOwner() {
         interestButton.setVisibility(View.GONE);
+    }
+
+    private void adjustUIForMatchedUser() {
+        interestButton.setVisibility(View.GONE);
+        viewMatchedUsersButton.setVisibility(View.GONE);
+        viewIntUsersButton.setVisibility(View.GONE);
+
+        matchMessageTextView.setVisibility(View.VISIBLE);
     }
 
     private void adjustUIForGeneralUser() {

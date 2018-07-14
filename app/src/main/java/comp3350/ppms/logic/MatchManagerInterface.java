@@ -7,7 +7,7 @@ import comp3350.ppms.domain.User;
 
 public interface MatchManagerInterface {
 
-    boolean isMatch(String projectID, User user);
+    boolean isUserProjectMatch(User user, Project proj);
 
     List<User> getMatchedUsersForProject(Project project);
 
