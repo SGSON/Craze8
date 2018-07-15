@@ -85,6 +85,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         cancelButton = (Button) findViewById(R.id.cancel_project_button);
 
         projectNameEdit.setOnEditorActionListener(this);
+        projectDescriptionEdit.setOnEditorActionListener(this);
 
         createProjectButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
