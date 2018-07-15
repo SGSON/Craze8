@@ -74,4 +74,39 @@ public class UserManagerTest {
         }
     }
 
+    @Test
+    public void testInvalidLogIn(){
+        System.out.println("\nTest Invalid login");
+
+        User test = new User(null, "password");
+        try{
+            testUserManager.loginRequest(test.getUserNickName());
+            fail("Exception expected");
+        }
+        catch (CustomException e){
+            assertEquals("Invalid Account Name", e.getErrorMsg());
+        }
+
+        System.out.println("Test Passed");
+    }
+
+    @Test
+    public void testValidLogIn(){
+        System.out.println("\nTest Valid login");
+
+        User test = new User("UserForTest", "password");
+        try{
+            testUserManager.insertUser(test);
+            testUserManager.loginRequest(test.getUserNickName());
+        }
+        catch (CustomException e){
+            System.out.println(e);
+        }
+
+        System.out.println("Test Passed");
+    }
+
+    @Test
+    public void test
+
 }
