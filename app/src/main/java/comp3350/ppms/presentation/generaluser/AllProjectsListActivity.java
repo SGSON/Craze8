@@ -23,7 +23,7 @@ import comp3350.ppms.domain.User;
 import comp3350.ppms.presentation.allusers.Messages;
 import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
-public class ProjectListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class AllProjectsListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private ProjectManager mProjectManager;
     private ListView mListView;
@@ -124,7 +124,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.project_details_button){
-            Intent scIntent = new Intent(ProjectListActivity.this, UserProjectDetailedViewActivity.class);
+            Intent scIntent = new Intent(AllProjectsListActivity.this, UserProjectDetailedViewActivity.class);
             Bundle bundle = new Bundle();
 
             bundle.putString(this.getString(R.string.project_id), currProjectID);
@@ -132,12 +132,12 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
             scIntent.putExtra(this.getString(R.string.user_key), userNickname);
 
             scIntent.putExtras(bundle);
-            ProjectListActivity.this.startActivity(scIntent);
+            AllProjectsListActivity.this.startActivity(scIntent);
         }
         else if (v.getId() == R.id.return_button) {
-            Intent scIntent = new Intent(ProjectListActivity.this, CreateProjectActivity.class);
+            Intent scIntent = new Intent(AllProjectsListActivity.this, CreateProjectActivity.class);
             scIntent.putExtra(this.getString(R.string.user_key), userNickname);
-            ProjectListActivity.this.startActivity(scIntent);
+            AllProjectsListActivity.this.startActivity(scIntent);
         }
 
     }

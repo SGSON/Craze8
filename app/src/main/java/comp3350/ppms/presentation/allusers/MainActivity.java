@@ -10,6 +10,7 @@ import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.UserManager;
 import com.example.test.ppms.R;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.generaluser.AllProjectsListActivity;
 import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
 
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
 
-            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.ProjectListActivity.class);
+            intent = new Intent(MainActivity.this, AllProjectsListActivity.class);
             intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         } else if (view.getId() == R.id.view_liked_projects_button) {

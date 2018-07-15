@@ -24,7 +24,7 @@
             >
         </activity>
         <activity
-            android:name="comp3350.ppms.presentation.generaluser.ProjectListActivity"
+            android:name="comp3350.ppms.presentation.generaluser.AllProjectsListActivity"
             android:theme="@style/AppTheme">
             >
         </activity>
