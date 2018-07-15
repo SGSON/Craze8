@@ -1,9 +1,11 @@
 package comp3350.ppms.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
 
 public interface ProjectManagerInterface {
 
@@ -22,6 +24,10 @@ public interface ProjectManagerInterface {
 
     void addInterestedUser(Project project, String userName);
 
-    int getNumInterestedUsers(Project project);
+    boolean addSelectedUser(Project project, String userID);
+
+    List<String> getSelectedUsersForProject(Project project);
+
+    List<User> getInterestedUsers(Project project);
 }
 

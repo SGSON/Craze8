@@ -7,6 +7,8 @@ public interface ProjectInterface {
 
     String getProjectID();
 
+    String getProjectOwner();
+
     String getProjectName();
 
     String getProjectDescription();
@@ -15,6 +17,8 @@ public interface ProjectInterface {
 
 
     void addInterestedUser(String id);
+
+    void addSelectedUser(String userID);
 
     ArrayList<String> getInterestedUsers();
 

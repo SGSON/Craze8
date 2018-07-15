@@ -31,7 +31,7 @@ public class UserDatabase implements UserDatabaseInterface{
     }
 
     //Given a user account name, will return the User
-    public User getUserByString(String userNickname){
+    public User getUserByUserName(String userNickname){
         User result = null;
 
         Set<String> hashKeys = userStub.keySet();
@@ -45,6 +45,11 @@ public class UserDatabase implements UserDatabaseInterface{
 
         return result;
 
+    }
+
+    @Override
+    public User getUserByID(String ID) {
+        return null;
     }
 
 }

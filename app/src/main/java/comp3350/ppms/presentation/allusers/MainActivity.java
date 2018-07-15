@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String USER_NAME = "userName";
     private Button mCreateProjectButton;
     private Button mViewProjectsButton;
+    private Button mViewLikedProjectsButton;
     private User currAccount;
     private String userNickname;
     private UserManager userManager;
@@ -55,9 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mCreateProjectButton = (Button) findViewById(R.id.create_project_button);
         mViewProjectsButton = (Button) findViewById(R.id.view_projects_button);
+        mViewLikedProjectsButton = (Button) findViewById(R.id.view_liked_projects_button);
 
         mCreateProjectButton.setOnClickListener(this);
         mViewProjectsButton.setOnClickListener(this);
+        mViewLikedProjectsButton.setOnClickListener(this);
 
 
         //get the username from the last intent (login)
@@ -77,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.view_projects_button) {
 
             intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.ProjectListActivity.class);
+            intent.putExtra(USER_NAME, userNickname);
+            startActivity(intent);
+        } else if (view.getId() == R.id.view_liked_projects_button) {
+
+            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.UserInterestedProjectsListActivity.class);
             intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         }

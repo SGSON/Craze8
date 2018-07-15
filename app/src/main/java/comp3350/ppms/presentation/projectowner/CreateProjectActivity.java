@@ -169,7 +169,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         for (int i=0; i < projectCredentialsEditList.size(); i++)
             credentials.add(projectCredentialsEditList.get(i).getText().toString());
 
-        final Project project = new Project(projectName, projectDescr, credentials);
+        final Project project = new Project(projectName, currAccount.getUserID(), projectDescr, credentials);
         credentials = new ArrayList<>();
         return project;
     }
