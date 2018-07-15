@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context="comp3350.ppms.presentation.generaluser.UserInfoActivity">
 
     <GridLayout
         android:id="@+id/userInfoGridLayout"
@@ -18,15 +19,15 @@
         tools:layout_editor_absoluteY="0dp">
 
         <TextView
-            android:id="@+id/project_name_title"
+            android:id="@+id/user_name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Project Name:" />
+            android:text="@string/user_name_header" />
 
         <TextView
-            android:id="@+id/project_name"
+            android:id="@+id/user_name_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -34,30 +35,15 @@
             android:text="Name" />
 
         <TextView
-            android:id="@+id/project_description_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:text="Description:" />
-
-        <TextView
-            android:id="@+id/project_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="16dp"
-            android:text="Description" />
-
-        <TextView
             android:id="@+id/project_credentials_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:text="Credentials:" />
+            android:text="@string/credentials_label" />
     </GridLayout>
 
     <ListView
-        android:id="@+id/project_credentials"
+        android:id="@+id/user_credentials"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -78,42 +64,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project_credentials">
+        app:layout_constraintTop_toBottomOf="@+id/user_credentials">
 
 
         <Button
-            android:id="@+id/like_button"
+            android:id="@+id/select_button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Like" />
+            android:text="@string/select_user" />
 
-        <Button
-            android:id="@+id/view_interested_users_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/like_button"
-            android:layout_centerHorizontal="true"
-            android:text="@string/view_interested_users_text"/>
-
-        <Button
-            android:id="@+id/view_matched_users_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/view_interested_users_button"
-            android:layout_centerHorizontal="true"
-            android:text="@string/view_matched_users_text"/>
-
-        <TextView
-            android:id="@+id/match_message_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/like_button"
-            android:layout_centerHorizontal="true"
-            android:text="@string/match_message"
-            android:visibility="gone"
-            />
 
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

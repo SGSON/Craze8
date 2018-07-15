@@ -27,4 +27,10 @@
     <string name="user_key">userName</string>
     <string name="project_id">projectID</string>
     <string name="return_to_main">Go To Main Page</string>
+    <string name="view_interested_users_text">View Interested Users</string>
+    <string name="view_matched_users_text">View Matched Users</string>
+    <string name="user_name_header">User Name:</string>
+    <string name="select_user">Select User</string>
+    <string name="user_selected">User Selected</string>
+    <string name="match_message">Congratulations! You have been Matched for this Project!</string>
 </resources>

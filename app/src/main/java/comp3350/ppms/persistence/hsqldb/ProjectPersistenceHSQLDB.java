@@ -9,8 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
+import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
 public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDatabaseInterface {
@@ -20,6 +24,7 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
     //Project Database Column Labels
     private static final String PROJECT_ID_COLUMN = "projectID";
     private static final String PROJECT_NAME_COLUMN = "PROJECT_NAME";
+    private static final String PROJECT_OWNER_COLUMN = "PROJECT_OWNER";
     private static final String PROJECT_DESCRIPTION_COLUMN = "PROJECT_DESCRIPTION";
     private static final String PROJECT_CREDENTIALS_COLUMN = "PROJECT_CREDENTIALS";
     private static final String PROJECT_INTERESTED_USERS_COLUMN = "INTERESTED_USERS";
@@ -59,16 +64,17 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
     public void addProject(String ID, Project project) {
         try (final Connection connection = connection()){
             final PreparedStatement statement =
-                    connection.prepareStatement("INSERT INTO projects VALUES (?, ?, ?, ?, ?, ?)");
+                    connection.prepareStatement("INSERT INTO projects VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             statement.setString(1, ID);
             statement.setString(2, project.getProjectName());
-            statement.setString(3, project.getProjectDescription());
-            statement.setArray(4, connection.createArrayOf(
-                    "varchar", project.getProjectCredentials().toArray()));
+            statement.setString(3, project.getProjectOwner());
+            statement.setString(4, project.getProjectDescription());
             statement.setArray(5, connection.createArrayOf(
-                    "varchar", project.getInterestedUsers().toArray()));
+                    "varchar", project.getProjectCredentials().toArray()));
             statement.setArray(6, connection.createArrayOf(
+                    "varchar", project.getInterestedUsers().toArray()));
+            statement.setArray(7, connection.createArrayOf(
                     "varchar", project.getSelectedUsers().toArray()));
 
             statement.executeUpdate();
@@ -130,9 +136,12 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
         }
     }
 
+
+
     private Project fromResultSet(final ResultSet resultSet) throws SQLException {
         final String projectID = resultSet.getString(PROJECT_ID_COLUMN);
         final String projectName = resultSet.getString(PROJECT_NAME_COLUMN);
+        final String projectOwner = resultSet.getString(PROJECT_OWNER_COLUMN);
         final String projectDes = resultSet.getString(PROJECT_DESCRIPTION_COLUMN);
 
         final ArrayList<String> projCreds = stringArrayConversion
@@ -142,7 +151,7 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
         final ArrayList<String> selUsers = stringArrayConversion(
                 resultSet.getArray(PROJECT_SELECTED_COLUMN));
 
-        return new Project(projectID, projectName, projectDes, projCreds, inUsers, selUsers);
+        return new Project(projectID, projectName, projectOwner, projectDes, projCreds, inUsers, selUsers);
     }
 
 

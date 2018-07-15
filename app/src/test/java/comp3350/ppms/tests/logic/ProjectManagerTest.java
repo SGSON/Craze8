@@ -42,7 +42,7 @@ public class ProjectManagerTest{
 
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("", "hello world", cred);
+        Project newProj = new Project("", "4564", "hello world", cred);
 
         try {
             projectManager.insertProject(newProj);
@@ -58,7 +58,7 @@ public class ProjectManagerTest{
         System.out.println("\nStarting testInsertProject: Invalid project desc");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("hello", "", cred);
+        Project newProj = new Project("hello", "48746","", cred);
         try {
             projectManager.insertProject(newProj);
             fail("CustomException expected.");
@@ -74,7 +74,7 @@ public class ProjectManagerTest{
 
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("hello", "hello world", cred);
+        Project newProj = new Project("hello", "45645", "hello world", cred);
         try {
             projectManager.insertProject(newProj);
         } catch (CustomException expected) {
@@ -88,7 +88,7 @@ public class ProjectManagerTest{
         System.out.println("\nStarting testRetrieveProject: Single project");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("hello", "hello world", cred);
+        Project newProj = new Project("hello", "456465", "hello world", cred);
         try {
             projectManager.insertProject(newProj);
         } catch (CustomException expected) {
@@ -99,6 +99,7 @@ public class ProjectManagerTest{
 
         System.out.println("\nFinished testRetrieveProject: Single project");
     }
+
 //
 //    @Test (expected = CustomException.class)
 //    public void testMultipleProjectList(){
@@ -141,6 +142,52 @@ public class ProjectManagerTest{
 //        }
 //
 //    }
+//========================================
+//
+//    @Test (expected = CustomException.class)
+//    public void testMultipleProjectList(){
+//        System.out.println("\nStarting testRetrieveProject: Multiple projects");
+//        projectManager = mock(ProjectManager.class);
+//        ArrayList<String> cred = new ArrayList<String>();
+//        ArrayList<Project> projectList;
+//        cred.add("eight");
+//        Project newProj = new Project("hello", "46545", "hello world", cred);
+//        Project newProj1 = new Project("hello", "4654", "hello world", cred);
+//        try {
+//            projectManager.insertProject(newProj);
+//            projectManager.insertProject(newProj1);
+//
+//        } catch (CustomException expected) {
+//            assertEquals(null, expected);
+//        }
+//
+//        projectManager.getProjects();
+//
+//        verify(projectManager, times(1)).getProjects();
+//
+//        System.out.println("\nFinished testRetrieveProject: Multiple projects");
+//    }
+//
+//    @Test (expected = CustomException.class)
+//    public void testInterestedUsers() {
+//        System.out.println("\n Starting testRetrieveProject: Interested Users");
+//        projectManager = mock(ProjectManager.class);
+//
+//        ArrayList<String> cred = new ArrayList<String>();
+//        cred.add("eight");
+//        Project newProj = new Project("hello", "4658", "hello world", cred);
+//        User user = new User("Lebron James", "Cavs");
+//
+//        try {
+//            projectManager.insertProject(newProj);
+//            projectManager.addInterestedUser(newProj, user.getUserNickName());
+//
+//        } catch (CustomException expected) {
+//            assertEquals(null, expected);
+//        }
+//
+//    }
+
 
 
 
