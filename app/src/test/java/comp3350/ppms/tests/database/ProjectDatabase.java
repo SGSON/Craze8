@@ -1,4 +1,4 @@
-package comp3350.ppms.persistence.database;
+package comp3350.ppms.tests.database;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

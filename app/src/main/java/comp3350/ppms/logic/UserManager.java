@@ -12,6 +12,8 @@ public class UserManager implements UserManagerInterface{
         userDB = Service.getUserDatabaseInterface();
     }
 
+    public UserManager(final UserDatabaseInterface userStub) { userDB = userStub; }
+
 
     public void insertUser(User user) throws CustomException {
         ValidateUser.validateAll(user);
