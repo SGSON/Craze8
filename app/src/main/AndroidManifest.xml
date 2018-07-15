@@ -59,8 +59,10 @@
         <activity
             android:name="comp3350.ppms.presentation.generaluser.UserInfoActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name="comp3350.ppms.presentation.projectowner.MatchedUsersListActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name="comp3350.ppms.presentation.projectowner.MatchedUsersListActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name="comp3350.ppms.presentation.generaluser.UserMatchedProjectsListActivity"></activity>
     </application>
 
 </manifest>
