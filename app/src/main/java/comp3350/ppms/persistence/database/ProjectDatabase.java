@@ -2,6 +2,7 @@ package comp3350.ppms.persistence.database;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -62,8 +63,8 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     }
 
     @Override
-    public ArrayList<Project> getProjectSequential() {
-        ArrayList<Project> projects = new ArrayList<Project>();
+    public List<Project> getProjectSequential() {
+        List<Project> projects = new ArrayList<Project>();
         Set<String> hashKeys = projectsStub.keySet();
 
         for(String key: hashKeys) {

@@ -1,7 +1,6 @@
 package comp3350.ppms.persistence;
 
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.List;
 
 import comp3350.ppms.domain.Project;
 
@@ -16,7 +15,7 @@ public interface ProjectDatabaseInterface {
     void addProject(String ID, Project project);
     void updateProject(Project project);
     void removeProject(String ID);
-    ArrayList<Project> getProjectSequential();
+    List<Project> getProjectSequential();
     Project getProject(String id);
 
 

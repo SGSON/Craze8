@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import comp3350.ppms.domain.User;
 import comp3350.ppms.persistence.UserDatabaseInterface;
@@ -39,18 +40,18 @@ public class UserDatabaseHSQLDB extends HSQLDatabase implements UserDatabaseInte
         final String UserID = rs.getString(USER_ID_COLUMN);
         final String UserName = rs.getString(USER_NAME_COLUMN);
         final String UserPassword = rs.getString(USER_PASSWORD_COLUMN);
-        final ArrayList<String> CreatedProjectIDList = stringArrayConversion(rs.getArray(USER_CREATED_PROJECTS_COLUMN));
-        final ArrayList<String> LikedProjectIDList = stringArrayConversion(rs.getArray(USER_LIKED_PROJECTS_COLUMN));
-        final ArrayList<String> MatchedProjectIDList = stringArrayConversion(rs.getArray(USER_MATCHED_PROJECTS_COLUMN));
-        final ArrayList<String> UserCredentials = stringArrayConversion(rs.getArray(USER_CREDENTIALS_COLUMN));
+        final List<String> CreatedProjectIDList = stringArrayConversion(rs.getArray(USER_CREATED_PROJECTS_COLUMN));
+        final List<String> LikedProjectIDList = stringArrayConversion(rs.getArray(USER_LIKED_PROJECTS_COLUMN));
+        final List<String> MatchedProjectIDList = stringArrayConversion(rs.getArray(USER_MATCHED_PROJECTS_COLUMN));
+        final List<String> UserCredentials = stringArrayConversion(rs.getArray(USER_CREDENTIALS_COLUMN));
 
         return new User(UserID, UserName, UserPassword, CreatedProjectIDList, LikedProjectIDList, MatchedProjectIDList, UserCredentials);
 
     }
 
     //@Override
-    public ArrayList<User> getUserSequential() {
-        final ArrayList<User> users = new ArrayList<>();
+    public List<User> getUserSequential() {
+        final List<User> users = new ArrayList<>();
         try (final Connection c = connection()){
             final Statement st = c.createStatement();
             final ResultSet rs = st.executeQuery("SELECT * FROM users");
@@ -68,8 +69,8 @@ public class UserDatabaseHSQLDB extends HSQLDatabase implements UserDatabaseInte
     }
 
     //@Override
-    public ArrayList<User> getUserInfo(User currentUser) {
-        final ArrayList<User> users = new ArrayList<>();
+    public List<User> getUserInfo(User currentUser) {
+        final List<User> users = new ArrayList<>();
         try (final Connection c = connection()){
             final PreparedStatement st = c.prepareStatement("SELECT * FROM users WHERE userID = ?");
             st.setString(1, currentUser.getUserID());

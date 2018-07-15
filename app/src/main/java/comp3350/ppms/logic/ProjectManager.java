@@ -1,7 +1,7 @@
 package comp3350.ppms.logic;
 
 import java.util.ArrayList;
-
+import java.util.List;
 import comp3350.ppms.application.Service;
 import comp3350.ppms.domain.Project;
 
@@ -18,7 +18,7 @@ public class ProjectManager implements ProjectManagerInterface{
         projectDB = Service.getProjectDatabaseInterface();
     }
 
-    public ArrayList<Project> getProjects(){
+    public List<Project> getProjects(){
         return projectDB.getProjectSequential();
     }
 
@@ -38,7 +38,7 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     @Override
-    public ArrayList<String> getProjectCredentials(Project project) {
+    public List<String> getProjectCredentials(Project project) {
         return project.getProjectCredentials();
     }
 

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
@@ -108,8 +109,8 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
     }
 
     @Override
-    public ArrayList<Project> getProjectSequential() {
-        final ArrayList<Project> projects = new ArrayList<Project>();
+    public List<Project> getProjectSequential() {
+        final List<Project> projects = new ArrayList<Project>();
 
         try (final Connection connection = connection()){
             final Statement st = connection.createStatement();
@@ -135,11 +136,11 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
         final String projectName = resultSet.getString(PROJECT_NAME_COLUMN);
         final String projectDes = resultSet.getString(PROJECT_DESCRIPTION_COLUMN);
 
-        final ArrayList<String> projCreds = stringArrayConversion
+        final List<String> projCreds = stringArrayConversion
                 (resultSet.getArray(PROJECT_CREDENTIALS_COLUMN));
-        final ArrayList<String> inUsers = stringArrayConversion(
+        final List<String> inUsers = stringArrayConversion(
                 resultSet.getArray(PROJECT_INTERESTED_USERS_COLUMN));
-        final ArrayList<String> selUsers = stringArrayConversion(
+        final List<String> selUsers = stringArrayConversion(
                 resultSet.getArray(PROJECT_SELECTED_COLUMN));
 
         return new Project(projectID, projectName, projectDes, projCreds, inUsers, selUsers);

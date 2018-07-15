@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.domain.Project;
+
+import java.util.List;
 import java.util.UUID;
 
 import java.util.ArrayList;
@@ -94,7 +96,7 @@ public class ProjectManagerTest extends TestCase{
         UUID id;
         System.out.println("\nStarting testRetrieveProject: Multiple projects");
         ArrayList<String> cred = new ArrayList<String>();
-        ArrayList<Project> projectList;
+        List<Project> projectList;
         cred.add("eight");
         Project newProj = new Project("hello", "hello world", cred);
         Project newProj1 = new Project("hello", "hello world", cred);

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.test.ppms.R;
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.logic.CustomException;
 import comp3350.ppms.logic.ProjectManager;
@@ -32,7 +33,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private Button interestButton;
     private ProjectManager mProjectManager;
     private ListView mListView;
-    private ArrayList<String> mProjectCredentialList;
+    private List<String> mProjectCredentialList;
     private ProjectCredentialAdapter mProjectCredentialAdapter;
     private String projectID;
     private Project project;
@@ -123,7 +124,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
         private String mProjectCredential;
 
-        public ProjectCredentialAdapter(Context context, ArrayList<String> projectCredentials) {
+        public ProjectCredentialAdapter(Context context, List<String> projectCredentials) {
             super(context, 0, projectCredentials);
         }
 

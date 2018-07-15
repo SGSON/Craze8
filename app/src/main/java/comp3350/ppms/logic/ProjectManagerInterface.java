@@ -1,6 +1,6 @@
 package comp3350.ppms.logic;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import comp3350.ppms.domain.Project;
@@ -13,10 +13,10 @@ public interface ProjectManagerInterface {
 
     String getProjectName(Project project);
     String getProjectDescription(Project project);
-    ArrayList<String> getProjectCredentials(Project project);
+    List<String> getProjectCredentials(Project project);
     void insertProject(Project currentProject) throws CustomException;
 
-    ArrayList<Project> getProjects();
+    List<Project> getProjects();
 
     Project getProject(String id);
 
