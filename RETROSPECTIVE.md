@@ -12,12 +12,12 @@ We had assumed that we had everything under control and that when we met we woul
 
 ## Determine concrete (and realistic) ways of improvement
 ### The team will attempt to take the following steps in the upcoming iteration:
-* When planning for a feature and subsequence user stories/developer tasks:
+* When planning for a feature and subsequent user stories/developer tasks:
     * Recognize that we are being overly-ambitious with amount of tasks we would like to get done properly in the time period provided.
-    * An implemented feature, user story and developer task isn’t just the implementation in the application, it actually involves:
-    * Writing unit, integration and system tests (which could involve learning and implementing new tools)
-    * Merging the completed code into the correct branch(which carries a risk of not going smoothly. When it doesn’t go smoothly this can be very costly in terms of time needed to resolve the issue)
-    * Troubleshooting of any general technical issues that may arise
+    * Recognize that completing a feature, user story or developer task involves more than writing its implementation in the application. It actually involves:
+        * Writing unit, integration and system tests (which could involve learning and implementing new tools)
+        * Merging the completed code into the correct branch (which carries a risk of not going smoothly. When merging does not go smoothly this can be very costly in terms of time needed to resolve the issue)
+        * Troubleshooting of any general technical issues that may arise
 * Ensure that all testing has an issue created in GitLab (so it does not get overlooked and to eliminate a false assumption that someone is working on that issue)
 * Ensure that those issues have a due date that incorporates the potential time needed to deal with issues from point #1, as well a buffer to address any other unforeseen complications
 * Ensure that those issues are assigned to one point-person to take the key responsibility for ensuring those tasks are done
