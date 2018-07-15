@@ -21,92 +21,44 @@ import comp3350.ppms.presentation.allusers.Messages;
 import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 import comp3350.ppms.presentation.allusers.MainActivity;
 
-public class UserInterestedProjectsListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener  {
+public class UserInterestedProjectsListActivity extends ProjectListActivity implements View.OnClickListener, AdapterView.OnItemClickListener  {
 
     private ProjectManager mProjectManager;
-    private ListView mListView;
-    private ProjectAdapter mProjectAdapter;
     private ArrayList<String> mProjIDList;
     private ArrayList<Project> mProjectList;
-    private Button mViewDetailsButton;
-    private Button mReturnToPreviousButton;
     private int selectedProjectPosition;
-
-    private UserManager userManager;
-    private User currAccount;
     private String userNickname;
-    private String currProjectID;
-    private Project currProject;
-
+    private Button mReturnToPreviousButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_liked_list);
-        mListView = (ListView) findViewById(R.id.listProjects);
-        mViewDetailsButton = (Button) findViewById(R.id.project_details_button);
-        mReturnToPreviousButton = (Button) findViewById(R.id.return_button);
-        mViewDetailsButton.setOnClickListener(this);
-        mReturnToPreviousButton.setOnClickListener(this);
         mProjectManager = new ProjectManager();
         selectedProjectPosition = -1;
-        userManager = new UserManager();
-
-        getUserInfo();
+        mReturnToPreviousButton = (Button) findViewById(R.id.return_button);
+        mReturnToPreviousButton.setText(R.string.return_to_main);
+        mReturnToPreviousButton.setOnClickListener(this);
+        userNickname = getIntent().getStringExtra(this.getString(R.string.user_key));
+        getUserInfo(userNickname);
         populateInterestedProjectList();
 
     }
 
-    public void getUserInfo(){
-        userNickname = getIntent().getStringExtra(this.getString(R.string.user_key));
-        if (userNickname != null) {
-            try {
-                currAccount = userManager.getUser(userNickname);
-            }
-            catch (CustomException e){
-                Messages.warning(this, e.getErrorMsg());
-            }
-        }
-    }
-
     private void populateInterestedProjectList() {
-        //TODO - change this
-
-        mProjIDList = currAccount.getLikedProjectIDList();
+        mProjIDList = getCurrAccount().getLikedProjectIDList();
         mProjectList = new ArrayList<>();
         for (int i=0; i < mProjIDList.size(); i++)
             mProjectList.add(mProjectManager.getProject(mProjIDList.get(i)));
-        mProjectAdapter = new ProjectAdapter(this, mProjectList);
-        mListView.setAdapter(mProjectAdapter);
-        mListView.setOnItemClickListener(this);
-
+        populateProjectList(mProjectList);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == selectedProjectPosition) {
-            deselectListItem(position);
+            selectedProjectPosition = deselectListItem(position);
         } else {
-            selectListItem(position);
+            selectedProjectPosition = selectListItem(position, mProjectList);
         }
-    }
-
-    private void deselectListItem(int position)
-    {
-        mListView.setItemChecked(position, true);
-        mViewDetailsButton.setEnabled(false);
-        selectedProjectPosition = -1;
-        mListView.clearChoices();
-        mProjectAdapter.notifyDataSetChanged();
-    }
-
-    private void selectListItem(int position)
-    {
-        mListView.setItemChecked(position, true);
-        mViewDetailsButton.setEnabled(true);
-        selectedProjectPosition = position;
-        currProject = mProjectList.get(position);
-        currProjectID = currProject.getProjectID();
     }
 
     @Override
@@ -115,7 +67,7 @@ public class UserInterestedProjectsListActivity extends AppCompatActivity implem
             Intent scIntent = new Intent(UserInterestedProjectsListActivity.this, UserProjectDetailedViewActivity.class);
             Bundle bundle = new Bundle();
 
-            bundle.putString(this.getString(R.string.project_id), currProjectID);
+            bundle.putString(this.getString(R.string.project_id), getCurrProjectID());
 
             scIntent.putExtra(this.getString(R.string.user_key), userNickname);
 

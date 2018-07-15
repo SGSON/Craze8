@@ -43,7 +43,7 @@
          android:layout_marginRight="16dp"
          android:layout_marginStart="16dp"
          android:enabled="true"
-         android:text="Project Creator"
+         android:text="@string/return_to_previous"
          app:layout_constraintTop_toBottomOf="@+id/listProjects"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintStart_toEndOf="@+id/project_details_button" />

@@ -33,4 +33,6 @@
     <string name="select_user">Select User</string>
     <string name="user_selected">User Selected</string>
     <string name="match_message">Congratulations! You have been Matched for this Project!</string>
+    <string name="return_to_previous">Return To Previous</string>
+    <string name="project_creator">Project Creator</string>
 </resources>

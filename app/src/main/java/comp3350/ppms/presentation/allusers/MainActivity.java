@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (view.getId() == R.id.view_projects_button) {
 
-            intent = new Intent(MainActivity.this, AllProjectsListActivity.class);
+            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.AllProjectsListActivity.class);
             intent.putExtra(USER_NAME, userNickname);
             startActivity(intent);
         } else if (view.getId() == R.id.view_liked_projects_button) {
