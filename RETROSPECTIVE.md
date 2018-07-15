@@ -28,7 +28,7 @@ We had assumed that we had everything under control and that when we met we woul
 * Were the assigned issues in GitLab completed by the due dates? (Yes/No)
 * Are the tests within the application written correctly and do all the tests pass? (Yes/No)
 * Was everything we committed to, completed at least 1 day before the due date of the iteration? (Yes/No)
-* A 25% improvement in time estimated to complete the iteration vs actual time needed for the iteration (project velocity)
+* An improvement in time estimated to complete the iteration vs actual time needed for the iteration (>=25%)
 
 # Project Velocity
 ![Project Velocity](/projectvelocity.png)
