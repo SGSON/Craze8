@@ -5,7 +5,7 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 import comp3350.ppms.domain.User;
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.UserManager;
 
 import static org.mockito.Mockito.*;
@@ -51,6 +51,7 @@ public class UserManagerTest extends TestCase {
     public void testInvalidUsername(){
         System.out.println("\nStarting testing getting a username not in the database");
         String userName = "tester";
+
         User testUser = new User("test", "test");
 
         try{

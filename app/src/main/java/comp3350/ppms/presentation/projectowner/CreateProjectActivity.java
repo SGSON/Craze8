@@ -16,13 +16,17 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.domain.CredentialError;
+import comp3350.ppms.domain.ProjectDescriptionError;
 import comp3350.ppms.logic.ProjectManager;
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.domain.ProjectNameError;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.presentation.generaluser.ProjectListActivity;
 import comp3350.ppms.presentation.allusers.Messages;
@@ -104,14 +108,25 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
             try {
                 projectManager.insertProject(project);
                 currAccount.addToCreatedProjectIDList(project.getProjectID());
+                Toast.makeText(this, "Created", Toast.LENGTH_SHORT).show();
             } catch (CustomException e){
-                Messages.fatalError(this, e.getErrorMsg());
+                //Messages.fatalError(this, e.getErrorMsg());
+
+                if(e instanceof ProjectNameError){
+                    projectNameEdit.setError(e.getErrorMsg());
+                }else if(e instanceof ProjectDescriptionError){
+                    projectDescriptionEdit.setError(e.getErrorMsg());
+                }else if(e instanceof CredentialError){
+                    projectCredentialsEditList.get(0).setError(e.getErrorMsg());
+                }
             }
 
         }else if(view.getId() == R.id.increase_credential_button) {
             increaseNumCredential();
+            Toast.makeText(this, "Add Credential", Toast.LENGTH_SHORT).show();
         }else if(view.getId() == R.id.decrease_credential_button) {
             decreaseNumCredential();
+            Toast.makeText(this, "Delete Credential", Toast.LENGTH_SHORT).show();
         }else if(view.getId() == R.id.cancel_project_button){
             finish();
         }else{
@@ -154,7 +169,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         for (int i=0; i < projectCredentialsEditList.size(); i++)
             credentials.add(projectCredentialsEditList.get(i).getText().toString());
 
-        final Project project = new Project(projectName, projectDescr, credentials);
+        final Project project = new Project(projectName, currAccount.getUserID(), projectDescr, credentials);
         credentials = new ArrayList<>();
         return project;
     }

@@ -1,13 +1,9 @@
 package comp3350.ppms.presentation.generaluser;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,29 +13,39 @@ import com.example.test.ppms.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.logic.MatchManager;
+import comp3350.ppms.logic.MatchManagerInterface;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.allusers.CredentialsAdapter;
 import comp3350.ppms.presentation.allusers.Messages;
+import comp3350.ppms.presentation.projectowner.InterestedUsersListActivity;
+import comp3350.ppms.presentation.projectowner.MatchedUsersListActivity;
 
 
 public class UserProjectDetailedViewActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String USER_NAME = "userName";
     private static final String PROJECT_ID = "projectID";
-    private Button mAllProjectsButton;
     private Button interestButton;
+    private Button viewIntUsersButton;
+    private Button viewMatchedUsersButton;
+    private TextView matchMessageTextView;
     private ProjectManager mProjectManager;
     private ListView mListView;
     private List<String> mProjectCredentialList;
-    private ProjectCredentialAdapter mProjectCredentialAdapter;
+    private CredentialsAdapter mProjectCredentialAdapter;
+
     private String projectID;
     private Project project;
     private UserManager userManager;
     private String userNickname;
+    private String userID;
     private User currAccount;
+    private MatchManagerInterface matchManager;
 
 
     @Override
@@ -50,8 +56,14 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         interestButton = (Button) findViewById(R.id.like_button);
         interestButton.setOnClickListener(this);
 
-        mAllProjectsButton = (Button) findViewById(R.id.all_projects_button);
-        mAllProjectsButton.setOnClickListener(this);
+        viewIntUsersButton = (Button) findViewById(R.id.view_interested_users_button);
+        viewIntUsersButton.setOnClickListener(this);
+
+        viewMatchedUsersButton = (Button) findViewById(R.id.view_matched_users_button);
+        viewMatchedUsersButton.setOnClickListener(this);
+
+        matchMessageTextView = (TextView) findViewById((R.id.match_message_text_view));
+
         mListView = (ListView) findViewById(R.id.project_credentials);
 
         Intent intent = this.getIntent();
@@ -68,11 +80,15 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
             project = mProjectManager.getProject(projectID);
             getUserInfo();
 
+            matchManager = new MatchManager();
+
             TextView textView_project_name = (TextView) findViewById(R.id.project_name);
             TextView textView_project_description = (TextView) findViewById(R.id.project_description);
 
             textView_project_name.setText(mProjectManager.getProjectName(project));
             textView_project_description.setText(mProjectManager.getProjectDescription(project));
+
+            adjustUIForUser();
         }
         populateProjectCredentialList();
     }
@@ -82,13 +98,12 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         if (v.getId() == R.id.like_button) {
             likeProject(project, currAccount, projectID, userNickname);
             Toast.makeText(this, R.string.success_message, Toast.LENGTH_LONG).show();
+        } else if(v.getId() == R.id.view_interested_users_button) {
+            navigateToInterestedUsersList();
+        } else if(v.getId() == R.id.view_matched_users_button) {
+            navigateToMatchedUsersList();
         }
 
-        Intent scIntent = new Intent(UserProjectDetailedViewActivity.this, ProjectListActivity.class);
-
-        scIntent.putExtra(USER_NAME, userNickname);
-
-        UserProjectDetailedViewActivity.this.startActivity(scIntent);
     }
 
 
@@ -106,8 +121,22 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
     private void likeProject(Project proj, User user, String projectID, String userNickname) {
         userManager.addProjectToUserInterestedList(user, projectID);
-        mProjectManager.addInterestedUser(proj, userNickname);
+        mProjectManager.addInterestedUser(proj, currAccount.getUserID());
+        interestButton.setText("Liked");
+        interestButton.setEnabled(false);
 
+    }
+
+    private void navigateToInterestedUsersList() {
+        Intent intent = new Intent(UserProjectDetailedViewActivity.this, InterestedUsersListActivity.class);
+        intent.putExtra(PROJECT_ID, projectID);
+        UserProjectDetailedViewActivity.this.startActivity(intent);
+    }
+
+    private void navigateToMatchedUsersList() {
+        Intent intent = new Intent(this, MatchedUsersListActivity.class);
+        intent.putExtra(PROJECT_ID, projectID);
+        startActivity(intent);
     }
 
     private void populateProjectCredentialList() {
@@ -115,38 +144,46 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
         if (mProjectCredentialList != null)
             mProjectCredentialList.clear();
         mProjectCredentialList = mProjectManager.getProjectCredentials(project);
-        mProjectCredentialAdapter = new ProjectCredentialAdapter(this, mProjectCredentialList);
+        mProjectCredentialAdapter = new CredentialsAdapter(this, mProjectCredentialList);
         mListView.setAdapter(mProjectCredentialAdapter);
-        ((ProjectCredentialAdapter) mListView.getAdapter()).notifyDataSetChanged();
+        ((CredentialsAdapter) mListView.getAdapter()).notifyDataSetChanged();
     }
 
-    private class ProjectCredentialAdapter extends ArrayAdapter<String> {
+    private void adjustUIForUser() {
 
-        private String mProjectCredential;
 
-        public ProjectCredentialAdapter(Context context, List<String> projectCredentials) {
-            super(context, 0, projectCredentials);
+        if(userManager.userIsProjectOwner(currAccount, project)) {
+            adjustUIForProjectOwner();
+        } else if(matchManager.isUserProjectMatch(currAccount, project)) {
+            adjustUIForMatchedUser();
+        } else {
+            adjustUIForGeneralUser();
+
         }
-
-
-        @Override
-        public View getView(int index, View view, ViewGroup parent){
-
-            // Check if an existing view is being reused, otherwise inflate the view
-            if(view == null) {
-                view = LayoutInflater.from(getContext()).inflate(R.layout.item_project_credential, parent,
-                        false);
-            }
-
-            // Get data from project and set up the views
-            mProjectCredential = getItem(index);
-            TextView textView_project_credential = (TextView)view.findViewById(R.id.project_credential);
-
-            textView_project_credential.setText(mProjectCredential);
-
-            return view;
-        }
-
-
     }
+
+
+    private void adjustUIForProjectOwner() {
+        interestButton.setVisibility(View.GONE);
+    }
+
+    private void adjustUIForMatchedUser() {
+        interestButton.setVisibility(View.GONE);
+        viewMatchedUsersButton.setVisibility(View.GONE);
+        viewIntUsersButton.setVisibility(View.GONE);
+
+        matchMessageTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void adjustUIForGeneralUser() {
+        if (currAccount.getLikedProjectIDList().contains(projectID)) //TODO: This is a code smell
+        {
+            interestButton.setText("Liked");
+            interestButton.setEnabled(false);
+        }
+
+        viewIntUsersButton.setVisibility(View.GONE);
+        viewMatchedUsersButton.setVisibility(View.GONE);
+    }
+
 }

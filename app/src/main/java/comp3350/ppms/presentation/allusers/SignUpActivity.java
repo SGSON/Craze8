@@ -11,11 +11,11 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.User;
-import comp3350.ppms.logic.PasswordError;
+import comp3350.ppms.domain.PasswordError;
 import comp3350.ppms.logic.UserManager;
-import comp3350.ppms.logic.UsernameError;
+import comp3350.ppms.domain.UsernameError;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         TextView.OnEditorActionListener{
@@ -31,9 +31,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private UserManager userManager;
 
-  /*  private final String USER_ERROR= "Must enter user name";
-    private final String PASSWORD_ERROR = "Must enter valid password";
-    private final String USER_EXISTS_ERROR = "User name already exists!";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             try{
 
-                userManager.signUp(user);
+                userManager.insertUser(user);
                 Intent intent = new Intent(this,  MainActivity.class);
                 intent.putExtra(USER_NAME, userNickname);
 

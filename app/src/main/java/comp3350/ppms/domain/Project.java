@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Project implements ProjectInterface {
 
     private String projectID;
+    private String projectOwner;
     private String projectName;
     private String projectDescription;
     private List<String> projectCredentials;
@@ -14,8 +15,9 @@ public class Project implements ProjectInterface {
     private List<String> selectedUsers;
 
 
-    public Project(String name, String descr, ArrayList<String> cred) {
+    public Project(String name, String owner, String descr, ArrayList<String> cred) {
         projectID = UUID.randomUUID().toString();
+        projectOwner = owner;
         projectName = name;
         projectDescription = descr;
         projectCredentials = cred;
@@ -23,10 +25,12 @@ public class Project implements ProjectInterface {
         selectedUsers = new ArrayList<String>();
     }
 
-    public Project(String ID, String name, String descr, List<String> cred,
+    public Project(String ID, String name, String owner, String descr, List<String> cred,
                    List<String> inUsers, List<String> selUsers) {
+
         projectID = ID;
         projectName = name;
+        projectOwner = owner;
         projectDescription = descr;
         projectCredentials = cred;
         interestedUsers = inUsers;
@@ -37,6 +41,11 @@ public class Project implements ProjectInterface {
     @Override
     public String getProjectID() {
         return projectID;
+    }
+
+    @Override
+    public String getProjectOwner() {
+        return projectOwner;
     }
 
     public String getProjectName() {
@@ -58,9 +67,18 @@ public class Project implements ProjectInterface {
         return interestedUsers;
     }
 
+    public void addSelectedUser(String userID) {
+     selectedUsers.add(userID);
+    }
+
     @Override
     public List<String> getSelectedUsers() {
         return selectedUsers;
+    }
+
+    @Override
+    public int getNumInterestedUsers() {
+        return interestedUsers.size();
     }
 
 }

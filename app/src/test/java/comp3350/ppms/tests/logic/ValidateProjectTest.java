@@ -3,8 +3,8 @@ package comp3350.ppms.tests.logic;
 import org.junit.Test;
 import junit.framework.TestCase;
 
-import comp3350.ppms.logic.ValidateProject;
-import comp3350.ppms.logic.CustomException;
+import comp3350.ppms.domain.ValidateProject;
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nStarting testValidateProject: null Name");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("", "hello world", cred);
+        Project newProj = new Project("", "5468","hello world", cred);
         try {
             ValidateProject.validateName(newProj);
             fail("CustomException expected.");
@@ -38,7 +38,7 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nStarting testValidateProject: Long name");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("abcdefghijklmnopqrst", "hello world", cred);
+        Project newProj = new Project("abcdefghijklmnopqrst","77654", "hello world", cred);
         try {
             ValidateProject.validateName(newProj);
             fail("CustomException expected.");
@@ -53,7 +53,7 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nStarting testValidateProject: Normal name");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("abcdef", "hello world", cred);
+        Project newProj = new Project("abcdef", "4546", "hello world", cred);
         try {
             ValidateProject.validateName(newProj);
         } catch (CustomException expected) {
@@ -67,7 +67,7 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nStarting testValidateProject: null Description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("abcde", "", cred);
+        Project newProj = new Project("abcde", "5646","", cred);
         try {
             ValidateProject.validateDescription(newProj);
             fail("CustomException expected.");
@@ -85,7 +85,7 @@ public class ValidateProjectTest extends TestCase {
         String tooLong = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnop" +
                 "qrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz" +
                 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
-        Project newProj = new Project("abcde", tooLong, cred);
+        Project newProj = new Project("abcde", "7897", tooLong, cred);
         try {
             ValidateProject.validateDescription(newProj);
             fail("CustomException expected.");
@@ -100,7 +100,7 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nStarting testValidateProject: Normal description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("eight");
-        Project newProj = new Project("abcde", "Hello World", cred);
+        Project newProj = new Project("abcde", "4684", "Hello World", cred);
         try {
             ValidateProject.validateDescription(newProj);
         } catch (CustomException expected) {
@@ -115,7 +115,7 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nStarting testValidateProject: Normal description");
         ArrayList<String> cred = new ArrayList<String>();
         cred.add("");
-        Project newProj = new Project("", "", cred);
+        Project newProj = new Project("","", "", cred);
         try {
             ValidateProject.validateAll(newProj);
             fail("CustomException expected.");
@@ -135,7 +135,8 @@ public class ValidateProjectTest extends TestCase {
                 "qrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz" +
                 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
         String tooLongName = "abcdefghijklmnopqr";
-        Project newProj = new Project(tooLongName, tooLongDesc, cred);
+        String tooLongID = "87238947289578934569365963485743897543875938498346894378534795437895743875438975843";
+        Project newProj = new Project(tooLongName, tooLongID, tooLongDesc, cred);
         try {
             ValidateProject.validateAll(newProj);
             fail("CustomException expected.");
@@ -145,23 +146,6 @@ public class ValidateProjectTest extends TestCase {
         System.out.println("\nFinished testValidateProject: Normal description");
     }
 
-    @Test (expected = CustomException.class)
-    public void testShortCredentials() {
-        System.out.println("\nStarting testValidateProject: Short credential");
-        ArrayList<String> cred = new ArrayList<String>();
-        cred.add("eight");
-        cred.add("five");
-        String desc = "abcdefgh";
-        String name = "abcdefg";
-        Project newProj = new Project(name, desc, cred);
-        try {
-            ValidateProject.validateCredentials(newProj);
-            fail("CustomException expected.");
-        } catch (CustomException expected) {
-            assertEquals("Credentials must exceed 5 characters.", expected.getErrorMsg());
-        }
-        System.out.println("\nFinished testValidateProject: Short credentials");
-    }
 
     @Test (expected = CustomException.class)
     public void testEmptyCredentials() {
@@ -169,12 +153,13 @@ public class ValidateProjectTest extends TestCase {
         ArrayList<String> cred = new ArrayList<String>();
         String desc = "abcdefgh";
         String name = "abcdefg";
-        Project newProj = new Project(name, desc, cred);
+        String creatorID = "554658";
+        Project newProj = new Project(name, creatorID, desc, cred);
         try {
             ValidateProject.validateCredentials(newProj);
             fail("CustomException expected.");
         } catch (CustomException expected) {
-            assertEquals("Credentials must not be empty.", expected.getErrorMsg());
+            assertEquals("Projects must list credentials required", expected.getErrorMsg());
         }
         System.out.println("\nFinished testValidateProject: Empty credentials");
     }
@@ -185,8 +170,9 @@ public class ValidateProjectTest extends TestCase {
         ArrayList<String> cred = new ArrayList<String>();
         String desc = "abcdefgh";
         String name = "abcdefg";
+        String creatorID = "4546";
         cred.add("hello");
-        Project newProj = new Project(name, desc, cred);
+        Project newProj = new Project(name, creatorID, desc, cred);
         try {
             ValidateProject.validateUUID(newProj);
         } catch (CustomException expected) {
@@ -194,4 +180,22 @@ public class ValidateProjectTest extends TestCase {
         }
         System.out.println("\nFinished testValidateProject: Checking id");
     }
+
+    @Test (expected = CustomException.class)
+    public void testProjectOwnerID() {
+        System.out.println("\nStarting testValidateProject: Checking id");
+        ArrayList<String> cred = new ArrayList<String>();
+        String desc = "abcdefgh";
+        String name = "abcdefg";
+        String creatorID = "wefsdfds";
+        cred.add("hello");
+        Project newProj = new Project(name, creatorID, desc, cred);
+        try {
+            ValidateProject.validateOwner(newProj);
+        } catch (CustomException expected) {
+            assertEquals(null, expected);
+        }
+        System.out.println("\nFinished testValidateProject: Checking id");
+    }
+
 }

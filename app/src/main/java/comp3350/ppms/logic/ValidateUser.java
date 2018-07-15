@@ -1,6 +1,9 @@
 package comp3350.ppms.logic;
 
+import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.domain.PasswordError;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.domain.UsernameError;
 
 public class ValidateUser {
 
@@ -10,10 +13,12 @@ public class ValidateUser {
     private static final int MAX_PASS_LENGTH = 20;
 
 
-    public static boolean validateAll(User user) throws CustomException{
+    public static boolean validateAll(User user) throws CustomException {
+
         validateName(user);
-        validatePassword(user);
         validateDuplicate(user);
+        validatePassword(user);
+
         return true;
     }
 
@@ -47,7 +52,7 @@ public class ValidateUser {
     public static boolean validateDuplicate(User user) throws CustomException {
         UserManager usersAccess = new UserManager();
         if (usersAccess.getUser(user.getUserNickName()) != null) {
-            throw new CustomException(CustomException.EXISTING_USERNAME_ERROR);
+            throw new UsernameError(CustomException.EXISTING_USERNAME_ERROR);
         }
         else{
             return true;

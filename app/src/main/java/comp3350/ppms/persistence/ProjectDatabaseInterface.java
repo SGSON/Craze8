@@ -1,8 +1,11 @@
 package comp3350.ppms.persistence;
 
+
 import java.util.List;
 
+import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.User;
 
 public interface ProjectDatabaseInterface {
 
@@ -17,6 +20,5 @@ public interface ProjectDatabaseInterface {
     void removeProject(String ID);
     List<Project> getProjectSequential();
     Project getProject(String id);
-
 
 }
