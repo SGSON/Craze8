@@ -8,3 +8,5 @@ Discuss a part of your project that has not been as successful as you would have
 Realistic ways of improvement
 * Do TDD First. Assign due date/people EARLIER
 * Fix the code
+* 
+![Project Velocity](/projectvelocity.png)
