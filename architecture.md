@@ -22,7 +22,11 @@
 
     * ProjectListActivity.java/xml
         - Activity used to view a list of projects that have been created
-    * UserProjectDetailedViewActivity.java/xml  
+    * UserInfoActivity.java/xml
+        - Activity used to display details about a particular user
+    * UserInterestedProjectsListActivity.java/xml
+        - Activity to display to the user the projests they've expressed interest in
+    * UserProjectDetailedViewActivity.java/xml
         - Detailed project view for general users (after they have clicked on the summary, they are brought here)
 
 *Not yet implemented*  
@@ -33,16 +37,20 @@
         - Activity for general users to find projects
     * UserInterestedProjectsListActivity.java/xml
         - Activity for users to view the projects they expressed interest in  
-    
     * UserProfileCreateActivity.java/xml
         - Activity used for general users to complete their profile
     * UserProfileEditActivity.java/xml
         - Activity used for general users to update/edit their profile
+        
 ###### Project owner views  
 *Currently Implemented*  
 
     * CreateProjectActivity.java/xml 
         - Activity for project owners to create their project  
+    * InterestedUsersListActivity.java/xml
+        - Activity used to display users interested in a project
+    * MatchedUsersListActivity.java/xml
+        - Activity used to display the list of mutually selected users for a project
 
 *Not yet implemented*  
 
@@ -95,6 +103,8 @@
 # Domain package  
 *Currently implemented*
 
+    * CredentialsAdapter.java
+        - used to display credentials properly 
     * Project.java  
         - passed between comp3350.ppms.presentation, comp3350.ppms.logic and comp3350.ppms.persistence layer
     * CustomException.java
