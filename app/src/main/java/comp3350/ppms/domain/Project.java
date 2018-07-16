@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.ArrayList;
 
+import comp3350.ppms.presentation.projectowner.ProjectInterface;
+
 public class Project implements ProjectInterface {
 
     private String projectID;

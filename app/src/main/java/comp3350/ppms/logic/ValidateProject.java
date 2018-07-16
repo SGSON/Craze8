@@ -1,4 +1,10 @@
-package comp3350.ppms.domain;
+package comp3350.ppms.logic;
+
+import comp3350.ppms.domain.CredentialError;
+import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.domain.Project;
+import comp3350.ppms.domain.ProjectDescriptionError;
+import comp3350.ppms.domain.ProjectNameError;
 
 /**
  * The validate project class implements all the methods required
@@ -10,7 +16,7 @@ public class ValidateProject {
     private static final int DESCRIPTION_LENGTH = 256;
     private static final int CREDENTIAL_LENGTH = 1;
 
-    public static boolean validateAll(Project project) throws CustomException{
+    public static boolean validateAll(Project project) throws CustomException {
         validateUUID(project);
         validateOwner(project);
         validateName(project);

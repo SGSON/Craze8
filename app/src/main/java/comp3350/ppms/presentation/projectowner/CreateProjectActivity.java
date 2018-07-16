@@ -29,7 +29,7 @@ import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.ProjectNameError;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.presentation.generaluser.ProjectListActivity;
-import comp3350.ppms.presentation.allusers.Messages;
+import comp3350.ppms.domain.Messages;
 
 
 public class CreateProjectActivity extends AppCompatActivity implements View.OnClickListener,

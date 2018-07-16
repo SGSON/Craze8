@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import comp3350.ppms.application.Main;
+import comp3350.ppms.domain.Messages;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.UserManager;
