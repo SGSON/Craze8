@@ -40,7 +40,6 @@ public abstract class UserListActivity extends AppCompatActivity
     }
 
     protected Project initiateProjectFromIntent() {
-        Project projectFromIntent = null;
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if(bundle.get(PROJECT_ID) != null) {
