@@ -20,7 +20,7 @@
 ###### General user views  
 *Currently implemented*  
 
-    * ProjectListActivity.java/xml
+    * AllProjectListActivity.java/xml
         - Activity used to view a list of projects that have been created
     * UserInfoActivity.java/xml
         - Activity used to display details about a particular user
