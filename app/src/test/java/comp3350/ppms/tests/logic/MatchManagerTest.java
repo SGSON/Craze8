@@ -69,6 +69,8 @@ public class MatchManagerTest {
 
     @Test
     public void testMatchProject(){
+        System.out.println("\nTest MatchProject");
+
         int i = 0;
         List<Project> testProjects = new ArrayList<>();
 
@@ -107,10 +109,13 @@ public class MatchManagerTest {
 
         }
         assertTrue(testMatchManager.isUserProjectMatch(user,testProject));
+
+        System.out.println("\nTest Passed");
     }
 
     @Test
     public void testNotMatchProject(){
+        System.out.println("\nTest MatchProject");
         int i = 0;
         List<Project> testProjects = new ArrayList<>();
 
@@ -133,6 +138,7 @@ public class MatchManagerTest {
             }
         }
         assertFalse(testMatchManager.isUserProjectMatch(user,testProject));
+        System.out.println("\nTest Passed");
     }
 
     /*@Test

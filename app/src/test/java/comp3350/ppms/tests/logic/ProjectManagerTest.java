@@ -2,8 +2,12 @@ package comp3350.ppms.tests.logic;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import java.util.List;
@@ -18,6 +22,7 @@ import comp3350.ppms.domain.ProjectNameError;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.ProjectManager;
+import comp3350.ppms.persistence.ProjectDatabaseInterface;
 import comp3350.ppms.tests.database.ProjectDatabase;
 
 /**
@@ -30,10 +35,14 @@ import comp3350.ppms.tests.database.ProjectDatabase;
 public class ProjectManagerTest{
 
     private ProjectManager projectManager;
+    private ProjectManager projectManagerMock;
+    private ProjectDatabaseInterface projectDatabase;
 
     @Before
     public void setUp() {
         projectManager = new ProjectManager(new ProjectDatabase());
+        projectDatabase = mock(ProjectDatabaseInterface.class);
+        projectManagerMock = new ProjectManager(projectDatabase);
     }
 
 
@@ -139,6 +148,107 @@ public class ProjectManagerTest{
             assertEquals(null, expected);
         }
 
+    }
+
+
+    @Test
+    public void testGetProjects(){
+        System.out.println("\nTest get projects");
+
+        ArrayList<String> cred = new ArrayList<>();
+        cred.add("Java");
+        List<Project> list = new ArrayList<>();
+        list.add(new Project("pName", "owner", "decr", cred));
+        when(projectDatabase.getProjectSequential()).thenReturn(list);
+
+        List<Project> proj = projectManagerMock.getProjects();
+        assertNotNull("getting projects should not be null", proj);
+        assertEquals(list.get(0).getProjectName(), proj.get(0).getProjectName());
+
+        verify(projectDatabase).getProjectSequential();
+
+        System.out.println("\nTest Passed");
+    }
+
+    @Test
+    public void testGetProject(){
+        System.out.println("\nTest get project");
+
+        ArrayList<String> cred = new ArrayList<>();
+        cred.add("Java");
+        Project proj = new Project("pName", "owner", "descr", cred);
+
+        when(projectDatabase.getProject(proj.getProjectID())).thenReturn(proj);
+
+        Project newProj = projectManagerMock.getProject(proj.getProjectID());
+
+        assertNotNull("project should not be null", newProj);
+        assertEquals(proj.getProjectID(), newProj.getProjectID());
+
+        verify(projectDatabase).getProject(proj.getProjectID());
+
+        System.out.println("\nTest Passed");
+    }
+
+    @Test
+    public void testGetName(){
+        System.out.println("\nTest get project name");
+
+        ArrayList<String> cred = new ArrayList<>();
+        cred.add("Java");
+        String pName = "pName";
+        Project proj = new Project(pName, "owner", "descr", cred);
+
+        assertNotNull(proj.getProjectName());
+        assertEquals(pName, proj.getProjectName());
+
+        System.out.println("\nTest Passed");
+    }
+
+    @Test
+    public void testGetDesc(){
+        System.out.println("\nTest get project description");
+
+        ArrayList<String> cred = new ArrayList<>();
+        cred.add("Java");
+        String desc = "Description";
+        Project proj = new Project("pName", "owner", desc, cred);
+
+        assertNotNull(proj.getProjectDescription());
+        assertEquals(desc, proj.getProjectDescription());
+
+        System.out.println("\nTest Passed");
+    }
+
+    @Test
+    public void testGetCredential(){
+        System.out.println("\nTest get project credential");
+
+        ArrayList<String> cred = new ArrayList<>();
+        String lang = "Java";
+        cred.add(lang);
+        Project proj = new Project("pName", "owner", "description", cred);
+
+        assertNotNull(proj.getProjectCredentials());
+        assertNotNull(proj.getProjectCredentials().get(0));
+        assertEquals(lang, proj.getProjectCredentials().get(0));
+
+        System.out.println("\nTest Passed");
+    }
+
+    @Test
+    public void testAddSelectedUser(){
+        System.out.println("\nTest add selected user");
+
+        ArrayList<String> cred = new ArrayList<>();
+        String lang = "Java";
+        cred.add(lang);
+        Project proj = new Project("pName", "owner", "description", cred);
+
+        boolean res = projectManagerMock.addSelectedUser(proj, "user");
+        assertTrue(res);
+
+        System.out.println("\nTest Passed");
     }
 
 }
