@@ -132,13 +132,13 @@ public class AllAcceptanceTest {
         onView(withId(R.id.project_name)).perform(replaceText("newTestProject"));
         onView(withId(R.id.project_description)).perform(replaceText("project used for testing"));
         closeSoftKeyboard();
-        onView(withId(R.id.increase_credential_button)).perform(click());
+        //onView(withId(R.id.increase_credential_button)).perform(click());
         onView(nthChildOf(withId(R.id.credential_layout),0)).perform(replaceText("credTest1"));
-        onView(nthChildOf(withId(R.id.credential_layout),1)).perform(replaceText("credTest2"));
+        //onView(nthChildOf(withId(R.id.credential_layout),1)).perform(replaceText("credTest2"));
         closeSoftKeyboard();
-        pressBack();
         onView(withId(R.id.create_project_button)).perform(click());
-        closeSoftKeyboard();
+        //closeSoftKeyboard();
+        //pressBack();
         //verify creation is successful, since there are only 6 projects in the database, adding a 7th will make sure there is something at position 6 and click into view project details
         //Also by doing so, you can see all the projects that's created and that you can show interest in
         onView(withId(R.id.view_created_projects)).perform(click());
