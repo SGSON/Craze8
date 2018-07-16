@@ -1,4 +1,4 @@
-package comp3350.ppms.logic;
+package comp3350.ppms.domain;
 
 public class PasswordError extends CustomException{
 

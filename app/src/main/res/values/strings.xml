@@ -11,7 +11,9 @@
     <string name="credentials_label">Credentials</string>
     <string name="success_message">Success</string>
     <string name="invalid_data">Invalid Data</string>
-    <string name="view_created_project">View Created Projects</string>
+    <string name="view_all_project">View All Projects</string>
+    <string name="view_liked_project">View Liked Projects</string>
+    <string name="view_project_details">View Project Details</string>
     <string name="fatalError">Fatal error</string>
     <string name="warning">Warning</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
@@ -23,4 +25,28 @@
     <string name="does_not_have_account_prompt">If you do not have an account</string>
     <string name="project_credential_input">Please Enter Project Credential</string>
     <string name="user_key">userName</string>
+    <string name="project_id">projectID</string>
+    <string name="return_to_main">Go To Main Page</string>
+    <string name="view_interested_users_text">View Interested Users</string>
+    <string name="view_matched_users_text">View Matched Users</string>
+    <string name="user_name_header">User Name:</string>
+    <string name="select_user">Select User</string>
+    <string name="user_selected">User Selected</string>
+    <string name="match_message">Congratulations! You have been Matched for this Project!</string>
+    <string name="view_matched_projects_text">View Matched Projects</string>
+    <string name="no_project_id_error">No Id for project</string>
+    <string name="exceed_char_max_error">Name exceed required amount of characters</string>
+    <string name="empty_name_error">Cannot have empty name</string>
+    <string name="exceed_description_error">Description exceed required amount of characters</string>
+    <string name="empty_description_error">Cannot have empty description</string>
+    <string name="project_cred_error">Projects must list credentials required</string>
+
+    <string name="no_project_owner_name">No Project Owner error</string>
+    <string name="cred_too_short_pt1">Credentials must exceed </string>
+    <string name="cred_too_short_pt2"> characters.</string>
+    <string name="existing_username_error">Username already exists, please choose another user name.</string>
+    <string name="list_cred_error">you must list your credentials</string>
+
+    <string name="return_to_previous">Return To Previous</string>
+    <string name="project_creator">Project Creator</string>
 </resources>
