@@ -8,6 +8,8 @@
         
 *Currently implemented*  
 
+    * ErrorMessaging.java
+        - Responsible for strings to display for error handling
     * LoginActivity.java/xml
         - Login Activity screen for all users   
     * MainActivity.java/xml
