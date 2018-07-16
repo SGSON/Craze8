@@ -18,17 +18,19 @@ import comp3350.ppms.persistence.ProjectDatabaseInterface;
  */
 public class ProjectManager implements ProjectManagerInterface{
 
+    private ProjectDatabaseInterface projectDB;
+
     public ProjectManager() {
         projectDB = Service.getProjectDatabaseInterface();
     }
+
+    public ProjectManager(final ProjectDatabaseInterface projectStub) { projectDB = projectStub; }
 
     public ArrayList<Project> getProjects(){
         return projectDB.getProjectSequential();
     }
 
     public Project getProject(String id) { return projectDB.getProject(id); }
-
-    private ProjectDatabaseInterface projectDB;
 
 
     @Override

@@ -7,24 +7,26 @@ import junit.framework.TestCase;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.tests.database.UserDatabase;
 
-import static org.mockito.Mockito.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 /**
  * The UserManagerTest class will test
  * user manager test cases
  */
 
-public class UserManagerTest extends TestCase {
+public class UserManagerTest {
 
-    public UserManagerTest(String arg0){super(arg0);}
     private UserManager testUserManager;
-
 
     @Before
     public void setUp(){
-        testUserManager = mock(UserManager.class);
+        testUserManager = new UserManager(new UserDatabase());
     }
-
+//
     @Test
     public void testValidateUsernameTest(){
         System.out.println("\nStarting test insert valid username");
@@ -35,7 +37,6 @@ public class UserManagerTest extends TestCase {
         User testUser = new User(userName, password);
         try {
             testUserManager.insertUser(testUser);
-            verify(testUserManager).insertUser(testUser);
         }catch (CustomException e){
             System.out.println(e);
         }
@@ -43,10 +44,6 @@ public class UserManagerTest extends TestCase {
     }
 
 
-    @Before
-    public void setUpBefore(){
-        testUserManager = mock(UserManager.class);
-    }
     @Test
     public void testInvalidUsername(){
         System.out.println("\nStarting testing getting a username not in the database");
@@ -56,36 +53,60 @@ public class UserManagerTest extends TestCase {
 
         try{
             testUser = testUserManager.getUser(userName);
-            verify(testUserManager).getUser(userName);
+            assertEquals(null, testUser);
+//            verify(testUserManager).getUser(userName);
         }catch (CustomException e){
             System.out.println(e);
         }
-        assertNull(testUser);
         System.out.println("Test Passed!");
     }
 
-
-    @Before
-    public void setUpDuplicateName(){
-        User testUser = new User("1235", "tajsdasda");
-        testUserManager = mock(UserManager.class);
-        try {
-
-            testUserManager.insertUser(testUser);
-        }catch (CustomException e){
-
-        }
-    }
-    @Test (expected = CustomException.class)
+    @Test
     public void testDuplicateName(){
         System.out.println("\nTesting an insert of duplicate name into database");
         User testUser = new User("1235", "tajsdasda");
+        User testUser1 = new User("1235", "tajsd");
         try{
-            doThrow(CustomException.class).when(testUserManager).insertUser(testUser);
             testUserManager.insertUser(testUser);
+            testUserManager.insertUser(testUser1);
         }catch (CustomException e){
             System.out.println("Test Passed!");
         }
     }
+
+    @Test
+    public void testInvalidLogIn(){
+        System.out.println("\nTest Invalid login");
+
+        User test = new User(null, "password");
+        try{
+            testUserManager.loginRequest(test.getUserNickName());
+            fail("Exception expected");
+        }
+        catch (CustomException e){
+            assertEquals("Invalid Account Name", e.getErrorMsg());
+        }
+
+        System.out.println("Test Passed");
+    }
+
+    @Test
+    public void testValidLogIn(){
+        System.out.println("\nTest Valid login");
+
+        User test = new User("UserForTest", "password");
+        try{
+            testUserManager.insertUser(test);
+            testUserManager.loginRequest(test.getUserNickName());
+        }
+        catch (CustomException e){
+            System.out.println(e);
+        }
+
+        System.out.println("Test Passed");
+    }
+
+    @Test
+    public void test
 
 }

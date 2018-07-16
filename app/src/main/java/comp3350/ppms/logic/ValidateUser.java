@@ -11,10 +11,10 @@ public class ValidateUser {
     private static final int MAX_NAME_LENGTH = 20;
     private static final int MIN_PASS_LENGTH = 5;
     private static final int MAX_PASS_LENGTH = 20;
+    private static UserManager usersAccess;
 
-
-    public static boolean validateAll(User user) throws CustomException {
-
+    public static boolean validateAll(User user, UserManager userManager) throws CustomException {
+        usersAccess = userManager;
         validateName(user);
         validateDuplicate(user);
         validatePassword(user);
@@ -50,7 +50,6 @@ public class ValidateUser {
     }
 
     public static boolean validateDuplicate(User user) throws CustomException {
-        UserManager usersAccess = new UserManager();
         if (usersAccess.getUser(user.getUserNickName()) != null) {
             throw new UsernameError(CustomException.EXISTING_USERNAME_ERROR);
         }
