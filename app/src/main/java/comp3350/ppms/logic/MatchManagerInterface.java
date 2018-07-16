@@ -11,4 +11,6 @@ public interface MatchManagerInterface {
 
     List<User> getMatchedUsersForProject(Project project);
 
+    List<Project> getMatchedProjectsForUser(User user);
+
 }
