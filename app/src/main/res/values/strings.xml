@@ -33,4 +33,21 @@
     <string name="select_user">Select User</string>
     <string name="user_selected">User Selected</string>
     <string name="match_message">Congratulations! You have been Matched for this Project!</string>
+    <string name="view_matched_projects_text">View Matched Projects</string>
+    <string name="no_project_id_error">No Id for project</string>
+    <string name="exceed_char_max_error">Name exceed required amount of characters</string>
+    <string name="empty_name_error">Cannot have empty name</string>
+    <string name="exceed_description_error">Description exceed required amount of characters</string>
+    <string name="empty_description_error">Cannot have empty description</string>
+    <string name="project_cred_error">Projects must list credentials required</string>
+
+    <string name="no_project_owner_name">No Project Owner error</string>
+    <string name="cred_too_short_pt1">Credentials must exceed </string>
+    <string name="cred_too_short_pt2"> characters.</string>
+    <string name="existing_username_error">Username already exists, please choose another user name.</string>
+    <string name="list_cred_error">you must list your credentials</string>
+
+
+
+
 </resources>

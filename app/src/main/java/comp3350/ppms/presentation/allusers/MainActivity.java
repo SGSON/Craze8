@@ -7,10 +7,15 @@ import android.view.View;
 import android.widget.Button;
 
 import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.domain.Messages;
 import comp3350.ppms.logic.UserManager;
 import com.example.test.ppms.R;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.generaluser.ProjectListActivity;
+import comp3350.ppms.presentation.generaluser.UserInterestedProjectsListActivity;
+import comp3350.ppms.presentation.generaluser.UserMatchedProjectsListActivity;
 import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
+import comp3350.ppms.presentation.projectowner.InterestedUsersListActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mCreateProjectButton;
     private Button mViewProjectsButton;
     private Button mViewLikedProjectsButton;
+    private Button mViewMatchedProjectsButton;
     private User currAccount;
     private String userNickname;
     private UserManager userManager;
@@ -57,10 +63,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mCreateProjectButton = (Button) findViewById(R.id.create_project_button);
         mViewProjectsButton = (Button) findViewById(R.id.view_projects_button);
         mViewLikedProjectsButton = (Button) findViewById(R.id.view_liked_projects_button);
+        mViewMatchedProjectsButton = (Button) findViewById(R.id.view_matched_projects_button);
 
         mCreateProjectButton.setOnClickListener(this);
         mViewProjectsButton.setOnClickListener(this);
         mViewLikedProjectsButton.setOnClickListener(this);
+        mViewMatchedProjectsButton.setOnClickListener(this);
 
 
         //get the username from the last intent (login)
@@ -74,20 +82,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent intent;
         if(view.getId() == R.id.create_project_button) {
-            intent = new Intent(MainActivity.this, CreateProjectActivity.class);
-            intent.putExtra(USER_NAME, userNickname);
-            startActivity(intent);
+
+            navigateToActivity(CreateProjectActivity.class);
+
         } else if (view.getId() == R.id.view_projects_button) {
 
-            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.ProjectListActivity.class);
-            intent.putExtra(USER_NAME, userNickname);
-            startActivity(intent);
+            navigateToActivity(ProjectListActivity.class);
+
         } else if (view.getId() == R.id.view_liked_projects_button) {
 
-            intent = new Intent(MainActivity.this, comp3350.ppms.presentation.generaluser.UserInterestedProjectsListActivity.class);
-            intent.putExtra(USER_NAME, userNickname);
-            startActivity(intent);
+            navigateToActivity(UserInterestedProjectsListActivity.class);
+
+        } else if(view.getId() == R.id.view_matched_projects_button) {
+
+            navigateToActivity(UserMatchedProjectsListActivity.class);
         }
+    }
+
+    private void navigateToActivity(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
+        intent.putExtra(USER_NAME, userNickname);
+        startActivity(intent);
     }
 
     public void getUserInfo(){

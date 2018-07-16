@@ -7,7 +7,6 @@ import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 
 import comp3350.ppms.domain.User;
-import comp3350.ppms.domain.ValidateProject;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
 /**

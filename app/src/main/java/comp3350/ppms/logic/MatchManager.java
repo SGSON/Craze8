@@ -54,7 +54,34 @@ public class MatchManager implements MatchManagerInterface {
                 matchedUsers.add(currUser);
             }
         }
-
         return matchedUsers;
+    }
+
+    /**
+     *
+     * @param user
+     * @return The list of projects this user has been matched with
+     *
+     * Uses the matching algorithm from the users perspective
+     */
+    @Override
+    public List<Project> getMatchedProjectsForUser(User user) {
+        List<Project> matchedProjects = new ArrayList<>();
+        List<String> userLikedProjects;
+
+        userLikedProjects = userManager.getUsersInterestedProjects(user);
+        /**
+         * For each Project that the user is interested in
+         * If that User has been selected for the project - it's a match
+         */
+        for(int i = 0; i < userLikedProjects.size(); i++) {
+            String projectID = userLikedProjects.get(i);
+            Project currProject = projectManager.getProject(projectID);
+            if(isUserProjectMatch(user, currProject)) {
+                matchedProjects.add(currProject);
+            }
+        }
+
+        return matchedProjects;
     }
 }
