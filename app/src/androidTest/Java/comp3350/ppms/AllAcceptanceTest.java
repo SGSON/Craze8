@@ -27,6 +27,7 @@ import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -114,12 +115,12 @@ public class AllAcceptanceTest {
         closeSoftKeyboard();
         onView(withId(R.id.login_button)).perform(click());
         onView(withId(R.id.create_project_button)).perform(click());
-        onView(withId(R.id.project_name)).perform(typeText("newTestProject"));
-        onView(withId(R.id.project_description)).perform(typeText("project used for testing"));
+        onView(withId(R.id.project_name)).perform(replaceText("newTestProject"));
+        onView(withId(R.id.project_description)).perform(replaceText("project used for testing"));
         closeSoftKeyboard();
         onView(withId(R.id.increase_credential_button)).perform(click());
-        onView(nthChildOf(withId(R.id.credential_layout),0)).perform(typeText("credTest1"));
-        onView(nthChildOf(withId(R.id.credential_layout),1)).perform(typeText("credTest2"));
+        onView(nthChildOf(withId(R.id.credential_layout),0)).perform(replaceText("credTest1"));
+        onView(nthChildOf(withId(R.id.credential_layout),1)).perform(replaceText("credTest2"));
         closeSoftKeyboard();
         onView(withId(R.id.create_project_button)).perform(click());
 
