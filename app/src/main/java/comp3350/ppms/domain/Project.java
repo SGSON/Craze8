@@ -1,5 +1,6 @@
 package comp3350.ppms.domain;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.ArrayList;
 
@@ -9,9 +10,9 @@ public class Project implements ProjectInterface {
     private String projectOwner;
     private String projectName;
     private String projectDescription;
-    private ArrayList<String> projectCredentials;
-    private ArrayList<String> interestedUsers;
-    private ArrayList<String> selectedUsers;
+    private List<String> projectCredentials;
+    private List<String> interestedUsers;
+    private List<String> selectedUsers;
 
 
     public Project(String name, String owner, String descr, ArrayList<String> cred) {
@@ -24,8 +25,9 @@ public class Project implements ProjectInterface {
         selectedUsers = new ArrayList<String>();
     }
 
-    public Project(String ID, String name, String owner, String descr, ArrayList<String> cred,
-                   ArrayList<String> inUsers, ArrayList<String> selUsers) {
+    public Project(String ID, String name, String owner, String descr, List<String> cred,
+                   List<String> inUsers, List<String> selUsers) {
+
         projectID = ID;
         projectName = name;
         projectOwner = owner;
@@ -54,24 +56,23 @@ public class Project implements ProjectInterface {
         return projectDescription;
     }
 
-    public ArrayList<String> getProjectCredentials() {
+    public List<String> getProjectCredentials() {
         return projectCredentials;
     }
 
     public void addInterestedUser(String id) { interestedUsers.add(id); }
 
     @Override
+    public List<String> getInterestedUsers() {
+        return interestedUsers;
+    }
+
     public void addSelectedUser(String userID) {
      selectedUsers.add(userID);
     }
 
     @Override
-    public ArrayList<String> getInterestedUsers() {
-        return interestedUsers;
-    }
-
-    @Override
-    public ArrayList<String> getSelectedUsers() {
+    public List<String> getSelectedUsers() {
         return selectedUsers;
     }
 

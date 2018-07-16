@@ -67,8 +67,8 @@ public class ProjectDatabase implements ProjectDatabaseInterface {
     }
 
     @Override
-    public ArrayList<Project> getProjectSequential() {
-        ArrayList<Project> projects = new ArrayList<Project>();
+    public List<Project> getProjectSequential() {
+        List<Project> projects = new ArrayList<Project>();
         Set<String> hashKeys = projectsStub.keySet();
 
         for(String key: hashKeys) {

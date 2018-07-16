@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.test.ppms.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
@@ -26,7 +27,7 @@ public class UserInterestedProjectsListActivity extends AppCompatActivity implem
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ProjectAdapter mProjectAdapter;
-    private ArrayList<String> mProjIDList;
+    private List<String> mProjIDList;
     private ArrayList<Project> mProjectList;
     private Button mViewDetailsButton;
     private Button mReturnToPreviousButton;
