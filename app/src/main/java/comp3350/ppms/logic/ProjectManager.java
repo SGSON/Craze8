@@ -69,13 +69,13 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     @Override
-    public List<String> getSelectedUsersForProject(Project project) {
+    public ArrayList<String> getSelectedUsersForProject(Project project) {
         return project.getSelectedUsers();
     }
 
     @Override
-    public List<User> getInterestedUsers(Project project) {
-        List<User> intUsers = new ArrayList<User>();
+    public ArrayList<User> getInterestedUsers(Project project) {
+        ArrayList<User> intUsers = new ArrayList<User>();
         UserManager userManager = new UserManager();
         ArrayList<String> userIDs = project.getInterestedUsers();
 

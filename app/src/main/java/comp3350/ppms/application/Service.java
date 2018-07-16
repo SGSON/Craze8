@@ -33,5 +33,10 @@ public class Service {
         return userDatabaseInterface;
     }
 
+    public static synchronized void clean() {
+        projectDatabaseInterface = null;
+        userDatabaseInterface = null;
+    }
+
 
 }

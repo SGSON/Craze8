@@ -123,7 +123,7 @@ public class AllAcceptanceTest {
         closeSoftKeyboard();
         onView(withId(R.id.create_project_button)).perform(click());
 
-        //verify creation is successful, since there are only 6 projects in the database, adding a 7th will make sure there is something at position 6 and click into view project details
+        //verify creation is successful, since there are only 6 projects in the database, having created one will make the size into 7.
         //Also by doing so, you can see all the projects that's created and that you can show interest in
         pressBack();
         onView(withId(R.id.view_projects_button)).perform(click());
