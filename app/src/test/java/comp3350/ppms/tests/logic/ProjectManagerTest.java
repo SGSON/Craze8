@@ -5,9 +5,11 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
-
 import org.junit.Before;
+import java.util.List;
+import java.util.UUID;
 import org.junit.Test;
+
 
 import java.util.ArrayList;
 
@@ -27,7 +29,6 @@ import comp3350.ppms.tests.database.ProjectDatabase;
 
 public class ProjectManagerTest{
 
-    private ProjectDatabase projectDatabase;
     private ProjectManager projectManager;
 
     @Before
@@ -103,6 +104,9 @@ public class ProjectManagerTest{
     public void testMultipleProjectList(){
         System.out.println("\nStarting testRetrieveProject: Multiple projects");
         ArrayList<String> cred = new ArrayList<String>();
+
+        List<Project> projectList;
+
         cred.add("eight");
         Project newProj = new Project("hello", "1234", "hello world", cred);
         Project newProj1 = new Project("hello2", "12345", "hello world", cred);

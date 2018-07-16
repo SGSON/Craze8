@@ -1,5 +1,6 @@
 package comp3350.ppms.domain;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.ArrayList;
 
@@ -11,13 +12,13 @@ public interface UserInterface {
 
     String getUserPassword();
 
-    ArrayList<String> getCreatedProjectIDList();
+    List<String> getCreatedProjectIDList();
 
-    ArrayList<String> getLikedProjectIDList();
+    List<String> getLikedProjectIDList();
 
-    ArrayList<String> getMatchedProjectIDList();
+    List<String> getMatchedProjectIDList();
 
-    ArrayList<String> getUserCredentials();
+    List<String> getUserCredentials();
 
     void addToCreatedProjectIDList(String projectID);
 

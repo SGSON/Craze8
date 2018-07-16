@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import com.example.test.ppms.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.CustomException;
@@ -28,7 +29,7 @@ public class ProjectListActivity extends AppCompatActivity implements View.OnCli
     private ProjectManager mProjectManager;
     private ListView mListView;
     private ProjectAdapter mProjectAdapter;
-    private ArrayList<Project> mProjectList;
+    private List<Project> mProjectList;
     private Button mViewDetailsButton;
     private Button mReturnToPreviousButton;
     private String currProjectID;
