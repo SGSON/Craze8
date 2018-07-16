@@ -4,7 +4,7 @@ import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.PasswordError;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.domain.UsernameError;
-import comp3350.ppms.presentation.ErrorMessaging;
+import comp3350.ppms.presentation.allusers.ErrorMessaging;
 
 public class ValidateUser {
 

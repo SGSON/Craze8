@@ -1,15 +1,11 @@
 package comp3350.ppms.logic;
 
-import android.content.res.Resources;
-
-import com.example.test.ppms.R;
-
 import comp3350.ppms.domain.CredentialError;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.ProjectDescriptionError;
 import comp3350.ppms.domain.ProjectNameError;
-import comp3350.ppms.presentation.ErrorMessaging;
+import comp3350.ppms.presentation.allusers.ErrorMessaging;
 
 /**
  * The validate project class implements all the methods required
