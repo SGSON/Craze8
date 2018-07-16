@@ -95,7 +95,7 @@
 # Domain package  
 *Currently implemented*
 
-    * * Messages.java
+    * Messages.java
         - Shows an error message dialog if an exception or warning occurs
     * Project.java  
         - passed between comp3350.ppms.presentation, comp3350.ppms.logic and comp3350.ppms.persistence layer
