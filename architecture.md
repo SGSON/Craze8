@@ -33,10 +33,6 @@
 
     * UserProjectSummaryViewActivity.java/xml  
         - Shorter project summary view meant to get the general user interested in viewing more about the project  
-    * UserSearchForProjectActivity.java/xml  
-        - Activity for general users to find projects
-    * UserInterestedProjectsListActivity.java/xml
-        - Activity for users to view the projects they expressed interest in  
     * UserProfileCreateActivity.java/xml
         - Activity used for general users to complete their profile
     * UserProfileEditActivity.java/xml
@@ -56,16 +52,14 @@
 
     * OwnerProjectEditActivity.java/xml
         - Activity for project owners to edit/update their project listing
-    * OwnerViewMatchesActivity.java/xml
-        - Activity for project owners to view their mathes for the project
     * OwnerViewMatchContactActivity.java/xml
         - Activity for project owners to view the contact details of confirmed matches  
     
 # Logic package  
 *Currently implemented*  
 
-    * CustomException.java
-        - used in conjunction with Messages.java to provide appropriate error messaging
+    * MatchManager.java
+        - Takes care of matching processes
     * ProjectManager.java  
         - Takes care of the project processes
              - Project creation/editing
@@ -103,8 +97,6 @@
 # Domain package  
 *Currently implemented*
 
-    * CredentialsAdapter.java
-        - used to display credentials properly 
     * Project.java  
         - passed between comp3350.ppms.presentation, comp3350.ppms.logic and comp3350.ppms.persistence layer
     * CustomException.java
