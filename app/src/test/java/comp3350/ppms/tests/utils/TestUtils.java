@@ -1,4 +1,4 @@
-package comp3350.ppms.tests.util;
+package comp3350.ppms.tests.utils;
 
 import com.google.common.io.Files;
 

@@ -28,7 +28,7 @@ import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.ProjectNameError;
 import comp3350.ppms.logic.UserManager;
-import comp3350.ppms.presentation.generaluser.ProjectListActivity;
+import comp3350.ppms.presentation.generaluser.AllProjectsListActivity;
 import comp3350.ppms.domain.Messages;
 
 
@@ -85,6 +85,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
         cancelButton = (Button) findViewById(R.id.cancel_project_button);
 
         projectNameEdit.setOnEditorActionListener(this);
+        projectDescriptionEdit.setOnEditorActionListener(this);
 
         createProjectButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
@@ -203,7 +204,7 @@ public class CreateProjectActivity extends AppCompatActivity implements View.OnC
     }
 
     public void viewCreatedProjects(View view){
-        Intent intent = new Intent(this, ProjectListActivity.class);
+        Intent intent = new Intent(this, AllProjectsListActivity.class);
 
         intent.putExtra(this.getString(R.string.user_key), userNickname);
 

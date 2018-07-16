@@ -47,7 +47,6 @@
     <string name="existing_username_error">Username already exists, please choose another user name.</string>
     <string name="list_cred_error">you must list your credentials</string>
 
-
-
-
+    <string name="return_to_previous">Return To Previous</string>
+    <string name="project_creator">Project Creator</string>
 </resources>

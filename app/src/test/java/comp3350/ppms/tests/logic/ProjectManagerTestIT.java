@@ -14,7 +14,7 @@ import comp3350.ppms.domain.User;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
-import comp3350.ppms.tests.util.TestUtils;
+import comp3350.ppms.tests.utils.TestUtils;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

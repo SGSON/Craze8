@@ -11,6 +11,7 @@ import comp3350.ppms.domain.Messages;
 import comp3350.ppms.logic.UserManager;
 import com.example.test.ppms.R;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.presentation.generaluser.AllProjectsListActivity;
 import comp3350.ppms.presentation.generaluser.ProjectListActivity;
 import comp3350.ppms.presentation.generaluser.UserInterestedProjectsListActivity;
 import comp3350.ppms.presentation.generaluser.UserMatchedProjectsListActivity;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (view.getId() == R.id.view_projects_button) {
 
-            navigateToActivity(ProjectListActivity.class);
+            navigateToActivity(AllProjectsListActivity.class);
 
         } else if (view.getId() == R.id.view_liked_projects_button) {
 

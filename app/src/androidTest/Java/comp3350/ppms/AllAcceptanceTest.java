@@ -4,12 +4,22 @@ import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.test.ppms.R;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.Description;
 import org.junit.runner.RunWith;
+
+import java.io.File;
+import java.io.IOException;
 
 import comp3350.ppms.presentation.allusers.LoginActivity;
 
@@ -21,6 +31,7 @@ import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -37,10 +48,18 @@ import static util.ViewMatch.withListSize;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class AllAcceptanceTest {
+
+    private File tempDB;
+
+
+
+    @Before
+    public void setUP() throws IOException {
+        //tempDB = TestUtils.copyDB();
+    }
+
     @Rule
     public ActivityTestRule<LoginActivity> activityRule = new ActivityTestRule<>(LoginActivity.class);
-
-
 
     @Test
     //tests issue #17
@@ -77,19 +96,19 @@ public class AllAcceptanceTest {
         closeSoftKeyboard();
         onView(withId(R.id.login_button)).perform(click());
         onView(withId(R.id.create_project_button)).perform(click());
-        onView(withId(R.id.project_name)).perform(typeText("newTestProject"));
-        onView(withId(R.id.project_description)).perform(typeText("project used for testing"));
+        onView(withId(R.id.project_name)).perform(replaceText("newTestProject"));
+        onView(withId(R.id.project_description)).perform(replaceText("project used for testing"));
         closeSoftKeyboard();
-        onView(withId(R.id.increase_credential_button)).perform(click());
-        onView(nthChildOf(withId(R.id.credential_layout),0)).perform(typeText("credTest1"));
-        onView(nthChildOf(withId(R.id.credential_layout),1)).perform(typeText("credTest2"));
+        //onView(withId(R.id.increase_credential_button)).perform(click());
+        onView(nthChildOf(withId(R.id.credential_layout),0)).perform(replaceText("credTest1"));
+        //onView(nthChildOf(withId(R.id.credential_layout),1)).perform(replaceText("credTest2"));
         closeSoftKeyboard();
         onView(withId(R.id.create_project_button)).perform(click());
-
-        //verify creation is successful, since there are only 6 projects in the database, having created one will make the size into 7.
+        //closeSoftKeyboard();
+        //pressBack();
+        //verify creation is successful, since there are only 6 projects in the database, adding a 7th will make sure there is something at position 6 and click into view project details
         //Also by doing so, you can see all the projects that's created and that you can show interest in
-        pressBack();
-        onView(withId(R.id.view_projects_button)).perform(click());
+        onView(withId(R.id.view_created_projects)).perform(click());
         onView(withId(R.id.listProjects)).check(ViewAssertions.matches(withListSize(7)));
 
     }
