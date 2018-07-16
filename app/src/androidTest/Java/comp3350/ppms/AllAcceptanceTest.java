@@ -12,10 +12,14 @@ import com.example.test.ppms.R;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.Description;
 import org.junit.runner.RunWith;
+
+import java.io.File;
+import java.io.IOException;
 
 import comp3350.ppms.presentation.allusers.LoginActivity;
 
@@ -42,6 +46,16 @@ import static org.hamcrest.core.AllOf.allOf;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class AllAcceptanceTest {
+
+    private File tempDB;
+
+
+
+    @Before
+    public void setUP() throws IOException {
+        //tempDB = TestUtils.copyDB();
+    }
+
     @Rule
     public ActivityTestRule<LoginActivity> activityRule = new ActivityTestRule<>(LoginActivity.class);
 
