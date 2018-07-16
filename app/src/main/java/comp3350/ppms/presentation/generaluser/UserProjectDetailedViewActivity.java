@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.test.ppms.R;
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.MatchManager;
@@ -35,8 +36,9 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     private TextView matchMessageTextView;
     private ProjectManager mProjectManager;
     private ListView mListView;
-    private ArrayList<String> mProjectCredentialList;
+    private List<String> mProjectCredentialList;
     private CredentialsAdapter mProjectCredentialAdapter;
+
     private String projectID;
     private Project project;
     private UserManager userManager;
@@ -149,12 +151,14 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
 
     private void adjustUIForUser() {
 
+
         if(userManager.userIsProjectOwner(currAccount, project)) {
             adjustUIForProjectOwner();
         } else if(matchManager.isUserProjectMatch(currAccount, project)) {
             adjustUIForMatchedUser();
         } else {
             adjustUIForGeneralUser();
+
         }
     }
 

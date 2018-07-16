@@ -4,16 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class User implements UserInterface{
     private String userID;
     private String userNickName;
     private String userPassword;
-    private ArrayList<String> userCredentials;
-    private ArrayList<String> createdProjectIDList;
-    private ArrayList<String> likedProjectIDList;
-    private ArrayList<String> matchedProjectIDList;
+    private List<String> userCredentials;
+    private List<String> createdProjectIDList;
+    private List<String> likedProjectIDList;
+    private List<String> matchedProjectIDList;
 
     public User(String newUserNickName, String newUserPassword)
     {
@@ -26,9 +27,9 @@ public class User implements UserInterface{
         this.userCredentials = new ArrayList<>();
     }
 
-    public User(String ID, String userName, String password, ArrayList<String> createdProjectIDList,
-                ArrayList<String> likedProjectIDList, ArrayList<String> matchedProjectIDList,
-                ArrayList<String> userCredentials) {
+    public User(String ID, String userName, String password, List<String> createdProjectIDList,
+                List<String> likedProjectIDList, List<String> matchedProjectIDList,
+                List<String> userCredentials) {
         this.userID = ID;
         this.userNickName = userName;
         this.userPassword = password;
@@ -52,19 +53,19 @@ public class User implements UserInterface{
     public String getUserPassword() {
         return (userPassword);}
 
-    public ArrayList<String> getCreatedProjectIDList() {
+    public List<String> getCreatedProjectIDList() {
         return createdProjectIDList;
     }
 
-    public ArrayList<String> getLikedProjectIDList() {
+    public List<String> getLikedProjectIDList() {
         return likedProjectIDList;
     }
 
-    public ArrayList<String> getMatchedProjectIDList() {
+    public List<String> getMatchedProjectIDList() {
         return matchedProjectIDList;
     }
 
-    public ArrayList<String> getUserCredentials() {
+    public List<String> getUserCredentials() {
         return userCredentials;
     }
 

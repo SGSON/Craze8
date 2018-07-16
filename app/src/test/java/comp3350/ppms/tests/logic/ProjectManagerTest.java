@@ -2,7 +2,11 @@ package comp3350.ppms.tests.logic;
 
 import junit.framework.TestCase;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.junit.Test;
+
 
 import java.util.ArrayList;
 
@@ -108,7 +112,7 @@ public class ProjectManagerTest extends TestCase{
         System.out.println("\nStarting testRetrieveProject: Multiple projects");
         projectManager = mock(ProjectManager.class);
         ArrayList<String> cred = new ArrayList<String>();
-        ArrayList<Project> projectList;
+        List<Project> projectList;
         cred.add("eight");
         Project newProj = new Project("hello", "46545", "hello world", cred);
         Project newProj1 = new Project("hello", "4654", "hello world", cred);
