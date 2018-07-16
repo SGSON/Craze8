@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.test.ppms.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.Project;
 
@@ -17,7 +18,7 @@ public class ProjectAdapter extends ArrayAdapter<Project> {
 
     private Project project;
 
-    public ProjectAdapter(Context context, ArrayList<Project> projects) {
+    public ProjectAdapter(Context context, List<Project> projects) {
         super(context, 0, projects);
     }
 

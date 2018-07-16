@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.example.test.ppms.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.ProjectManager;
@@ -20,7 +20,7 @@ public class AllProjectsListActivity extends ProjectListActivity implements View
     private ProjectManager mProjectManager;
     private Button mReturnToPreviousButton;
     private String userNickname;
-    private ArrayList<Project> mProjectList;
+    private List<Project> mProjectList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

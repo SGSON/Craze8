@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.test.ppms.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
@@ -24,7 +25,7 @@ import comp3350.ppms.presentation.allusers.MainActivity;
 public class UserInterestedProjectsListActivity extends ProjectListActivity implements View.OnClickListener, AdapterView.OnItemClickListener  {
 
     private ProjectManager mProjectManager;
-    private ArrayList<String> mProjIDList;
+    private List<String> mProjIDList;
     private ArrayList<Project> mProjectList;
     private int selectedProjectPosition;
     private String userNickname;

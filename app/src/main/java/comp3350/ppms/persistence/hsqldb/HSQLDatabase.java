@@ -3,12 +3,13 @@ package comp3350.ppms.persistence.hsqldb;
 import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class HSQLDatabase {
 
-    protected ArrayList stringArrayConversion(Array input) {
+    protected List<String> stringArrayConversion(Array input) {
         Object[] values;
-        ArrayList<String> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
         if (input == null){
             return null;

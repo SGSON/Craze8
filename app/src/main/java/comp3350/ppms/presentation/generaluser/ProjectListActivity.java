@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import com.example.test.ppms.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
@@ -70,7 +70,7 @@ public abstract class ProjectListActivity extends AppCompatActivity implements V
         return -1;
     }
 
-    protected int selectListItem(int position, ArrayList<Project> mProjectList)
+    protected int selectListItem(int position, List<Project> mProjectList)
     {
         mListView.setItemChecked(position, true);
         mViewDetailsButton.setEnabled(true);
@@ -79,7 +79,7 @@ public abstract class ProjectListActivity extends AppCompatActivity implements V
         return position;
     }
 
-    protected void populateProjectList(ArrayList<Project> mProjectList) {
+    protected void populateProjectList(List<Project> mProjectList) {
         mProjectAdapter = new ProjectAdapter(this, mProjectList);
         mListView.setAdapter(mProjectAdapter);
         mListView.setOnItemClickListener(this);
