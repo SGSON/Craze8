@@ -1,4 +1,4 @@
-package comp3350.ppms.domain;
+package comp3350.ppms.presentation.projectowner;
 
 import java.util.List;
 import java.util.UUID;

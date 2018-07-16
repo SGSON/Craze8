@@ -3,7 +3,7 @@ package comp3350.ppms.application;
 import comp3350.ppms.persistence.UserDatabaseInterface;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 //import comp3350.ppms.persistence.database.UPDatabase;
-import comp3350.ppms.persistence.database.UserDatabase;
+//import comp3350.ppms.persistence.database.UserDatabase;
 import comp3350.ppms.persistence.hsqldb.ProjectPersistenceHSQLDB;
 import comp3350.ppms.persistence.hsqldb.UserDatabaseHSQLDB;
 
@@ -31,6 +31,11 @@ public class Service {
         }
 
         return userDatabaseInterface;
+    }
+
+    public static synchronized void clean() {
+        projectDatabaseInterface = null;
+        userDatabaseInterface = null;
     }
 
 

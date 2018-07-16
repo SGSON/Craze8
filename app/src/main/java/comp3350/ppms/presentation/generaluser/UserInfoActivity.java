@@ -17,7 +17,7 @@ import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
-import comp3350.ppms.presentation.allusers.CredentialsAdapter;
+import comp3350.ppms.presentation.projectowner.CredentialsAdapter;
 
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
 

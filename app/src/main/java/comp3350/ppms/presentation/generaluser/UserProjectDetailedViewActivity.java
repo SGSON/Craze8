@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.test.ppms.R;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import comp3350.ppms.domain.CustomException;
@@ -20,8 +20,8 @@ import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.domain.User;
-import comp3350.ppms.presentation.allusers.CredentialsAdapter;
-import comp3350.ppms.presentation.allusers.Messages;
+import comp3350.ppms.presentation.projectowner.CredentialsAdapter;
+import comp3350.ppms.domain.Messages;
 import comp3350.ppms.presentation.projectowner.InterestedUsersListActivity;
 import comp3350.ppms.presentation.projectowner.MatchedUsersListActivity;
 
@@ -176,7 +176,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     }
 
     private void adjustUIForGeneralUser() {
-        if (currAccount.getLikedProjectIDList().contains(projectID)) //TODO: This is a code smell
+        if (currAccount.getLikedProjectIDList().contains(projectID))
         {
             interestButton.setText("Liked");
             interestButton.setEnabled(false);

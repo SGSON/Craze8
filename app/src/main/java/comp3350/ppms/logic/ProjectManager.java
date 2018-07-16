@@ -7,7 +7,6 @@ import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 
 import comp3350.ppms.domain.User;
-import comp3350.ppms.domain.ValidateProject;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 
 /**
@@ -17,17 +16,19 @@ import comp3350.ppms.persistence.ProjectDatabaseInterface;
  */
 public class ProjectManager implements ProjectManagerInterface{
 
+    private ProjectDatabaseInterface projectDB;
+
     public ProjectManager() {
         projectDB = Service.getProjectDatabaseInterface();
     }
+
+    public ProjectManager(final ProjectDatabaseInterface projectStub) { projectDB = projectStub; }
 
     public List<Project> getProjects(){
         return projectDB.getProjectSequential();
     }
 
     public Project getProject(String id) { return projectDB.getProject(id); }
-
-    private ProjectDatabaseInterface projectDB;
 
 
     @Override
@@ -73,8 +74,8 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     @Override
-    public List<User> getInterestedUsers(Project project) {
-        List<User> intUsers = new ArrayList<User>();
+    public ArrayList<User> getInterestedUsers(Project project) {
+        ArrayList<User> intUsers = new ArrayList<User>();
         UserManager userManager = new UserManager();
         List<String> userIDs = project.getInterestedUsers();
 

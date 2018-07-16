@@ -18,15 +18,14 @@ import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.ProjectManager;
 import comp3350.ppms.logic.UserManager;
-import comp3350.ppms.presentation.allusers.Messages;
-import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
+import comp3350.ppms.domain.Messages;
 import comp3350.ppms.presentation.allusers.MainActivity;
 
 public class UserInterestedProjectsListActivity extends ProjectListActivity implements View.OnClickListener, AdapterView.OnItemClickListener  {
 
     private ProjectManager mProjectManager;
     private List<String> mProjIDList;
-    private ArrayList<Project> mProjectList;
+    private List<Project> mProjectList;
     private int selectedProjectPosition;
     private String userNickname;
     private Button mReturnToPreviousButton;

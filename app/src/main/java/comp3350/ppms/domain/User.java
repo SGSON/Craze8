@@ -1,13 +1,12 @@
 package comp3350.ppms.domain;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class User implements UserInterface{
+import comp3350.ppms.presentation.generaluser.UserInterface;
+
+public class User implements UserInterface {
     private String userID;
     private String userNickName;
     private String userPassword;

@@ -41,6 +41,8 @@ import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.core.AllOf.allOf;
+import static util.ViewMatch.nthChildOf;
+import static util.ViewMatch.withListSize;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -58,41 +60,6 @@ public class AllAcceptanceTest {
 
     @Rule
     public ActivityTestRule<LoginActivity> activityRule = new ActivityTestRule<>(LoginActivity.class);
-
-    public static Matcher<View> withListSize (final int size) {
-        return new TypeSafeMatcher<View> () {
-            @Override
-            public boolean matchesSafely (final View view) {
-                return ((ListView) view).getCount () == size;
-            }
-
-            @Override
-            public void describeTo (org.hamcrest.Description description) {
-                description.appendText ("ListView should have " + size + " items");
-            }
-        };
-    }
-
-    public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
-        return new TypeSafeMatcher<View>() {
-
-            @Override
-            public void describeTo(org.hamcrest.Description description) {
-                description.appendText("position " + childPosition + " of parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                if (!(view.getParent() instanceof ViewGroup)) {
-                    return parentMatcher.matches(view.getParent());
-                }
-
-                ViewGroup group = (ViewGroup) view.getParent();
-                return parentMatcher.matches(view.getParent()) && group.getChildAt(childPosition).equals(view);
-            }
-        };
-    }
 
     @Test
     //tests issue #17

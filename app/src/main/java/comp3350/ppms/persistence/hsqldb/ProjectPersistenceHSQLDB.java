@@ -106,7 +106,7 @@ public class ProjectPersistenceHSQLDB extends HSQLDatabase implements ProjectDat
         try (final Connection connection = connection()){
             final PreparedStatement statement =
                     connection.prepareStatement("DELETE FROM projects WHERE projectID = ?");
-            statement.setString(1, ID.toString()); //TODO: Project manager should handel conversion
+            statement.setString(1, ID.toString());
             statement.executeUpdate();
         } catch (final SQLException e) {
             throw new DatabaseException(e);

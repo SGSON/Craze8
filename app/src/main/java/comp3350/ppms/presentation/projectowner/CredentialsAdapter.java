@@ -1,4 +1,4 @@
-package comp3350.ppms.presentation.allusers;
+package comp3350.ppms.presentation.projectowner;
 
 import android.content.Context;
 import android.view.LayoutInflater;

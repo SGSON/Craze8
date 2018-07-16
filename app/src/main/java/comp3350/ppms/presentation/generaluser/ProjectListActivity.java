@@ -18,7 +18,9 @@ import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.UserManager;
-import comp3350.ppms.presentation.allusers.Messages;
+import comp3350.ppms.domain.User;
+import comp3350.ppms.domain.Messages;
+import comp3350.ppms.presentation.projectowner.CreateProjectActivity;
 
 public abstract class ProjectListActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
