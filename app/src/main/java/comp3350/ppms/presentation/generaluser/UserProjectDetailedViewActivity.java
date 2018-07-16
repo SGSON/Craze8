@@ -176,7 +176,7 @@ public class UserProjectDetailedViewActivity extends AppCompatActivity implement
     }
 
     private void adjustUIForGeneralUser() {
-        if (currAccount.getLikedProjectIDList().contains(projectID)) //TODO: This is a code smell
+        if (currAccount.getLikedProjectIDList().contains(projectID))
         {
             interestButton.setText("Liked");
             interestButton.setEnabled(false);

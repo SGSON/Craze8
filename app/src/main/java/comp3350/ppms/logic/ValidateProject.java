@@ -1,10 +1,15 @@
 package comp3350.ppms.logic;
 
+import android.content.res.Resources;
+
+import com.example.test.ppms.R;
+
 import comp3350.ppms.domain.CredentialError;
 import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.ProjectDescriptionError;
 import comp3350.ppms.domain.ProjectNameError;
+import comp3350.ppms.presentation.ErrorMessaging;
 
 /**
  * The validate project class implements all the methods required
@@ -28,7 +33,7 @@ public class ValidateProject {
     //@Override
     public static boolean validateUUID(Project project) throws CustomException{
         if (project.getProjectID() == null){
-            throw new CustomException(CustomException.NO_PROJECT_ID_ERROR);
+            throw new CustomException(ErrorMessaging.NO_PROJECT_ID_ERROR);
         } else {
             return true;
         }
@@ -36,7 +41,7 @@ public class ValidateProject {
 
     public static boolean validateOwner(Project project) throws CustomException {
         if(project.getProjectOwner() == null) {
-            throw new CustomException("No Project Owner error");
+            throw new CustomException(ErrorMessaging.NO_PROJECT_OWNER_NAME);
         } else {
             return true;
         }
@@ -45,9 +50,9 @@ public class ValidateProject {
     //@Override
     public static boolean validateName(Project project) throws CustomException {
         if (project.getProjectName().length() > NAME_LENGTH){
-            throw new ProjectNameError(CustomException.EXCEED_CHARACTER_MAX_ERROR);
+            throw new ProjectNameError(ErrorMessaging.EXCEED_CHARACTER_MAX_ERROR);
         } else if (project.getProjectName() == null || project.getProjectName().equals("")){
-            throw new ProjectNameError(CustomException.EMPTY_NAME_ERROR);
+            throw new ProjectNameError(ErrorMessaging.EMPTY_NAME_ERROR);
         } else {
             return true;
         }
@@ -56,9 +61,9 @@ public class ValidateProject {
     //@Override
     public static boolean validateDescription(Project project) throws CustomException {
         if (project.getProjectDescription().length() > DESCRIPTION_LENGTH){
-            throw new ProjectDescriptionError(CustomException.EXCEEDED_DESCRIPTION_ERROR);
+            throw new ProjectDescriptionError(ErrorMessaging.EXCEEDED_DESCRIPTION_ERROR);
         } else if (project.getProjectDescription() == null || project.getProjectDescription().isEmpty()){
-            throw new ProjectDescriptionError(CustomException.EMPTY_DESCRIPTION_ERROR);
+            throw new ProjectDescriptionError(ErrorMessaging.EMPTY_DESCRIPTION_ERROR);
         } else {
             return true;
         }
@@ -68,11 +73,11 @@ public class ValidateProject {
     public static boolean validateCredentials(Project project) throws CustomException {
         int i = 0;
         if (project.getProjectCredentials().isEmpty()){
-            throw new CredentialError(CustomException.PROJECT_CREDENTIALS_ERROR);
+            throw new CredentialError(ErrorMessaging.PROJECT_CREDENTIALS_ERROR);
         } else {
             while (i < project.getProjectCredentials().size()){
                 if (project.getProjectCredentials().get(i).length() < CREDENTIAL_LENGTH){
-                    throw new CredentialError("Credentials must exceed " + CREDENTIAL_LENGTH + " characters.");
+                    throw new CredentialError(ErrorMessaging.CRED_TOO_SHORT_PT1 + CREDENTIAL_LENGTH + ErrorMessaging.CRED_TOO_SHORT_PT2);
                 }
                 i++;
             }

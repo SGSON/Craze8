@@ -12,13 +12,14 @@ import com.example.test.ppms.R;
 import java.util.List;
 
 import comp3350.ppms.domain.CustomException;
+import comp3350.ppms.domain.Messages;
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
 import comp3350.ppms.logic.MatchManager;
 import comp3350.ppms.logic.MatchManagerInterface;
 import comp3350.ppms.logic.UserManager;
 import comp3350.ppms.logic.UserManagerInterface;
-import comp3350.ppms.presentation.allusers.Messages;
+
 
 public class UserMatchedProjectsListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
