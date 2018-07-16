@@ -1,179 +1,131 @@
 package comp3350.ppms.tests.logic;
 
-import org.junit.After;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
+
 import org.junit.Before;
-import org.junit.Test;
-import junit.framework.TestCase;
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import org.junit.Test;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
-import comp3350.ppms.domain.CustomException;
 import comp3350.ppms.logic.MatchManager;
 import comp3350.ppms.logic.ProjectManager;
+import comp3350.ppms.logic.ProjectManagerInterface;
 import comp3350.ppms.logic.UserManager;
+import comp3350.ppms.logic.UserManagerInterface;
 import comp3350.ppms.persistence.ProjectDatabaseInterface;
 import comp3350.ppms.persistence.UserDatabaseInterface;
-import comp3350.ppms.tests.database.ProjectDatabase;
-import comp3350.ppms.tests.database.UserDatabase;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.fail;
-import static org.junit.Assert.assertNotNull;
-
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class MatchManagerTest {
 
-    private UserManager testUserManager;
-    private UserManager testUserManagerMock;
-
-    private ProjectManager testProjectManager;
-    private ProjectManager testProjectManagerMock;
-
-    private MatchManager testMatchManager;
-    private UserDatabaseInterface userDatabase;
-    private ProjectDatabaseInterface projectDatabase;
+    private ProjectManagerInterface projectManagerMock;
+    private UserManagerInterface userManagerMock;
+    private MatchManager matchManagerMock;
 
     @Before
     public void setUp(){
-        testUserManager = new UserManager(new UserDatabase());
-        userDatabase = mock(UserDatabaseInterface.class);
-        testUserManagerMock = new UserManager(userDatabase);
-
-        testProjectManager = new ProjectManager(new ProjectDatabase());
-        projectDatabase = mock(ProjectDatabaseInterface.class);
-        testProjectManagerMock = new ProjectManager(projectDatabase);
-
-        testMatchManager = new MatchManager(testProjectManager, testUserManager);
-    }
-
-    @After
-    public void tearDown() {
-        testUserManager = null;
-        testUserManagerMock = null;
-        userDatabase = null;
-
-        testProjectManager = null;
-        testProjectManagerMock = null;
-        projectDatabase = null;
-
-        testMatchManager = null;
+        projectManagerMock = mock(ProjectManagerInterface.class);
+        userManagerMock = mock(UserManagerInterface.class);
+        matchManagerMock = new MatchManager(projectManagerMock, userManagerMock);
     }
 
     @Test
-    public void testMatchProject(){
-        System.out.println("\nTest MatchProject");
+    public void testIsUserProjectMatch(){
+        System.out.println("\nTest IsUserProjectMatch");
 
-        int i = 0;
-        List<Project> testProjects = new ArrayList<>();
+        String uName = "uName";
+        User user = new User(uName, "password");
+        ArrayList<String> cred = new ArrayList<>();
+        String pName =  "pName";
+        cred.add("Java");
+        Project proj = new Project(pName, "owner", "description", cred);
 
-        User user = new User("testing", "testing");
-        try {
-            testUserManager.insertUser(user);
-        } catch (CustomException expected){
+        List<String> uList = new ArrayList<>();
+        uList.add(user.getUserID());
+        List<String> pList = new ArrayList<>();
+        pList.add(proj.getProjectID());
 
-        }
+        when(userManagerMock.getUsersInterestedProjects(user)).thenReturn(pList);
+        when(projectManagerMock.getSelectedUsersForProject(proj)).thenReturn(uList);
 
-        Project testProject = null;
-        testProjects = testProjectManager.getProjects();
+        assertTrue(matchManagerMock.isUserProjectMatch(user, proj));
 
-        while (i < testProjects.size()){
-            if (testProjects.get(i).getProjectName().equals("InternetFlix")){
-                testProject = testProjects.get(i);
-                break;
-            } else {
-                i++;
-            }
-        }
-        user.addToLikedProjectIDList(testProject.getProjectID());
-        testProject.addSelectedUser(user.getUserID());
-        testProjects = testProjectManager.getProjects();
-        while (i < testProjects.size()){
-            if (testProjects.get(i).getProjectName().equals("InternetFlix")){
-                testProject = testProjects.get(i);
-                break;
-            } else {
-                i++;
-            }
-        }
-        try {
-           user = testUserManager.getUser("testing");
-        }catch (CustomException expected){
-
-        }
-        assertTrue(testMatchManager.isUserProjectMatch(user,testProject));
+        verify(userManagerMock).getUsersInterestedProjects(user);
+        verify(projectManagerMock).getSelectedUsersForProject(proj);
 
         System.out.println("\nTest Passed");
     }
 
     @Test
-    public void testNotMatchProject(){
-        System.out.println("\nTest MatchProject");
-        int i = 0;
-        List<Project> testProjects = new ArrayList<>();
+    public void testGetMatchedUsersForProject(){
+        System.out.println("\nTest GetMatchedUsersForProject");
 
-        User user = new User("testing", "testing");
-        try {
-            testUserManager.insertUser(user);
-        } catch (CustomException expected){
+        String uName = "uName";
+        User user = new User(uName, "password");
+        ArrayList<String> cred = new ArrayList<>();
+        String pName =  "pName";
+        cred.add("Java");
+        Project proj = new Project(pName, "owner", "description", cred);
 
-        }
+        List<String> uList = new ArrayList<>();
+        uList.add(user.getUserID());
+        List<String> pList = new ArrayList<>();
+        pList.add(proj.getProjectID());
 
-        Project testProject = null;
-        testProjects = testProjectManager.getProjects();
+        when(projectManagerMock.getSelectedUsersForProject(proj)).thenReturn(uList);
+        when(userManagerMock.getUserByID(user.getUserID())).thenReturn(user);
+        when(userManagerMock.getUsersInterestedProjects(user)).thenReturn(pList);
 
-        while (i < testProjects.size()){
-            if (testProjects.get(i).getProjectName().equals("InternetFlix")){
-                testProject = testProjects.get(i);
-                break;
-            } else {
-                i++;
-            }
-        }
-        assertFalse(testMatchManager.isUserProjectMatch(user,testProject));
+        List<User> newUsers = matchManagerMock.getMatchedUsersForProject(proj);
+        assertEquals(user.getUserID(), newUsers.get(0).getUserID());
+
+        verify(projectManagerMock, times(2)).getSelectedUsersForProject(proj);
+        verify(userManagerMock).getUserByID(user.getUserID());
+        verify(userManagerMock).getUsersInterestedProjects(user);
+
         System.out.println("\nTest Passed");
     }
 
-    /*@Test
-    public void testGetMatchedUsersForProjects() {
-        int i = 0;
-        String projectIDTrack;
-        List<Project> testProjects = new ArrayList<>();
+    @Test
+    public void testGetMatchedProjectsForUser(){
+        System.out.println("\nTest GetMatchedProjectsForUser");
 
-        User user = new User("testing", "testing");
-        try {
-            testUserManager.insertUser(user);
-        } catch (CustomException expected){
+        String uName = "uName";
+        User user = new User(uName, "password");
+        ArrayList<String> cred = new ArrayList<>();
+        String pName =  "pName";
+        cred.add("Java");
+        Project proj = new Project(pName, "owner", "description", cred);
 
-        }
+        List<String> uList = new ArrayList<>();
+        uList.add(user.getUserID());
+        List<String> pList = new ArrayList<>();
+        pList.add(proj.getProjectID());
 
-        Project testProject = null;
-        testProjects = testProjectManager.getProjects();
+        when(userManagerMock.getUsersInterestedProjects(user)).thenReturn(pList);
+        when(projectManagerMock.getProject(proj.getProjectID())).thenReturn(proj);
+        when(projectManagerMock.getSelectedUsersForProject(proj)).thenReturn(uList);
 
-        while (i < testProjects.size()){
-            if (testProjects.get(i).getProjectName().equals("InternetFlix")){
-                testProject = testProjects.get(i);
-                break;
-            } else {
-                i++;
-            }
-        }
-        projectIDTrack = testProject.getProjectID();
-        user.addToLikedProjectIDList(projectIDTrack);
-        testProject.addSelectedUser(user.getUserID());
+        List<Project> projs = matchManagerMock.getMatchedProjectsForUser(user);
+        assertEquals(proj.getProjectID(), projs.get(0).getProjectID());
 
-        testProject = testProjectManager.getProject(projectIDTrack);
-        testMatchManager = new MatchManager(testProjectManager, testUserManager);
-        assertEquals(1, testMatchManager.getMatchedUsersForProject(testProject).size());
-        testMatchManager.getMatchedUsersForProject(testProject);
-        assertEquals("testing", user.getUserNickName());
-        assertEquals("testing", user.getUserPassword());
-    }*/
+        verify(userManagerMock, times(2)).getUsersInterestedProjects(user);
+        verify(projectManagerMock).getProject(proj.getProjectID());
+        verify(projectManagerMock).getSelectedUsersForProject(proj);
+
+
+        System.out.println("\nTest Passed");
+    }
 }
