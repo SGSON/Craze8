@@ -5,6 +5,8 @@ import java.util.List;
 
 import comp3350.ppms.domain.Project;
 import comp3350.ppms.domain.User;
+import comp3350.ppms.persistence.ProjectDatabaseInterface;
+import comp3350.ppms.persistence.UserDatabaseInterface;
 
 public class MatchManager implements MatchManagerInterface {
 
@@ -15,6 +17,11 @@ public class MatchManager implements MatchManagerInterface {
 
         projectManager = new ProjectManager();
         userManager = new UserManager();
+    }
+
+    public MatchManager(final ProjectManagerInterface project, final UserManagerInterface user){
+        projectManager = project;
+        userManager = user;
     }
 
     @Override

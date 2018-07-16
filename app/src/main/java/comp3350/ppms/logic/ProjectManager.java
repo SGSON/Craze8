@@ -70,7 +70,7 @@ public class ProjectManager implements ProjectManagerInterface{
     }
 
     @Override
-    public ArrayList<String> getSelectedUsersForProject(Project project) {
+    public List<String> getSelectedUsersForProject(Project project) {
         return project.getSelectedUsers();
     }
 
